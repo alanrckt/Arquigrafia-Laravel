@@ -1,0 +1,4 @@
+@charset "UTF-8";
+/* CSS Document */
+ul#top_menu_items li, ul#logged_menu li { display:inline; zoom:1; }
+a#complete_search {margin-top: -24px;}
