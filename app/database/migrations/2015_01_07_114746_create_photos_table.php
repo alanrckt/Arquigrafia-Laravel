@@ -36,9 +36,9 @@ class CreatePhotosTable extends Migration {
 			$table->string('tombo')->nullable();
 			$table->string('workAuthor')->nullable();
 			$table->string('workdate')->nullable();
-      $table->bigInteger('user_id')->unsigned();
-      $table->foreign('user_id')->references('id')->on('users');
-      $table->timestamps();
+			$table->bigInteger('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->timestamps();
 		});
 	}
 

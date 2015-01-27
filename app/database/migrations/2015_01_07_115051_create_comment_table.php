@@ -19,7 +19,7 @@ class CreateCommentTable extends Migration {
 			$table->string('text')->nullable();
 			$table->bigInteger('user_id')->nullable()->unsigned();
 			$table->bigInteger('photo_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('user');
+			$table->foreign('user_id')->references('id')->on('users');
 			$table->foreign('photo_id')->references('id')->on('photos');
 		});
 	}

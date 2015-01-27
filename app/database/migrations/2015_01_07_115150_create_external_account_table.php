@@ -19,7 +19,7 @@ class CreateExternalAccountTable extends Migration {
 			$table->integer('accountType')->nullable();
 			$table->string('tokenSecret')->nullable();
 			$table->bigInteger('user_id')->nullable()->unsigned();
-			$table->foreign('user_id')->references('id')->on('user');
+			$table->foreign('user_id')->references('id')->on('users');
 		});
 	}
 

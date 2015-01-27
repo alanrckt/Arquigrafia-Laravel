@@ -16,8 +16,6 @@ class CreateCounterTable extends Migration {
 		{
 			$table->bigIncrements('id');
 			$table->dateTime('dataCriacao')->nullable();
-			$table->string('name')->nullable();
-			$table->string('type')->nullable();
 			$table->integer('value');
 			$table->bigInteger('photo_id')->unsigned();
 			$table->foreign('photo_id')->references('id')->on('photos');

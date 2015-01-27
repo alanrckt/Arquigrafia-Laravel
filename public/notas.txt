@@ -1,0 +1,6 @@
+
+Cópia da tabela CounterLog é necessária?
+
+A tabela CounterLog do banco de produção do Arquigrafia tem 1.163.918 tuplas. Cada tupla informa qual usuario visualizou uma determinada foto em um determinado horario. 
+
+A tabela CounterLog já possui um atributo counter_id, entretanto existe outra tabela gw_collab_Counter_CounterLog que relaciona um counterlog a um counter, mas não parece necessário uma vez que counter se encontra em counterlog.

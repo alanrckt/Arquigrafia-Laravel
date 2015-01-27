@@ -19,7 +19,7 @@ class CreateCounterlogTable extends Migration {
 			$table->bigInteger('counter_id')->nullable()->unsigned();
 			$table->bigInteger('viewer_id')->nullable()->unsigned();
 			$table->foreign('counter_id')->references('id')->on('counter');
-			$table->foreign('viewer_id')->references('id')->on('user');
+			$table->foreign('viewer_id')->references('id')->on('users');
 		});
 	}
 
