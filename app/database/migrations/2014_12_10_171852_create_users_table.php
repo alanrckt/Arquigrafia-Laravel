@@ -16,21 +16,21 @@ class CreateUsersTable extends Migration {
 		{
 			$table->bigIncrements('id');
       $table->string('name');
-      $table->string('lastName');
-      $table->string('login');
-      $table->enum('gender',['male','female']);
-      $table->string('email')->unique();
+      $table->string('lastName')->nullable; //pessoas sem perfil preenchido
+      $table->string('login')->unique; //no banco original, o login é único
+      $table->enum('gender',['male','female'])->nullable(); //ninguem preencheu gender no banco antigo
+      $table->string('email'); //->unique(); mais de uma conta com o mesmo email no banco antigo
       $table->string('password');
+      $table->string('oldPassword'); // senha do antigo banco (temporario?)
       $table->string('country')->nullable();
       $table->string('state')->nullable();
       $table->string('city')->nullable();
       $table->string('address')->nullable();
       $table->string('birthday')->nullable();
-      // $table->string('company')->nullable();
-      $table->string('title')->nullable();
-      $table->string('occupation')->nullable();
+      // $table->string('company')->nullable();  
+      //$table->string('occupation')->nullable(); // nova tabela occupation
       $table->string('scholarity')->nullable();
-      $table->string('profession')->nullable();
+      //$table->string('profession')->nullable();
       // $table->string('relationship')->nullable();
       $table->string('language')->nullable();
       $table->string('photo')->nullable();

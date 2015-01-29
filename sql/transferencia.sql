@@ -1,3 +1,18 @@
+insert into arquigrafia.users (id, name, login, email, password, oldPassword, photo, created_at, updated_at)
+select id, name, login, email, encryptedPassword, encryptedPassword, photoURL, creationDate, updateAt
+from groupware_workbench_arquigrafia.gw_collab_User 
+where id not in (select user_id from groupware_workbench_arquigrafia.gw_collab_Profile);
+
+insert into arquigrafia.users (id, name, lastName, login, gender, email, password, oldPassword, 
+	country, state, city, address, birthday, scholarity, photo, phone, site, created_at, updated_at)
+select u.id, name, secondName, login, gender, email, encryptedPassword, encryptedPassword, 
+	country, stateOrProvince, city, address, birthday, scholarity, photoURL, phone, webPage, creationDate, updateAt
+from groupware_workbench_arquigrafia.gw_collab_User u, groupware_workbench_arquigrafia.gw_collab_Profile p
+	where u.id = p.user_id;
+
+insert into arquigrafia.occupation (institution, occupation, user_id)
+select institution, occupation, user_id from groupware_workbench_arquigrafia.gw_collab_Profile;
+
 insert into arquigrafia.photos (id, aditionalImageComments, allowCommercialUses, allowModifications, 
 	cataloguingTime, characterization, city, collection, country, dataCriacao, dataUpload, deleted, 
 	description, district, imageAuthor, name, nome_arquivo, state, street, tombo, workAuthor, workdate, 
