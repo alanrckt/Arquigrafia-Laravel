@@ -15,8 +15,8 @@ class CreateFaqTable extends Migration {
 		Schema::create('faq', function(Blueprint $table)
 		{
 			$table->bigIncrements('id');
-			$table->longText('pergunta')->nullable();
-			$table->longText('resposta')->nullable();
+			$table->longText('question')->nullable();
+			$table->longText('answer')->nullable();
 		});
 	}
 

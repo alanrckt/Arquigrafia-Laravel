@@ -20,8 +20,9 @@ class CreateUsersTable extends Migration {
       $table->string('login')->unique; //no banco original, o login é único
       $table->enum('gender',['male','female'])->nullable(); //ninguem preencheu gender no banco antigo
       $table->string('email'); //->unique(); mais de uma conta com o mesmo email no banco antigo
-      $table->string('password');
-      $table->string('oldPassword'); // senha do antigo banco (temporario?)
+      $table->string('password'); //quem tem conta antiga não tem nova senha
+      $table->string('oldPassword'); // senha do antigo banco. Quem tem conta nova não tem senha antiga
+      $table->boolean('oldAccount'); //conta antiga 
       $table->string('country')->nullable();
       $table->string('state')->nullable();
       $table->string('city')->nullable();

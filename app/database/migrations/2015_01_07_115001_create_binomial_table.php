@@ -16,12 +16,14 @@ class CreateBinomialTable extends Migration {
 		{
 			$table->bigIncrements('id');
 			$table->integer('defaultValue');
-			$table->string('firstDescription')->nullable();
-			$table->string('firstLink')->nullable();
-			$table->string('firstName')->nullable();
-			$table->string('secondDescription')->nullable();
-			$table->string('secondLink')->nullable();
-			$table->string('secondName')->nullable();
+			// $table->string('firstDescription')->nullable(); não são necessários
+			// $table->string('firstLink')->nullable(); não são necessários
+			//$table->string('firstName')->nullable(); renomeado para firstOption
+			$table->string('firstOption')->nullable();
+			// $table->string('secondDescription')->nullable(); não são necessários
+			// $table->string('secondLink')->nullable(); não são necessários
+			// $table->string('secondName')->nullable(); renomeado para secondOption
+			$table->string('secondOption')->nullable();
 		});
 	}
 
