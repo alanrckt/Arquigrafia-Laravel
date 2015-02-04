@@ -22,4 +22,20 @@ class UsersController extends \BaseController {
 		//return View::make('/users.show');
 		
 	}
+  
+  // show create account form
+  public function account()
+  {
+    return View::make('modal.account');
+  }
+  
+  // create user 
+  public function store()
+  {
+    $input = Input::all();
+    return $input;
+    // validate data
+    // save user
+  }
+  
 }

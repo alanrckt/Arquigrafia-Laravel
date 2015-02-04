@@ -21,6 +21,8 @@ Route::post('/search', function() { return View::make('search'); });
 
 Route::resource('/teste','TesteController');
 
+Route::get('/users/account', 'UsersController@account');
+// Route::post('/modal/login', 'UsersController@login');
 Route::resource('/users','UsersController');
 
 Route::resource('/profile','ProfileController');
