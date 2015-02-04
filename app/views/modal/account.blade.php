@@ -11,6 +11,17 @@
       <small>* Todos os campos a seguir são obrigatórios.</small>
       </p>
       
+      <?php 
+      if (isset($messages)) {
+        echo "<ul>";
+        foreach ($messages->all('<li>:message</li>') as $message)
+        {
+            echo $message;
+        }
+        echo "</ul>";
+      }
+      ?>
+      
       {{ Form::open(array('url' => 'users')) }}
         <p>{{ Form::label('name', 'Nome*:') }}</p>
         <p>{{ Form::text('name') }}</p>
