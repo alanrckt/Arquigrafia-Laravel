@@ -8,6 +8,8 @@
 
 @section('content')
 
+  <div class="container">
+  
     <h1>Todos Users</h1>
     
     <ul>
@@ -17,4 +19,7 @@
     @endforeach
     
     </ul>
+    
+  </div>
+  
 @stop
