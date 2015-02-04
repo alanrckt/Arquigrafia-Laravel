@@ -38,17 +38,29 @@
         <!--   ÁREA DO USUARIO   -->
         <div id="loggin_area">
         
-        <a href="user.php" id="user_name">Pedro Emilio Guglielmo <!-- {{-- $users->name --}} --> </a>
+        <?php if (Auth::check()) { ?>
         
-        <a href="{{ URL::to("/") }}/users/1" id="user_name"><img id="profile_photo" src="{{ URL::to("/") }}/img/photos/avatar.jpg" class="user_photo_thumbnail"/></a>
-				
-        <a href="index.php" id="logout" class="btn">SAIR</a><br />
-		 		<ul id="logged_menu">
-			  	<li> <a href="album/15/list/21" id="users" title="Meu Arquigrafia">&nbsp;</a></li>
-			  	<!-- <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li> -->
-			  	<li><a href="upload.php" name="modal" id="upload" title="Enviar uma imagem">&nbsp;</a></li>
-          <li><a href="#" id="messages" title="Você tem 19 mensagens">&nbsp;</a></li>
-      	</ul>
+          <a href="{{ URL::to("/users") }}/{{ Auth::user()->id; }}" id="user_name">{{ Auth::user()->name; }}</a>
+          
+          <a href="{{ URL::to("/users") }}/{{ Auth::user()->id; }}" id="user_name"><img id="profile_photo" src="{{ URL::to("/") }}/img/photos/avatar.jpg" class="user_photo_thumbnail"/></a>
+          
+          <a href="{{ URL::to("/users/logout/") }}" id="logout" class="btn">SAIR</a><br />
+          <ul id="logged_menu">
+            <li> <a href="album/15/list/21" id="users" title="Meu Arquigrafia">&nbsp;</a></li>
+            <!-- <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li> -->
+            <li><a href="upload.php" name="modal" id="upload" title="Enviar uma imagem">&nbsp;</a></li>
+            <li><a href="#" id="messages" title="Você tem 19 mensagens">&nbsp;</a></li>
+          </ul>
+         
+        <?php } else { ?>
+        
+          <!--   BOTÃO DE LOGIN   -->
+          <a href="{{ URL::to("/users/login/") }}" name="modal" id="login_button" class="btn">ENTRAR</a>
+      
+          <!--   BOTÃO DE CADASTRO   -->
+          <a href="{{ URL::to("/users/account") }}" name="modal" class="btn" id="registration_button">CRIAR UMA CONTA</a>
+          
+        <?php } ?>
           
         </div>
         <!--   FIM - ÁREA DO USUARIO   -->      

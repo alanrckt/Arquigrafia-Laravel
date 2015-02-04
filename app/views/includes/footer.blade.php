@@ -56,7 +56,12 @@
         <div class="footer-msg left">
           <div class="footer-logo"></div>
           <p>O Arquigrafia conta com um total de 2825 fotos.<br />
-          <a href="#">Faça o login</a> e compartilhe também suas imagens.</p>
+          <?php if (!Auth::check()) { ?>
+            <a href="{{ URL::to("/users/login") }}">Faça o login</a> e compartilhe também suas imagens.
+          <?php } else { ?>
+            Compartilhe também suas imagens.
+          <?php } ?>
+          </p>
         </div>
           
         <p id="copyright">Arquigrafia - 2013 - Este site é licenciado sob uma licença <a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank">Creative Commons Attribution 3.0</a></p>

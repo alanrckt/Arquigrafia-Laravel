@@ -1,4 +1,4 @@
-@extends('layouts.modal')
+@extends('layouts.default')
 
 @section('content')
 

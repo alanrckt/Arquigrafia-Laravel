@@ -6,10 +6,8 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
-
-	// public $timestamps = false;
 	
-	protected $fillable = ['id','name', 'email','password','login'];
+	protected $fillable = ['id','name','email','password','login'];
 
 	public function photos()
     {

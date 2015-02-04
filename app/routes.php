@@ -22,7 +22,10 @@ Route::post('/search', function() { return View::make('search'); });
 Route::resource('/teste','TesteController');
 
 Route::get('/users/account', 'UsersController@account');
-// Route::post('/modal/login', 'UsersController@login');
+Route::get('/users/login', 'UsersController@loginForm');
+Route::post('/users/login', 'UsersController@login');
+Route::get('/users/logout', 'UsersController@logout');
+
 Route::resource('/users','UsersController');
 
 Route::resource('/profile','ProfileController');
