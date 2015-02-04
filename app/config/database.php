@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'arquigrafia',
+			'database'  => 'arquigrafia', 
 			'username'  => 'root',
-			'password'  => 'abc123',
+			'password'  => '12p12e',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
