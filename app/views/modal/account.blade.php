@@ -12,28 +12,29 @@
       </p>
       
       <?php 
-      if (isset($messages)) {
-        echo "<ul>";
-        foreach ($messages->all('<li>:message</li>') as $message)
-        {
-            echo $message;
-        }
-        echo "</ul>";
+      /*
+      foreach ($errors->all('<p>:message</p>') as $message) {
+        echo $message;
       }
+      */
       ?>
       
       {{ Form::open(array('url' => 'users')) }}
         <p>{{ Form::label('name', 'Nome*:') }}</p>
         <p>{{ Form::text('name') }}</p>
+        {{ $errors->first('name') }}
         
         <p>{{ Form::label('login', 'Login*:') }}</p>
         <p>{{ Form::text('login') }}</p>
+        {{ $errors->first('login') }}
         
         <p>{{ Form::label('email', 'E-mail*:') }}</p>
         <p>{{ Form::text('email') }}</p>
+        {{ $errors->first('email') }}
         
         <p>{{ Form::label('password', 'Senha*:') }}</p>
         <p>{{ Form::text('password') }}</p>
+        {{ $errors->first('password') }}
         
         <p>{{ Form::label('passwordConfirm', 'Repita a senha*:') }}</p>
         <p>{{ Form::text('passwordConfirm') }}</p>

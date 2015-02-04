@@ -44,7 +44,8 @@ class UsersController extends \BaseController {
     );
     $validator = Validator::make($input, $rules);
     if ($validator->fails()) {
-      return Redirect::to('users.accout')->withErrors($validator);
+      $messages = $validator->messages();
+      return Redirect::to('users/account')->withErrors($messages);
     } else {
       // save user
       User::create(['name'=>$input["name"],'email'=>$input["email"],'password'=>Hash::make($input["password"]),'login'=>$input["login"]]);
