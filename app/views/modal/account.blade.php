@@ -36,8 +36,8 @@
         <p>{{ Form::text('password') }}</p>
         {{ $errors->first('password') }}
         
-        <p>{{ Form::label('passwordConfirm', 'Repita a senha*:') }}</p>
-        <p>{{ Form::text('passwordConfirm') }}</p>
+        <p>{{ Form::label('password_confirmation', 'Repita a senha*:') }}</p>
+        <p>{{ Form::text('password_confirmation') }}</p>
         
         <p>Li e aceito os <a href="/18/termsOfService" target="_blank" style="text-decoration: underline;">termos de compromisso</a>: 
         {{ Form::checkbox('terms', 'read') }} <br> <br><a href="http://creativecommons.org/licenses/?lang=pt" id="creative_commons" style="text-decoration:underline;">Creative Commons</a></p>

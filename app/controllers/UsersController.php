@@ -39,16 +39,21 @@ class UsersController extends \BaseController {
     // validate data
     $rules = array(
         'name' => 'required',
-        'password' => 'required|min:6',
+        'password' => 'required|min:6|confirmed',
         'email' => 'required|email|unique:users'
     );
     $validator = Validator::make($input, $rules);
+    
     if ($validator->fails()) {
       $messages = $validator->messages();
       return Redirect::to('users/account')->withErrors($messages);
     } else {
       // save user
       User::create(['name'=>$input["name"],'email'=>$input["email"],'password'=>Hash::make($input["password"]),'login'=>$input["login"]]);
+      
+      $users = User::all();
+		  return View::make('users/index',['users' => $users]);
+      
     }
     
   }
