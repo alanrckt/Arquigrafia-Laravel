@@ -23,7 +23,7 @@ city, collection, country, dataCriacao, dataUpload, deleted, description, distri
 nome_arquivo, state, street, tombo, workAuthor, workdate, users_id, now(), now() 
 from groupware_workbench_arquigrafia.Photo, groupware_workbench_arquigrafia.Photo_gw_collab_User where Photo_id = id;
 
-insert into arquigrafia.albums (id, creationDate, description, title, urlCover, owner_id)
+insert into arquigrafia.albums (id, creationDate, description, title, urlCover, user_id)
 select id, creationDate, description, title, urlCover, owner_id from groupware_workbench_arquigrafia.gw_collab_Album;
 
 insert into arquigrafia.album_elements (album_id, photo_id)
@@ -43,7 +43,7 @@ select id, postDate, text, user_id, idReferencedClass from groupware_workbench_a
 insert into arquigrafia.counter (id, dataCriacao, value, photo_id)
 select id, dataCriacao, value, idReferencedClass from groupware_workbench_arquigrafia.gw_collab_Counter;
 
-insert into arquigrafia.counterlog (id, accessDate, counter_id, viewer_id)
+insert into arquigrafia.counterlog (id, accessDate, counter_id, user_id)
 select id, accessDate, counter_id, viewer_id from groupware_workbench_arquigrafia.CounterLog;
 
 -- retirado
