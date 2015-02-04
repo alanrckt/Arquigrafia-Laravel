@@ -19,32 +19,51 @@
       */
       ?>
       
-      {{ Form::open(array('url' => 'users')) }}
-        <p>{{ Form::label('name', 'Nome*:') }}</p>
-        <p>{{ Form::text('name') }}</p>
-        {{ $errors->first('name') }}
+      <div class="six columns">
+      
+        {{ Form::open(array('url' => 'users')) }}
+          <div class="two columns alpha"><p>{{ Form::label('name', 'Nome*:') }}</p></div>
+          <div class="four columns omega">
+            <p>{{ Form::text('name') }} <br>
+            {{ $errors->first('name') }}</p>
+          </div>
+          
+          
+          <div class="two columns alpha"><p>{{ Form::label('login', 'Login*:') }}</p></div>
+          <div class="four columns omega">
+            <p>{{ Form::text('login') }} <br>
+            {{ $errors->first('login') }}</p>
+          </div>
+          
+          <div class="two columns alpha"><p>{{ Form::label('email', 'E-mail*:') }}</p></div>
+          <div class="four columns omega">
+            <p>{{ Form::text('email') }}<br>
+            {{ $errors->first('email') }}</p>
+          </div>
+          
+          <div class="two columns alpha"><p>{{ Form::label('password', 'Senha*:') }}</p></div>
+          <div class="four columns omega">
+            <p>{{ Form::text('password') }}<br>
+            {{ $errors->first('password') }}</p>
+          </div>
+          
+          <div class="two columns alpha"><p>{{ Form::label('password_confirmation', 'Repita a senha*:') }}</p></div>
+          <div class="four columns omega"><p>{{ Form::text('password_confirmation') }}</p></div>
+          
+          <div class="six columns alpha omega">
+          
+            <p>Li e aceito os <a href="/18/termsOfService" target="_blank" style="text-decoration: underline;">termos de compromisso</a>: {{ Form::checkbox('terms', 'read') }}</p>
+            <p><a href="http://creativecommons.org/licenses/?lang=pt" id="creative_commons" style="text-decoration:underline;">Creative Commons</a></p>
+            <p>{{ $errors->first('terms') }}</p>
+          
+      
+            <p>{{ Form::submit("CADASTRAR") }}</p>
+          
+          </div>
+          
+        {{ Form::close() }}
         
-        <p>{{ Form::label('login', 'Login*:') }}</p>
-        <p>{{ Form::text('login') }}</p>
-        {{ $errors->first('login') }}
-        
-        <p>{{ Form::label('email', 'E-mail*:') }}</p>
-        <p>{{ Form::text('email') }}</p>
-        {{ $errors->first('email') }}
-        
-        <p>{{ Form::label('password', 'Senha*:') }}</p>
-        <p>{{ Form::text('password') }}</p>
-        {{ $errors->first('password') }}
-        
-        <p>{{ Form::label('password_confirmation', 'Repita a senha*:') }}</p>
-        <p>{{ Form::text('password_confirmation') }}</p>
-        
-        <p>Li e aceito os <a href="/18/termsOfService" target="_blank" style="text-decoration: underline;">termos de compromisso</a>: 
-        {{ Form::checkbox('terms', 'read') }} <br> <br><a href="http://creativecommons.org/licenses/?lang=pt" id="creative_commons" style="text-decoration:underline;">Creative Commons</a></p>
-    
-        <p>{{ Form::submit("CADASTRAR") }}</p>
-        
-      {{ Form::close() }}
+      </div>
       
     </div>
     

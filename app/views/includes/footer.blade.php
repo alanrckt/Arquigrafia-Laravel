@@ -20,8 +20,8 @@
       <!--   CRÉDITOS - LOGOS   -->
       <div id="credits">
         <ul class="footer-links">
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Cadastrar-se</a></li>
+          <li><a href="{{ URL::to("/users/login") }}">Login</a></li>
+          <li><a href="{{ URL::to("/users/account") }}">Cadastrar-se</a></li>
           <li><a href="{{ URL::to("/") }}/project">O projeto</a></li>
           <li><a href="{{ URL::to("/") }}/faq">FAQ</a></li>
           <li><a href="#">Contato</a></li>

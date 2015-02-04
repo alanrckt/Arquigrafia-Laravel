@@ -104,6 +104,7 @@ i.info {background-position: -121px 0;}
 
 /* forms */
 form p {margin: 3px 0;}
+input[type="text"] {border-bottom: solid 1px #eee;} 
 .form-table td {vertical-align: top; padding-bottom: 5px;}
 .form-table label {line-height: 20px;}
 
