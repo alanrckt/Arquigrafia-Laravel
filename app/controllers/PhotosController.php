@@ -17,7 +17,12 @@ class PhotosController extends \BaseController {
   public function search()
 	{
     $needle = Input::get("q");
-		$photos = Photo::where('name', 'LIKE', '%' . $needle . '%')->orWhere('description', 'LIKE', '%' . $needle . '%')->get();
+		$photos = Photo::where('name', 'LIKE', '%' . $needle . '%')
+      ->orWhere('description', 'LIKE', '%' . $needle . '%')
+      ->orWhere('imageAuthor', 'LIKE', '%' . $needle . '%')
+      ->orWhere('state', 'LIKE', '%' . $needle . '%')
+      ->orWhere('city', 'LIKE', '%' . $needle . '%')
+      ->get();
     return View::make('/search',['photos' => $photos, 'query'=>$needle]);
 	}
 }
