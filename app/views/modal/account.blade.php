@@ -43,12 +43,12 @@
           
           <div class="two columns alpha"><p>{{ Form::label('password', 'Senha*:') }}</p></div>
           <div class="four columns omega">
-            <p>{{ Form::text('password') }}<br>
+            <p>{{ Form::password('password') }}<br>
             {{ $errors->first('password') }}</p>
           </div>
           
           <div class="two columns alpha"><p>{{ Form::label('password_confirmation', 'Repita a senha*:') }}</p></div>
-          <div class="four columns omega"><p>{{ Form::text('password_confirmation') }}</p></div>
+          <div class="four columns omega"><p>{{ Form::password('password_confirmation') }}</p></div>
           
           <div class="six columns alpha omega">
           

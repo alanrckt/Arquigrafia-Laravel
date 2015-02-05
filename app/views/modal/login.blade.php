@@ -15,7 +15,7 @@
         {{ $errors->first('login') }}
         
         <p>{{ Form::label('password', 'Senha:') }}</p>
-        <p>{{ Form::text('password') }}</p>
+        <p>{{ Form::password('password') }}</p>
         {{ $errors->first('password') }}
     
         <p>{{ Form::submit("LOGIN") }}</p>
