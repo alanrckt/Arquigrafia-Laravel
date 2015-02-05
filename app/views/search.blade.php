@@ -36,17 +36,41 @@
     	
       <div class="container">
         <div id="search_result" class="twelve columns row">
-          <h1>Resultado de: <?php if (isset($_POST["q"])) echo $_POST["q"]; else "casa"; ?></h1>
+          <h1>Resultado de: {{ $query }}</h1>
+          <!--
           <p>Tags contendo o termo: <a href="#">casa de pedra</a>, <a href="#">casa velha</a>, <a href="#">casaril</a>, <a href="#">casa de pedra</a>, <a href="#">casa velha</a>, <a href="#">casaril</a></p>
+          -->
+          
+          <?php if ( count($photos) < 1 ) { ?>
+            <p>Não encontramos nenhuma imagem com o termo {{ $query }}.</p>
+          <?php } else { ?>
+            <p>Foram encontradas {{ count($photos) }} imagens.</p>
+          <?php } ?>
         </div>
       </div>
       
       <!--   PAINEL DE IMAGENS - GALERIA - CARROSSEL   -->  
       <div class="wrap">
         <div id="panel">
-        
-          @include("includes.photos");
-          @include("includes.photos");
+            
+          <?php $i = 0;?>
+          
+          @foreach($photos as $photo)
+          
+            <?php
+              $i++;
+              $size = 1; 
+              if ($i%5 == 3) $size = 2;
+              if ($i%10 == 8) $size = 3;
+            ?>
+            
+            <div class="item h<?php echo $size; ?>"><div class="layer" data-depth="0.2">
+              <a href='{{ URL::to("/photos/{$photo->id}") }}'>
+              <img src='{{ URL::to("/img/photos/{$photo->nome_arquivo}") }}' title='{{ $photo->name }}'>
+              </a>
+            </div></div>
+            
+          @endforeach
           
         </div>
       </div>

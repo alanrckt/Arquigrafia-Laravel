@@ -17,7 +17,7 @@
 Route::get('/', 'PagesController@home');
 Route::get('/project', function() { return View::make('project'); });
 Route::get('/faq', function() { return View::make('faq'); });
-Route::post('/search', function() { return View::make('search'); });
+// Route::post('/search', function() { return View::make('search'); });
 
 Route::resource('/teste','TesteController');
 
@@ -34,6 +34,7 @@ Route::resource('/profile','ProfileController');
 
 Route::resource('/albums','AlbumsController');
 	
+Route::post('/search', 'PhotosController@search');
 Route::resource('/photos','PhotosController');
 
 Route::resource('/groups','GroupsController');
