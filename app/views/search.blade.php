@@ -62,6 +62,8 @@
               $size = 1; 
               if ($i%5 == 3) $size = 2;
               if ($i%10 == 8) $size = 3;
+              
+              if ($i > 50) break;
             ?>
             
             <div class="item h<?php echo $size; ?>"><div class="layer" data-depth="0.2">

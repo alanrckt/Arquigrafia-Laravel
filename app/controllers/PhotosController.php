@@ -23,7 +23,6 @@ class PhotosController extends \BaseController {
       ->orWhere('imageAuthor', 'LIKE', '%' . $needle . '%')
       ->orWhere('state', 'LIKE', '%' . $needle . '%')
       ->orWhere('city', 'LIKE', '%' . $needle . '%')
-      ->take(20)
       ->get();
     return View::make('/search',['photos' => $photos, 'query'=>$needle]);
 	}
