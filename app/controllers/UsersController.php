@@ -68,6 +68,21 @@ class UsersController extends \BaseController {
   public function login()
   {
     $input = Input::all();
+    
+    $user = User::where('login', '=', $input["login"])->first();
+
+    if ($user != null && $user->oldAccount == 1)
+    {
+      if ( User::checkOldAccount($user, $input["password"]) )
+      {
+        $user->oldAccount = 0;
+        $user->password = Hash::make($input["password"]);
+        $user->save();
+      } else {
+        return Redirect::to('/users/login');  
+      }
+    }
+
     if (Auth::attempt(array('login' => $input["login"], 'password' => $input["password"])))
     {
       return Redirect::to('/');
@@ -82,4 +97,5 @@ class UsersController extends \BaseController {
     Auth::logout();
     return Redirect::to('/');
   }
+
 }
