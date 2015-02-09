@@ -401,8 +401,8 @@
 						    
 								
 							
-							<li><a href="18/photo_avaliation/2778" title="Avalie a foto" id="eyedroppper"></a></li>
-							<li><a href="album/15/add/2778" title="Adicione a sua galeria" id="plus"></a></li>  
+							<!--<li><a href="18/photo_avaliation/2778" title="Avalie a foto" id="eyedroppper"></a></li>-->
+							<!--<li><a href="album/15/add/2778" title="Adicione a sua galeria" id="plus"></a></li>-->
 							<li><a href="photo/img-original/2778" title="Faça o download" id="download" target="_blank"></a></li>
 							
 								
@@ -539,19 +539,23 @@
 					</p>
 									
 					
-				
+				<!--
 				<h4>Localização:</h4>
-       	<img src="{{ URL::to("/") }}/placeholders/mapa.png" width="308" height="208" alt="" style="margin-top: 5px;" />
-				<!-- <div id="map_canvas" class="single_view_map" style="width:300px; height:200px;"></div> -->
-							
+				<div id="map_canvas" class="single_view_map" style="width:300px; height:200px;"></div> 
+        -->
+				
+        <!-- AVALIAÇÃO -->
+        <!--
 			  <h4>Avaliação:</h4>
-					<p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
-					<a href="18/photo_avaliation/2778" title="Avalie a foto" id="evaluate_button" class="btn">AVALIAR</a> &nbsp;
-					<a href="18/photo_avaliation_avarage/2778" title="Média das avaliações da foto" id="evaluation_average" class="btn">MÉDIA DAS AVALIAÇÕES</a>
-					<br />
-          <br />
+        <p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
+        <a href="18/photo_avaliation/2778" title="Avalie a foto" id="evaluate_button" class="btn">AVALIAR</a> &nbsp;
+        <a href="18/photo_avaliation_avarage/2778" title="Média das avaliações da foto" id="evaluation_average" class="btn">MÉDIA DAS AVALIAÇÕES</a>
+        <br />
+        <br />
+        -->
 				
         <!-- GRUPOS -->
+        <!--
         <div id="group_photos">
           <hgroup class="profile_block_title">
             <h3><i class="photos"></i> Grupos que usaram esta foto (5)</h3>
@@ -580,7 +584,8 @@
             </div>
           </div>
         </div>
-	
+        -->
+        
 			</div>
       
       
