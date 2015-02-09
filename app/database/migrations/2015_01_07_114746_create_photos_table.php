@@ -28,14 +28,17 @@ class CreatePhotosTable extends Migration {
 			$table->boolean('deleted')->default(false);
 			$table->string('description')->nullable();
 			$table->string('district')->nullable();
+			// fotografo
 			$table->string('imageAuthor')->nullable();
 			$table->string('name');
 			$table->string('nome_arquivo');
 			$table->string('state')->nullable();
 			$table->string('street')->nullable();
 			$table->string('tombo')->nullable();
+			// arquiteto
 			$table->string('workAuthor')->nullable();
 			$table->string('workdate')->nullable();
+			// que subiu
 			$table->bigInteger('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->timestamps();

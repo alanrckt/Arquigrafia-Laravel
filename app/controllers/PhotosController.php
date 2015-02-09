@@ -13,6 +13,17 @@ class PhotosController extends \BaseController {
 		$photos = Photo::whereid($id)->first();
     return View::make('/photos.show',['photos' => $photos]);
 	}
+	
+	public function store()
+  {
+		// save image
+	}
+	
+	// create photo 
+  public function store()
+  {
+		// save image
+	}
   
   public function search()
 	{
@@ -20,6 +31,7 @@ class PhotosController extends \BaseController {
 		$photos = Photo::orWhere('name', 'LIKE', '%' . $needle . '%')
       ->orWhere('description', 'LIKE', '%' . $needle . '%')
       ->orWhere('imageAuthor', 'LIKE', '%' . $needle . '%')
+			->orWhere('workAuthor', 'LIKE', '%' . $needle . '%')
       ->orWhere('state', 'LIKE', '%' . $needle . '%')
       ->orWhere('city', 'LIKE', '%' . $needle . '%')
       ->where('deleted', '=', '0')
