@@ -11,13 +11,8 @@
 |
 */
 
-
-Route::get('/teste2', function () {
-	$user = User::where('login', '=', 'renatorenato')->first();
-	$senha = $user->oldPassword;
-	return exec('java -cp "./public/java:./public/java/jasypt-1.7.jar" PasswordValidator renato ' . $senha);
-});
-
+Route::get('/friends/follow/{user_id}', 'UsersController@follow');
+Route::get('/friends/unfollow/{user_id}', 'UsersController@unfollow');
 //Route::get('/users', 'UsersController@index');
 //Route::get('/users/{id_usr}', 'UsersController@show');
 

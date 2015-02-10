@@ -12,13 +12,13 @@ class CreateFriendsRequestsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('friends_requests', function(Blueprint $table)
-		{
-			$table->bigInteger('friends_id')->unsigned();
-			$table->bigInteger('user_id')->unsigned();
-			$table->foreign('friends_id')->references('id')->on('friendship');    
-			$table->foreign('user_id')->references('id')->on('users');
-		});
+		// Schema::create('friends_requests', function(Blueprint $table)
+		// {
+		// 	$table->bigInteger('friends_id')->unsigned();
+		// 	$table->bigInteger('user_id')->unsigned();
+		// 	$table->foreign('friends_id')->references('id')->on('friendship');    
+		// 	$table->foreign('user_id')->references('id')->on('users');
+		// });
 	}
 
 	/**
