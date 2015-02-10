@@ -42,7 +42,13 @@
         
           <a href="{{ URL::to("/users") }}/{{ Auth::user()->id; }}" id="user_name">{{ Auth::user()->name; }}</a>
           
-          <a href="{{ URL::to("/users") }}/{{ Auth::user()->id; }}" id="user_name"><img id="profile_photo" src="{{ URL::to("/") }}/img/photos/avatar.jpg" class="user_photo_thumbnail"/></a>
+          <a href="{{ URL::to("/users") }}/{{ Auth::user()->id; }}" id="user_name">
+          <?php if (Auth::user()->photo != "") { ?>
+            <img id="profile_photo" src="<?php echo asset('img/avatars/' . Auth::user()->photo); ?>" class="user_photo_thumbnail"/>
+          </a>
+          <?php } else { ?>
+            <img id="profile_photo" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
+          <?php } ?>
           
           <a href="{{ URL::to("/users/logout/") }}" id="logout" class="btn">SAIR</a><br />
           <ul id="logged_menu">

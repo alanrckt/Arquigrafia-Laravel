@@ -31,7 +31,14 @@
 		<!--   HEADER DO USUÁRIO   -->
 		<div class="container">
 	      <div id="user_header" class="twelve columns">
-	        <img class="avatar" src="{{ URL::to("/") }}/placeholders/avatar-3.jpg" width="60" height="60">
+          
+          <?php if ($users->photo != "") { ?>
+            <img class="avatar" src="{{ asset('img/avatars/' . $users->photo); }}" class="user_photo_thumbnail"/>
+          </a>
+          <?php } else { ?>
+            <img class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
+          <?php } ?>
+          
 	        <div class="info">
 
 	          <h1>{{ $users->name}} {{ $users->secondName}}</h1>
