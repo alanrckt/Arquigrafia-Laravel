@@ -18,6 +18,7 @@ class PhotosController extends \BaseController {
 	public function form()
   {
 		// show form view
+    return View::make('/photos/form');
 	}
 	
 	// create photo 

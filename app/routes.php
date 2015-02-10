@@ -37,6 +37,7 @@ Route::resource('/profile','ProfileController');
 Route::resource('/albums','AlbumsController');
 	
 Route::post('/search', 'PhotosController@search');
+Route::get('/photos/upload','PhotosController@form');
 Route::resource('/photos','PhotosController');
 
 Route::resource('/groups','GroupsController');
