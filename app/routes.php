@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/info/', function(){ return View::make('i'); });
+
 Route::get('/friends/follow/{user_id}', 'UsersController@follow');
 Route::get('/friends/unfollow/{user_id}', 'UsersController@unfollow');
 //Route::get('/users', 'UsersController@index');

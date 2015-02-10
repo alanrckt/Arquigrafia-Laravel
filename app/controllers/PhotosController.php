@@ -24,7 +24,28 @@ class PhotosController extends \BaseController {
 	// create photo 
   public function store()
   {
-		// save image
+    if (Input::get("step")=="1") {
+		  if (Input::file('photo')->isValid()) {
+        // TODO validate image upload
+        $photo = Photo::create([
+          'user_id'=>Auth::user()->id,
+          'name'=>'LOCK', 'description'=>'LOCK', 
+          'nome_arquivo'=>'LOCK'
+        ]);
+        // save on database
+        $photo->save();
+        // save copies
+        Image::make(Input::file('photo'))->encode('jpg', 80)->save(public_path().'/uploads/'.$photo->id.".jpg"); // original
+        Image::make(Input::file('photo'))->encode('jpg', 80)->fit(600,600)->save(public_path().'/uploads/'.$photo->id.'_view.jpg');
+        // $image = Image::make(Input::file('photo'))->resize(600, 600)->save( $photo->id.'_view.jpg' );
+        // return to complete metadata
+        return View::make('/photos/form',['photo'=>$photo]);
+      } else {
+        print_r(Input::all());
+      }
+    } else {
+      // update metadata
+    }
 	}
   
   public function search()

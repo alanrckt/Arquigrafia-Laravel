@@ -168,7 +168,7 @@ input.search_bar_button { background: url(../img/sprite.png) -330px 0; height: 2
 /* painel com diversos tamanhos, 3 horizontais, 1 vertical, com centralização horizontal. JS para troca da medida fixa de largura para altura */
 .wrap { overflow: hidden; width: 100%; margin: 0; padding: 0; height: 570px; z-index: 999; position: relative; }
 #panel { height: 570px; width: 2000px; left: 0; }
-.panel-back, .panel-next {position: absolute; top: 0; height: 580px; width: 300px; cursor: pointer;}
+.panel-back, .panel-next {position: absolute; top: 0; height: 580px; width: 220px; cursor: pointer;}
 .panel-back {left: 0; background:none;}
 .panel-back:hover {background:url(../img/back.png) left center no-repeat;}
 .panel-next {right: 0; background:none;}

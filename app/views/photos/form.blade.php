@@ -9,7 +9,27 @@
 @section('content')
 
   <div class="container">
-
+    
+    <?php if (!isset($photo)) { ?>
+      <!-- Formulário inicial -->
+      
+      <!-- STEP 1 -->
+      <div class="twelve columns row step-1">
+      	<h1><span class="step">1</span> <span class="step-text">Upload</span></h1>
+        <div class="four columns alpha">
+        {{ Form::open(array('url'=>'photos', 'files'=> true)) }}
+        	<p>{{ Form::label('photo','Imagem:') }} {{ Form::file('photo', array('id'=>'imageUpload')) }}</p>
+          <br>
+          <p>{{ Form::submit('ENVIAR', array('class'=>'btn')) }}</p>
+          {{ Form::hidden('step','1') }}
+        {{ Form::close() }}
+        </div>
+      </div>
+  
+    <?php } else { ?>
+      <!-- Formulário para metadados -->
+      
+      <!-- STEP 1 -->
       <div class="twelve columns row step-1">
       	<h1><span class="step">1</span> <span class="step-text">Upload</span></h1>
         
@@ -24,12 +44,15 @@
             <p>Nova imagem:</p>
           </div>
           <div class="four columns">
-            <input id="imageUpload" type="file" name="foto" value=""> <input type="submit" class="btn" value="ENVIAR">
+            <p><input id="imageUpload" type="file" name="photo" value=""></p>
+            <br>
+            <p><input type="submit" class="btn" value="ENVIAR"></p>
           </div>
         </form>
         
       </div>
       
+      <!-- STEP 2 -->
       <div id="registration" class="twelve columns row step-2">
       	<h1><span class="step">2</span> <span class="step-text">Descrição</span></h1>
         
@@ -173,6 +196,8 @@
             
         </form>
       </div>
+      
+      <?php } ?>
       
     </div>
     
