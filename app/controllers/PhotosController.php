@@ -14,9 +14,10 @@ class PhotosController extends \BaseController {
     return View::make('/photos.show',['photos' => $photos]);
 	}
 	
-	public function store()
+  // upload form
+	public function form()
   {
-		// save image
+		// show form view
 	}
 	
 	// create photo 
