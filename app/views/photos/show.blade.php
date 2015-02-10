@@ -386,7 +386,7 @@
 					<!--   FIM - NOME / STATUS DA FOTO   -->
 					
           <!--   FOTO   -->
-					<a class="fancybox" href="{{ URL::to("/img/photos")."/".$photos->nome_arquivo }}" title="Praça Ramos de Azevedo" ><img class="single_view_image" style="" src="{{ URL::to("/img/photos")."/".$photos->nome_arquivo }}" onload="initialize()" /></a>
+					<a class="fancybox" href="{{ URL::to("/uploads")."/".$photos->id."_view.jpg" }}" title="Praça Ramos de Azevedo" ><img class="single_view_image" style="" src="{{ URL::to("/uploads")."/".$photos->id."_view.jpg" }}" onload="initialize()" /></a>
  <!-- alt="${}"  --> 
 
 				</div>				

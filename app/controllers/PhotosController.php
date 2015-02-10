@@ -18,35 +18,70 @@ class PhotosController extends \BaseController {
 	public function form()
   {
 		// show form view
-    return View::make('/photos/form');
+    if (Auth::check()) return View::make('/photos/form'); else return View::make('/users/login');
 	}
 	
 	// create photo 
   public function store()
   {
-    if (Input::get("step")=="1") {
-		  if (Input::file('photo')->isValid()) {
-        // TODO validate image upload
-        $photo = Photo::create([
-          'user_id'=>Auth::user()->id,
-          'name'=>'LOCK', 'description'=>'LOCK', 
-          'nome_arquivo'=>'LOCK'
-        ]);
-        // save on database
-        $photo->save();
-        // save copies
-        Image::make(Input::file('photo'))->encode('jpg', 80)->save(public_path().'/uploads/'.$photo->id.".jpg"); // original
-        Image::make(Input::file('photo'))->encode('jpg', 80)->fit(600,600)->save(public_path().'/uploads/'.$photo->id.'_view.jpg');
-        // $image = Image::make(Input::file('photo'))->resize(600, 600)->save( $photo->id.'_view.jpg' );
-        // return to complete metadata
-        return View::make('/photos/form',['photo'=>$photo]);
-      } else {
-        print_r(Input::all());
-      }
+    if (Input::file('photo')->isValid()) {
+      // TODO validate image upload
+      // save on database
+      $photo = Photo::create([
+        'user_id'=>Auth::user()->id,
+        'name'=>'LOCK', 
+        'description'=>'LOCK', 
+        'nome_arquivo'=> 'LOCK',
+        // iniciar a foto inativa
+        'deleted' => true
+      ]);
+      // save copies
+      $file = Input::file('photo');
+      $ext = $file->getClientOriginalExtension();
+      $photo->nome_arquivo = $photo->id.".".$ext;
+      $photo->save();
+      Image::make(Input::file('photo'))->encode('jpg', 80)->heighten(220)->save(public_path().'/uploads/'.$photo->id.'_200h.jpg');
+      Image::make(Input::file('photo'))->encode('jpg', 80)->widen(600)->save(public_path().'/uploads/'.$photo->id.'_view.jpg');
+      $file->move(public_path().'/uploads', $photo->id.".".$ext); // original
+      // return to complete metadata
+      return View::make('/photos/form',['photo'=>$photo]);
     } else {
-      // update metadata
+      print_r(Input::all());
     }
 	}
+  
+  // update meta
+  public function update()
+	{
+    $input = Input::all();
+    $photo = Photo::find($input["id"]);
+    $photo->update([
+      // "aditionalImageComments" => $input["photo_aditionalImageComments"],
+      "allowCommercialUses" => $input["photo_allowCommercialUses"],
+      "allowModifications" => $input["photo_allowModifications"],
+      // "cataloguingTime" => $input["photo_cataloguingTime"],
+      // "characterization" => $input["photo_characterization"],
+      // "city" => $input["photo_city"],
+      // "collection" => $input["photo_collection"],
+      "country" => $input["photo_country"],
+      // "dataCriacao" => $input["photo_dataCriacao"],
+      "description" => $input["photo_description"],
+      "district" => $input["photo_district"],
+      "imageAuthor" => $input["photo_imageAuthor"],
+      "name" => $input["photo_name"],
+      "state" => $input["photo_state"],
+      "street" => $input["photo_street"],
+      // "tombo" => $input["photo_tombo"],
+      // "workAuthor" => $input["photo_workAuthor"],
+      "workdate" => $input["photo_workDate"],
+      "street" => $input["photo_street"],
+      // atualizar estado para ativa
+      "deleted"=>false
+    ]);
+    $photo->save();
+    return View::make('/photos/show',['photos' => $photo]);
+  }
+  
   
   public function search()
 	{
