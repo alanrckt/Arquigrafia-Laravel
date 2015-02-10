@@ -11,7 +11,8 @@ class PhotosController extends \BaseController {
 	public function show($id)
 	{
 		$photos = Photo::whereid($id)->first();
-    return View::make('/photos.show',['photos' => $photos]);
+    $user = User::find($photos->user_id);
+    return View::make('/photos/show',['photos' => $photos, 'owner' => $user]);
 	}
 	
   // upload form
@@ -79,7 +80,8 @@ class PhotosController extends \BaseController {
       "deleted"=>false
     ]);
     $photo->save();
-    return View::make('/photos/show',['photos' => $photo]);
+    $user = User::find($photo->user_id);
+    return View::make('/photos/show',['photos' => $photo, 'owner' => $user]);
   }
   
   

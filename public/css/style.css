@@ -293,7 +293,7 @@ a.footer_image { display: block; margin: 4px; float: left; border: none; width: 
 #sidebar ul { list-style: none; margin: 5px 0 10px 0; }
 #sidebar h2 { font-weight: normal; font-size: 18px; margin-top: 3px; border-bottom: solid 1px #ddd; padding-bottom: 2px; }
 #sidebar h4 { margin: 10px 0 0; font-size: 13px; font-weight: bold; color: #222; line-height: 1em; }
-#sidebar #single_user { margin-top: 0px; }
+#sidebar #single_user { margin: 0 0 20px; }
 #edit_photo { text-align: right; color: #7B7D7F; font-size: 12px; width: 300px; line-height: 19px; border-bottom: solid 1px #7B7D7F; }
 
 /* SINGLE VIEW */
@@ -305,7 +305,7 @@ a.footer_image { display: block; margin: 4px; float: left; border: none; width: 
 #single_view_statistics { overflow: hidden; border-bottom: solid #333 1px; line-height: 25px; }
 #single_view_statistics h1 { display: block; float: left; overflow: hidden; width: 415px; }
 #single_view_user_thumbnail { float: left; margin-right: 10px; width: 48px; }
-#single_view_owner_name { margin-bottom: -3px; float: left; width: 240px; font-size: 18px; }
+#single_view_owner_name { margin-bottom: -3px; float: left; width: 220px; font-size: 18px; }
 #single_view_contact_add { float: left; }
 #single_view_message_open, #single_view_message_close, #single_view_contact_remove { font-size: 11px; }
 

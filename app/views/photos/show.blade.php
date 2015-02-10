@@ -378,9 +378,9 @@
             	<h1>{{ $photos->name }}</h1>
             </div>
 						<div class="four columns omega">
-            	<span><small>Upload: 12/02/12</small></span>
-							<span><i id="graph"></i> <small>65 visualizações e 0 avaliações</small></span>
-              <span><i id="comments"></i> <small>0</small></span>
+              <!-- <span><i id="graph"></i> <small>65 visualizações e 0 avaliações</small></span> -->
+              <span class="right"><i id="comments"></i> <small>0</small></span>
+              <span class="right"><small>Upload: {{ $photos->created_at }}</small></span>
             </div>
 					</div>
 					<!--   FIM - NOME / STATUS DA FOTO   -->
@@ -471,13 +471,15 @@
 			<div id="sidebar" class="four columns">
 				<!--   USUARIO   -->
 				<div id="single_user">
-						
-						
-					<img id="single_view_user_thumbnail"  src="{{ URL::to("/") }}/img/photos/avatar-2.jpg" />
-						
-					
-					
-					<span id="single_view_owner_name"><a href="friends/11/show/219" id="name">Acervo Quapá</a></span>
+				  
+          <?php if (Auth::user()->photo != "") { ?>
+            <img id="single_view_user_thumbnail" src="<?php echo asset('img/avatars/' . $owner->photo); ?>" class="user_photo_thumbnail"/>
+          </a>
+          <?php } else { ?>
+            <img id="single_view_user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
+          <?php } ?>		
+				
+					<span id="single_view_owner_name"><a href="{{ URL::to("/user".$owner->id) }}" id="name">{{ $owner->name }}</a></span>
     			<a href="friends/11/follow/219" id="single_view_contact_add">Seguir</a><br />
  
 				
