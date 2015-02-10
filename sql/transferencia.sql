@@ -53,14 +53,22 @@ select id, accessDate, counter_id, viewer_id from groupware_workbench_arquigrafi
 insert into arquigrafia.external_account (id, accessToken, accountType, tokenSecret, user_id)
 select id, accessToken, accountType, tokenSecret, user_id from groupware_workbench_arquigrafia.gw_collab_External_Account;
 
-insert into arquigrafia.friendship (id, user_id)
-select id, user_id from groupware_workbench_arquigrafia.gw_collab_Friendship;
 
-insert into arquigrafia.friends (friends_id, user_id)
-select friends_id, user_id from groupware_workbench_arquigrafia.gw_collab_Friends;
+insert into arquigrafia.friendship (following_id, followed_id)
+select u.user_id, f.user_id from groupware_workbench_arquigrafia.gw_collab_Friendship u, 
+groupware_workbench_arquigrafia.gw_collab_Friends f
+where u.id = f.friends_id;
 
-insert into arquigrafia.friends_requests (friends_id, user_id)
-select friends_id, user_id from groupware_workbench_arquigrafia.gw_collab_Friends_Requests;
+-- retirado
+-- insert into arquigrafia.friendship (id, user_id)
+-- select id, user_id from groupware_workbench_arquigrafia.gw_collab_Friendship;
+
+-- insert into arquigrafia.friends (friends_id, user_id)
+-- select friends_id, user_id from groupware_workbench_arquigrafia.gw_collab_Friends;
+
+-- retirado
+-- insert into arquigrafia.friends_requests (friends_id, user_id)
+-- select friends_id, user_id from groupware_workbench_arquigrafia.gw_collab_Friends_Requests;
 
 insert into arquigrafia.role (id, name)
 select id, name from groupware_workbench_arquigrafia.gw_collab_Role;

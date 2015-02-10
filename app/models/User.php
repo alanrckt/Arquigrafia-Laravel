@@ -14,20 +14,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasMany('Photo');
     }
 
+    //seguidores
+    public function followers()
+    {
+    	return $this->belongsToMany('User', 'friendship', 'followed_id', 'following_id');
+    }
+
+    //seguindo
+    public function following()
+    {
+    	return $this->belongsToMany('User', 'friendship', 'following_id', 'followed_id');
+    }
+
 	use UserTrait, RemindableTrait;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	//protected $table = 'users';
-
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
 	protected $hidden = array('password', 'remember_token');
 
 	public static function checkOldAccount( $user, $password)
