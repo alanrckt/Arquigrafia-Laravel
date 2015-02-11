@@ -133,9 +133,18 @@ class UsersController extends \BaseController {
   }
   
   // AVATAR
-  public function unfollow($user_id)
+  public function profile($id)
   {
-    
+    $path = public_path().'/avatars/'.$id.'_view.jpg';
+    if( File::exists($path) ) {
+      header("Cache-Control: public");
+      header("Content-Disposition: inline; filename=\"".$id . '_view.jpg'."\"");
+      header("Content-Type: image/jpg");
+      header("Content-Transfer-Encoding: binary");
+      readfile($path);
+      exit;
+    }
+    return $path;
   }
 
 }
