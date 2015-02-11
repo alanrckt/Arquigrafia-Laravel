@@ -17,7 +17,7 @@ class UsersController extends \BaseController {
 		//$followers = $user->followers;
 		//$profile = Profile::whereid($id)->first();
 
-		return View::make('/users/show',['users' => $user, 'photos' => $photos]); 
+		return View::make('/users/show',['user' => $user, 'photos' => $photos]); 
 				
 				//->with('users' => $user)
 				//->with('gw_collab_profile' => $gw_collab_profile);

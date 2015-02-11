@@ -10,7 +10,7 @@ class PagesController extends BaseController {
 
 	public function home()
 	{
-    $photos = Photo::where('deleted', '=', '0')->take(20)->get();
+    $photos = Photo::where('deleted', '=', '0')->orderByRaw("RAND()")->take(40)->get();
 		return View::make('index', ['photos' => $photos]);
 	}
 

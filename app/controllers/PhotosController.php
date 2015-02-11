@@ -5,7 +5,7 @@ class PhotosController extends \BaseController {
 	public function index()
 	{
 		$photos = Photo::where('deleted', '=', '0');
-		return View::make('/photos.index',['photos' => $photos]);
+		return View::make('/photos/index',['photos' => $photos]);
 	}
 
 	public function show($id)

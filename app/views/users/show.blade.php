@@ -32,8 +32,8 @@
 		<div class="container">
 	      <div id="user_header" class="twelve columns">
           
-          <?php if ($users->photo != "") { ?>
-            <img class="avatar" src="{{ asset($users->photo) }}" class="user_photo_thumbnail"/>
+          <?php if ($user->photo != "") { ?>
+            <img class="avatar" src="{{ asset($user->photo) }}" class="user_photo_thumbnail"/>
           </a>
           <?php } else { ?>
             <img class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
@@ -41,9 +41,9 @@
           
 	        <div class="info">
 
-	          <h1>{{ $users->name}} {{ $users->secondName}}</h1>
+	          <h1>{{ $user->name}} {{ $user->secondName}}</h1>
 
-	          <p>Cidade: {{ $users->city }}<br>Instituição: {{ $users->institution }}</p>
+	          <p>Cidade: {{ $user->city }}<br>Instituição: {{ $user->institution }}</p>
 	        </div>
 	      	<div class="count">Fotos compartilhadas ({{ count($photos) }})</div>
 	      </div>
@@ -88,15 +88,15 @@
         	<h3><i class="profile"></i>Perfil</h3>
         </hgroup>
       	<ul>
-        	<li><strong>Nome:</strong> {{ $users->name}}</li>
-          <li><strong>Sobrenome:</strong>{{ $users->secondName }}</li>
+        	<li><strong>Nome:</strong> {{ $user->name}}</li>
+          <li><strong>Sobrenome:</strong>{{ $user->secondName }}</li>
         </ul>
         <br>
         <ul>
-        	<li><strong>Escolaridade:</strong> {{ $users->scholarity }}</li>
-          <li><strong>Instituição:</strong> {{ $users->institution }}</li>
-          <li><strong>Curso:</strong> {{ $users->course }}</li>
-          <li><strong>Ocupação:</strong> {{ $users->occupation }}</li>
+        	<li><strong>Escolaridade:</strong> {{ $user->scholarity }}</li>
+          <li><strong>Instituição:</strong> {{ $user->institution }}</li>
+          <li><strong>Curso:</strong> {{ $user->course }}</li>
+          <li><strong>Ocupação:</strong> {{ $user->occupation }}</li>
         </ul>
       </div>
       
@@ -231,11 +231,10 @@
               <a href="album.php" class="name"><i class="stack"></i> (5)</a>
               <br>
           </div>
-          
         </div>
         -->
         
-      </div><!-- fim dos albuns -->
+      </div><!-- fim dos albums -->
     
     </div>
     

@@ -39,7 +39,7 @@
         
         <div class="two columns alpha row">
         	<p>Imagem:</p>
-        	<img src="{{ asset('uploads/' . $photo->id . '_view.jpg') }}">
+        	<img src="{{ asset('arquigrafia-images/' . $photo->id . '_view.jpg') }}">
         </div>
         <br class="clear"> 
         
