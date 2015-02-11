@@ -141,7 +141,7 @@ ul#logged_menu li #comunities:hover { background-position: -262px -34px; }
 ul#logged_menu li #upload { background: url(../img/sprite.png) -402px 0px; }
 #user_name { margin-left: 8px; font-size: 12px; line-height: 24px; margin-right: -100px; }
 #logout { position: absolute; bottom: 0; right: 0; }
-.user_photo_thumbnail { margin: 4px 12px 0 5px; float: left; }
+.user_photo_thumbnail { margin: 4px 12px 0 5px; float: left; width: 48px; height: auto; }
 /* busca */
 div#first_menu { width: 300px; float: left; }
 #search_buttons_area { float: left; height: 22px; width: 280px; margin-top: 32px/*5px*/;  }

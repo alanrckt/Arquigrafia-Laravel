@@ -33,7 +33,7 @@
 	      <div id="user_header" class="twelve columns">
           
           <?php if ($users->photo != "") { ?>
-            <img class="avatar" src="{{ asset('img/avatars/' . $users->photo); }}" class="user_photo_thumbnail"/>
+            <img class="avatar" src="{{ asset($users->photo) }}" class="user_photo_thumbnail"/>
           </a>
           <?php } else { ?>
             <img class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
@@ -45,7 +45,7 @@
 
 	          <p>Cidade: {{ $users->city }}<br>Instituição: {{ $users->institution }}</p>
 	        </div>
-	      	<div class="count">Fotos compartilhadas (91)</div>
+	      	<div class="count">Fotos compartilhadas ({{ count($photos) }})</div>
 	      </div>
 	    </div>
     

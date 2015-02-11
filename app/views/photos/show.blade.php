@@ -472,18 +472,17 @@
 				<!--   USUARIO   -->
 				<div id="single_user">
 				  
-        @if ( Auth::check() )
           
-          <?php if (Auth::user()->photo != "") { ?>
-            <img id="single_view_user_thumbnail" src="<?php echo asset('img/avatars/' . $owner->photo); ?>" class="user_photo_thumbnail"/>
+          <a href="{{ URL::to("/users/".$owner->id) }}" id="user_name">
+          <?php if ($owner->photo != "") { ?>
+            <img id="single_view_user_thumbnail" src="<?php echo asset($owner->photo); ?>" class="user_photo_thumbnail"/>
           </a>
           <?php } else { ?>
             <img id="single_view_user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
           <?php } ?>		
 
-		@endif	
 		
-					<span id="single_view_owner_name"><a href="{{ URL::to("/user".$owner->id) }}" id="name">{{ $owner->name }}</a></span>
+					<span id="single_view_owner_name"><a href="{{ URL::to("/users/".$owner->id) }}" id="name">{{ $owner->name }}</a></span>
     			<a href="friends/11/follow/219" id="single_view_contact_add">Seguir</a><br />
  
 				
