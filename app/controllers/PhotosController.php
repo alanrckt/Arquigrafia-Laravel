@@ -41,9 +41,9 @@ class PhotosController extends \BaseController {
       $ext = $file->getClientOriginalExtension();
       $photo->nome_arquivo = $photo->id.".".$ext;
       $photo->save();
-      Image::make(Input::file('photo'))->encode('jpg', 80)->heighten(220)->save(public_path().'/img/photos/uploads/'.$photo->id.'_200h.jpg');
-      Image::make(Input::file('photo'))->encode('jpg', 80)->widen(600)->save(public_path().'/img/photos/uploads/'.$photo->id.'_view.jpg');
-      $file->move(public_path().'/img/photos/uploads', $photo->id.".".$ext); // original
+      Image::make(Input::file('photo'))->encode('jpg', 80)->heighten(220)->save(public_path().'/img/photos/arquigrafia-images/'.$photo->id.'_200h.jpg');
+      Image::make(Input::file('photo'))->encode('jpg', 80)->widen(600)->save(public_path().'/img/photos/arquigrafia-images/'.$photo->id.'_view.jpg');
+      $file->move(public_path().'/img/photos/arquigrafia-images', $photo->id."_original.".$ext); // original
       // return to complete metadata
       return View::make('/photos/form',['photo'=>$photo]);
     } else {
