@@ -41,6 +41,7 @@ Route::resource('/profile','ProfileController');
 
 Route::resource('/albums','AlbumsController');
 	
+Route::get('/search', 'PhotosController@search');
 Route::post('/search', 'PhotosController@search');
 Route::get('/photos/upload','PhotosController@form');
 Route::resource('/photos','PhotosController');

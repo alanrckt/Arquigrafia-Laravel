@@ -517,29 +517,19 @@
 					<h4>Endereço:</h4>
 					<p>
 						
-							<a href="photos/7/show/search/term?q=Pra%E7a+Ramos+de+Azevedo&term=street&page=1&perPage=24">
-								{{ $photos->street }} ,
+							<a href="{{ URL::to("/search?q=".$photos->street) }}">
+								{{ $photos->street }},
 							</a>
 						
 						
-						
-							<a href="photos/7/show/search/term?q=Rep%FAblica&term=district&page=1&perPage=24">
-								{{ $photos->city }}
-							</a>
-						
-						<br />
-						
-						
-						<a href="photos/7/show/search/term?q=S%E3o+Paulo&term=city&page=1&perPage=24">
-							{{ $photos->description }} - 
+						<a href="{{ URL::to("/search?q=".$photos->city) }}">
+					    {{ $photos->city }}
 						</a>
-						
+            
+            <br />
+            
+            {{ $photos->state }} - {{ $photos->country }}
 							
-						
-							{{ $photos->state }} , 
-						
-						
-							{{ $photos->country }}
 						 
 					</p>
 									
