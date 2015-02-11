@@ -30,6 +30,9 @@ Route::get('/users/login', 'UsersController@loginForm');
 Route::post('/users/login', 'UsersController@login');
 Route::get('/users/logout', 'UsersController@logout');
 
+// AVATAR 
+Route::get('/profile/10/showphotoprofile/{profile_id}', 'UsersController@profile');
+
 Route::resource('/users','UsersController');
 
 Route::resource('/profile','ProfileController');

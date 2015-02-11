@@ -131,5 +131,11 @@ class UsersController extends \BaseController {
 
     return Redirect::to('/'); // redirecionar para friends
   }
+  
+  // AVATAR
+  public function unfollow($user_id)
+  {
+    
+  }
 
 }
