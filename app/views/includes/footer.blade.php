@@ -18,7 +18,7 @@
 		<div class="twelve columns">
 	
       <!--   CRÉDITOS - LOGOS   -->
-      <div id="credits">
+      <div id="credits" class="clearfix">
         <ul class="footer-links">
           <li><a href="{{ URL::to("/users/login") }}">Login</a></li>
           <li><a href="{{ URL::to("/users/account") }}">Cadastrar-se</a></li>
@@ -63,7 +63,7 @@
       <div class="footer-last">
         <div class="footer-msg left">
           <div class="footer-logo"></div>
-          <p>O Arquigrafia conta com um total de 3333 fotos.<br />
+          <p>O Arquigrafia conta com um total de {{ $count }} fotos.<br />
           <?php if (!Auth::check()) { ?>
             <a href="{{ URL::to("/users/login") }}">Faça o login</a> e compartilhe também suas imagens.
           <?php } else { ?>
@@ -72,8 +72,7 @@
           </p>
         </div>
         
-        
-        <p id="copyright">Arquigrafia - {{ date("Y") }} - Este site é licenciado sob uma licença <a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank">Creative Commons Attribution 3.0</a></p>
+        <p id="copyright">Arquigrafia - {{ date("Y") }} - Arquigrafia é uma marca registrada (INPI). Este site possui uma licença <a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank">Creative Commons Attribution 3.0</a></p>
       
       </div>
     

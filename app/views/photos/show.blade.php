@@ -355,7 +355,7 @@
 	}
 </script>
 
-<link rel="stylesheet" type="text/css" media="screen" href="css/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/jquery.fancybox.css" />
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/friend.js"></script>
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.fancybox.pack.js"></script>
@@ -394,21 +394,23 @@
 				<!--   BOX DE BOTOES DA IMAGEM   -->
 				<div id="single_view_buttons_box">
 					
-					
-						<ul id="single_view_image_buttons">
+					<?php if (Auth::check()) { ?>
+						
+            <ul id="single_view_image_buttons">
 							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
 							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
-						    
-								
-							
+              
 							<!--<li><a href="18/photo_avaliation/2778" title="Avalie a foto" id="eyedroppper"></a></li>-->
 							<!--<li><a href="album/15/add/2778" title="Adicione a sua galeria" id="plus"></a></li>-->
-            <?php if (Auth::check()) { ?>
+            
 							<li><a href="{{ asset('arquigrafia-images/'.$photos->id.'_original.jpg') }}" title="Faça o download" id="download" target="_blank"></a></li>
-            <?php } ?>
-								
-							
+           	
 						</ul>
+            
+             <?php } else { ?>
+              <div class="six columns alpha">Faça o login para fazer o download e comentar as imagens.</div>
+            <?php } ?>
+            
 						<ul id="single_view_social_network_buttons">
 						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fdf62121c50304d"></script>
 							<!-- <li><a href="#" class="delicious"></a></li> -->

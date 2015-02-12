@@ -13,13 +13,21 @@
 
 App::before(function($request)
 {
-	//
+	// BEFORE
+  
+  // VIEW COMPOSERS
+  View::composer('includes.footer', function($view)
+  {
+      $view->with('count', Photo::count());
+  });
+  
 });
 
 
 App::after(function($request, $response)
 {
-	//
+	// AFTER
+  
 });
 
 /*
