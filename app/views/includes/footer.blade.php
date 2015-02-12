@@ -24,7 +24,11 @@
           <li><a href="{{ URL::to("/users/account") }}">Cadastrar-se</a></li>
           <li><a href="{{ URL::to("/") }}/project">O projeto</a></li>
           <li><a href="{{ URL::to("/") }}/faq">FAQ</a></li>
-          <!-- <li><a href="#">Contato</a></li> -->
+          <li><script>document.write('<'+'a'+' '+'h'+'r'+'e'+'f'+'='+"'"+'m'+'a'+'i'+'l'+'&'+'#'+'1'+'1'+'6'+';'+'o'+'&'+'#'+'5'+'8'+';'+
+'p'+'e'+'d'+'r'+'%'+'6'+'F'+'&'+'#'+'6'+'4'+';'+'&'+'#'+'3'+'7'+';'+'7'+'2'+'c'+'&'+'#'+'1'+'0'+'7'+
+';'+'t'+'&'+'#'+'4'+'6'+';'+'c'+'o'+'&'+'#'+'1'+'0'+'9'+';'+'&'+'#'+'3'+'7'+';'+'&'+'#'+'5'+'0'+';'+
+'&'+'#'+'6'+'9'+';'+'%'+'6'+'2'+'%'+'7'+'2'+"'"+'>Contato<'+'/'+'a'+'>'
+);</script><noscript>Contato, funciona apenas com Javascript.</noscript></li>
         </ul>
         <ul>
           <li><a href="http://www.usp.br/" title="USP" id="usp" target="_blank"></a></li>
