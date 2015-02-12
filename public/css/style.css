@@ -126,6 +126,7 @@ ul#top_menu_items li #project { background: url(../img/sprite.png) no-repeat -78
 ul#top_menu_items li #help { background: url(../img/sprite.png) no-repeat -780px -45px; }
 ul#top_menu_items li #contact { background: url(../img/sprite.png) no-repeat -780px -93px; }
 /* registro e login - OFF */
+#registration input[type=text], #registration input[type=password] {width: 130px;}
 #loggin_area { position: relative; float: right; width: 217px; height: 53px; }
 #loggin_area #login_button { float: right; margin: 30px 0 0 5px; }
 #loggin_area #registration_button { float: right; margin: 30px 5px 0; }

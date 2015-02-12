@@ -24,7 +24,7 @@
           <li><a href="{{ URL::to("/users/account") }}">Cadastrar-se</a></li>
           <li><a href="{{ URL::to("/") }}/project">O projeto</a></li>
           <li><a href="{{ URL::to("/") }}/faq">FAQ</a></li>
-          <li><a href="#">Contato</a></li>
+          <!-- <li><a href="#">Contato</a></li> -->
         </ul>
         <ul>
           <li><a href="http://www.usp.br/" title="USP" id="usp" target="_blank"></a></li>

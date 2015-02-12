@@ -6,21 +6,26 @@
 
     <div id="registration">
     
-      <h1>Login</h1>
-      
-      {{ Form::open() }}
-        
-        <p>{{ Form::label('login', 'Login:') }}</p>
-        <p>{{ Form::text('login') }}</p>
-        {{ $errors->first('login') }}
-        
-        <p>{{ Form::label('password', 'Senha:') }}</p>
-        <p>{{ Form::password('password') }}</p>
-        {{ $errors->first('password') }}
+      <div class="three columns">
     
-        <p>{{ Form::submit("LOGIN") }}</p>
+        <h1>Login</h1>
         
-      {{ Form::close() }}
+        {{ Form::open() }}
+          
+          <p>{{ Form::label('login', 'Login:') }} {{ Form::text('login', '', array('class'=>'right') ) }}</p>
+          {{ $errors->first('login') }}
+          
+          <p>{{ Form::label('password', 'Senha:') }} {{ Form::password('password', array('class'=>'right') ) }}</p>
+          {{ $errors->first('password') }}
+          
+          <br>
+          <p>{{ Form::submit("LOGIN",array('class'=>'btn right')) }}</p>
+          
+        {{ Form::close() }}
+        
+        <p>&nbsp;</p>
+      
+      </div>
       
     </div>
     
