@@ -135,7 +135,7 @@ class UsersController extends \BaseController {
   // AVATAR
   public function profile($id)
   {
-    $path = public_path().'/avatars/'.$id.'_view.jpg';
+    $path = public_path().'/arquigrafia-avatars/'.$id.'_view.jpg';
     if( File::exists($path) ) {
       header("Cache-Control: public");
       header("Content-Disposition: inline; filename=\"".$id . '_view.jpg'."\"");

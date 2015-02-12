@@ -55,11 +55,15 @@
         </ul>
       </div>
       <!--   FIM - CRÉDITOS - LOGOS   -->
+      
+      <div class="twelve columns alpha omega">
+        <p><small>O Arquigrafia tem envidado todos os esforços para que nenhum direito autoral seja violado. Todas as imagens passíveis de download no Arquigrafia possuem uma licença Creative Commons específica. Caso seja encontrado algum arquivo/imagem que, por qualquer motivo, o autor entenda que afete seus direitos autorais, clique aqui e informe à equipe do portal Arquigrafia para que a situação seja imediatamente regularizada.</small></p>
+      </div>
     
       <div class="footer-last">
         <div class="footer-msg left">
           <div class="footer-logo"></div>
-          <p>O Arquigrafia conta com um total de 2825 fotos.<br />
+          <p>O Arquigrafia conta com um total de 3333 fotos.<br />
           <?php if (!Auth::check()) { ?>
             <a href="{{ URL::to("/users/login") }}">Faça o login</a> e compartilhe também suas imagens.
           <?php } else { ?>
@@ -67,8 +71,9 @@
           <?php } ?>
           </p>
         </div>
-          
-        <p id="copyright">Arquigrafia - 2013 - Este site é licenciado sob uma licença <a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank">Creative Commons Attribution 3.0</a></p>
+        
+        
+        <p id="copyright">Arquigrafia - {{ date("Y") }} - Este site é licenciado sob uma licença <a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank">Creative Commons Attribution 3.0</a></p>
       
       </div>
     
