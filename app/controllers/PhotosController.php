@@ -34,7 +34,7 @@ class PhotosController extends \BaseController {
         'description'=>'LOCK', 
         'nome_arquivo'=> 'LOCK',
         // iniciar a foto inativa
-        'deleted' => true
+        'deleted' => 1
       ]);
       // save copies
       $file = Input::file('photo');

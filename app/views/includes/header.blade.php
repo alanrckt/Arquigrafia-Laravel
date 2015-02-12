@@ -4,7 +4,7 @@
     <div class="twelve columns">
 	
 	  	<!--   LOGO   -->
-      <a href="{{ URL::to("/") }}" id="logo"></a>  <p id="beta">beta</p>
+      <a href="{{ URL::to("/") }}" id="logo"></a>  <p id="beta">alpha</p>
       <!--   MENU SUPERIOR   -->
       <div id="first_menu">
           <!--   MENU INSTITUCIONAL   -->
