@@ -33,7 +33,6 @@
         <!--   CONTEÚDO SOBRE O PROJETO   -->
         <h1>O Projeto</h1>
         
-        
         <p>O ARQUIGRAFIA é um ambiente colaborativo digital público, sem fins lucrativos, dedicado à difusão de imagens de arquitetura, com especial atenção à arquitetura brasileira. Este projeto é desenvolvido na Faculdade de Arquitetura e Urbanismo da Universidade de São Paulo (FAUUSP), em parceria com o Instituto de Matemática e Estatística (IMEUSP) e a Escola de Comunicação e Artes (ECAUSP). Abrigado desde 2012 no Núcleo de Apoio à Pesquisa em Ambientes Colaborativos na Web (NaWEB), o ARQUIGRAFIA recebeu ao longo de sua história apoio da RNP, da FAPESP, do CNPq e das Pró-Reitorias de Pesquisa e de Cultura e Extensão da USP. O objetivo principal deste projeto é contribuir para o estudo, a docência, a pesquisa e a difusão da cultura arquitetônica e urbanística, ao promover interações colaborativas entre pessoas e instituições na Internet.</p>
         <div class="project-photos clearfix">
         <img class="left" src="img/project_photos/equipe1.jpg" alt="Texto alternativo da foto" title="Título da foto" />

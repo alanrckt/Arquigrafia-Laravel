@@ -24,6 +24,7 @@ Route::get('/friends/unfollow/{user_id}', 'UsersController@unfollow');
 //Route::get('/users/{id_usr}', 'UsersController@show');
 
 Route::get('/', 'PagesController@home');
+Route::get('/panel', 'PagesController@panel');
 Route::get('/project', function() { return View::make('project'); });
 Route::get('/faq', function() { return View::make('faq'); });
 // Route::post('/search', function() { return View::make('search'); });

@@ -262,8 +262,9 @@ a.footer_image { display: block; margin: 4px; float: left; border: none; width: 
 #credits ul li #eca { background: url(../img/logos.png) -350px -100px; width: 150px; }
 #credits ul li #quapa { background: url(../img/logos.png) -525px 0; width: 70px; }
 #credits ul li #vitruvius { background: url(../img/logos.png) -525px -50px; width: 70px; }
+#credits ul li #archdaily { background: url(../img/archdaily-brasil.png) 0 0 no-repeat; width: 80px; height: 40px; }
 #credits ul li #benchmark { background: url(../img/logos.png) -700px 0 no-repeat; width: 55px; }
-#credits ul li #brz { background: url(../img/logos.png) -700px -50px no-repeat; width: 55px; }
+#credits ul li #rckt { background: url(../img/rckt.png) 15px 0 no-repeat; width: 70px; }
 #credits .footer-links { width: 150px; margin: 4px 31px 0 0; border-right: 1px solid #ddd; }
 #credits .footer-links a { height: 23px; }
 #credits .footer-links li { margin-left: 0; }

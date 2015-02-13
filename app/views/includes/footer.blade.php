@@ -48,10 +48,11 @@
         <ul>
           <li><a href="http://winweb.redealuno.usp.br/quapa/" title="QUAPÁ" id="quapa" target="_blank"></a></li>
           <li><a href="http://www.vitruvius.com.br/" title="Vitruvius" id="vitruvius" target="_blank"></a></li>
+          <li><a href="http://www.archdaily.com.br/br" title="ArchDaily Brasil" id="archdaily" target="_blank"></a></li>
         </ul>
         <ul class="last">
           <li><a href="http://www.bench.com.br/" title="Benchmark" id="benchmark" target="_blank"></a></li>
-          <li><a href="http://www.brzcomunicacao.com.br/" title="BRZ" id="brz" target="_blank"></a></li>	
+          <li><a href="http://www.rckt.com.br/" title="RCKT" id="rckt" target="_blank"></a></li>	
         </ul>
       </div>
       <!--   FIM - CRÉDITOS - LOGOS   -->

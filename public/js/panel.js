@@ -2,7 +2,7 @@
 
 $(document).ready(function(e) {
 	// mansonry
-	$('#panel').isotope({
+	panel = $('#panel').isotope({
     itemSelector : '.item',
     layoutMode: 'masonryHorizontal'
 	});
@@ -80,6 +80,16 @@ $(window).load(function(e) {
 	}
 	
 	function panelnext() {
+    
+    /*
+    $("<div>").load('/arquigrafia/public/panel', function(data) {
+      console.log(data);
+      var itens = $(data);
+      console.log('kekeke');
+      panel.append( data );
+    });
+    */
+    
 		$("#panel").animate({"left":"-=1000"}, 1000);
 		var depth, mov;
 		$("#panel .layer.off").each(function(i){
@@ -91,7 +101,8 @@ $(window).load(function(e) {
 				mov = Math.round(depth * 200); 
 				layer.removeClass("off").css({"left":"+="+mov}).delay(50*(i+5)).animate({"left":"-="+mov, "opacity":"1"},600);
 			}
-		}); 
+		});
+    
 	}
 	
 });
