@@ -75,6 +75,7 @@ class UsersController extends \BaseController {
 
     if ($user != null && $user->oldAccount == 1)
     {
+      return User::checkOldAccount($user, $input["password"]);
       if ( User::checkOldAccount($user, $input["password"]) )
       {
         $user->oldAccount = 0;
