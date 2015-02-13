@@ -486,8 +486,11 @@
 
 		
 					<span id="single_view_owner_name"><a href="{{ URL::to("/users/".$owner->id) }}" id="name">{{ $owner->name }}</a></span>
-    			<a href="friends/11/follow/219" id="single_view_contact_add">Seguir</a><br />
- 
+    			@if ($follow)
+	    			<a href="{{ URL::to("/friends/follow/" . $owner->id) }}" id="single_view_contact_add">Seguir</a><br />
+ 				@else
+ 					<a href="#">Seguindo</a>
+ 				@endif
 				
 				</div>
 				<!--   FIM - USUARIO   -->

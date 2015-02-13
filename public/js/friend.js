@@ -9,9 +9,11 @@ $(function(){
 	}); 
 	
 	$('#single_view_contact_add').click(function(e) {
-		e.preventDefault();
-		$.post(this.href);
-		$(this).remove();
+		// e.preventDefault();
+		// $(this).text('Seguindo');
+		// $.post(this.href);
+		// $(this).remove();
+		
 	});
 	
 	

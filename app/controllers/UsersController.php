@@ -113,7 +113,7 @@ class UsersController extends \BaseController {
     if ($user_id != $logged_user->id && !$following->contains($user_id))
       $logged_user->following()->attach($user_id);
 
-    return Redirect::to('/'); // redirecionar para friends
+    return Redirect::back(); // redirecionar para friends
   }
 
   public function unfollow($user_id)
@@ -129,7 +129,7 @@ class UsersController extends \BaseController {
     if ($user_id != $logged_user->id && $following->contains($user_id))
       $logged_user->following()->detach($user_id);
 
-    return Redirect::to('/'); // redirecionar para friends
+    return Redirect::back(); // redirecionar para friends
   }
   
   // AVATAR
