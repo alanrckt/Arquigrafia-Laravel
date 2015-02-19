@@ -192,7 +192,7 @@
         
       </div>
       
-	  <?php if ($user->oldAccount == 1) { ?>
+	  <?php if ($user->oldPassword != null) { ?>
             <div class="twelve columns albums">
 				<hgroup class="profile_block_title">
 					<h3><i class="photos"></i> <!--Minhas galerias--> Meus álbuns</h3>
