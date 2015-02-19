@@ -486,12 +486,13 @@
 
 		
 					<span id="single_view_owner_name"><a href="{{ URL::to("/users/".$owner->id) }}" id="name">{{ $owner->name }}</a></span>
-    			@if ($follow)
+    		@if (Auth::check())
+    			@if (!empty($follow) && $follow == true)
 	    			<a href="{{ URL::to("/friends/follow/" . $owner->id) }}" id="single_view_contact_add">Seguir</a><br />
  				@else
  					<a href="#">Seguindo</a>
  				@endif
-				
+			@endif	
 				</div>
 				<!--   FIM - USUARIO   -->
 				<!-- <h3>Equipamento:</h3>
@@ -501,44 +502,77 @@
             <h3><i class="info"></i> Informações</h3>
           </hgroup>
           
+          		@if ( !empty($photos->description) )
 					<h4>Descrição:</h4>
 					<p>{{ $photos->description }}</p>
-				
-				
+				@endif
+
+          		@if ( !empty($photos->collection) )				
 					<h4>Coleção:</h4>
 					<p>{{ $photos->collection }}</p>
+				@endif
 				
-				
+				@if ( !empty($photos->imageAuthor) )
 					<h4>Autor da Imagem:</h4>
 					<p>
-						<a href="photos/7/show/search/term?q=ROBBA%2C+F%E1bio&term=imageAuthor&page=1&perPage=32">
+						<!-- <a href="photos/7/show/search/term?q=ROBBA%2C+F%E1bio&term=imageAuthor&page=1&perPage=32"> -->
 							{{ $photos->imageAuthor }}
-						</a>
+						<!-- </a> -->
 					</p>
-						
+				@endif
 				
+				@if ( !empty($photos->dataUpload) )
+					<h4>Data de Upload:</h4>
+					<p>{{ Photo::translate($photos->dataUpload) }}</p>
+				@endif
+
+				@if ( !empty($photos->dataCriacao) )
+					<h4>Data da Imagem:</h4>
+					<p>{{ Photo::translate($photos->dataCriacao) }}</p>
+				@endif
+
+				@if ( !empty($photos->workAuthor) )
+					<h4>Autor da Obra:</h4>
+					<p>{{ $photos->workAuthor }}</p>
+				@endif
+
+				@if ( !empty($photos->workdate) )
 					<h4>Data da Obra:</h4>
-					<p>{{ $photos->workdate }}</p>
-								
+					<p>{{ Photo::translate($photos->workdate) }}</p>
+				@endif
+
+				@if ( !empty($photos->street) || !empty($photos->city) ||
+					!empty($photos->state) || !empty($photos->country) )
 					<h4>Endereço:</h4>
 					<p>
-						
-							<a href="{{ URL::to("/search?q=".$photos->street) }}">
-								{{ $photos->street }},
-							</a>
-						
-						
+						@if (!empty($photos->street) && !empty($photos->city))
+						<a href="{{ URL::to("/search?q=".$photos->street) }}">
+						{{ $photos->street }},
+						</a>
+						@elseif (!empty($photos->street))
+						<a href="{{ URL::to("/search?q=".$photos->street) }}">
+						{{ $photos->street }}
+						</a>
+						<br />
+						@endif
+
+						@if (!empty($photos->city))
 						<a href="{{ URL::to("/search?q=".$photos->city) }}">
 					    {{ $photos->city }}
 						</a>
-            
-            <br />
-            
-            {{ $photos->state }} - {{ $photos->country }}
-							
-						 
+						<br />
+            			@endif
+
+			            @if (!empty($photos->state) && !empty($photos->country))
+			            {{ $photos->state }} - {{ $photos->country }}
+			            @elseif (!empty($photos->state))
+			            {{ $photos->state }}
+			            @else
+			            {{ $photos->country }}
+			            @endif
+													 
 					</p>
-									
+				@endif
 					
 				<!--
 				<h4>Localização:</h4>
