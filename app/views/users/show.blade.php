@@ -102,7 +102,7 @@
       
       <div class="four columns">
       	<hgroup class="profile_block_title">
-        	<h3><i class="follow"></i>Seguindo (12)</h3>
+        	<h3><i class="follow"></i>Seguindo ({{$user->following->count()}})</h3>
     			<a href="#" id="small" class="profile_block_link">Ver todos</a>
    	 		</hgroup>
         <!--   BOX - AMIGOS   -->
@@ -110,9 +110,9 @@
 				@foreach($user->following as $following)
 					<a href= {{ '/users/' .  $following->id }} >
 					<?php if ($following->photo != "") { ?>					
-						<img class="avatar" src="{{ asset($following->photo) }}" class="user_photo_thumbnail"/>
+						<img width="40" height="40" class="avatar" src="{{ asset($following->photo) }}" class="user_photo_thumbnail"/>
 					<?php } else { ?>
-						<img class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
+						<img width="40" height="40" class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
 					<?php } ?>
 					</a>
 					
@@ -123,7 +123,7 @@
       
       <div class="four columns">
       	<hgroup class="profile_block_title">
-          <h3><i class="follow"></i>Seguidores (7)</h3>
+          <h3><i class="follow"></i>Seguidores ({{$user->followers->count()}})</h3>
           <a href="#" id="small" class="profile_block_link">Ver todos</a>
         </hgroup>
     		<!--   BOX - AMIGOS   -->
@@ -134,9 +134,9 @@
           @foreach($user->followers as $follower)
 					<a href= {{ '/users/' .  $follower->id }} >
 					<?php if ($follower->photo != "") { ?>					
-						<img class="avatar" src="{{ asset($follower->photo) }}" class="user_photo_thumbnail"/>
+						<img width="40" height="40" class="avatar" src="{{ asset($follower->photo) }}" class="user_photo_thumbnail"/>
 					<?php } else { ?>
-						<img class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
+						<img width="40" height="40" class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
 					<?php } ?>
 					</a>
 		@endforeach   
