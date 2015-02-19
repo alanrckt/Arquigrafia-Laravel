@@ -36,8 +36,6 @@ class UsersController extends \BaseController {
   {
     $input = Input::all();
     
-    // return $input;
-    
     // validate data
     $rules = array(
         'name' => 'required',
@@ -54,8 +52,22 @@ class UsersController extends \BaseController {
     } else {
       // save user
       User::create(['name'=>$input["name"],'email'=>$input["email"],'password'=>Hash::make($input["password"]),'login'=>$input["login"]]);
+      // auto login after saving
+      $userdata = array(
+          'login'     => $input["login"],
+          'password'  => $input["password"]
+      );
+  
+      // attempt to do the login
+      if (Auth::attempt($userdata)) {
+        return Redirect::to('/');
+      } else {
+        return $error;
+      }
+      /*
       $users = User::all();
 		  return View::make('/users/index',['users' => $users]);
+      */
     }
     
   }
