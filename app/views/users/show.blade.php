@@ -192,49 +192,50 @@
         
       </div>
       
-      <div class="twelve columns albums">
-      	<hgroup class="profile_block_title">
-      		<h3><i class="photos"></i> Minhas galerias</h3>
-        </hgroup>
-        
-        <p>No momento suas galerias não estão disponiveis, mas não se preocupe, estarão disponíveis em breve.</p>
+	  <?php if ($user->oldAccount == 1) { ?>
+            <div class="twelve columns albums">
+				<hgroup class="profile_block_title">
+					<h3><i class="photos"></i> <!--Minhas galerias--> Meus álbuns</h3>
+				</hgroup>				     
+				<p>No momento seus álbuns não estão disponíveis, mas não se preocupe, estão armazenados com segurança no nosso sistema e em breve será disponibilizado.</p>
 
-        <!--
-        <div class="profile_box">
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-1.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name">Favoritos (12)</a>
-              <br>
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name">CITINET/ARQUIGRAFIA (9)</a>
-              <br>
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-3.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name">HISTÓRIA (12)</a>
-              <br>
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-4.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name">Sapucaí (103)</a>
-              <br>
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name"><i class="stack"></i> (5)</a>
-              <br>
-          </div>
-        </div>
-        -->
+						<!--
+						<div class="profile_box">
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-1.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name">Favoritos (12)</a>
+							  <br>
+						  </div>
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name">CITINET/ARQUIGRAFIA (9)</a>
+							  <br>
+						  </div>
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-3.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name">HISTÓRIA (12)</a>
+							  <br>
+						  </div>
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-4.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name">Sapucaí (103)</a>
+							  <br>
+						  </div>
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name"><i class="stack"></i> (5)</a>
+							  <br>
+						  </div>
+						</div>
+						-->
         
-      </div><!-- fim dos albums -->
+			</div><!-- fim dos albums -->
+		<?php } ?>
     
     </div>
     
