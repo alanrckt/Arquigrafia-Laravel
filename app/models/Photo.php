@@ -1,6 +1,8 @@
 <?php
 
 use lib\date\Date;
+// use lib\metadata\Exiv2;
+// use lib\license\CreativeCommons_3_0;
 
 class Photo extends Eloquent {
   
@@ -22,6 +24,11 @@ class Photo extends Eloquent {
     	return $this->belongsTo('User');
     }	
 
+    public function tags()
+    {
+        return $this->belongsToMany('Tag', 'tag_assignments', 'photo_id', 'tag_id');
+    }
+
     public static function formatDate($date)
     {
         return Date::formatDate($date);
@@ -30,4 +37,16 @@ class Photo extends Eloquent {
     public static function translate($date) {
         return Date::translate($date);
     }
+
+    // public static function insertMetadata($photo, $originalFileExtension) {
+    //     $dirImages = public_path() . '/arquigrafia-images';
+    //     $owner = $photo->user->name;
+    //     $imw = new Exiv2($originalFileExtension, $photo->id, $dirImages);
+    //     $imw.setAuthor($photo->workAuthor);
+    //     $imw.setArtist($photo->workAuthor, $owner);
+    //     $imw.setCopyRight($photo->imageAuthor, new CreativeCommons_3_0($photo->allowCommercialUses,
+    //         $photo->allowModifications));
+    //     $imw.setDescription($photo->description);
+    //     $imw.setUserComment($photo->aditionalImageComments);
+    // }
 }
