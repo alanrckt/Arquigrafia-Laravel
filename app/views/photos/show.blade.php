@@ -476,15 +476,17 @@
 				  
           
           <a href="{{ URL::to("/users/".$owner->id) }}" id="user_name">
-          <?php if ($owner->photo != "") { ?>
-            <img id="single_view_user_thumbnail" src="<?php echo asset($owner->photo); ?>" class="user_photo_thumbnail"/>
+            <?php if ($owner->photo != "") { ?>
+              <img id="single_view_user_thumbnail" src="<?php echo asset($owner->photo); ?>" class="user_photo_thumbnail"/>
+            <?php } else { ?>
+              <img id="single_view_user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
+            <?php } ?>
           </a>
-          <?php } else { ?>
-            <img id="single_view_user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
-          <?php } ?>		
-
-		
-					<span id="single_view_owner_name"><a href="{{ URL::to("/users/".$owner->id) }}" id="name">{{ $owner->name }}</a></span>
+          
+          
+          <!-- lfsalfasdl -->
+          
+					<h1 id="single_view_owner_name"><a href="{{ URL::to("/users/".$owner->id) }}" id="name">{{ $owner->name }}</a></h1>
     		@if (Auth::check())
     			@if (!empty($follow) && $follow == true)
 	    			<a href="{{ URL::to("/friends/follow/" . $owner->id) }}" id="single_view_contact_add">Seguir</a><br />

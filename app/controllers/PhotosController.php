@@ -90,12 +90,14 @@ class PhotosController extends \BaseController {
       "deleted"=>false
     ]);
     
-    $input["tags"] = str_replace(array('\'', '"'), '', $input["tags"]); 
+    $input["tags"] = str_replace(array('\'', '"', '[', ']'), '', $input["tags"]); 
     $tags = preg_split("/[\s,]+/", $input["tags"]);
     
     if (!empty($tags)) {
       foreach ($tags as $t) {
-        $tag = new Tag( array( 'name'=> trim($t) ) );
+        // tudo em minusculas, para remover redundancias, como Casa/casa/CASA
+        $t = strtolower(trim($t));
+        $tag = new Tag( array( 'name'=> $t ) );
         $photo->tags()->save($tag);
       }
     }
