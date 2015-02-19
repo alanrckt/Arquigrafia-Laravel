@@ -42,8 +42,12 @@
 	        <div class="info">
 
 	          <h1>{{ $user->name}} {{ $user->secondName}}</h1>
-
-	          <p>Cidade: {{ $user->city }}<br>Instituição: {{ $user->institution }}</p>
+			  @if ( !empty($user->city) )
+				<p>Cidade: {{ $user->city }}
+			  @endif
+			  @if ( !empty($user->institution) )
+				<br>Instituição: {{ $user->institution }}</p>
+			  @endif
 	        </div>
 	      	<div class="count">Fotos compartilhadas ({{ count($photos) }})</div>
 	      </div>
@@ -88,153 +92,121 @@
         	<h3><i class="profile"></i>Perfil</h3>
         </hgroup>
       	<ul>
-        	<li><strong>Nome:</strong> {{ $user->name}}</li>
-          <li><strong>Sobrenome:</strong>{{ $user->secondName }}</li>
+			@if ( !empty($user->name) )
+				<li><strong>Nome:</strong> {{ $user->name}}</li>
+			@endif
+			@if ( !empty($user->secondName) )
+				<li><strong>Sobrenome:</strong>{{ $user->secondName }}</li>
+			@endif
         </ul>
         <br>
         <ul>
-        	<li><strong>Escolaridade:</strong> {{ $user->scholarity }}</li>
-          <li><strong>Instituição:</strong> {{ $user->institution }}</li>
-          <li><strong>Curso:</strong> {{ $user->course }}</li>
-          <li><strong>Ocupação:</strong> {{ $user->occupation }}</li>
+			@if ( !empty($user->scholarity) )
+				<li><strong>Escolaridade:</strong> {{ $user->scholarity }}</li>
+			@endif
+			@if ( !empty($user->institution) )
+				<li><strong>Instituição:</strong> {{ $user->institution }}</li>
+			@endif
+			@if ( !empty($user->course) )
+				<li><strong>Curso:</strong> {{ $user->course }}</li>
+			@endif
+			@if ( !empty($user->occupation) )
+				<li><strong>Ocupação:</strong> {{ $user->occupation }}</li>
+			@endif
         </ul>
       </div>
       
       <div class="four columns">
       	<hgroup class="profile_block_title">
-        	<h3><i class="follow"></i>Seguindo (12)</h3>
-    			<a href="#" id="small" class="profile_block_link">Ver todos</a>
+        	<h3><i class="follow"></i>Seguindo ({{$user->following->count()}})</h3>
+    			<!--<a href="#" id="small" class="profile_block_link">Ver todos</a>-->
    	 		</hgroup>
         <!--   BOX - AMIGOS   -->
-    		<div class="profile_box">
-        
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img title="Fernando Gobbo" src="{{ URL::to("/") }}/profile/b554beaa-1b5d-4d6f-b40d-b039fa9219e6_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fernando Gobbo</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="João Francisco" src="{{ URL::to("/") }}/profile/128-2.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Ilka</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/6" class="friend_photo"><img title="Ruth Cuiá Troncarelli" src="{{ URL::to("/") }}/profile/c2982c9b-ed00-4185-9dc4-513aca4a55f4_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Ruth Cuiá Troncarelli</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/2" class="friend_photo"><img title="Fabiana" src="{{ URL::to("/") }}/profile/bb9c9f2f-6527-4cd3-a91d-d96115ecf5b0_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fabiana</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img title="Straus" src="{{ URL::to("/") }}/profile/9f4ffc8a-c912-4d15-a021-bda37e3a08e9_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">straus</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img title="Fernanda" src="{{ URL::to("/") }}/profile/a2f7570f-b235-4622-8402-7f6cf00013c0_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fernanda</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/9" class="friend_photo"><img title="Lívia Perez" src="{{ URL::to("/") }}/profile/5df3d2dd-b2fd-4791-bd5b-c0511d135117_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Lívia Perez</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="Eliana De Azevedo Marques" src="http://profile.ak.fbcdn.net/hprofile-ak-prn1/27337_100001010303440_2938_s_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Eliana De Azevedo Marques</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img title="Fernando Gobbo" src="{{ URL::to("/") }}/profile/b554beaa-1b5d-4d6f-b40d-b039fa9219e6_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fernando Gobbo</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="Ilka" src="{{ URL::to("/") }}/profile/c6d5f0e2-d3fc-4ab8-843e-28a3877c7a4d_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Ilka</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="Raquel Silva" src="{{ URL::to("/") }}/profile/128-3.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Ruth Cuiá Troncarelli</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/7" class="friend_photo"><img title="Fabiana" src="{{ URL::to("/") }}/profile/bb9c9f2f-6527-4cd3-a91d-d96115ecf5b0_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fabiana</span> --></a>
-          </div>
-          
-          
-				</div>
+    		<div class="profile_box">			
+				@foreach($user->following as $following)
+					<a href= {{ '/users/' .  $following->id }} >
+					<?php if ($following->photo != "") { ?>					
+						<img width="40" height="40" class="avatar" src="{{ asset($following->photo) }}" class="user_photo_thumbnail"/>
+					<?php } else { ?>
+						<img width="40" height="40" class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
+					<?php } ?>
+					</a>
+					
+				@endforeach           
+			</div>
         
       </div>
       
       <div class="four columns">
       	<hgroup class="profile_block_title">
-          <h3><i class="follow"></i>Seguidores (7)</h3>
-          <a href="#" id="small" class="profile_block_link">Ver todos</a>
+          <h3><i class="follow"></i>Seguidores ({{$user->followers->count()}})</h3>
+          <!--<a href="#" id="small" class="profile_block_link">Ver todos</a>-->
         </hgroup>
     		<!--   BOX - AMIGOS   -->
 				<div class="profile_box">
           <!--   LINHA - FOTOS - AMIGOS   -->
           <!--   FOTO - AMIGO   -->
           
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="Fabiana" src="{{ URL::to("/") }}/profile/bb9c9f2f-6527-4cd3-a91d-d96115ecf5b0_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fabiana</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img  title="Ilka" src="{{ URL::to("/") }}/profile/c6d5f0e2-d3fc-4ab8-843e-28a3877c7a4d_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ilka</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/6" class="friend_photo"><img  title="Ruth Cuiá Troncarelli" src="{{ URL::to("/") }}/profile/c2982c9b-ed00-4185-9dc4-513aca4a55f4_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ruth Cuiá Troncarelli</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/9" class="friend_photo"><img  title="Gustavo Antonio de Oliveira" src="{{ URL::to("/") }}/profile/248e2469-af48-4caa-b235-3615e9650501_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Gustavo Antonio de Oliveira</span>  --></a>
-        	</div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img  title="Dolor Amet" src="{{ URL::to("/") }}/profile/128-1.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ilka</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img  title="Fernando Gobbo" src="{{ URL::to("/") }}/profile/b554beaa-1b5d-4d6f-b40d-b039fa9219e6_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Fernando Gobbo</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img  title="Fernanda" src="{{ URL::to("/") }}/profile/a2f7570f-b235-4622-8402-7f6cf00013c0_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Fernanda</span>  --></a>
-        	</div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img  title="Lero Ipsum" src="{{ URL::to("/") }}/profile/128-2.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ilka</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/6" class="friend_photo"><img  title="Ruth Cuiá Troncarelli" src="{{ URL::to("/") }}/profile/c2982c9b-ed00-4185-9dc4-513aca4a55f4_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ruth Cuiá Troncarelli</span>  --></a>
-        	</div>
+          @foreach($user->followers as $follower)
+					<a href= {{ '/users/' .  $follower->id }} >
+					<?php if ($follower->photo != "") { ?>					
+						<img width="40" height="40" class="avatar" src="{{ asset($follower->photo) }}" class="user_photo_thumbnail"/>
+					<?php } else { ?>
+						<img width="40" height="40" class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
+					<?php } ?>
+					</a>
+		@endforeach   
 		
 	</div>
         
       </div>
       
-      <div class="twelve columns albums">
-      	<hgroup class="profile_block_title">
-      		<h3><i class="photos"></i> Minhas galerias</h3>
-        </hgroup>
-        
-        <p>No momento suas galerias não estão disponiveis, mas não se preocupe, estarão disponíveis em breve.</p>
+	  <br>
+	  
+	  <?php if ($user->oldPassword != null) { ?>
+            <div class="twelve columns albums">
+				<hgroup class="profile_block_title">
+					<h3><i class="photos"></i> Meus álbuns</h3>
+				</hgroup>				     
+				<p>No momento seus álbuns não estão disponíveis, mas não se preocupe, estão armazenados com segurança no nosso sistema e em breve será disponibilizado.</p>
 
-        <!--
-        <div class="profile_box">
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-1.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name">Favoritos (12)</a>
-              <br>
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name">CITINET/ARQUIGRAFIA (9)</a>
-              <br>
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-3.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name">HISTÓRIA (12)</a>
-              <br>
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-4.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name">Sapucaí (103)</a>
-              <br>
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
-              <a href="album.php" class="name"><i class="stack"></i> (5)</a>
-              <br>
-          </div>
-        </div>
-        -->
+						<!--
+						<div class="profile_box">
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-1.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name">Favoritos (12)</a>
+							  <br>
+						  </div>
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name">CITINET/ARQUIGRAFIA (9)</a>
+							  <br>
+						  </div>
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-3.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name">HISTÓRIA (12)</a>
+							  <br>
+						  </div>
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-4.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name">Sapucaí (103)</a>
+							  <br>
+						  </div>
+						  <div class="gallery_box">
+							  <a href="album.php" class="gallery_photo">
+								  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
+							  <a href="album.php" class="name"><i class="stack"></i> (5)</a>
+							  <br>
+						  </div>
+						</div>
+						-->
         
-      </div><!-- fim dos albums -->
+			</div><!-- fim dos albums -->
+		<?php } ?>
     
     </div>
     

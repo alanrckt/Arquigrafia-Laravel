@@ -52,7 +52,7 @@
           
           <a href="{{ URL::to("/users/logout/") }}" id="logout" class="btn">SAIR</a><br />
           <ul id="logged_menu">
-            <li> <a href="album/15/list/21" id="users" title="Meu Arquigrafia">&nbsp;</a></li>
+            <!--<li> <a href="album/15/list/21" id="users" title="Meu Arquigrafia">&nbsp;</a></li>-->
             <!-- <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li> -->
             <li><a href="{{ URL::to("/photos/upload") }}" name="modal" id="upload" title="Enviar uma imagem">&nbsp;</a></li>
             <!-- <li><a href="#" id="messages" title="Você tem 19 mensagens">&nbsp;</a></li> -->
