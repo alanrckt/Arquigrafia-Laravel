@@ -25,6 +25,7 @@ hr { border: none; height: 1px; background: #333; }
 small { font-size: 11px; }
 .left { float: left; }
 .right { float: right; }
+.justify p {text-align: justify;}
 img.left { margin-right: 15px; margin-bottom: 10px; }
 img.right { margin-left: 15px; }
 .btn { background: #fff; color: #444; border: solid 1px #ddd; font-size: 10px; font-weight: bold; padding: 5px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
@@ -126,6 +127,7 @@ ul#top_menu_items li #project { background: url(../img/sprite.png) no-repeat -78
 ul#top_menu_items li #help { background: url(../img/sprite.png) no-repeat -780px -45px; }
 ul#top_menu_items li #contact { background: url(../img/sprite.png) no-repeat -780px -93px; }
 /* registro e login - OFF */
+#registration input[type=text], #registration input[type=password] {width: 130px;}
 #loggin_area { position: relative; float: right; width: 217px; height: 53px; }
 #loggin_area #login_button { float: right; margin: 30px 0 0 5px; }
 #loggin_area #registration_button { float: right; margin: 30px 5px 0; }
@@ -141,7 +143,7 @@ ul#logged_menu li #comunities:hover { background-position: -262px -34px; }
 ul#logged_menu li #upload { background: url(../img/sprite.png) -402px 0px; }
 #user_name { margin-left: 8px; font-size: 12px; line-height: 24px; margin-right: -100px; }
 #logout { position: absolute; bottom: 0; right: 0; }
-.user_photo_thumbnail { margin: 4px 12px 0 5px; float: left; }
+.user_photo_thumbnail { margin: 4px 12px 0 5px; float: left; width: 48px; height: auto; }
 /* busca */
 div#first_menu { width: 300px; float: left; }
 #search_buttons_area { float: left; height: 22px; width: 280px; margin-top: 32px/*5px*/;  }
@@ -225,7 +227,7 @@ a.image { display: block; width: 170px; height: 117px; margin: 16px 7px; }
 
 /* --- FOOTER --- */
 #footer { bottom: 0; clear: both; margin-top: 20px; font-size: 11px; }
-#footer .footer-msg { width: 400px; }
+#footer .footer-msg { width: 300px; }
 #footer .footer-msg p { float: left; margin-top: 0; }
 #footer .footer-logo { float: left; display: block; width: 30px; height: 30px; margin: 3px 2px 0 0; background: url(../img/sprite.png) 0 0 no-repeat; }
 
@@ -244,7 +246,7 @@ a.footer_image { display: block; margin: 4px; float: left; border: none; width: 
 .counter { display: block; float: left; width: 100%; margin: 10px 0; overflow: hidden; }
 
 /*créditos*/
-#credits { padding-top: 20px; }
+#credits { padding-top: 20px; margin-bottom: 10px; }
 #credits ul { margin: 0; float: left; width: 173px; }
 #credits ul.last { width: 80px; margin-right: -15px; }
 #credits ul li { display: block; margin: 0 13px 4px; }
@@ -260,12 +262,13 @@ a.footer_image { display: block; margin: 4px; float: left; border: none; width: 
 #credits ul li #eca { background: url(../img/logos.png) -350px -100px; width: 150px; }
 #credits ul li #quapa { background: url(../img/logos.png) -525px 0; width: 70px; }
 #credits ul li #vitruvius { background: url(../img/logos.png) -525px -50px; width: 70px; }
+#credits ul li #archdaily { background: url(../img/archdaily-brasil.png) 0 0 no-repeat; width: 80px; height: 40px; }
 #credits ul li #benchmark { background: url(../img/logos.png) -700px 0 no-repeat; width: 55px; }
-#credits ul li #brz { background: url(../img/logos.png) -700px -50px no-repeat; width: 55px; }
+#credits ul li #rckt { background: url(../img/rckt.png) 15px 0 no-repeat; width: 70px; }
 #credits .footer-links { width: 150px; margin: 4px 31px 0 0; border-right: 1px solid #ddd; }
 #credits .footer-links a { height: 23px; }
 #credits .footer-links li { margin-left: 0; }
-#footer .footer-last { clear: both; padding-top: 30px; }
+#footer .footer-last { clear: both; padding-top: 10px; }
 #copyright { margin: 18px 0; float: right; }
 
 /* --- PÁGINA DE RESULTADO --- */
@@ -277,6 +280,7 @@ a.footer_image { display: block; margin: 4px; float: left; border: none; width: 
 #sub_content { width: 632px; float: left; }
 
 /* THE PROJECT */
+.project-photos img {margin-right: 1px; width: 205px; height: auto;}
 #project_text_tools { float: right; width: auto; }
 .dec-font { float: left; display: block; line-height: 25px; margin: 0 10px 0 0; }
 .res-font, .inc-font { float: left; display: block; line-height: 25px; margin: 0 10px 0 0; }
@@ -304,7 +308,7 @@ a.footer_image { display: block; margin: 4px; float: left; border: none; width: 
 #name_photo_h1 { float: left; width: 200px; }
 #single_view_statistics { overflow: hidden; border-bottom: solid #333 1px; line-height: 25px; }
 #single_view_statistics h1 { display: block; float: left; overflow: hidden; width: 415px; }
-#single_view_user_thumbnail { float: left; margin-right: 10px; width: 48px; }
+#single_view_user_thumbnail { float: left; margin-right: 10px; width: 60px; }
 #single_view_owner_name { margin-bottom: -3px; float: left; width: 220px; font-size: 18px; }
 #single_view_contact_add { float: left; }
 #single_view_message_open, #single_view_message_close, #single_view_contact_remove { font-size: 11px; }
@@ -320,7 +324,7 @@ i#favourite { background: url(../img/sprite.png) -609px 0px; width: 24px; }
 
 /*botões de ações abaixo da foto*/
 #single_view_buttons_box { padding-top: 5px; height: 40px; }
-#single_view_image_buttons { width: 175px; margin: 0 auto; }
+#single_view_image_buttons { width: 35px; /*width: 175px;*/ margin: 0 auto; }
 #single_view_image_buttons li { margin: 0 5px; float: left; }
 #add_favourite, #plus { display: block; width: 34px; height: 33px; margin-top: -3px; }
 #eyedroppper, #denounce, #download { display: block; width: 24px; height: 25px; margin-left: 4px; }

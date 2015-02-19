@@ -17,7 +17,7 @@ class UsersController extends \BaseController {
 		//$followers = $user->followers;
 		//$profile = Profile::whereid($id)->first();
 
-		return View::make('/users/show',['users' => $user, 'photos' => $photos]); 
+		return View::make('/users/show',['user' => $user, 'photos' => $photos]); 
 				
 				//->with('users' => $user)
 				//->with('gw_collab_profile' => $gw_collab_profile);
@@ -113,7 +113,7 @@ class UsersController extends \BaseController {
     if ($user_id != $logged_user->id && !$following->contains($user_id))
       $logged_user->following()->attach($user_id);
 
-    return Redirect::to('/'); // redirecionar para friends
+    return Redirect::back(); // redirecionar para friends
   }
 
   public function unfollow($user_id)
@@ -129,7 +129,22 @@ class UsersController extends \BaseController {
     if ($user_id != $logged_user->id && $following->contains($user_id))
       $logged_user->following()->detach($user_id);
 
-    return Redirect::to('/'); // redirecionar para friends
+    return Redirect::back(); // redirecionar para friends
+  }
+  
+  // AVATAR
+  public function profile($id)
+  {
+    $path = public_path().'/arquigrafia-avatars/'.$id.'_view.jpg';
+    if( File::exists($path) ) {
+      header("Cache-Control: public");
+      header("Content-Disposition: inline; filename=\"".$id . '_view.jpg'."\"");
+      header("Content-Type: image/jpg");
+      header("Content-Transfer-Encoding: binary");
+      readfile($path);
+      exit;
+    }
+    return $path;
   }
 
 }

@@ -32,8 +32,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public static function checkOldAccount( $user, $password)
 	{
-		$verify = exec('java -cp "./public/java:./public/java/jasypt-1.7.jar" PasswordValidator ' . $password . ' ' . $user->password);
-  	  	if ( strcmp($verify, 'true') == 0 ) return true;
+		$verify = exec('java -cp "' . public_path() . '/java:' . public_path() . '/java/jasypt-1.7.jar" PasswordValidator ' . $password . ' ' . $user->password);
+  	    if ( strcmp($verify, 'true') == 0 ) return true;
     	return false;
 	}
 }

@@ -32,8 +32,8 @@
 		<div class="container">
 	      <div id="user_header" class="twelve columns">
           
-          <?php if ($users->photo != "") { ?>
-            <img class="avatar" src="{{ asset('img/avatars/' . $users->photo); }}" class="user_photo_thumbnail"/>
+          <?php if ($user->photo != "") { ?>
+            <img class="avatar" src="{{ asset($user->photo) }}" class="user_photo_thumbnail"/>
           </a>
           <?php } else { ?>
             <img class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
@@ -41,11 +41,11 @@
           
 	        <div class="info">
 
-	          <h1>{{ $users->name}} {{ $users->secondName}}</h1>
+	          <h1>{{ $user->name}} {{ $user->secondName}}</h1>
 
-	          <p>Cidade: {{ $users->city }}<br>Instituição: {{ $users->institution }}</p>
+	          <p>Cidade: {{ $user->city }}<br>Instituição: {{ $user->institution }}</p>
 	        </div>
-	      	<div class="count">Fotos compartilhadas (91)</div>
+	      	<div class="count">Fotos compartilhadas ({{ count($photos) }})</div>
 	      </div>
 	    </div>
     
@@ -68,7 +68,7 @@
             
             <div class="item h<?php echo $size; ?>"><div class="layer" data-depth="0.2">
               <a href='{{ URL::to("/photos/{$photo->id}") }}'>
-              <img src='{{ URL::to("/img/photos/{$photo->nome_arquivo}") }}' title='{{ $photo->name }}'>
+              <img src='{{ URL::to("/arquigrafia-images/{$photo->id}_view.jpg") }}' title='{{ $photo->name }}'>
               </a>
             </div></div>
             
@@ -88,15 +88,15 @@
         	<h3><i class="profile"></i>Perfil</h3>
         </hgroup>
       	<ul>
-        	<li><strong>Nome:</strong> {{ $users->name}}</li>
-          <li><strong>Sobrenome:</strong>{{ $users->secondName }}</li>
+        	<li><strong>Nome:</strong> {{ $user->name}}</li>
+          <li><strong>Sobrenome:</strong>{{ $user->secondName }}</li>
         </ul>
         <br>
         <ul>
-        	<li><strong>Escolaridade:</strong> {{ $users->scholarity }}</li>
-          <li><strong>Instituição:</strong> {{ $users->institution }}</li>
-          <li><strong>Curso:</strong> {{ $users->course }}</li>
-          <li><strong>Ocupação:</strong> {{ $users->occupation }}</li>
+        	<li><strong>Escolaridade:</strong> {{ $user->scholarity }}</li>
+          <li><strong>Instituição:</strong> {{ $user->institution }}</li>
+          <li><strong>Curso:</strong> {{ $user->course }}</li>
+          <li><strong>Ocupação:</strong> {{ $user->occupation }}</li>
         </ul>
       </div>
       
@@ -191,47 +191,50 @@
 	</div>
         
       </div>
-			
-		
-    	<div class="twelve columns albums">
+      
+      <div class="twelve columns albums">
       	<hgroup class="profile_block_title">
       		<h3><i class="photos"></i> Minhas galerias</h3>
         </hgroup>
         
+        <p>No momento suas galerias não estão disponiveis, mas não se preocupe, estarão disponíveis em breve.</p>
+
+        <!--
         <div class="profile_box">
           <div class="gallery_box">
               <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-1.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="f">Favoritos (12)</a>
-              <br />
+                  <img src="{{ URL::to("/") }}/placeholders/album-1.jpg" class="gallery_photo"></a>
+              <a href="album.php" class="name">Favoritos (12)</a>
+              <br>
           </div>
           <div class="gallery_box">
               <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="f">CITINET/ARQUIGRAFIA (9)</a>
-              <br />
+                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
+              <a href="album.php" class="name">CITINET/ARQUIGRAFIA (9)</a>
+              <br>
           </div>
           <div class="gallery_box">
               <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-3.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="f">HISTÓRIA (12)</a>
-              <br />
+                  <img src="{{ URL::to("/") }}/placeholders/album-3.jpg" class="gallery_photo"></a>
+              <a href="album.php" class="name">HISTÓRIA (12)</a>
+              <br>
           </div>
           <div class="gallery_box">
               <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-4.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="f">Sapucaí (103)</a>
-              <br />
+                  <img src="{{ URL::to("/") }}/placeholders/album-4.jpg" class="gallery_photo"></a>
+              <a href="album.php" class="name">Sapucaí (103)</a>
+              <br>
           </div>
           <div class="gallery_box">
               <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="f"><i class="stack"></i> (5)</a>
-              <br />
+                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
+              <a href="album.php" class="name"><i class="stack"></i> (5)</a>
+              <br>
           </div>
-          
         </div>
-      </div>
+        -->
+        
+      </div><!-- fim dos albums -->
     
     </div>
     

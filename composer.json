@@ -14,7 +14,10 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds"
-		]
+		],
+		"psr-4": {
+            "lib\\":"app/lib"
+		}
 	},
 	"scripts": {
 		"post-install-cmd": [

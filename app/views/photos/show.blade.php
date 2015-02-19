@@ -355,7 +355,7 @@
 	}
 </script>
 
-<link rel="stylesheet" type="text/css" media="screen" href="css/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/jquery.fancybox.css" />
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/friend.js"></script>
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.fancybox.pack.js"></script>
@@ -386,7 +386,7 @@
 					<!--   FIM - NOME / STATUS DA FOTO   -->
 					
           <!--   FOTO   -->
-					<a class="fancybox" href="{{ URL::to("/uploads")."/".$photos->id."_view.jpg" }}" title="Praça Ramos de Azevedo" ><img class="single_view_image" style="" src="{{ URL::to("/uploads")."/".$photos->id."_view.jpg" }}" onload="initialize()" /></a>
+					<a class="fancybox" href="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" title="Praça Ramos de Azevedo" ><img class="single_view_image" style="" src="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" onload="initialize()" /></a>
  <!-- alt="${}"  --> 
 
 				</div>				
@@ -394,20 +394,23 @@
 				<!--   BOX DE BOTOES DA IMAGEM   -->
 				<div id="single_view_buttons_box">
 					
-					
-						<ul id="single_view_image_buttons">
+					<?php if (Auth::check()) { ?>
+						
+            <ul id="single_view_image_buttons">
 							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
 							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
-						    
-								
-							
+              
 							<!--<li><a href="18/photo_avaliation/2778" title="Avalie a foto" id="eyedroppper"></a></li>-->
 							<!--<li><a href="album/15/add/2778" title="Adicione a sua galeria" id="plus"></a></li>-->
-							<li><a href="photo/img-original/2778" title="Faça o download" id="download" target="_blank"></a></li>
-							
-								
-							
+            
+							<li><a href="{{ asset('arquigrafia-images/'.$photos->id.'_original.jpg') }}" title="Faça o download" id="download" target="_blank"></a></li>
+           	
 						</ul>
+            
+             <?php } else { ?>
+              <div class="six columns alpha">Faça o login para fazer o download e comentar as imagens.</div>
+            <?php } ?>
+            
 						<ul id="single_view_social_network_buttons">
 						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fdf62121c50304d"></script>
 							<!-- <li><a href="#" class="delicious"></a></li> -->
@@ -472,21 +475,24 @@
 				<!--   USUARIO   -->
 				<div id="single_user">
 				  
-        @if ( Auth::check() )
           
-          <?php if (Auth::user()->photo != "") { ?>
-            <img id="single_view_user_thumbnail" src="<?php echo asset('img/avatars/' . $owner->photo); ?>" class="user_photo_thumbnail"/>
+          <a href="{{ URL::to("/users/".$owner->id) }}" id="user_name">
+          <?php if ($owner->photo != "") { ?>
+            <img id="single_view_user_thumbnail" src="<?php echo asset($owner->photo); ?>" class="user_photo_thumbnail"/>
           </a>
           <?php } else { ?>
             <img id="single_view_user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
           <?php } ?>		
 
-		@endif	
 		
-					<span id="single_view_owner_name"><a href="{{ URL::to("/user".$owner->id) }}" id="name">{{ $owner->name }}</a></span>
-    			<a href="friends/11/follow/219" id="single_view_contact_add">Seguir</a><br />
- 
-				
+					<span id="single_view_owner_name"><a href="{{ URL::to("/users/".$owner->id) }}" id="name">{{ $owner->name }}</a></span>
+    		@if (Auth::check())
+    			@if (!empty($follow) && $follow == true)
+	    			<a href="{{ URL::to("/friends/follow/" . $owner->id) }}" id="single_view_contact_add">Seguir</a><br />
+ 				@else
+ 					<a href="#">Seguindo</a>
+ 				@endif
+			@endif	
 				</div>
 				<!--   FIM - USUARIO   -->
 				<!-- <h3>Equipamento:</h3>
@@ -496,54 +502,77 @@
             <h3><i class="info"></i> Informações</h3>
           </hgroup>
           
+          		@if ( !empty($photos->description) )
 					<h4>Descrição:</h4>
 					<p>{{ $photos->description }}</p>
-				
-				
+				@endif
+
+          		@if ( !empty($photos->collection) )				
 					<h4>Coleção:</h4>
 					<p>{{ $photos->collection }}</p>
+				@endif
 				
-				
+				@if ( !empty($photos->imageAuthor) )
 					<h4>Autor da Imagem:</h4>
 					<p>
-						<a href="photos/7/show/search/term?q=ROBBA%2C+F%E1bio&term=imageAuthor&page=1&perPage=32">
+						<!-- <a href="photos/7/show/search/term?q=ROBBA%2C+F%E1bio&term=imageAuthor&page=1&perPage=32"> -->
 							{{ $photos->imageAuthor }}
-						</a>
+						<!-- </a> -->
 					</p>
-						
+				@endif
 				
+				@if ( !empty($photos->dataUpload) )
+					<h4>Data de Upload:</h4>
+					<p>{{ Photo::translate($photos->dataUpload) }}</p>
+				@endif
+
+				@if ( !empty($photos->dataCriacao) )
+					<h4>Data da Imagem:</h4>
+					<p>{{ Photo::translate($photos->dataCriacao) }}</p>
+				@endif
+
+				@if ( !empty($photos->workAuthor) )
+					<h4>Autor da Obra:</h4>
+					<p>{{ $photos->workAuthor }}</p>
+				@endif
+
+				@if ( !empty($photos->workdate) )
 					<h4>Data da Obra:</h4>
-					<p>{{ $photos->workdate }}</p>
-								
+					<p>{{ Photo::translate($photos->workdate) }}</p>
+				@endif
+
+				@if ( !empty($photos->street) || !empty($photos->city) ||
+					!empty($photos->state) || !empty($photos->country) )
 					<h4>Endereço:</h4>
 					<p>
-						
-							<a href="photos/7/show/search/term?q=Pra%E7a+Ramos+de+Azevedo&term=street&page=1&perPage=24">
-								{{ $photos->street }} ,
-							</a>
-						
-						
-						
-							<a href="photos/7/show/search/term?q=Rep%FAblica&term=district&page=1&perPage=24">
-								{{ $photos->city }}
-							</a>
-						
-						<br />
-						
-						
-						<a href="photos/7/show/search/term?q=S%E3o+Paulo&term=city&page=1&perPage=24">
-							{{ $photos->description }} - 
+						@if (!empty($photos->street) && !empty($photos->city))
+						<a href="{{ URL::to("/search?q=".$photos->street) }}">
+						{{ $photos->street }},
 						</a>
-						
-							
-						
-							{{ $photos->state }} , 
-						
-						
-							{{ $photos->country }}
-						 
+						@elseif (!empty($photos->street))
+						<a href="{{ URL::to("/search?q=".$photos->street) }}">
+						{{ $photos->street }}
+						</a>
+						<br />
+						@endif
+
+						@if (!empty($photos->city))
+						<a href="{{ URL::to("/search?q=".$photos->city) }}">
+					    {{ $photos->city }}
+						</a>
+						<br />
+            			@endif
+
+			            @if (!empty($photos->state) && !empty($photos->country))
+			            {{ $photos->state }} - {{ $photos->country }}
+			            @elseif (!empty($photos->state))
+			            {{ $photos->state }}
+			            @else
+			            {{ $photos->country }}
+			            @endif
+													 
 					</p>
-									
+				@endif
 					
 				<!--
 				<h4>Localização:</h4>

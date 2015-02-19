@@ -5,14 +5,22 @@ class PhotosController extends \BaseController {
 	public function index()
 	{
 		$photos = Photo::where('deleted', '=', '0');
-		return View::make('/photos.index',['photos' => $photos]);
+		return View::make('/photos/index',['photos' => $photos]);
 	}
 
 	public function show($id)
 	{
 		$photos = Photo::whereid($id)->first();
     $user = User::find($photos->user_id);
-    return View::make('/photos/show',['photos' => $photos, 'owner' => $user]);
+    if (Auth::check()) {
+      if (Auth::user()->following->contains($user->id))
+        $follow = false;
+      else 
+        $follow = true;
+    } else {
+      $follow = true;
+    }
+    return View::make('/photos/show',['photos' => $photos, 'owner' => $user, 'follow' => $follow]);
 	}
 	
   // upload form
@@ -34,16 +42,16 @@ class PhotosController extends \BaseController {
         'description'=>'LOCK', 
         'nome_arquivo'=> 'LOCK',
         // iniciar a foto inativa
-        'deleted' => true
+        'deleted' => 1
       ]);
       // save copies
       $file = Input::file('photo');
       $ext = $file->getClientOriginalExtension();
       $photo->nome_arquivo = $photo->id.".".$ext;
       $photo->save();
-      Image::make(Input::file('photo'))->encode('jpg', 80)->heighten(220)->save(public_path().'/uploads/'.$photo->id.'_200h.jpg');
-      Image::make(Input::file('photo'))->encode('jpg', 80)->widen(600)->save(public_path().'/uploads/'.$photo->id.'_view.jpg');
-      $file->move(public_path().'/uploads', $photo->id.".".$ext); // original
+      Image::make(Input::file('photo'))->encode('jpg', 80)->heighten(220)->save(public_path().'/arquigrafia-images/'.$photo->id.'_200h.jpg');
+      Image::make(Input::file('photo'))->encode('jpg', 80)->widen(600)->save(public_path().'/arquigrafia-images/'.$photo->id.'_view.jpg');
+      $file->move(public_path().'/arquigrafia-images', $photo->id."_original.".strtolower($ext)); // original
       // return to complete metadata
       return View::make('/photos/form',['photo'=>$photo]);
     } else {

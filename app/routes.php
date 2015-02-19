@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/data', function () { 
+	//dd(Photo::translate('2012-03-01/2013-04-01')); 
+	dd(Photo::translate('17/18'));
+});
+
 Route::get('/info/', function(){ return View::make('i'); });
 
 Route::get('/friends/follow/{user_id}', 'UsersController@follow');
@@ -19,6 +24,7 @@ Route::get('/friends/unfollow/{user_id}', 'UsersController@unfollow');
 //Route::get('/users/{id_usr}', 'UsersController@show');
 
 Route::get('/', 'PagesController@home');
+Route::get('/panel', 'PagesController@panel');
 Route::get('/project', function() { return View::make('project'); });
 Route::get('/faq', function() { return View::make('faq'); });
 // Route::post('/search', function() { return View::make('search'); });
@@ -30,6 +36,9 @@ Route::get('/users/login', 'UsersController@loginForm');
 Route::post('/users/login', 'UsersController@login');
 Route::get('/users/logout', 'UsersController@logout');
 
+// AVATAR 
+Route::get('/profile/10/showphotoprofile/{profile_id}', 'UsersController@profile');
+
 Route::resource('/users','UsersController');
 
 Route::resource('/profile','ProfileController');
@@ -38,6 +47,7 @@ Route::resource('/profile','ProfileController');
 
 Route::resource('/albums','AlbumsController');
 	
+Route::get('/search', 'PhotosController@search');
 Route::post('/search', 'PhotosController@search');
 Route::get('/photos/upload','PhotosController@form');
 Route::resource('/photos','PhotosController');

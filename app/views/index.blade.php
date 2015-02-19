@@ -57,7 +57,7 @@
             
             <div class="item h<?php echo $size; ?>"><div class="layer" data-depth="0.2">
               <a href='{{ URL::to("/photos/{$photo->id}") }}'>
-               <img src={{ '"/img/photos/arquigrafia-images/'. $photo->id . '_view.jpg"' }} title={{ $photo->name }}>
+               <img src="{{ asset('/arquigrafia-images/'. $photo->id . '_view.jpg') }}" title={{ $photo->name }}>
 
               </a>
             </div></div>

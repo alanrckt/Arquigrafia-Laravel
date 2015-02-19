@@ -15,7 +15,7 @@
     <ul>
     
     @foreach($photos as $photo)
-    	<li>{{ link_to ("/photos/{$photo->id}", $photo->name) }}</li>
+    	<li>{{ link_to ("img/photos/arquigrafia-images/{$photo->id}", $photo->name) }}</li>
     @endforeach
     
     </ul>
