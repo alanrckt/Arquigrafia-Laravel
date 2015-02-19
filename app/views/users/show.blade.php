@@ -106,47 +106,11 @@
     			<a href="#" id="small" class="profile_block_link">Ver todos</a>
    	 		</hgroup>
         <!--   BOX - AMIGOS   -->
-    		<div class="profile_box">
-        
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img title="Fernando Gobbo" src="{{ URL::to("/") }}/profile/b554beaa-1b5d-4d6f-b40d-b039fa9219e6_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fernando Gobbo</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="João Francisco" src="{{ URL::to("/") }}/profile/128-2.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Ilka</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/6" class="friend_photo"><img title="Ruth Cuiá Troncarelli" src="{{ URL::to("/") }}/profile/c2982c9b-ed00-4185-9dc4-513aca4a55f4_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Ruth Cuiá Troncarelli</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/2" class="friend_photo"><img title="Fabiana" src="{{ URL::to("/") }}/profile/bb9c9f2f-6527-4cd3-a91d-d96115ecf5b0_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fabiana</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img title="Straus" src="{{ URL::to("/") }}/profile/9f4ffc8a-c912-4d15-a021-bda37e3a08e9_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">straus</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img title="Fernanda" src="{{ URL::to("/") }}/profile/a2f7570f-b235-4622-8402-7f6cf00013c0_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fernanda</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/9" class="friend_photo"><img title="Lívia Perez" src="{{ URL::to("/") }}/profile/5df3d2dd-b2fd-4791-bd5b-c0511d135117_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Lívia Perez</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="Eliana De Azevedo Marques" src="http://profile.ak.fbcdn.net/hprofile-ak-prn1/27337_100001010303440_2938_s_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Eliana De Azevedo Marques</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img title="Fernando Gobbo" src="{{ URL::to("/") }}/profile/b554beaa-1b5d-4d6f-b40d-b039fa9219e6_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fernando Gobbo</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="Ilka" src="{{ URL::to("/") }}/profile/c6d5f0e2-d3fc-4ab8-843e-28a3877c7a4d_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Ilka</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="Raquel Silva" src="{{ URL::to("/") }}/profile/128-3.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Ruth Cuiá Troncarelli</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/7" class="friend_photo"><img title="Fabiana" src="{{ URL::to("/") }}/profile/bb9c9f2f-6527-4cd3-a91d-d96115ecf5b0_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fabiana</span> --></a>
-          </div>
-          
-          
-				</div>
+    		<div class="profile_box">			
+				@foreach($user->following as $following)
+					<li><?php echo link_to("/users/".$following->id, $following->name) ?></li>
+				@endforeach           
+			</div>
         
       </div>
       
@@ -160,33 +124,9 @@
           <!--   LINHA - FOTOS - AMIGOS   -->
           <!--   FOTO - AMIGO   -->
           
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img title="Fabiana" src="{{ URL::to("/") }}/profile/bb9c9f2f-6527-4cd3-a91d-d96115ecf5b0_view.jpg" class="friend_photo" /><!--<span class="default_list_friend_f ">Fabiana</span> --></a>
-          </div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img  title="Ilka" src="{{ URL::to("/") }}/profile/c6d5f0e2-d3fc-4ab8-843e-28a3877c7a4d_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ilka</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/6" class="friend_photo"><img  title="Ruth Cuiá Troncarelli" src="{{ URL::to("/") }}/profile/c2982c9b-ed00-4185-9dc4-513aca4a55f4_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ruth Cuiá Troncarelli</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/9" class="friend_photo"><img  title="Gustavo Antonio de Oliveira" src="{{ URL::to("/") }}/profile/248e2469-af48-4caa-b235-3615e9650501_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Gustavo Antonio de Oliveira</span>  --></a>
-        	</div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img  title="Dolor Amet" src="{{ URL::to("/") }}/profile/128-1.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ilka</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img  title="Fernando Gobbo" src="{{ URL::to("/") }}/profile/b554beaa-1b5d-4d6f-b40d-b039fa9219e6_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Fernando Gobbo</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/3" class="friend_photo"><img  title="Fernanda" src="{{ URL::to("/") }}/profile/a2f7570f-b235-4622-8402-7f6cf00013c0_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Fernanda</span>  --></a>
-        	</div>
-          <div>
-            <a href="{{ URL::to("/") }}/users/5" class="friend_photo"><img  title="Lero Ipsum" src="{{ URL::to("/") }}/profile/128-2.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ilka</span>  --></a>
-        	</div>
-        	<div>
-            <a href="{{ URL::to("/") }}/users/6" class="friend_photo"><img  title="Ruth Cuiá Troncarelli" src="{{ URL::to("/") }}/profile/c2982c9b-ed00-4185-9dc4-513aca4a55f4_view.jpg" class="friend_photo" /><!-- <span class="default_list_friend_f ">Ruth Cuiá Troncarelli</span>  --></a>
-        	</div>
+          @foreach($user->followers as $follower)
+					<li><?php echo link_to("/users/".$follower->id, $follower->name) ?></li>
+		@endforeach   
 		
 	</div>
         
