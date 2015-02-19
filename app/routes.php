@@ -16,37 +16,36 @@ Route::get('/data', function () {
 	dd(Photo::translate('17/18'));
 });
 
+/* phpinfo() */
 Route::get('/info/', function(){ return View::make('i'); });
-
-Route::get('/friends/follow/{user_id}', 'UsersController@follow');
-Route::get('/friends/unfollow/{user_id}', 'UsersController@unfollow');
-//Route::get('/users', 'UsersController@index');
-//Route::get('/users/{id_usr}', 'UsersController@show');
 
 Route::get('/', 'PagesController@home');
 Route::get('/panel', 'PagesController@panel');
 Route::get('/project', function() { return View::make('project'); });
 Route::get('/faq', function() { return View::make('faq'); });
-// Route::post('/search', function() { return View::make('search'); });
 
 Route::resource('/teste','TesteController');
 
+/* USERS */
 Route::get('/users/account', 'UsersController@account');
 Route::get('/users/login', 'UsersController@loginForm');
 Route::post('/users/login', 'UsersController@login');
 Route::get('/users/logout', 'UsersController@logout');
+Route::resource('/users','UsersController');
+
+/* FOLLOW */
+Route::get('/friends/follow/{user_id}', 'UsersController@follow');
+Route::get('/friends/unfollow/{user_id}', 'UsersController@unfollow');
 
 // AVATAR 
 Route::get('/profile/10/showphotoprofile/{profile_id}', 'UsersController@profile');
 
-Route::resource('/users','UsersController');
+Route::resource('/profile','ProfileController'); // lixo ?
 
-Route::resource('/profile','ProfileController');
-
-//Route::resource('/users/photos','PhotosController');
-
+/* ALBUMS */
 Route::resource('/albums','AlbumsController');
-	
+
+/* PHOTOS */
 Route::get('/search', 'PhotosController@search');
 Route::post('/search', 'PhotosController@search');
 Route::get('/photos/upload','PhotosController@form');
@@ -54,6 +53,7 @@ Route::resource('/photos','PhotosController');
 
 Route::resource('/groups','GroupsController');
 
+/* TAGS */
 Route::get('/tags/json', 'TagsController@index');
 
 /*
