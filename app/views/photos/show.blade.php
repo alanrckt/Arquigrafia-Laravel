@@ -4,7 +4,7 @@
 
 {{ HTML::style('/css/style.css'); }}
 
-<title>Arquigrafia - Praça Ramos de Azevedo</title>
+<title>Arquigrafia - {{ $photos->name }}</title>
 
 <!--   JQUERY   -->
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script>
@@ -430,17 +430,19 @@
          <!-- <a class="" href="tags/50" >Pedra</a>-->
 
           <p>
-          @foreach($tags as $tag)
-          @if ($tag->id == $tags->last()->id)
-          <!-- <a class="" href="tags/{{ $tag->id }}"> -->
-          {{ $tag->name }}
-          <!-- </a> -->
-          @else
-          <!-- <a class="" href="tags/{{ $tag->id }}"> -->
-          {{ $tag->name }},          
-          @endif          
-          @endforeach
-
+          @if (isset($tags))
+            @foreach($tags as $tag)
+              @if ($tag->id == $tags->last()->id)
+              <!-- <a class="" href="tags/{{ $tag->id }}"> -->
+              {{ $tag->name }}
+              <!-- </a> -->
+              @else
+              <!-- <a class="" href="tags/{{ $tag->id }}"> -->
+              {{ $tag->name }},          
+              @endif          
+            @endforeach
+          @endif   
+          
           </p>
           </div>
         
@@ -624,9 +626,6 @@
       
 			<!--   FIM - SIDEBAR   -->
 		</div>
-		
-    <!-- FOOTER -->
-    <?php //include "includes/footer.php"; ?>
     
 		<!--   MODAL   -->
 		<div id="mask"></div>

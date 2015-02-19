@@ -89,9 +89,22 @@ class PhotosController extends \BaseController {
       // atualizar estado para ativa
       "deleted"=>false
     ]);
+    
+    $input["tags"] = str_replace(array('\'', '"'), '', $input["tags"]); 
+    $tags = preg_split("/[\s,]+/", $input["tags"]);
+    
+    if (!empty($tags)) {
+      foreach ($tags as $t) {
+        $tag = new Tag( array( 'name'=> trim($t) ) );
+        $photo->tags()->save($tag);
+      }
+    }
+    
     $photo->save();
+    
     $user = User::find($photo->user_id);
-    return View::make('/photos/show',['photos' => $photo, 'owner' => $user]);
+    return Redirect::to("/photos/{$photo->id}");
+    // return View::make('/photos/show',['photos' => $photo, 'owner' => $user]);
   }
   
   

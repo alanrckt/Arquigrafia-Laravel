@@ -4,9 +4,11 @@
 
 <title>Arquigrafia - Fotos - Upload</title>
 
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script>
 <script type="text/javascript" src="{{ URL::to("/") }}/js/upload.js"></script>
+<script type="text/javascript" src="{{ URL::to("/") }}/js/textext.core.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ URL::to("/") }}/css/textext.css" />
 
 @stop
 
@@ -85,17 +87,22 @@
             <tr>
               <td><label>Tags:</label></td>
               <td>
-              	<textarea class="input_content" id="tags" name="tagMgr.tags"></textarea>
+              	<textarea class="input_content" id="tags" name="tags"></textarea>
               	<script type="text/javascript">
-									$('#tags').textext({
-											plugins : 'tags prompt autocomplete ajax',
+                  $('#tags').textext({ plugins: 'tags' });
+									/*
+                  $('#tags').textext({
+											// plugins : 'tags prompt autocomplete ajax',
+                      plugins : 'tags prompt autocomplete ajax',
 											prompt : 'tags',
-											ajax : {
-													url : 'data.json',
+                      ajax : {
+													url : 'http://localhost/arquigrafia/public/tags/json',
 													dataType : 'json',
 													cacheResults : true
 											}
+                      
 									});
+                  */
 								</script>
                 <p class="reminder"><small>* Separe as tags por vírgulas.</small></p>
               </td>
@@ -122,9 +129,12 @@
               </tr>
               <tr>
                 <td><label>Cidade:</label></td>
+                <!--
                 <td><select name="photo_city" id="city" class="input_content" disabled="disabled">
               <option selected="" value="">Escolha uma cidade</option>
           	</select></td>
+                -->
+                <td>{{ Form::text('photo_city') }}</td>
               </tr>
               <tr>
                 <td><label>Bairro:</label></td>

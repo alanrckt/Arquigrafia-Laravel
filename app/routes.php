@@ -54,6 +54,8 @@ Route::resource('/photos','PhotosController');
 
 Route::resource('/groups','GroupsController');
 
+Route::get('/tags/json', 'TagsController@index');
+
 /*
 Route::get('/teste', function()
 {
