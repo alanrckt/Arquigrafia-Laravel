@@ -453,7 +453,7 @@
             <input type="hidden" name="groupMgr.userId" value="21" /> 
             <div class="column alpha omega"><img class="user_thumbnail"  src="{{ URL::to("/") }}/img/photos/avatar.jpg" /></div>
             <div class="three columns">
-              <strong><a href="#" id="name">{{ $user->name }} </a></strong><br>
+              <!--<strong><a href="#" id="name"> Nome do usuário  </a></strong><br>-->
               Deixe seu comentário
               <textarea id="comment_field" name="groupMgr.text"></textarea>
               <input type="submit" id="comment_button" class="cursor btn" value="COMENTAR" />
