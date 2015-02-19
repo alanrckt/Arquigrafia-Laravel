@@ -119,7 +119,7 @@
       <div class="four columns">
       	<hgroup class="profile_block_title">
         	<h3><i class="follow"></i>Seguindo ({{$user->following->count()}})</h3>
-    			<a href="#" id="small" class="profile_block_link">Ver todos</a>
+    			<!--<a href="#" id="small" class="profile_block_link">Ver todos</a>-->
    	 		</hgroup>
         <!--   BOX - AMIGOS   -->
     		<div class="profile_box">			
@@ -140,7 +140,7 @@
       <div class="four columns">
       	<hgroup class="profile_block_title">
           <h3><i class="follow"></i>Seguidores ({{$user->followers->count()}})</h3>
-          <a href="#" id="small" class="profile_block_link">Ver todos</a>
+          <!--<a href="#" id="small" class="profile_block_link">Ver todos</a>-->
         </hgroup>
     		<!--   BOX - AMIGOS   -->
 				<div class="profile_box">
@@ -166,7 +166,7 @@
 	  <?php if ($user->oldPassword != null) { ?>
             <div class="twelve columns albums">
 				<hgroup class="profile_block_title">
-					<h3><i class="photos"></i> <!--Minhas galerias--> Meus álbuns</h3>
+					<h3><i class="photos"></i> Meus álbuns</h3>
 				</hgroup>				     
 				<p>No momento seus álbuns não estão disponíveis, mas não se preocupe, estão armazenados com segurança no nosso sistema e em breve será disponibilizado.</p>
 
