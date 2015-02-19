@@ -108,7 +108,14 @@
         <!--   BOX - AMIGOS   -->
     		<div class="profile_box">			
 				@foreach($user->following as $following)
-					<li><?php echo link_to("/users/".$following->id, $following->name) ?></li>
+					<a href= {{ '/users/' .  $following->id }} >
+					<?php if ($following->photo != "") { ?>					
+						<img class="avatar" src="{{ asset($following->photo) }}" class="user_photo_thumbnail"/>
+					<?php } else { ?>
+						<img class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
+					<?php } ?>
+					</a>
+					
 				@endforeach           
 			</div>
         
@@ -125,7 +132,13 @@
           <!--   FOTO - AMIGO   -->
           
           @foreach($user->followers as $follower)
-					<li><?php echo link_to("/users/".$follower->id, $follower->name) ?></li>
+					<a href= {{ '/users/' .  $follower->id }} >
+					<?php if ($follower->photo != "") { ?>					
+						<img class="avatar" src="{{ asset($follower->photo) }}" class="user_photo_thumbnail"/>
+					<?php } else { ?>
+						<img class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
+					<?php } ?>
+					</a>
 		@endforeach   
 		
 	</div>
