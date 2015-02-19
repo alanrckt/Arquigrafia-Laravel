@@ -425,11 +425,10 @@
         
         <div class="tags">
         	<h3>Tags:</h3>
-<<<<<<< HEAD
+
 					<p>
          <!-- <a class="" href="tags/50" >Pedra</a>-->
 
-=======
           <p>
           @foreach($tags as $tag)
           @if ($tag->id == $tags->last()->id)
@@ -438,29 +437,10 @@
           <!-- </a> -->
           @else
           <!-- <a class="" href="tags/{{ $tag->id }}"> -->
-          {{ $tag->name }},
-          <!-- </a> -->
-          @endif
-          <!-- <a class="" href="tags/50" >Pedra</a>,
-          <a class="" href="tags/14" >Edifício</a>,
-          <a class="" href="tags/603" >Gramado</a>,
-          <a class="" href="tags/3" >Alvenaria</a>,
-          <a class="" href="tags/1" >Concreto</a>,
-          <a class="" href="tags/187" >Praça</a>,
-          <a class="" href="tags/12" >Público</a>,
-          <a class="" href="tags/15" >Prédio</a>,
-          <a class="" href="tags/505" >Vegetação</a>,
-          <a class="" href="tags/41" >Circulação</a>,
-          <a class="" href="tags/615" >Palmeira</a>,
-          <a class="" href="tags/609" >Canteiro</a>,
-          <a class="" href="tags/18" >Granito</a>,
-          <a class="" href="tags/152" >Mosaico português</a>,
-          <a class="" href="tags/36" >Esquadria</a>,
-          <a class="" href="tags/57" >Caixilho</a>,
-          <a class="" href="tags/113" >Luminária</a>,
-          <a class="" href="tags/446" >Cerca viva</a>             -->
+          {{ $tag->name }},          
+          @endif          
           @endforeach
->>>>>>> 1a30851864e648982359b412960a5874f266c3fb
+
           </p>
           </div>
         
