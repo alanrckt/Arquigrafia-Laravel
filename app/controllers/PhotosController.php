@@ -12,6 +12,7 @@ class PhotosController extends \BaseController {
 	{
 		$photos = Photo::whereid($id)->first();
     $user = User::find($photos->user_id);
+    $tags = $photos->tags;
     if (Auth::check()) {
       if (Auth::user()->following->contains($user->id))
         $follow = false;
@@ -20,7 +21,8 @@ class PhotosController extends \BaseController {
     } else {
       $follow = true;
     }
-    return View::make('/photos/show',['photos' => $photos, 'owner' => $user, 'follow' => $follow]);
+    return View::make('/photos/show',
+      ['photos' => $photos, 'owner' => $user, 'follow' => $follow, 'tags' => $tags]);
 	}
 	
   // upload form

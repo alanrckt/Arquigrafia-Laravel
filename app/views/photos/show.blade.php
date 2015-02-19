@@ -425,8 +425,18 @@
         
         <div class="tags">
         	<h3>Tags:</h3>
-					<p>
-          <a class="" href="tags/50" >Pedra</a>,
+          <p>
+          @foreach($tags as $tag)
+          @if ($tag->id == $tags->last()->id)
+          <!-- <a class="" href="tags/{{ $tag->id }}"> -->
+          {{ $tag->name }}
+          <!-- </a> -->
+          @else
+          <!-- <a class="" href="tags/{{ $tag->id }}"> -->
+          {{ $tag->name }},
+          <!-- </a> -->
+          @endif
+          <!-- <a class="" href="tags/50" >Pedra</a>,
           <a class="" href="tags/14" >Edifício</a>,
           <a class="" href="tags/603" >Gramado</a>,
           <a class="" href="tags/3" >Alvenaria</a>,
@@ -443,7 +453,8 @@
           <a class="" href="tags/36" >Esquadria</a>,
           <a class="" href="tags/57" >Caixilho</a>,
           <a class="" href="tags/113" >Luminária</a>,
-          <a class="" href="tags/446" >Cerca viva</a>            
+          <a class="" href="tags/446" >Cerca viva</a>             -->
+          @endforeach
           </p>
           </div>
         
