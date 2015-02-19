@@ -168,7 +168,7 @@
 				<hgroup class="profile_block_title">
 					<h3><i class="photos"></i> Meus álbuns</h3>
 				</hgroup>				     
-				<p>No momento seus álbuns não estão disponíveis, mas não se preocupe, estão armazenados com segurança no nosso sistema e em breve será disponibilizado.</p>
+				<p>No momento seus álbuns não estão disponíveis, mas não se preocupe, estão armazenados com segurança no nosso sistema e em breve serão disponibilizados.</p>
 
 						<!--
 						<div class="profile_box">
