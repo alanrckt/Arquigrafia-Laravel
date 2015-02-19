@@ -42,8 +42,12 @@
 	        <div class="info">
 
 	          <h1>{{ $user->name}} {{ $user->secondName}}</h1>
-
-	          <p>Cidade: {{ $user->city }}<br>Instituição: {{ $user->institution }}</p>
+			  @if ( !empty($user->city) )
+				<p>Cidade: {{ $user->city }}
+			  @endif
+			  @if ( !empty($user->institution) )
+				<br>Instituição: {{ $user->institution }}</p>
+			  @endif
 	        </div>
 	      	<div class="count">Fotos compartilhadas ({{ count($photos) }})</div>
 	      </div>
@@ -88,15 +92,27 @@
         	<h3><i class="profile"></i>Perfil</h3>
         </hgroup>
       	<ul>
-        	<li><strong>Nome:</strong> {{ $user->name}}</li>
-          <li><strong>Sobrenome:</strong>{{ $user->secondName }}</li>
+			@if ( !empty($user->name) )
+				<li><strong>Nome:</strong> {{ $user->name}}</li>
+			@endif
+			@if ( !empty($user->secondName) )
+				<li><strong>Sobrenome:</strong>{{ $user->secondName }}</li>
+			@endif
         </ul>
         <br>
         <ul>
-        	<li><strong>Escolaridade:</strong> {{ $user->scholarity }}</li>
-          <li><strong>Instituição:</strong> {{ $user->institution }}</li>
-          <li><strong>Curso:</strong> {{ $user->course }}</li>
-          <li><strong>Ocupação:</strong> {{ $user->occupation }}</li>
+			@if ( !empty($user->scholarity) )
+				<li><strong>Escolaridade:</strong> {{ $user->scholarity }}</li>
+			@endif
+			@if ( !empty($user->institution) )
+				<li><strong>Instituição:</strong> {{ $user->institution }}</li>
+			@endif
+			@if ( !empty($user->course) )
+				<li><strong>Curso:</strong> {{ $user->course }}</li>
+			@endif
+			@if ( !empty($user->occupation) )
+				<li><strong>Ocupação:</strong> {{ $user->occupation }}</li>
+			@endif
         </ul>
       </div>
       
@@ -145,6 +161,8 @@
         
       </div>
       
+	  <br>
+	  
 	  <?php if ($user->oldPassword != null) { ?>
             <div class="twelve columns albums">
 				<hgroup class="profile_block_title">
