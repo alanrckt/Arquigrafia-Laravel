@@ -426,37 +426,21 @@
         <div class="tags">
         	<h3>Tags:</h3>
 					<p>
-          <a class="" href="tags/50" >Pedra</a>,
-          <a class="" href="tags/14" >Edifício</a>,
-          <a class="" href="tags/603" >Gramado</a>,
-          <a class="" href="tags/3" >Alvenaria</a>,
-          <a class="" href="tags/1" >Concreto</a>,
-          <a class="" href="tags/187" >Praça</a>,
-          <a class="" href="tags/12" >Público</a>,
-          <a class="" href="tags/15" >Prédio</a>,
-          <a class="" href="tags/505" >Vegetação</a>,
-          <a class="" href="tags/41" >Circulação</a>,
-          <a class="" href="tags/615" >Palmeira</a>,
-          <a class="" href="tags/609" >Canteiro</a>,
-          <a class="" href="tags/18" >Granito</a>,
-          <a class="" href="tags/152" >Mosaico português</a>,
-          <a class="" href="tags/36" >Esquadria</a>,
-          <a class="" href="tags/57" >Caixilho</a>,
-          <a class="" href="tags/113" >Luminária</a>,
-          <a class="" href="tags/446" >Cerca viva</a>            
+         <!-- <a class="" href="tags/50" >Pedra</a>-->
+
           </p>
           </div>
         
 				<!--   BOX DE COMENTARIOS   -->
 				<div id="comments_block" class="column row alpha omega">
         	<h3>Comentários</h3>
-          <p>Ninguém comentou a imagem. Seja o primeiro!</p>
+          <!--<p>Ninguém comentou a imagem. Seja o primeiro!</p>-->
           <form name="group_form" id="group_form" method="post" enctype="multipart/form-data" action="/photo/2778">
             <input type="hidden" name="groupMgr.entity" value="2778" />
             <input type="hidden" name="groupMgr.userId" value="21" /> 
             <div class="column alpha omega"><img class="user_thumbnail"  src="{{ URL::to("/") }}/img/photos/avatar.jpg" /></div>
             <div class="three columns">
-              <strong><a href="#" id="name">Pedro Emilio Guglielmo <!-- {{-- $users->name --}} --> </a></strong><br>
+              <strong><a href="#" id="name">{{ $user->name }} </a></strong><br>
               Deixe seu comentário
               <textarea id="comment_field" name="groupMgr.text"></textarea>
               <input type="submit" id="comment_button" class="cursor btn" value="COMENTAR" />
