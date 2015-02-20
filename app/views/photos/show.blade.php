@@ -447,7 +447,7 @@
           </div>
         
 				<!--   BOX DE COMENTARIOS   -->
-				<div id="comments_block" class="column row alpha omega">
+				<div id="comments_block" class="eight columns row alpha omega">
         	<h3>Comentários</h3>
           
           <?php $comments = $photos->comments; ?>
@@ -479,6 +479,8 @@
               </div>
             {{ Form::close() }}
             
+            <br class="clear">
+            
           <?php } else { ?>
             <p>Você precisa estar logado para comentar! <a href="{{ URL::to('/users/login') }}">Login</a></p>
           <?php } ?>
@@ -486,13 +488,16 @@
           @if (isset($comments))
           
             @foreach($comments as $comment)
-             <div class="clearfix">
+            <div class="clearfix">
               <div class="column alpha omega row">
                 {{-- $comment->user()->name --}}
                 <img class="user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" />
               </div>
-              <div class="three columns row">{{ $comment->text }}</div>        
-              </div>       
+              <div class="four columns omega row">
+                <small>Em: {{ $comment->created_at->format('d/m/Y h:m') }}</small>
+                <p>{{ $comment->text }}</p>
+              </div>        
+            </div>       
             @endforeach
           
           @endif

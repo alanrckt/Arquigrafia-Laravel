@@ -158,5 +158,10 @@ class UsersController extends \BaseController {
     }
     return $path;
   }
+  
+  public function comments()
+  {
+      return $this->hasMany('Comment');
+  }
 
 }
