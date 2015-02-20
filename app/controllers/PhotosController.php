@@ -123,4 +123,25 @@ class PhotosController extends \BaseController {
       ->get();
     return View::make('/search',['photos' => $photos, 'query'=>$needle]);
 	}
+  
+  // ORIGINAL
+  public function download($id)
+  {
+    if (Auth::check()) {
+      $path = public_path().'/arquigrafia-images/'.$id.'_original.jpg';
+      if( File::exists($path) ) {
+        header('Content-Description: File Transfer');
+        header("Content-Disposition: attachment; filename=\"".$id . '_original.jpg'."\"");
+        header('Content-Type: application/octet-stream');
+        header("Content-Transfer-Encoding: binary");
+        header("Cache-Control: public");
+        readfile($path);
+        exit;
+      }
+      return "Arquivo original não encontrado.";
+    } else {
+      return "Você só pode fazer o download se estiver logado, caso tenha usuário e senha, faça novamente o login.";
+    }
+  }
+  
 }

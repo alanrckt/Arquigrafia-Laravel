@@ -49,6 +49,7 @@ Route::resource('/albums','AlbumsController');
 Route::get('/search', 'PhotosController@search');
 Route::post('/search', 'PhotosController@search');
 Route::get('/photos/upload','PhotosController@form');
+Route::get('/photos/download/{photo_id}','PhotosController@download');
 Route::resource('/photos','PhotosController');
 
 Route::resource('/groups','GroupsController');

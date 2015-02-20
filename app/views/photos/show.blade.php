@@ -403,7 +403,7 @@
 							<!--<li><a href="18/photo_avaliation/2778" title="Avalie a foto" id="eyedroppper"></a></li>-->
 							<!--<li><a href="album/15/add/2778" title="Adicione a sua galeria" id="plus"></a></li>-->
             
-							<li><a href="{{ asset('arquigrafia-images/'.$photos->id.'_original.jpg') }}" title="Faça o download" id="download" target="_blank"></a></li>
+							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>
            	
 						</ul>
             
