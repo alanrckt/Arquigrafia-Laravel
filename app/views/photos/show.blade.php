@@ -447,22 +447,62 @@
           </div>
         
 				<!--   BOX DE COMENTARIOS   -->
-				<!--<div id="comments_block" class="column row alpha omega">
+				<div id="comments_block" class="column row alpha omega">
         	<h3>Comentários</h3>
+          
+          <?php $comments = $photos->comments; ?>
+          
+          @if (!isset($comments))
+          
           <p>Ninguém comentou a imagem. Seja o primeiro!</p>
-          <form name="group_form" id="group_form" method="post" enctype="multipart/form-data" action="/photo/2778">
-            <input type="hidden" name="groupMgr.entity" value="2778" />
-            <input type="hidden" name="groupMgr.userId" value="21" /> 
-            <div class="column alpha omega"><img class="user_thumbnail"  src="{{ URL::to("/") }}/img/photos/avatar.jpg" /></div>
-            <div class="three columns">
-              <!--<strong><a href="#" id="name"> Nome do usuário  </a></strong><br>-->
-             <!-- Deixe seu comentário
-              <textarea id="comment_field" name="groupMgr.text"></textarea>
-              <input type="submit" id="comment_button" class="cursor btn" value="COMENTAR" />
-            </div>
-          </form>
-        </div>-->
-				<!--   BOX DE COMENTARIOS   -->
+          
+          @endif
+          
+          <?php if (Auth::check()) { ?>
+            
+            {{ Form::open(array('url' => "photos/{$photos->id}/comment")) }}
+              <div class="column alpha omega row">
+              <?php if (Auth::user()->photo != "") { ?>
+                <img class="user_thumbnail" src="{{ asset(Auth::user()->photo); }}" />
+              <?php } else { ?>
+                <img class="user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" />
+              <?php } ?>
+              </div>
+              
+              <div class="three columns row">
+                <strong><a href="#" id="name">{{ Auth::user()->name }}</a></strong><br>
+                Deixe seu comentário <br>
+                {{ $errors->first('text') }}
+                {{ Form::textarea('text', '', ['id'=>'comment_field']) }}
+                {{ Form::hidden('user', $photos->id ) }}
+                {{ Form::submit('COMENTAR', ['id'=>'comment_button','class'=>'cursor btn']) }}
+              </div>
+            {{ Form::close() }}
+            
+          <?php } else { ?>
+            <p>Você precisa estar logado para comentar! <a href="{{ URL::to('/users/login') }}">Login</a></p>
+          <?php } ?>
+          
+          @if (isset($comments))
+          
+            @foreach($comments as $comment)
+             <div class="clearfix">
+              <div class="column alpha omega row">
+                {{-- $comment->user()->name --}}
+                <img class="user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" />
+              </div>
+              <div class="three columns row">{{ $comment->text }}</div>        
+              </div>       
+            @endforeach
+          
+          @endif
+          
+          
+          
+          
+          
+        </div>
+				<!-- FIM DO BOX DE COMENTARIOS -->
         
         
         

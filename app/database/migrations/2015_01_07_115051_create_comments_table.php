@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentTable extends Migration {
+class CreateCommentsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,12 @@ class CreateCommentTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('comment', function(Blueprint $table)
+		Schema::create('comments', function(Blueprint $table)
 		{
 			$table->bigIncrements('id');
 			$table->dateTime('postDate')->nullable();
 			$table->string('text')->nullable();
+      $table->timestamps();
 			$table->bigInteger('user_id')->nullable()->unsigned();
 			$table->bigInteger('photo_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
@@ -31,7 +32,7 @@ class CreateCommentTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('comment');
+		Schema::drop('comments');
 	}
 
 }

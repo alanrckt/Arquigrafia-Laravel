@@ -97,7 +97,7 @@ class PhotosController extends \BaseController {
       foreach ($tags as $t) {
         // tudo em minusculas, para remover redundancias, como Casa/casa/CASA
         $t = strtolower(trim($t));
-        $tag = new Tag( array( 'name'=> $t ) );
+        $tag = new Tag( ['name'=> $t] );
         $photo->tags()->save($tag);
       }
     }
@@ -142,6 +142,25 @@ class PhotosController extends \BaseController {
     } else {
       return "Você só pode fazer o download se estiver logado, caso tenha usuário e senha, faça novamente o login.";
     }
+  }
+  
+  // COMMENT
+  public function comment($id)
+  {
+    $input = Input::all();
+    $rules = ['text' => 'required'];
+    $validator = Validator::make($input, $rules);
+    if ($validator->fails()) {
+      $messages = $validator->messages();
+      return Redirect::to("/photos/{$id}")->withErrors($messages);
+    } else {
+      $comment = ['text' => $input["text"], 'user_id' => Auth::user()->id];
+      $comment = new Comment($comment);
+      $photo = Photo::find($id);
+      $photo->comments()->save($comment);
+      return Redirect::to("/photos/{$id}");
+    }
+    
   }
   
 }

@@ -28,6 +28,11 @@ class Photo extends Eloquent {
     {
         return $this->belongsToMany('Tag', 'tag_assignments', 'photo_id', 'tag_id');
     }
+    
+    public function comments()
+    {
+        return $this->hasMany('Comment');
+    }
 
     public static function formatDate($date)
     {

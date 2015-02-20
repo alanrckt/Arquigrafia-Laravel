@@ -45,6 +45,9 @@ Route::resource('/profile','ProfileController'); // lixo ?
 /* ALBUMS */
 Route::resource('/albums','AlbumsController');
 
+/* COMMENTS */
+Route::post('/photos/{photo_id}/comment','PhotosController@comment');
+
 /* PHOTOS */
 Route::get('/search', 'PhotosController@search');
 Route::post('/search', 'PhotosController@search');
