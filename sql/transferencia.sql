@@ -29,7 +29,7 @@ select id, creationDate, description, title, urlCover, owner_id from groupware_w
 insert into arquigrafia.album_elements (album_id, photo_id)
 select Album_id, idReferencedClass from groupware_workbench_arquigrafia.gw_collab_Album_Elements;
 
-insert into arquigrafia.binomial (id, defaultValue, firstOption, secondOption)
+insert into arquigrafia.binomials (id, defaultValue, firstOption, secondOption)
 select id, defaultValue, firstName, secondName 
 	from groupware_workbench_arquigrafia.gw_collab_Binomial;
 
@@ -37,20 +37,20 @@ insert into arquigrafia.binomial_evaluation (id, photo_id, evaluationPosition, b
 select id, idReferencedClass, evaluationPosition, binomial_id, user_id 
 	from groupware_workbench_arquigrafia.gw_collab_Binomial_Evaluation;
 
-insert into arquigrafia.comment (id, postDate, text, user_id, photo_id)
+insert into arquigrafia.comments (id, postDate, text, user_id, photo_id)
 select id, postDate, text, user_id, idReferencedClass from groupware_workbench_arquigrafia.gw_collab_Comment;
 
-insert into arquigrafia.counter (id, dataCriacao, value, photo_id)
+insert into arquigrafia.counters (id, dataCriacao, value, photo_id)
 select id, dataCriacao, value, idReferencedClass from groupware_workbench_arquigrafia.gw_collab_Counter;
 
-insert into arquigrafia.counterlog (id, accessDate, counter_id, user_id)
-select id, accessDate, counter_id, viewer_id from groupware_workbench_arquigrafia.CounterLog;
+-- insert into arquigrafia.counterlog (id, accessDate, counter_id, user_id)
+-- select id, accessDate, counter_id, viewer_id from groupware_workbench_arquigrafia.CounterLog;
 
 -- retirado
 -- insert into arquigrafia.counter_counterlog (counter_id, counterlog_id)
 -- select gw_collab_Counter_id, CounterLogs_id from groupware_workbench_arquigrafia.gw_collab_Counter_CounterLog;
 
-insert into arquigrafia.external_account (id, accessToken, accountType, tokenSecret, user_id)
+insert into arquigrafia.external_accounts (id, accessToken, accountType, tokenSecret, user_id)
 select id, accessToken, accountType, tokenSecret, user_id from groupware_workbench_arquigrafia.gw_collab_External_Account;
 
 
@@ -70,10 +70,10 @@ where u.id = f.friends_id;
 -- insert into arquigrafia.friends_requests (friends_id, user_id)
 -- select friends_id, user_id from groupware_workbench_arquigrafia.gw_collab_Friends_Requests;
 
-insert into arquigrafia.role (id, name)
+insert into arquigrafia.roles (id, name)
 select id, name from groupware_workbench_arquigrafia.gw_collab_Role;
 
-insert into arquigrafia.tag (id, count, name)
+insert into arquigrafia.tags (id, count, name)
 select id, count, name from groupware_workbench_arquigrafia.gw_collab_Tag;
 
 insert into arquigrafia.tag_assignments (tag_id, photo_id)
@@ -82,5 +82,5 @@ select Tag_id, idReferencedClass from groupware_workbench_arquigrafia.gw_collab_
 insert into arquigrafia.users_roles (user_id, role_id)
 select gw_collab_User_id, roles_id from groupware_workbench_arquigrafia.gw_collab_users_roles;
 
-insert into arquigrafia.faq (id, question, answer)
+insert into arquigrafia.faqs (id, question, answer)
 select id, pergunta, resposta from groupware_workbench_arquigrafia.Faq;
