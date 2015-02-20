@@ -94,13 +94,21 @@ class PhotosController extends \BaseController {
     $tags = preg_split("/[\s,]+/", $input["tags"]);
     
     if (!empty($tags)) {
+      $tags = array_map('trim', $tags);
+      $tags = array_map('strtolower', $tags);
+      // tudo em minusculas, para remover redundancias, como Casa/casa/CASA
+      $tags = array_unique($tags); //retira tags repetidas, se houver.
       foreach ($tags as $t) {
-        // tudo em minusculas, para remover redundancias, como Casa/casa/CASA
-        $t = strtolower(trim($t));
-        $tag = new Tag( ['name'=> $t] );
-        $photo->tags()->save($tag);
+        //$tag = new Tag( ['name'=> $t] );
+        $tag = Tag::firstOrCreate(['name' => $t]); //não deveria haver tags repetidas no banco
+        $photo->tags()->attach($tag->id);
+        if ($tag->count == null)
+          $tag->count = 0;
+        $tag->count++;
+        $tag->save();
       }
     }
+
     
     $photo->save();
     
