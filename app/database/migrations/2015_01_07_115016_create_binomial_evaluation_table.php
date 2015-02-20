@@ -20,7 +20,7 @@ class CreateBinomialEvaluationTable extends Migration {
 			$table->bigInteger('binomial_id')->nullable()->unsigned();
 			$table->bigInteger('user_id')->nullable()->unsigned();
 			$table->foreign('photo_id')->references('id')->on('photos');
-			$table->foreign('binomial_id')->references('id')->on('binomial');
+			$table->foreign('binomial_id')->references('id')->on('binomials');
 			$table->foreign('user_id')->references('id')->on('users');
 		});
 	}

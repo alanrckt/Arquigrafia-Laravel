@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCounterTable extends Migration {
+class CreateCountersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateCounterTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('counter', function(Blueprint $table)
+		Schema::create('counters', function(Blueprint $table)
 		{
 			$table->bigIncrements('id');
 			$table->dateTime('dataCriacao')->nullable();
@@ -29,7 +29,7 @@ class CreateCounterTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('counter');
+		Schema::drop('counters');
 	}
 
 }

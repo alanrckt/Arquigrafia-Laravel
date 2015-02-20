@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExternalAccountTable extends Migration {
+class CreateExternalAccountsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateExternalAccountTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('external_account', function(Blueprint $table)
+		Schema::create('external_accounts', function(Blueprint $table)
 		{
 			$table->bigIncrements('id');
 			$table->string('accessToken')->nullable();
@@ -30,7 +30,7 @@ class CreateExternalAccountTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('external_account');
+		Schema::drop('external_accounts');
 	}
 
 }

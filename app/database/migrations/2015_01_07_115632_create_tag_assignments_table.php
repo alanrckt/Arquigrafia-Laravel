@@ -16,7 +16,7 @@ class CreateTagAssignmentsTable extends Migration {
 		{
 			$table->bigInteger('tag_id')->unsigned();
 			$table->bigInteger('photo_id')->unsigned();
-			$table->foreign('tag_id')->references('id')->on('tag');
+			$table->foreign('tag_id')->references('id')->on('tags');
 			$table->foreign('photo_id')->references('id')->on('photos');
 		});
 	}

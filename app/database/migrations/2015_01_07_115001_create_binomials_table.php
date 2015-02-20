@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBinomialTable extends Migration {
+class CreateBinomialsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBinomialTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('binomial', function(Blueprint $table)
+		Schema::create('binomials', function(Blueprint $table)
 		{
 			$table->bigIncrements('id');
 			$table->integer('defaultValue');
@@ -34,7 +34,7 @@ class CreateBinomialTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('binomial');
+		Schema::drop('binomials');
 	}
 
 }
