@@ -490,11 +490,11 @@
             @foreach($comments as $comment)
             <div class="clearfix">
               <div class="column alpha omega row">
-                {{$comment->user->name}}
+                <!--{{$comment->user->name}}--> 
                 <img class="user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" />
               </div>
               <div class="four columns omega row">
-                <small>Em: {{ $comment->created_at->format('d/m/Y h:m') }}</small>
+                <small>{{$comment->user->name - $comment->created_at->format('d/m/Y h:m') }}</small>
                 <p>{{ $comment->text }}</p>
               </div>        
             </div>       
