@@ -19,5 +19,26 @@ class PagesController extends BaseController {
     $photos = Photo::where('deleted', '=', '0')->orderByRaw("RAND()")->take(50)->get();
 		return View::make('api.panel', ['photos' => $photos]);
 	}
+	
+	public function search()
+	{
+    $needle = Input::get("q");
+		$tags = Tag::where('name', 'LIKE', '%' . $needle . '%')->get();
+		// se houver uma tag exatamente como a busca, pegar todas as fotos dessa tag e juntar no painel
+		$tag = Tag::where('name', '=', $needle)->get();
+		if ($tag) {
+			// $byTag = $tag->photos;
+		}
+		$photos = Photo::orWhere('name', 'LIKE', '%' . $needle . '%')
+      ->orWhere('description', 'LIKE', '%' . $needle . '%')
+      ->orWhere('imageAuthor', 'LIKE', '%' . $needle . '%')
+			->orWhere('workAuthor', 'LIKE', '%' . $needle . '%')
+      ->orWhere('state', 'LIKE', '%' . $needle . '%')
+      ->orWhere('city', 'LIKE', '%' . $needle . '%')
+      ->where('deleted', '=', '0')
+      ->get();
+		// $photos = $photos->merge($byTag);
+    return View::make('/search',['tags' => $tags, 'photos' => $photos, 'query'=>$needle]);
+	}
 
 }

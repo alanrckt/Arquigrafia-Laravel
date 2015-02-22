@@ -37,15 +37,27 @@
       <div class="container">
         <div id="search_result" class="twelve columns row">
           <h1>Resultado de: {{ $query }}</h1>
-          <!--
-          <p>Tags contendo o termo: <a href="#">casa de pedra</a>, <a href="#">casa velha</a>, <a href="#">casaril</a>, <a href="#">casa de pedra</a>, <a href="#">casa velha</a>, <a href="#">casaril</a></p>
-          -->
+          
+          <p>Tags contendo o termo: 
+          
+          @foreach($tags as $k => $tag)
+            
+            @if ($k != count($tags)-1 )
+            <a href="?q={{ $tag->name }}">{{ $tag->name }}</a>, 
+            @else
+            <a href="?q={{ $tag->name }}">{{ $tag->name }}</a>
+            @endif
+            
+          @endforeach
+          
+          </p>
           
           <?php if ( count($photos) < 1 ) { ?>
             <p>Não encontramos nenhuma imagem com o termo {{ $query }}.</p>
           <?php } else { ?>
             <p>Foram encontradas {{ count($photos) }} imagens.</p>
           <?php } ?>
+          
         </div>
       </div>
       

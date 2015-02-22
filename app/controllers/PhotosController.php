@@ -72,7 +72,7 @@ class PhotosController extends \BaseController {
       "allowModifications" => $input["photo_allowModifications"],
       // "cataloguingTime" => $input["photo_cataloguingTime"],
       // "characterization" => $input["photo_characterization"],
-      // "city" => $input["photo_city"],
+      "city" => $input["photo_city"],
       // "collection" => $input["photo_collection"],
       "country" => $input["photo_country"],
       // "dataCriacao" => $input["photo_dataCriacao"],
@@ -116,21 +116,6 @@ class PhotosController extends \BaseController {
     return Redirect::to("/photos/{$photo->id}");
     // return View::make('/photos/show',['photos' => $photo, 'owner' => $user]);
   }
-  
-  
-  public function search()
-	{
-    $needle = Input::get("q");
-		$photos = Photo::orWhere('name', 'LIKE', '%' . $needle . '%')
-      ->orWhere('description', 'LIKE', '%' . $needle . '%')
-      ->orWhere('imageAuthor', 'LIKE', '%' . $needle . '%')
-			->orWhere('workAuthor', 'LIKE', '%' . $needle . '%')
-      ->orWhere('state', 'LIKE', '%' . $needle . '%')
-      ->orWhere('city', 'LIKE', '%' . $needle . '%')
-      ->where('deleted', '=', '0')
-      ->get();
-    return View::make('/search',['photos' => $photos, 'query'=>$needle]);
-	}
   
   // ORIGINAL
   public function download($id)

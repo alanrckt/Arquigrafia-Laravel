@@ -21,6 +21,8 @@ Route::get('/info/', function(){ return View::make('i'); });
 
 Route::get('/', 'PagesController@home');
 Route::get('/panel', 'PagesController@panel');
+Route::get('/search', 'PagesController@search');
+Route::post('/search', 'PagesController@search');
 Route::get('/project', function() { return View::make('project'); });
 Route::get('/faq', function() { return View::make('faq'); });
 
@@ -49,8 +51,6 @@ Route::resource('/albums','AlbumsController');
 Route::post('/photos/{photo_id}/comment','PhotosController@comment');
 
 /* PHOTOS */
-Route::get('/search', 'PhotosController@search');
-Route::post('/search', 'PhotosController@search');
 Route::get('/photos/upload','PhotosController@form');
 Route::get('/photos/download/{photo_id}','PhotosController@download');
 Route::resource('/photos','PhotosController');

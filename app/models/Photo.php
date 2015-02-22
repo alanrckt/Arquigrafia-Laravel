@@ -26,7 +26,7 @@ class Photo extends Eloquent {
 
     public function tags()
     {
-        return $this->belongsToMany('Tag', 'tag_assignments', 'photo_id', 'tag_id');
+        return $this->belongsToMany('Tag', 'tag_assignments');
     }
     
     public function comments()

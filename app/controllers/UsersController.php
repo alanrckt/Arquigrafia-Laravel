@@ -12,7 +12,7 @@ class UsersController extends \BaseController {
 	public function show($id)
 	{
 		$user = User::whereid($id)->first();
-    $photos = $user->photos()->where('deleted', '=', '0')->get();
+    $photos = $user->photos()->where('deleted', '=', '0')->get()->reverse();
 		//$following = $user->following;
 		//$followers = $user->followers;
 		//$profile = Profile::whereid($id)->first();
