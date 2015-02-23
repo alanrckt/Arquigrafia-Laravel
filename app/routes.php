@@ -33,6 +33,7 @@ Route::get('/users/account', 'UsersController@account');
 Route::get('/users/login', 'UsersController@loginForm');
 Route::post('/users/login', 'UsersController@login');
 Route::get('/users/logout', 'UsersController@logout');
+Route::get('users/fb/callback', 'UsersController@callback');
 Route::resource('/users','UsersController');
 
 /* FOLLOW */

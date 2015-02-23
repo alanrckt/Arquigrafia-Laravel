@@ -17,7 +17,10 @@
           {{ $errors->first('login') }}
           
           <p>{{ Form::label('password', 'Senha:') }} {{ Form::password('password', array('class'=>'right') ) }}</p>
-          {{ $errors->first('password') }}
+          
+          @if(Session::has('login.message'))
+          	<p>{{ Session::get('login.message') }}</p>
+          @endif
           
           <br>
           <p>{{ Form::submit("LOGIN",array('class'=>'btn right')) }}</p>
@@ -30,7 +33,7 @@
       
       
       <!-- FACEBOOK -->
-      <div class="six columns">
+      <div class="six columns offset-by-three">
       
       	<script>
 					// This is called with the results from from FB.getLoginStatus().
@@ -119,12 +122,13 @@
 					the FB.login() function when clicked.
 				-->
 				
+        <!--
 				<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 				</fb:login-button>
 				
 				<div id="status">
 				</div>
-      
+        -->
       
       </div>
       
