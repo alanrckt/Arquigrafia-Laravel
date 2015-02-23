@@ -40,7 +40,8 @@
         <ul>
           <li><a href="http://www.cnpq.br/" title="CNPQ" id="cnpq" target="_blank"></a></li>
           <li><a href="http://ccsl.ime.usp.br/" title="CCSL" id="ccsl" target="_blank"></a></li>
-          <li><a href="/18/chancela" title="Chancela do Ministério da Cultura" id="chancela" ></a></li>
+          <!--<li><a href="/18/chancela" title="Chancela do Ministério da Cultura" id="chancela" ></a></li>-->
+		  <li><a href="{{ URL::to("/") }}/chancela" title="Chancela do Ministério da Cultura" id="chancela"></a></li>
         </ul>
         <ul>
           <li><a href="http://www.usp.br/fau/" title="FAU" id="fau" target="_blank"></a></li>
