@@ -541,6 +541,9 @@
 			@endif	
 				</div>
 				<!--   FIM - USUARIO   -->
+        
+        <br class="clear">
+        
 				<!-- <h3>Equipamento:</h3>
 				<p>Lorem ipsum dolor sit amet</p> -->
 					
