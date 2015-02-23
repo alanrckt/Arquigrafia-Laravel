@@ -1,5 +1,11 @@
 <?php
 
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookRequest;
+use Facebook\FacebookAuthorizationException;
+use Facebook\FacebookRequestException;
+
 class UsersController extends \BaseController {
 
 	public function index()
@@ -75,7 +81,15 @@ class UsersController extends \BaseController {
   // formulário de login
   public function loginForm()
   {
-    return View::make('/modal/login');
+    session_start();
+    $fb_config = Config::get('facebook');
+    FacebookSession::setDefaultApplication($fb_config["id"], $fb_config["secret"]);
+    $helper = new FacebookRedirectLoginHelper('http://localhost/arquigrafia/public/users/login/fb/callback');
+    
+    $fburl = $helper->getLoginUrl(array(
+        'scope' => 'email',
+    ));
+    return View::make('/modal/login')->with(['fburl' => $fburl]);
   }
   
   // validacao do login
@@ -113,10 +127,88 @@ class UsersController extends \BaseController {
     Auth::logout();
     return Redirect::to('/');
   }
+  
+  // facebook login NÃO ESTA SENDO USADO
+  public function facebook()
+  {
+    $fb_config = Config::get('facebook');
+    $facebook = new Facebook( $fb_config );
+    
+    $params = array(
+        'redirect_uri' => url('/users/login/fb/callback'),
+        'scope' => 'email',
+    );
+    return Redirect::to($facebook->getLoginUrl($params));
+  }
 	
-	// facebook login
+	// facebook login callback
 	public function callback() 
 	{
+    session_start();
+    
+    $fb_config = Config::get('facebook');
+    
+    FacebookSession::setDefaultApplication($fb_config["id"], $fb_config["secret"]);
+    
+    $helper = new FacebookRedirectLoginHelper('http://localhost/arquigrafia/public/users/login/fb/callback');
+    
+    try {
+      $session = $helper->getSessionFromRedirect();
+    } catch(FacebookRequestException $ex) {
+      // When Facebook returns an error
+      dd($ex);
+    } catch(\Exception $ex) {
+      // When validation fails or other local issues
+      dd($ex);
+    }
+    if ($session) {
+      // Logged in
+      $request = new FacebookRequest($session, 'GET', '/me');
+      $response = $request->execute();
+      $fbuser = $response->getGraphObject();
+      
+      $user = User::where('id_facebook', '=', $fbuser->getProperty('id'))->first();
+      
+      if (!is_null($user)) {
+        Auth::loginUsingId($user->id);
+        return Redirect::to('/')->with('message', "Bem-vindo {$user->name}!");
+      } else {
+        $user = new User;
+        $user->name = $fbuser->getProperty('name');
+        $user->login = $fbuser->getProperty('id');
+        $user->email = $fbuser->getProperty('email');
+        $user->password = 'facebook';
+        $user->id_facebook = $fbuser->getProperty('id');
+        $user->save();
+        Auth::loginUsingId($user->id);
+        // return $user;
+        return Redirect::to('/')->with('message', 'Sua conta foi criada com sucesso!');
+      }
+      
+      /*
+      
+      EXEMPLO DE RETORNO
+      
+      object(Facebook\GraphObject)[288]
+        protected 'backingData' => 
+          array (size=11)
+            'id' => string '10205457080562389' (length=17)
+            'first_name' => string 'Pedro' (length=5)
+            'gender' => string 'male' (length=4)
+            'last_name' => string 'Guglielmo' (length=9)
+            'link' => string 'https://www.facebook.com/app_scoped_user_id/10205457080562389/' (length=62)
+            'locale' => string 'pt_BR' (length=5)
+            'middle_name' => string 'Emilio' (length=6)
+            'name' => string 'Pedro Emilio Guglielmo' (length=22)
+            'timezone' => int -3
+            'updated_time' => string '2015-01-30T21:09:07+0000' (length=24)
+            'verified' => boolean true
+      
+      */
+      
+    }
+    
+    /*
     $code = Input::get('code');
     if (strlen($code) == 0) return Redirect::to('/')->with('message', 'There was an error communicating with Facebook');
 
@@ -126,6 +218,8 @@ class UsersController extends \BaseController {
     if ($uid == 0) return Redirect::to('/')->with('message', 'There was an error');
 
     $me = $facebook->api('/me');
+    
+    dd($me);
 
     $profile = Profile::whereUid($uid)->first();
     if (empty($profile)) {
@@ -151,6 +245,8 @@ class UsersController extends \BaseController {
     Auth::login($user);
 
     return Redirect::to('/')->with('message', 'Logged in with Facebook');
+    */
+    
 	}
 
   public function follow($user_id)

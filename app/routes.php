@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/data', function () { 
+	//dd(Photo::translate('2012-03-01/2013-04-01')); 
+	dd(Photo::translate('17/18'));
+});
+
 /* phpinfo() */
 Route::get('/info/', function(){ return View::make('i'); });
 
@@ -29,7 +34,8 @@ Route::get('/users/account', 'UsersController@account');
 Route::get('/users/login', 'UsersController@loginForm');
 Route::post('/users/login', 'UsersController@login');
 Route::get('/users/logout', 'UsersController@logout');
-Route::get('users/fb/callback', 'UsersController@callback');
+Route::get('users/login/fb', 'UsersController@facebook');
+Route::get('users/login/fb/callback', 'UsersController@callback');
 Route::resource('/users','UsersController');
 
 /* FOLLOW */
