@@ -35,7 +35,7 @@
         <img class="left" src="img/project_photos/chancela.jpg" alt="Chancela" title="Chancela" />       
       </div>
       
-      <!--   COLUNA DIREITA   -->
+      <!--   COLUNA DIREITA   
       <div class="four columns">
         <h2>Equipe</h2>
         
