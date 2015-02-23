@@ -45,11 +45,14 @@ class Photo extends Eloquent {
 
 	public function saveMetadata($originalFileExtension)
 	{
+		$user = $this->user;
 		$exiv2 = new Exiv2($originalFileExtension, $this->id, public_path() . '/arquigrafia-images/');	   
 		$exiv2->setImageAuthor($this->workAuthor);
+		$exiv2->setArtist($this->workAuthor, $user->name);
 		$exiv2->setCopyRight($this->workAuthor, 
 			new CreativeCommons_3_0($this->allowCommercialUses, $this->allowModifications));
 		$exiv2->setDescription($this->description);
         $exiv2->setUserComment($this->aditionalImageComments);           
     }
+
 }
