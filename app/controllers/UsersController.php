@@ -84,7 +84,7 @@ class UsersController extends \BaseController {
     session_start();
     $fb_config = Config::get('facebook');
     FacebookSession::setDefaultApplication($fb_config["id"], $fb_config["secret"]);
-    $helper = new FacebookRedirectLoginHelper('http://localhost/arquigrafia/public/users/login/fb/callback');
+    $helper = new FacebookRedirectLoginHelper(url('/users/login/fb/callback'));
     
     $fburl = $helper->getLoginUrl(array(
         'scope' => 'email',
@@ -150,7 +150,7 @@ class UsersController extends \BaseController {
     
     FacebookSession::setDefaultApplication($fb_config["id"], $fb_config["secret"]);
     
-    $helper = new FacebookRedirectLoginHelper('http://localhost/arquigrafia/public/users/login/fb/callback');
+    $helper = new FacebookRedirectLoginHelper(url('/users/login/fb/callback'));
     
     try {
       $session = $helper->getSessionFromRedirect();
