@@ -166,13 +166,38 @@ class UsersController extends \BaseController {
       $request = new FacebookRequest($session, 'GET', '/me');
       $response = $request->execute();
       $fbuser = $response->getGraphObject();
+      $fbid = $fbuser->getProperty('id');
       
-      $user = User::where('id_facebook', '=', $fbuser->getProperty('id'))->first();
+      $user = User::where('id_facebook', '=', $fbid)->first();
       
       if (!is_null($user)) {
+        // loga usuário existente
         Auth::loginUsingId($user->id);
+        
+        // pega avatar
+        $request = new FacebookRequest(
+          $session,
+          'GET',
+          '/me/picture',
+          array (
+            'redirect' => false,
+            'height' => '200',
+            'type' => 'normal',
+            'width' => '200',
+          )
+        );
+        $response = $request->execute();
+        $pic = $response->getGraphObject();
+        $image = Image::make($pic->getProperty('url'))->save(public_path().'/arquigrafia-avatars/'.$user->id.'.jpg');
+        if ($user->photo == "") {
+          $user->photo = '/arquigrafia-avatars/'.$user->id.'.jpg';
+          $user->save();
+        }
+        
         return Redirect::to('/')->with('message', "Bem-vindo {$user->name}!");
+        
       } else {
+        // cria um novo usuário
         $user = new User;
         $user->name = $fbuser->getProperty('name');
         $user->login = $fbuser->getProperty('id');
@@ -181,6 +206,25 @@ class UsersController extends \BaseController {
         $user->id_facebook = $fbuser->getProperty('id');
         $user->save();
         Auth::loginUsingId($user->id);
+        
+        // pega avatar
+        $request = new FacebookRequest(
+          $session,
+          'GET',
+          '/me/picture',
+          array (
+            'redirect' => false,
+            'height' => '200',
+            'type' => 'normal',
+            'width' => '200',
+          )
+        );
+        $response = $request->execute();
+        $pic = $response->getGraphObject();
+        $image = Image::make($pic->getProperty('url'))->save(public_path().'/arquigrafia-avatars/'.$user->id.'.jpg'); 
+        $user->photo = '/arquigrafia-avatars/'.$user->id.'.jpg';
+        $user->save();
+        
         // return $user;
         return Redirect::to('/')->with('message', 'Sua conta foi criada com sucesso!');
       }
