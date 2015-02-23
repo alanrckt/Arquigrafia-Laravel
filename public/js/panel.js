@@ -36,6 +36,9 @@ $(window).load(function(e) {
 		});
   }); */
 	
+	page = 1;
+	$(".panel-back").hide(0);
+	
 	// navegação do painel
 	$("#panel .layer").each(function(i){
 		// left offset
@@ -68,15 +71,21 @@ $(window).load(function(e) {
 	});
 	
 	function panelback() {
-		ww = $( window ).width();
-		var pl = $("#panel").css("left");
-		if ( parseInt(pl) < 0 ) $("#panel").stop(true,true).delay(200).animate({"left":"+=1000"}, 1000, function(){ 
-			$("#panel .layer").each(function(i){
-				// left offset
-				var lo = $(this).offset().left;
-				if (lo > ww ) $(this).addClass("off").fadeTo(0,0);
+		if (page > 1) {
+			page--;
+			$(".panel-next").show(0);
+			ww = $( window ).width();
+			var pl = $("#panel").css("left");
+			if ( parseInt(pl) < 0 ) $("#panel").stop(true,true).delay(200).animate({"left":"+=1000"}, 1000, function(){ 
+				$("#panel .layer").each(function(i){
+					// left offset
+					var lo = $(this).offset().left;
+					if (lo > ww ) $(this).addClass("off").fadeTo(0,0);
+				});
 			});
-		});
+		} else {
+			$(".panel-back").hide(0);
+		}
 	}
 	
 	function panelnext() {
@@ -89,20 +98,24 @@ $(window).load(function(e) {
       panel.append( data );
     });
     */
-    
-		$("#panel").animate({"left":"-=1000"}, 1000);
-		var depth, mov;
-		$("#panel .layer.off").each(function(i){
-			var layer = $(this);
-			var lo = layer.offset().left;
-			var ww = $( window ).width();
-			if ((lo - ww) < 1000) { 
-				depth = 10 * parseFloat( $(this).data("depth") ); 
-				mov = Math.round(depth * 200); 
-				layer.removeClass("off").css({"left":"+="+mov}).delay(50*(i+5)).animate({"left":"-="+mov, "opacity":"1"},600);
-			}
-		});
-    
+    if (page < 5) {
+			page++;
+			$(".panel-back").show(0);
+			$("#panel").animate({"left":"-=1000"}, 1000);
+			var depth, mov;
+			$("#panel .layer.off").each(function(i){
+				var layer = $(this);
+				var lo = layer.offset().left;
+				var ww = $( window ).width();
+				if ((lo - ww) < 1000) { 
+					depth = 10 * parseFloat( $(this).data("depth") ); 
+					mov = Math.round(depth * 200); 
+					layer.removeClass("off").css({"left":"+="+mov}).delay(50*(i+5)).animate({"left":"-="+mov, "opacity":"1"},600);
+				}
+			});
+		} else {
+			$(".panel-next").hide(0);
+		}
 	}
 	
 });
