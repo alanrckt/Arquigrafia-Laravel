@@ -33,9 +33,11 @@
       
       
       <!-- FACEBOOK -->
-      <div class="six columns offset-by-three">
+      <div class="three columns offset-by-three">
       
-        {{ link_to( $fburl , 'LOGIN COM FACEBOOK') }}
+        <h1>Login com Facebook</h1>
+        <p>Utilize o Facebook para criar uma conta ou entrar no Arquigrafia, caso você já tenha criado:</p>
+        {{ link_to( $fburl , 'FACEBOOK - LOGIN', array('class'=>'btn right')) }}
       
       </div>
       
