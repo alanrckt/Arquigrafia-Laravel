@@ -94,7 +94,7 @@
           <li><small><a href="http://lattes.cnpq.br/2350572278366806" target="_blank">Carlos Leonardo Herrera Muñoz - Mestrando IMEUSP</a></small></li>
           <li><small><a href="http://lattes.cnpq.br/2452505576333369" target="_blank">Edith Zaida Sonco Mamani - Mestranda IMEUSP</a></small></li>
           <li><small><a href="http://lattes.cnpq.br/2605934447999302" target="_blank">José Teodoro - Mestrando IMEUSP</a> </small></li>
-          <li><small><a href="http://lattes.cnpq.br/0284126139128849" target="_blank">Laécio Freitas – Mestrando IMEUSP </a></small></li>
+          <li><small><a href="http://lattes.cnpq.br/0284126139128849" target="_blank">Laécio Freitas Chaves – Mestrando IMEUSP</a></small></li>
           <li><small><a href="#" target="_blank">André Jin Teh Chou – Graduando FAUUSP</a></small></li>
           <li><small><a href="#" target="_blank">Amanda Stenghel - Graduanda FAUUSP</a></small></li>
           <li><small><a href="http://lattes.cnpq.br/8774245848990982" target="_blank">Ana Clara de Souza Santana - Graduanda FAUUSP</a></small></li>
