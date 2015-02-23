@@ -1,5 +1,9 @@
 <?php
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Formatter\LineFormatter;
+
 class PhotosController extends \BaseController {
 
 	public function index()
@@ -31,7 +35,8 @@ class PhotosController extends \BaseController {
 		// show form view
     if (Auth::check()) return View::make('/photos/form'); else return View::make('/users/login');
 	}
-	
+
+/*	
 	// create photo 
   public function store()
   {
@@ -60,7 +65,82 @@ class PhotosController extends \BaseController {
       print_r(Input::all());
     }
 	}
-  
+*/
+
+  public function store() {
+
+    if (Input::file('photo')->isValid()) {
+      $input = Input::all(); 
+      $file = Input::file('photo');
+      $photo = new Photo();
+      
+      if ( !empty($input["photo_aditionalImageComments"]) ) 
+        $photo->aditionalImageComments = $input["photo_aditionalImageComments"];
+      $photo->allowCommercialUses = $input["photo_allowCommercialUses"];
+      $photo->allowModifications = $input["photo_allowModifications"];
+      $photo->city = $input["photo_city"];
+      $photo->country = $input["photo_country"];
+      if ( !empty($input["photo_description"]) )
+        $photo->description = $input["photo_description"];
+      if ( !empty($input["photo_district"]) )
+        $photo->district = $input["photo_district"];
+      if ( !empty($input["photo_imageAuthor"]) )  
+        $photo->imageAuthor = $input["photo_imageAuthor"];
+      $photo->name = $input["photo_name"];
+      $photo->state = $input["photo_state"];
+      if ( !empty($input["photo_street"]) )
+        $photo->street = $input["photo_street"];
+      if ( !empty($input["photo_workAuthor"]) )
+        $photo->workAuthor = $input["photo_workAuthor"];
+      if ( !empty($input["photo_workDate"]) )
+        $photo->workdate = $input["photo_workDate"];
+      if ( !empty($input["photo_imageDate"]) )
+        $photo->dataCriacao = $input["photo_imageDate"];
+      $photo->deleted = false;
+      $photo->nome_arquivo = $file->getClientOriginalName();
+
+      $photo->user_id = Auth::user()->id;
+      
+      $photo->save();
+
+      $ext = $file->getClientOriginalExtension();
+      $photo->nome_arquivo = $photo->id.".".$ext;
+      
+      $photo->save();
+
+      $input["tags"] = str_replace(array('\'', '"', '[', ']'), '', $input["tags"]); 
+      $tags = preg_split("/[\s,]+/", $input["tags"]);
+      
+      if (!empty($tags)) {
+        $tags = array_map('trim', $tags);
+        $tags = array_map('strtolower', $tags);
+        // tudo em minusculas, para remover redundancias, como Casa/casa/CASA
+        $tags = array_unique($tags); //retira tags repetidas, se houver.
+        foreach ($tags as $t) {
+          //$tag = new Tag( ['name'=> $t] );
+          $tag = Tag::firstOrCreate(['name' => $t]); //não deveria haver tags repetidas no banco
+          $photo->tags()->attach($tag->id);
+          if ($tag->count == null)
+            $tag->count = 0;
+          $tag->count++;
+          $tag->save();
+        }
+      }
+
+      Image::make(Input::file('photo'))->encode('jpg', 80)->heighten(220)->save(public_path().'/arquigrafia-images/'.$photo->id.'_200h.jpg');
+      Image::make(Input::file('photo'))->encode('jpg', 80)->widen(600)->save(public_path().'/arquigrafia-images/'.$photo->id.'_view.jpg');
+      $file->move(public_path().'/arquigrafia-images', $photo->id."_original.".strtolower($ext)); // original
+
+      $photo->saveMetadata($ext);
+
+      return Redirect::to("/photos/{$photo->id}");
+
+    } else {
+      print_r(Input::all());
+    }
+  }
+
+  /*
   // update meta
   public function update()
 	{
@@ -112,23 +192,52 @@ class PhotosController extends \BaseController {
     
     $photo->save();
     
-    $user = User::find($photo->user_id);
     return Redirect::to("/photos/{$photo->id}");
+    // $user = User::find($photo->user_id);
     // return View::make('/photos/show',['photos' => $photo, 'owner' => $user]);
   }
-  
+*/  
   // ORIGINAL
   public function download($id)
   {
     if (Auth::check()) {
-      $path = public_path().'/arquigrafia-images/'.$id.'_original.jpg';
+      $photo = Photo::find($id);
+      $originalFileExtension = substr(strrchr($photo->nome_arquivo, '.'), 1);
+      $filename = $id . '_original.' . $originalFileExtension;
+      $path = public_path().'/arquigrafia-images/'. $filename;
+      // $path = public_path().'/arquigrafia-images/'.$id.'_original.jpg';
       if( File::exists($path) ) {
+      
+        /*==================================================================================*/
+        /*      Log de Downloads - user_id, photo_id, download_date                         */
+        /*==================================================================================*/
+        
+        $user_id = Auth::user()->id; //usuario logado, verificado em Auth::check()
+        $log_info = sprintf('[%s][%d][%d]', date('Y-m-d'), $user_id, $id);
+
+        $log = new Logger('Download_logger');
+        $file = storage_path() . '/logs/downloads/downloads.log';
+        if (!file_exists($file)) {
+          $handle = fopen($file, 'a+');
+          fclose($handle);
+        }
+
+        $formatter = new LineFormatter("%message%\n", null, false, true);
+        $handler = new StreamHandler($file, Logger::INFO);
+        $handler->setFormatter($formatter);
+        $log->pushHandler($handler);
+        $log->addInfo($log_info);
+
+        /*================================================================================*/
+
         header('Content-Description: File Transfer');
-        header("Content-Disposition: attachment; filename=\"".$id . '_original.jpg'."\"");
+        // header("Content-Disposition: attachment; filename=\"".$id . '_original.jpg'."\"");
+        header("Content-Disposition: attachment; filename=\"". $filename ."\"");
         header('Content-Type: application/octet-stream');
         header("Content-Transfer-Encoding: binary");
         header("Cache-Control: public");
         readfile($path);
+
         exit;
       }
       return "Arquivo original não encontrado.";

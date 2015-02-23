@@ -14,66 +14,49 @@
 
 @section('content')
 
+  <script>
+    $( window ).load(function() {
+      $("#preview_photo").hide();
+    });
+  </script>
+
   <div class="container">
     
-    <?php if (!isset($photo)) { ?>
+      {{ Form::open(array('url'=>'photos', 'files'=> true)) }}    
       <!-- Formulário inicial -->
       
       <!-- STEP 1 -->
       <div class="twelve columns row step-1">
-      	<h1><span class="step">1</span> <span class="step-text">Upload</span></h1>
+      	<h1><!-- <span class="step">1</span>  --><span class="step-text">Upload</span></h1>
+        
         <div class="four columns alpha">
-        {{ Form::open(array('url'=>'photos', 'files'=> true)) }}
-        	<p>{{ Form::label('photo','Imagem:') }} {{ Form::file('photo', array('id'=>'imageUpload')) }}</p>
+          <img src="" id="preview_photo">
+
+          <p>{{ Form::label('photo','Imagem:') }} {{ Form::file('photo', array('id'=>'imageUpload', 'onchange' => 'readURL(this);')) }}</p>
           <br>
-          <p>{{ Form::submit('ENVIAR', array('class'=>'btn')) }}</p>
-          {{ Form::hidden('step','1') }}
-        {{ Form::close() }}
         </div>
       </div>
-  
-    <?php } else { ?>
-      <!-- Formulário para metadados -->
-      
-      <!-- STEP 1 -->
-      <div class="twelve columns row step-1">
-      	<h1><span class="step">1</span> <span class="step-text">Upload</span></h1>
-        
-        <div class="two columns alpha row">
-        	<p>Imagem:</p>
-        	<img src="{{ asset('arquigrafia-images/' . $photo->id . '_view.jpg') }}">
-        </div>
-        <br class="clear"> 
-        
-        {{ Form::open(array('url'=>'photos', 'files'=> true)) }}
-        	<p>{{ Form::label('photo','Nova imagem:') }} {{ Form::file('photo', array('id'=>'imageUpload')) }}</p>
-          <br>
-          <p>{{ Form::submit('ENVIAR', array('class'=>'btn')) }}</p>
-          {{ Form::hidden('step','1') }}
-        {{ Form::close() }}
-        
-        <!--
-        <form id="upload_form">
-          <div class="columns alpha">
-            <p>Nova imagem:</p>
-          </div>
-          <div class="four columns">
-            <p><input id="imageUpload" type="file" name="photo" value=""></p>
-            <br>
-            <p><input type="submit" class="btn" value="ENVIAR"></p>
-          </div>
-        </form>
-        -->
-        
-      </div>
-      
+
+      <script type="text/javascript">
+        function readURL(input) {
+          $("#preview_photo").hide();
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              $('#preview_photo')
+                .attr('src', e.target.result)
+                .width(600);
+                $("#preview_photo").show();
+            };
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+      </script>
+
       <!-- STEP 2 -->
       <div id="registration" class="twelve columns row step-2">
-      	<h1><span class="step">2</span> <span class="step-text">Descrição</span></h1>
+      	<h1><span class="step-text">Descrição</span></h1>
         
-        {{ Form::open(array('url'=>'photos/'.$photo->id, 'method'=>'put')) }}
-        <!--<form id="upload_form_meta" name="dados" method="POST" action="/photo/7/registra" enctype="multipart/form-data">-->
-        	
           <div class="five columns alpha row">
         	<table class="form-table" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -82,7 +65,7 @@
             </tr>
             <tr>
               <td><label>Autor da imagem:</label></td>
-              <td><input name="photo_imageAuthor" type="text" class="text" placeholder="João Carlos Vieira"></td>
+              <td><input name="photo_imageAuthor" type="text" class="text" value="{{ ucfirst(Auth::user()->name) }}"></td>
             </tr>
             <tr>
               <td><label>Tags:</label></td>
@@ -155,16 +138,12 @@
           <div class="five columns omega row">
           	<table class="form-table" width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td><label>Autor da imagem:</label></td>
-                <td><input name="photo_imageAuthor" type="text" class="text" placeholder="Phasellus ligula ligula"></td>
-              </tr>
-              <tr>
                 <td><label>Data da imagem:</label></td>
                 <td><input name="photo_imageDate" type="text" class="text" id="imageDate" placeholder="01/01/01"></td>
               </tr>
               <tr>
                 <td><label>Autor da obra:</label></td>
-                <td><input name="photo_workAuthor" type="text" class="text" id="workAuthor" placeholder="01/01/01"></td>
+                <td><input name="photo_workAuthor" type="text" class="text" id="workAuthor"></td>
               </tr>	
               <tr>
                 <td><label>Data da obra:</label></td>
@@ -215,16 +194,13 @@
           </div>
         
           <div class="twelve columns">
-            {{ Form::hidden('id', $photo->id) }}
             <input name="enviar" type="submit" class="btn" value="ENVIAR">
           </div>
-            
-        {{ Form::close() }}
         
       </div>
       
-      <?php } ?>
-      
+      {{ Form::close() }}
+
     </div>
     
 @stop

@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/data', function () { 
-	//dd(Photo::translate('2012-03-01/2013-04-01')); 
-	dd(Photo::translate('17/18'));
-});
-
 /* phpinfo() */
 Route::get('/info/', function(){ return View::make('i'); });
 
