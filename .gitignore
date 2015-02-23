@@ -10,3 +10,4 @@ Thumbs.db
 *dwsync.xml
 
 *database.php
+app/config/facebook.php
