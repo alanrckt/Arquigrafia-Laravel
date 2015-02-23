@@ -13,13 +13,17 @@
         
         {{ Form::open() }}
           
-          <p>{{ Form::label('login', 'Login:') }} {{ Form::text('login', '', array('class'=>'right') ) }}</p>
+          <p>Entre com seu usuário e senha:</p>
+          <br>
+          <div class="one columns alpha">{{ Form::label('login', 'Usuário:', array('class'=>'right')) }}</div>
+          <div class="two columns omega">{{ Form::text('login', '', array('class'=>'right') ) }}</div>
           {{ $errors->first('login') }}
           
-          <p>{{ Form::label('password', 'Senha:') }} {{ Form::password('password', array('class'=>'right') ) }}</p>
+          <div class="one columns alpha">{{ Form::label('password', 'Senha:', array('class'=>'right')) }}</div>
+          <div class="two columns omega">{{ Form::password('password', array('class'=>'right') ) }}</div>
           
           @if(Session::has('login.message'))
-          	<p>{{ Session::get('login.message') }}</p>
+          	<p class="error">{{ Session::get('login.message') }}</p>
           @endif
           
           <br>
@@ -33,7 +37,7 @@
       
       
       <!-- FACEBOOK -->
-      <div class="three columns offset-by-three">
+      <div class="three columns offset-by-one">
       
         <h1>Login com Facebook</h1>
         <p>Utilize o Facebook para criar uma conta ou entrar no Arquigrafia, caso você já tenha criado:</p>
