@@ -65,7 +65,7 @@
       <div class="wrap">
         <div id="panel">
             
-          <?php $i = 0;?>
+          <?php $i = rand(0,5);?>
           
           @foreach($photos as $photo)
           
@@ -78,11 +78,14 @@
               if ($i > 50) break;
             ?>
             
-            <div class="item h<?php echo $size; ?>"><div class="layer" data-depth="0.2">
-              <a href='{{ URL::to("/photos/{$photo->id}") }}'>
-              <img src='{{ URL::to("/arquigrafia-images/{$photo->id}_view.jpg") }}' title='{{ $photo->name }}'>
-              </a>
-            </div></div>
+            <div class="item h<?php echo $size; ?>">
+            	<div class="layer" data-depth="0.2">
+                <a href='{{ URL::to("/photos/{$photo->id}") }}'>
+                <img src='{{ URL::to("/arquigrafia-images/{$photo->id}_view.jpg") }}' title='{{ $photo->name }}'>
+                </a>
+                <div class="item-title">{{ $photo->name }}</div>
+            	</div>
+            </div>
             
           @endforeach
           

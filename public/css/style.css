@@ -188,8 +188,8 @@ input.search_bar_button { background: url(../img/sprite.png) -330px 0; height: 2
 #panel .h3 img { width: 518px; height: auto; margin: -10px 0 0 -259px; position: absolute; left: 50%; }
 #panel .v1, #panel .v1 .layer { width: 156px; height: 218px; }
 #panel .v1 img { width: 186px; height: auto; margin: -10px 0 0 -93px; position: absolute; left: 50%; }
-.wrap .item .layer:after { display: none; content: "Lorem ipsum - lero lero nono"; position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.2); padding: 5px 10px; font-size: 11px; color: #ddd; }
-.wrap .item:hover .layer:after { display: block; }
+.wrap .item .item-title { display: none; position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.2); padding: 5px 10px; font-size: 11px; color: #ddd; }
+.wrap .item:hover .item-title { display: block; }
 
 /* lightbox - criar uma conta */
 #form_window { width: 600px; background: #fff; position: fixed; top: 40%; left: 50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 2px; border-radius: 2px; display: none; } /* position: absolute; */
