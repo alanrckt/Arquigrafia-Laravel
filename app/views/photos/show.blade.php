@@ -517,7 +517,8 @@
 			<!--   SIDEBAR   -->
 			<div id="sidebar" class="four columns">
 				<!--   USUARIO   -->
-				<div id="single_user">
+				
+        <div id="single_user" class="clearfix row">
 				  
           
           <a href="{{ URL::to("/users/".$owner->id) }}" id="user_name">
@@ -536,13 +537,11 @@
     			@if (!empty($follow) && $follow == true)
 	    			<a href="{{ URL::to("/friends/follow/" . $owner->id) }}" id="single_view_contact_add">Seguir</a><br />
  				@else
- 					<a href="#">Seguindo</a>
+          <div>Seguindo</div>
  				@endif
 			@endif	
 				</div>
 				<!--   FIM - USUARIO   -->
-        
-        <br class="clear">
         
 				<!-- <h3>Equipamento:</h3>
 				<p>Lorem ipsum dolor sit amet</p> -->
