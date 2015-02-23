@@ -4,7 +4,7 @@
     </IfModule>
 
     RewriteEngine On
-		RewriteBase /arquigrafia/public
+		#RewriteBase /arquigrafia/public
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
