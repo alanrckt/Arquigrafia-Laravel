@@ -29,15 +29,19 @@ class PagesController extends BaseController {
 		if ($tag) {
 			// $byTag = $tag->photos;
 		}
-		$photos = Photo::orWhere('name', 'LIKE', '%' . $needle . '%')
-      ->orWhere('description', 'LIKE', '%' . $needle . '%')
-      ->orWhere('imageAuthor', 'LIKE', '%' . $needle . '%')
-			->orWhere('workAuthor', 'LIKE', '%' . $needle . '%')
-      ->orWhere('state', 'LIKE', '%' . $needle . '%')
-      ->orWhere('city', 'LIKE', '%' . $needle . '%')
-      ->where('deleted', '=', '0')
-      ->get();
+
+      $photos = Photo::where('deleted', '=', '0')
+      			->where(function ($query) use($needle) {
+      				$query->where('name', 'LIKE', '%' . $needle . '%')
+      				->orWhere('description', 'LIKE', '%' . $needle . '%')
+      				->orWhere('imageAuthor', 'LIKE', '%' . $needle . '%')
+					->orWhere('workAuthor', 'LIKE', '%' . $needle . '%')
+			    	->orWhere('state', 'LIKE', '%' . $needle . '%')
+			    	->orWhere('city', 'LIKE', '%' . $needle . '%');
+      			})
+      			->get();
 		// $photos = $photos->merge($byTag);
+    
     return View::make('/search',['tags' => $tags, 'photos' => $photos, 'query'=>$needle]);
 	}
 
