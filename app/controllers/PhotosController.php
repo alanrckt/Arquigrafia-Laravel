@@ -70,8 +70,7 @@ class PhotosController extends \BaseController {
   public function store() {
   
 	// validate data
-    $rules = array(
-		'Input::file('photo')->isValid()' => true,
+    $rules = array(		
         'photo_name' => 'required',
         'photo_imageAuthor' => 'required',
         'tags' => 'required',
@@ -155,7 +154,9 @@ class PhotosController extends \BaseController {
       return Redirect::to("/photos/{$photo->id}");
 
     } else {
-      print_r(Input::all());
+	  $messages = $validator->messages();
+      return Redirect::to('/photos/form')->withErrors($messages);
+      //print_r(Input::all());
     }
  }
 }
