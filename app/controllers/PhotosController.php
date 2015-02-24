@@ -67,8 +67,8 @@ class PhotosController extends \BaseController {
 	}
 */
 
-  public function store() {
-  
+  public function store() {  
+	$input = Input::all();
 	// validate data
     $rules = array(		
         'photo_name' => 'required',
@@ -86,7 +86,7 @@ class PhotosController extends \BaseController {
     } else {
 
     if (Input::file('photo')->isValid()) {
-      $input = Input::all(); 
+      //$input = Input::all(); 
       $file = Input::file('photo');
       $photo = new Photo();
       
