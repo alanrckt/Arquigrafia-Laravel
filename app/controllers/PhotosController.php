@@ -68,6 +68,23 @@ class PhotosController extends \BaseController {
 */
 
   public function store() {
+  
+	// validate data
+    $rules = array(
+		'Input::file('photo')->isValid()' => true,
+        'photo_name' => 'required',
+        'photo_imageAuthor' => 'required',
+        'tags' => 'required',
+        'photo_country' => 'required',
+        'photo_state' => 'required'
+		'photo_city'  => 'required'
+    );
+    $validator = Validator::make($input, $rules);
+    
+  if ($validator->fails()) {
+      $messages = $validator->messages();
+      return Redirect::to('/photos/form')->withErrors($messages);
+    } else {
 
     if (Input::file('photo')->isValid()) {
       $input = Input::all(); 
@@ -140,7 +157,8 @@ class PhotosController extends \BaseController {
     } else {
       print_r(Input::all());
     }
-  }
+ }
+}
 
   /*
   // update meta
