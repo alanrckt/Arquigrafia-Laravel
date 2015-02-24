@@ -55,7 +55,7 @@
 
       <!-- STEP 2 -->
       <div id="registration" class="twelve columns row step-2">
-      	<h1><span class="step-text">Descrição</span></h1>
+      	<h1><span class="step-text">Dados da imagem</span></h1>
           
           <p>(*) Campos obrigatórios.</p>
           <br />
