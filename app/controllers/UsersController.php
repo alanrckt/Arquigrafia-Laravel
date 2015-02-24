@@ -110,7 +110,8 @@ class UsersController extends \BaseController {
         $user->password = Hash::make($input["password"]);
         $user->save();
       } else {
-        return Redirect::to('/users/login');  
+        Session::put('login.message', 'Usuário e/ou senha inválidos, tente novamente.');
+        return Redirect::to('/users/login')->withInput();
       }
     }
 
