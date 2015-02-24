@@ -35,7 +35,7 @@ class PagesController extends BaseController {
 			->orWhere('workAuthor', 'LIKE', '%' . $needle . '%')
       ->orWhere('state', 'LIKE', '%' . $needle . '%')
       ->orWhere('city', 'LIKE', '%' . $needle . '%')
-      ->where('deleted', '=', '0')
+      ->andWhere('deleted', '=', '0')
       ->get();
 		// $photos = $photos->merge($byTag);
     return View::make('/search',['tags' => $tags, 'photos' => $photos, 'query'=>$needle]);
