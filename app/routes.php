@@ -54,6 +54,7 @@ Route::resource('/albums','AlbumsController');
 Route::post('/photos/{photo_id}/comment','PhotosController@comment');
 
 /* PHOTOS */
+Route::get('/photos/batch','PhotosController@batch');
 Route::get('/photos/upload','PhotosController@form');
 Route::get('/photos/download/{photo_id}','PhotosController@download');
 Route::resource('/photos','PhotosController');

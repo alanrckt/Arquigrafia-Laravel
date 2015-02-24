@@ -127,8 +127,10 @@ class PhotosController extends \BaseController {
         }
       }
 
-      Image::make(Input::file('photo'))->encode('jpg', 80)->heighten(220)->save(public_path().'/arquigrafia-images/'.$photo->id.'_200h.jpg');
-      Image::make(Input::file('photo'))->encode('jpg', 80)->widen(600)->save(public_path().'/arquigrafia-images/'.$photo->id.'_view.jpg');
+      $image = Image::make(Input::file('photo'))->encode('jpg', 80); // todas começam com jpg quality 80
+      $image->widen(600)->save(public_path().'/arquigrafia-images/'.$photo->id.'_view.jpg');
+      $image->heighten(220)->save(public_path().'/arquigrafia-images/'.$photo->id.'_200h.jpg'); // deveria ser 220h, mantem por já haver alguns arquivos assim.
+      $image->fit(186, 124)->encode('jpg', 70)->save(public_path().'/arquigrafia-images/'.$photo->id.'_home.jpg');
       $file->move(public_path().'/arquigrafia-images', $photo->id."_original.".strtolower($ext)); // original
 
       $photo->saveMetadata($ext);
@@ -263,6 +265,17 @@ class PhotosController extends \BaseController {
       return Redirect::to("/photos/{$id}");
     }
     
+  }
+  
+  // BATCH RESIZE
+  public function batch()
+  {
+    $photos = Photo::all();
+    foreach ($photos as $photo) {
+      $path = public_path().'/arquigrafia-images/'.$photo->id.'_view.jpg';
+      $new = public_path().'/arquigrafia-images/'.$newid.'_home.jpg';
+      if (is_file($path) && !is_file($new)) $image = Image::make($path)->fit(186, 124)->save(public_path().'/arquigrafia-images/'.$newid.'_home.jpg');
+    }
   }
   
 }

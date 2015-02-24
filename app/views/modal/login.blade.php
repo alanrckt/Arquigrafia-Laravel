@@ -4,7 +4,7 @@
 
   <div class="container">
 
-    <div id="registration">
+    <div class="registration">
     
     	<!-- LOGIN SIMPLES -->
       <div class="three columns">
