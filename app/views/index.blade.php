@@ -62,7 +62,7 @@
                  else $path = '/arquigrafia-images/'. $photo->id . '_view.jpg';?>
                  <img src="{{ asset( $path ) }}" title="{{ $photo->name }}">
                 </a>
-                <div class="item-title">{{ $photo->name }} - {{ $i }}</div>
+                <div class="item-title">{{ $photo->name }}</div>
             	</div>
             </div>
             
