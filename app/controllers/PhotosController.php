@@ -81,8 +81,8 @@ class PhotosController extends \BaseController {
     $validator = Validator::make($input, $rules);
     
   if ($validator->fails()) {
-      $messages = $validator->messages();
-      return Redirect::to('/photos/form', ['owner' => $user])->withErrors($messages);
+      $messages = $validator->messages();      
+	  return Redirect::to('/photos/form')->withErrors($messages);
     } else {
 
     if (Input::file('photo')->isValid()) {
@@ -155,7 +155,7 @@ class PhotosController extends \BaseController {
 
     } else {
 	  $messages = $validator->messages();
-      return Redirect::to('/photos/form', ['owner' => $user])->withErrors($messages);
+      return Redirect::to('/photos/form')->withErrors($messages);
       //print_r(Input::all());
     }
  }
