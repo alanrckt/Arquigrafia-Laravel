@@ -81,7 +81,8 @@ class UsersController extends \BaseController {
   // formulário de login
   public function loginForm()
   {
-    session_start();
+    /*
+		session_start();
     $fb_config = Config::get('facebook');
     FacebookSession::setDefaultApplication($fb_config["id"], $fb_config["secret"]);
     $helper = new FacebookRedirectLoginHelper(url('/users/login/fb/callback'));
@@ -89,6 +90,8 @@ class UsersController extends \BaseController {
     $fburl = $helper->getLoginUrl(array(
         'scope' => 'email',
     ));
+		*/
+		$fburl = "-";
     return View::make('/modal/login')->with(['fburl' => $fburl]);
   }
   
