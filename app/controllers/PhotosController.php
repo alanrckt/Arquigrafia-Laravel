@@ -273,9 +273,10 @@ class PhotosController extends \BaseController {
     $photos = Photo::all();
     foreach ($photos as $photo) {
       $path = public_path().'/arquigrafia-images/'.$photo->id.'_view.jpg';
-      $new = public_path().'/arquigrafia-images/'.$newid.'_home.jpg';
-      if (is_file($path) && !is_file($new)) $image = Image::make($path)->fit(186, 124)->save(public_path().'/arquigrafia-images/'.$newid.'_home.jpg');
+      $new = public_path().'/arquigrafia-images/'.$photo->id.'_home.jpg';
+      if (is_file($path) && !is_file($new)) $image = Image::make($path)->fit(186, 124)->save($new);
     }
+    return "OK.";
   }
   
 }
