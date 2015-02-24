@@ -23,7 +23,7 @@
           <div class="two columns omega">{{ Form::password('password', array('class'=>'right') ) }}</div>
           
           @if(Session::has('login.message'))
-          	<p class="error">{{ Session::get('login.message') }}</p>
+          	<p class="error">{{ Session::pull('login.message') }}</p>
           @endif
           
           <br>
