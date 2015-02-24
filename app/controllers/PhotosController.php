@@ -75,7 +75,7 @@ class PhotosController extends \BaseController {
         'photo_imageAuthor' => 'required',
         'tags' => 'required',
         'photo_country' => 'required',
-        'photo_state' => 'required'
+        'photo_state' => 'required',
 		'photo_city'  => 'required'
     );
     $validator = Validator::make($input, $rules);
