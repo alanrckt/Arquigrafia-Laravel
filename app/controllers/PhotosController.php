@@ -154,9 +154,9 @@ class PhotosController extends \BaseController {
       return Redirect::to("/photos/{$photo->id}");
 
     } else {
-	  $messages = $validator->messages();
-      return Redirect::to('/photos/form')->withErrors($messages);
-      //print_r(Input::all());
+	  //$messages = $validator->messages();
+      //return Redirect::to('/photos/form')->withErrors($messages);
+      print_r(Input::all());
     }
  }
 }
