@@ -88,7 +88,6 @@ class UsersController extends \BaseController {
     $fburl = $helper->getLoginUrl(array(
         'scope' => 'email',
     ));
-		$fburl = "-";
     return View::make('/modal/login')->with(['fburl' => $fburl]);
   }
   
