@@ -88,7 +88,7 @@ class PhotosController extends \BaseController {
 	  return Redirect::to('/photos/upload')->withErrors($messages);
     } else {
 
-    if (Input::file('photo')->isValid()) {
+    if (Input::hasFile('photo') and Input::file('photo')->isValid()) {
       //$input = Input::all(); 
       $file = Input::file('photo');
       $photo = new Photo();
