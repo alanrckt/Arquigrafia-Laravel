@@ -11,6 +11,7 @@
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+  <script src="{{ URL::to("/") }}/js/script.js"></script>
   
   <!--   RODAPE DO SITE   -->
   <div id="footer" class="container">
