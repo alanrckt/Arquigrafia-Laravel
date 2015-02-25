@@ -109,14 +109,16 @@ class PhotosController extends \BaseController {
       if ( !empty($input["photo_workAuthor"]) )
         $photo->workAuthor = $input["photo_workAuthor"];
       if ( !empty($input["photo_workDate"]) )
-        $photo->workdate = $input["photo_workDate"];
+        $photo->workdate = Photo::formatDate($input["photo_workDate"]);
       if ( !empty($input["photo_imageDate"]) )
-        $photo->dataCriacao = $input["photo_imageDate"];
+        $photo->dataCriacao = Photo::formatDate($input["photo_imageDate"]);
       $photo->deleted = false;
       $photo->nome_arquivo = $file->getClientOriginalName();
 
       $photo->user_id = Auth::user()->id;
       
+      $photo->dataUpload = date('Y-m-d H:i:s');
+
       $photo->save();
 
       $ext = $file->getClientOriginalExtension();
