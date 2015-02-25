@@ -435,6 +435,7 @@ ul#avaliation_list li span.right { text-align: left; padding-left: 10px; }
 
 #user_gallery .wrap {height: 220px; margin-bottom: 10px;}
 #user_gallery #stripe {height: 220px; width: 10000px;}
+#user_gallery .stripe {height: 220px; width: 10000px;}
 #user_gallery .layer {position: relative;}
 #user_gallery .item, #user_gallery img {position: static; display: block; height: 212px; width: auto; margin: 0; }
 #user_gallery .item {margin: 0 5px 50px;}

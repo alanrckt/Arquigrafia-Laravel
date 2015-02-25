@@ -61,7 +61,7 @@
     <div id="user_gallery">
       
       <div class="wrap">
-        <div id="stripe">
+        <div id="panel" class="stripe">
           
           <? #php $i = 0; ?> 
 		  <?php $i = rand(0,10);?>
