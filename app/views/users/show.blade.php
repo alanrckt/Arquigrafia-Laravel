@@ -77,7 +77,8 @@
               if ($i%21 == 6) $size = 3;
             ?>
             
-            <div class="item h<?php echo $size; ?>">
+            <!-- <div class="item h<?php echo $size; ?>"> -->
+            <div class="item h2">
 				<div class="layer" data-depth="0.2">
 					<a href='{{ URL::to("/photos/{$photo->id}") }}'>
 						<img src='{{ URL::to("/arquigrafia-images/{$photo->id}_view.jpg") }}' title="{{ $photo->name }}">                			  
