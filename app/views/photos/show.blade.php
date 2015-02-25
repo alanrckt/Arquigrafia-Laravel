@@ -335,13 +335,11 @@ $(document).ready(function(){
 				@endif
 			
 
-        <h4>Licença:</h4>
-                <p>
-					<a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank" >
-						<img src="/img/ccIcons/by88x31.png" id="ccicons" alt="license" />
-					</a>
-				</p>	
-
+        <h4>Licença:</h4>                
+				<a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank" >
+					<img src="/img/ccIcons/by88x31.png" id="ccicons" alt="license" />
+				</a>
+				</br>
 				
         <!-- GOOGLE MAPS -->
 				<h4>Localização:</h4>
