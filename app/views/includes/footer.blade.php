@@ -11,6 +11,7 @@
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+  <script src="{{ URL::to("/") }}/js/script.js"></script>
   
   <!--   RODAPE DO SITE   -->
   <div id="footer" class="container">
@@ -61,7 +62,7 @@
       <!--   FIM - CRÉDITOS - LOGOS   -->
       
       <div class="twelve columns alpha omega">
-        <p><small>O Arquigrafia tem envidado todos os esforços para que nenhum direito autoral seja violado. Todas as imagens passíveis de download no Arquigrafia possuem uma licença Creative Commons específica. Caso seja encontrado algum arquivo/imagem que, por qualquer motivo, o autor entenda que afete seus direitos autorais, clique aqui e informe à equipe do portal Arquigrafia para que a situação seja imediatamente regularizada.</small></p>
+        <p><small>O Arquigrafia tem envidado todos os esforços para que nenhum direito autoral seja violado. Todas as imagens passíveis de download no Arquigrafia possuem uma licença <a href="http://creativecommons.org/licenses/?lang=pt" target="_blank">Creative Commons</a> específica. Caso seja encontrado algum arquivo/imagem que, por qualquer motivo, o autor entenda que afete seus direitos autorais, <a href="mailto: arquigrafiabrasil@gmail.com">clique aqui</a> e informe à equipe do portal Arquigrafia para que a situação seja imediatamente regularizada.</small></p>
       </div>
     
       <div class="footer-last">

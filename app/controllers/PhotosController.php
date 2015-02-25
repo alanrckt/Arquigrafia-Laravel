@@ -69,23 +69,23 @@ class PhotosController extends \BaseController {
 
   public function store() {  
 	$input = Input::all();
-	// validate data
-    $rules = array(		
+	// validate data	
+    $rules = array(			
         'photo_name' => 'required',
         'photo_imageAuthor' => 'required',
         'tags' => 'required',
         'photo_country' => 'required',
         'photo_state' => 'required',
-		'photo_city'  => 'required'
+		'photo_city' => 'required'
     );
-    $validator = Validator::make($input, $rules);
-    
+	$validator = Validator::make($input, $rules);
+	    
   if ($validator->fails()) {
       $messages = $validator->messages();      
-	  return Redirect::to('/photos/form')->withErrors($messages);
+	  return Redirect::to('/photos/upload')->withErrors($messages);
     } else {
 
-    if (Input::file('photo')->isValid()) {
+    if (Input::hasFile('photo') and Input::file('photo')->isValid()) {
       //$input = Input::all(); 
       $file = Input::file('photo');
       $photo = new Photo();
@@ -157,7 +157,7 @@ class PhotosController extends \BaseController {
 
     } else {
 	  $messages = $validator->messages();
-      return Redirect::to('/photos/form')->withErrors($messages);
+      return Redirect::to('/photos/upload')->withErrors($messages);
       //print_r(Input::all());
     }
  }

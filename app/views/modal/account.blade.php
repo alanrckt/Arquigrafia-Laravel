@@ -46,8 +46,8 @@
           
           <div class="four columns alpha omega">
           
-            <p>Li e aceito os <a href="/18/termsOfService" target="_blank" style="text-decoration: underline;">termos de compromisso</a>: {{ Form::checkbox('terms', 'read') }}</p>
-            <p><a href="http://creativecommons.org/licenses/?lang=pt" id="creative_commons" style="text-decoration:underline;">Creative Commons</a></p>
+            <p>Li e aceito os <a href="{{ URL::to('/termos') }}" target="_blank" style="text-decoration: underline;">termos de compromisso</a>: {{ Form::checkbox('terms', 'read') }}</p>
+			<p><a href="http://creativecommons.org/licenses/?lang=pt" id="creative_commons" style="text-decoration:underline;">Creative Commons</a></p>
             <p>{{ $errors->first('terms') }}</p>
           
             <br>
