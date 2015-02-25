@@ -73,7 +73,7 @@ class PhotosController extends \BaseController {
     $rules = array(			
         'photo_name' => 'O campo Título é obrigatório',
         'photo_imageAuthor' => 'O campo Autor da imagem é obrigatório',
-        'tags' => 'O campo Tags é obrigatório',
+        //'tags' => 'O campo Tags é obrigatório',
         'photo_country' => 'O campo País é obrigatório',
         'photo_state' => 'O campo Estado é obrigatório',
 		'photo_city' => 'O campo Cidade é obrigatório'
