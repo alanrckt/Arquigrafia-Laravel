@@ -40,11 +40,9 @@
       <div class="three columns offset-by-one">
       
         <h1>Login com Facebook</h1>
-        <p>Temporariamente indisponível.</p>
-        <!--
+        <!-- <p>Temporariamente indisponível.</p> -->
         <p>Utilize o Facebook para criar uma conta ou entrar no Arquigrafia, caso você já tenha criado:</p>
         {{ link_to( $fburl , 'FACEBOOK - LOGIN', array('class'=>'btn right')) }}
-        -->
       </div>
       
     </div>
