@@ -168,7 +168,8 @@ class UsersController extends \BaseController {
       $fbuser = $response->getGraphObject();
       $fbid = $fbuser->getProperty('id');
       
-      $user = User::where('id_facebook', '=', $fbid)->first();
+      //usuarios antigos tem campo id_facebook null, mas existe login = $fbid;
+      $user = User::where('id_facebook', '=', $fbid)->orWhere('login', '=', $fbid)->first();
       
       if (!is_null($user)) {
         // loga usuário existente
