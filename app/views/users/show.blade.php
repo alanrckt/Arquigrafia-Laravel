@@ -21,8 +21,12 @@
 
 <!-- Google Maps API -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+<!-- ISOTOPE -->
+<script src="{{ URL::to("/") }}/js/jquery.isotope.min.js"></script>
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/friend.js"></script>
+<script type="text/javascript" src="{{ URL::to("/") }}/js/panel.js"></script>
+
 @stop
 
 @section('content')
@@ -59,22 +63,34 @@
       <div class="wrap">
         <div id="stripe">
           
-          <?php $i = 0; ?>
+          <? #php $i = 0; ?> 
+		  <?php $i = rand(0,10);?>
           
           @foreach($photos as $photo)
           
             <?php
               $i++;
               $size = 1; 
-              if ($i%5 == 3) $size = 2;
-              if ($i%10 == 8) $size = 3;
+              /*if ($i%5 == 3) $size = 2;
+              if ($i%10 == 8) $size = 3;*/
+			  if ($i%7 == 6) $size = 2;
+              if ($i%21 == 6) $size = 3;
             ?>
             
-            <div class="item h<?php echo $size; ?>"><div class="layer" data-depth="0.2">
-              <a href='{{ URL::to("/photos/{$photo->id}") }}'>
-              <img src='{{ URL::to("/arquigrafia-images/{$photo->id}_view.jpg") }}' title='{{ $photo->name }}'>
+            <div class="item h<?php echo $size; ?>">
+				<div class="layer" data-depth="0.2">
+					<a href='{{ URL::to("/photos/{$photo->id}") }}'>
+              <!--<img src='{{ URL::to("/arquigrafia-images/{$photo->id}_view.jpg") }}' title='{{ $photo->name }}'>
+			  -->
+			     <?php if ($size==1) $path = '/arquigrafia-images/'. $photo->id . '_home.jpg'; 
+                 else $path = '/arquigrafia-images/'. $photo->id . '_view.jpg';?>
+                 <img src="{{ asset( $path ) }}" title="{{ $photo->name }}">			  
               </a>
-            </div></div>
+			  
+			  <div class="item-title">{{ $photo->name }}</div>
+            	</div>
+			  
+            </div><!--</div>-->
             
           @endforeach
           
