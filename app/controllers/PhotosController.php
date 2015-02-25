@@ -71,12 +71,12 @@ class PhotosController extends \BaseController {
 	$input = Input::all();
 	// validate data	
     $rules = array(			
-        'photo_name' => 'O campo Título é obrigatorio',
-        'photo_imageAuthor' => 'O campo Autor da imagem é obrigatorio',
-        'tags' => 'O campo Tags é obrigatorio',
-        'photo_country' => 'O campo País é obrigatorio',
-        'photo_state' => 'O campo Estado é obrigatorio',
-		'photo_city' => 'O campo Cidade é obrigatorio'
+        'photo_name' => 'O campo Título é obrigatório',
+        'photo_imageAuthor' => 'O campo Autor da imagem é obrigatório',
+        'tags' => 'O campo Tags é obrigatório',
+        'photo_country' => 'O campo País é obrigatório',
+        'photo_state' => 'O campo Estado é obrigatório',
+		'photo_city' => 'O campo Cidade é obrigatório'
     );
 	$validator = Validator::make($input, $rules);
 	    
