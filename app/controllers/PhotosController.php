@@ -79,10 +79,7 @@ class PhotosController extends \BaseController {
 		'photo_city' => 'O campo Cidade é obrigatorio'
     );
 	$validator = Validator::make($input, $rules);
-		
-	$imageRules = array(Input::hasFile('photo') => 'É necessário selecionar uma imagem para realizar o upload.');
-	$validator = Validator::make($input, $imageRules);    
-    
+	    
   if ($validator->fails()) {
       $messages = $validator->messages();      
 	  return Redirect::to('/photos/upload')->withErrors($messages);
