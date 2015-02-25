@@ -69,16 +69,19 @@ class PhotosController extends \BaseController {
 
   public function store() {  
 	$input = Input::all();
-	// validate data
-    $rules = array(		
-        'photo_name' => 'required',
-        'photo_imageAuthor' => 'required',
-        'tags' => 'required',
-        'photo_country' => 'required',
-        'photo_state' => 'required',
-		'photo_city'  => 'required'
+	// validate data	
+    $rules = array(			
+        'photo_name'.required => 'O campo Título é obrigatorio',
+        'photo_imageAuthor'.required => 'O campo Autor da imagem é obrigatorio',
+        'tags'.required => 'O campo Tags é obrigatorio',
+        'photo_country'.required => 'O campo País é obrigatorio',
+        'photo_state'.required => 'O campo Estado é obrigatorio',
+		'photo_city'.required  => 'O campo Cidade é obrigatorio'
     );
-    $validator = Validator::make($input, $rules);
+	$validator = Validator::make($input, $rules);
+		
+	$imageRules = array(Input::hasFile('photo') => 'É necessário selecionar uma imagem para realizar o upload.');
+	$validator = Validator::make($input, $imageRules);    
     
   if ($validator->fails()) {
       $messages = $validator->messages();      
