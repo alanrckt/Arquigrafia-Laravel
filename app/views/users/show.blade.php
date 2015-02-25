@@ -21,6 +21,8 @@
 
 <!-- Google Maps API -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+<!-- ISOTOPE -->
+<script src="{{ URL::to("/") }}/js/jquery.isotope.min.js"></script>
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/friend.js"></script>
 @stop
