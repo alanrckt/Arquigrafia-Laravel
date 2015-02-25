@@ -335,12 +335,12 @@ $(document).ready(function(){
 				@endif
 			
 
-        <h3>Licença:</h3>
+        <h4>Licença:</h4>
                 <p>
 					<a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank" >
 						<img src="/img/ccIcons/by88x31.png" id="ccicons" alt="license" />
 					</a>
-		</p>	
+				</p>	
 
 				
         <!-- GOOGLE MAPS -->
