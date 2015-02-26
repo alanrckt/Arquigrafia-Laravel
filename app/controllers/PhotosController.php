@@ -6,7 +6,13 @@ use Monolog\Formatter\LineFormatter;
 
 class PhotosController extends \BaseController {
 
-	public function index()
+	public function __construct() 
+  {
+    $this->beforeFilter('auth', 
+      array( 'except' => ['index','show'] ));
+  }
+
+  public function index()
 	{
 		$photos = Photo::where('deleted', '=', '0');
 		return View::make('/photos/index',['photos' => $photos]);

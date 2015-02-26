@@ -8,11 +8,17 @@ use Facebook\FacebookRequestException;
 
 class UsersController extends \BaseController {
 
+  public function __construct()
+  {
+    $this->beforeFilter('auth',
+      array('only' => ['follow', 'unfollow']));
+  }
+
 	public function index()
 	{
-			$users = User::all();
+		$users = User::all();
 
-		  return View::make('/users/index',['users' => $users]);
+		return View::make('/users/index',['users' => $users]);
 	}
 
 	public function show($id)
@@ -81,6 +87,9 @@ class UsersController extends \BaseController {
   // formulário de login
   public function loginForm()
   {
+    if (Auth::check())
+      return Redirect::to('/');
+
 		session_start();
     $fb_config = Config::get('facebook');
     FacebookSession::setDefaultApplication($fb_config["id"], $fb_config["secret"]);
@@ -88,6 +97,10 @@ class UsersController extends \BaseController {
     $fburl = $helper->getLoginUrl(array(
         'scope' => 'email',
     ));
+
+    if (!Session::has('filter.login')) //nao foi acionado pelo filtro, retornar para pagina anterior
+      Session::put('url.previous', URL::previous());
+    
     return View::make('/modal/login')->with(['fburl' => $fburl]);
   }
   
@@ -113,7 +126,18 @@ class UsersController extends \BaseController {
 
     if (Auth::attempt(array('login' => $input["login"], 'password' => $input["password"])))
     {
-			Session::forget('login.message');
+      if ( Session::has('filter.login') ) //acionado pelo login
+      { 
+        Session::forget('filter.login');
+        return Redirect::intended('/');
+      }
+      if ( Session::has('url.previous') )
+      {
+        $url = Session::pull('url.previous');
+        if (!empty('url') )
+          return Redirect::to($url);
+        return Redirect::to('/');
+      }
       return Redirect::to('/');
     } else {
 			Session::put('login.message', 'Usuário e/ou senha inválidos, tente novamente.');
@@ -307,7 +331,7 @@ class UsersController extends \BaseController {
     if ($user_id != $logged_user->id && !$following->contains($user_id))
       $logged_user->following()->attach($user_id);
 
-    return Redirect::back(); // redirecionar para friends
+    return Redirect::to(URL::previous()); // redirecionar para friends
   }
 
   public function unfollow($user_id)
@@ -323,7 +347,7 @@ class UsersController extends \BaseController {
     if ($user_id != $logged_user->id && $following->contains($user_id))
       $logged_user->following()->detach($user_id);
 
-    return Redirect::back(); // redirecionar para friends
+    return Redirect::to(URL::previous()); // redirecionar para friends
   }
   
   // AVATAR
@@ -341,9 +365,5 @@ class UsersController extends \BaseController {
     return $path;
   }
   
-  public function comments()
-  {
-      return $this->hasMany('Comment');
-  }
 
 }

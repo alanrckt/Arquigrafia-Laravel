@@ -51,7 +51,8 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			Session::put('filter.login', 'true'); //login acionado pelo filtro
+			return Redirect::guest('users/login');
 		}
 	}
 });
