@@ -134,7 +134,7 @@ class UsersController extends \BaseController {
       if ( Session::has('url.previous') )
       {
         $url = Session::pull('url.previous');
-        if (!empty('url') )
+        if (!empty($url) )
           return Redirect::to($url);
         return Redirect::to('/');
       }
