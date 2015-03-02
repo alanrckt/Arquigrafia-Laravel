@@ -90,7 +90,7 @@
 				<div class="two columns alpha"><p>{{ Form::label('tags', 'Tags*:') }}</p></div>					
 					<div class="two columns omega">							
 					<p><small>* Separe as tags com um ENTER.</small>
-					{{ Form::textarea('tags', Input::old('tags')) }} <br>						 
+					{{ Form::textarea('tags') }} <br>						 
 					{{ $errors->first('tags') }}</p>
 				</div>
               	<script type="text/javascript">
