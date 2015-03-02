@@ -89,7 +89,8 @@
               	<!--<textarea class="input_content" id="tags" name="tags"></textarea>-->
 				<div class="two columns alpha"><p>{{ Form::label('tags', 'Tags*:') }}</p></div>					
 					<div class="two columns omega">
-					<p>{{ Form::textarea('tags', array('placeholder'=>'* Separe as tags com um ENTER.')) }} <br>						 
+					<p class="reminder"><small>* Separe as tags com um ENTER.</small></p>
+					<p>{{ Form::textarea('tags') }} <br>						 
 					{{ $errors->first('tags') }}</p>
 				</div>
               	<script type="text/javascript">
