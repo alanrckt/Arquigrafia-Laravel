@@ -79,7 +79,7 @@ class PhotosController extends \BaseController {
     $rules = array(			
         'photo_name' => 'required',
         'photo_imageAuthor' => 'required',
-        'tags' => 'required',
+        'tags' => 'required|alpha_dash',
         'photo_country' => 'required',
         'photo_state' => 'required',
 		'photo_city' => 'required'
