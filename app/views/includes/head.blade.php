@@ -1,8 +1,3 @@
-<!doctype html>
-<html>
-<head>
-
-<meta charset="utf-8">
 <!--   FAVICON   -->
 <link rel="icon" href="{{ URL::to("/") }}/img/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="{{ URL::to("/") }}/img/favicon.ico" type="image/x-icon" />
