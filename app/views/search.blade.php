@@ -65,17 +65,21 @@
       <div class="wrap">
         <div id="panel">
             
-          <?php $i = rand(0,5);?>
+          <?#php $i = rand(0,5);?>
+		  <?php $i = rand(0,10);?>
           
           @foreach($photos as $photo)
           
             <?php
               $i++;
               $size = 1; 
-              if ($i%5 == 3) $size = 2;
-              if ($i%11 == 8) $size = 3;
+			  
+              #if ($i%5 == 3) $size = 2;
+              #if ($i%11 == 8) $size = 3;			  
+			  if ($i%7 == 6) $size = 2;
+              if ($i%21 == 6) $size = 3;
               
-              if ($i > 100) break;
+              #if ($i > 100) break;
             ?>
             
             <div class="item h<?php echo $size; ?>">
@@ -92,9 +96,12 @@
           @endforeach
           
         </div>
+		<div class="panel-back"></div>
+        <div class="panel-next"></div>
       </div>
       <!--   FIM - PAINEL DE IMAGENS  -->
-      
+	  
+	        
     </div>
     <!--   FIM - MEIO DO SITE   -->
     
