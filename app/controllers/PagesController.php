@@ -27,7 +27,7 @@ class PagesController extends BaseController {
 		// se houver uma tag exatamente como a busca, pegar todas as fotos dessa tag e juntar no painel
 		$tag = Tag::where('name', '=', $needle)->get();
 		if ($tag) {
-			// $byTag = $tag->photos;
+			$byTag = $tag->photos;
 		}
 
       $photos = Photo::where('deleted', '=', '0')
@@ -40,7 +40,7 @@ class PagesController extends BaseController {
 			    	->orWhere('city', 'LIKE', '%' . $needle . '%');
       			})
       			->get();
-		// $photos = $photos->merge($byTag);
+		$photos = $photos->merge($byTag);
     
     return View::make('/search',['tags' => $tags, 'photos' => $photos, 'query'=>$needle]);
 	}
