@@ -74,6 +74,9 @@ class PhotosController extends \BaseController {
 */
 
   public function store() {  
+	// put input into flash session for form repopulation
+	Input::flash();
+	
 	$input = Input::all();
 	// validate data	
     $rules = array(			

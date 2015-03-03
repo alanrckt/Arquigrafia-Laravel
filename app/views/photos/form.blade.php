@@ -70,7 +70,7 @@
 			  -->
 			  <div class="two columns alpha"><p>{{ Form::label('photo_name', 'Título*:') }}</p></div>
 				<div class="two columns omega">
-				<p>{{ Form::text('photo_name') }} <br>
+				<p>{{ Form::text('photo_name', Input::old('photo_name')) }} <br>
 				{{ $errors->first('photo_name') }}</p>
 			  </div>			  
             </tr>
@@ -79,7 +79,7 @@
               <td><input name="photo_imageAuthor" type="text" class="text" value="{{ ucfirst(Auth::user()->name) }}"></td>-->
 			  <div class="two columns alpha"><p>{{ Form::label('photo_imageAuthor', 'Autor da imagem*:') }}</p></div>
 				<div class="two columns omega">
-				<p>{{ Form::text('photo_imageAuthor') }} <br>
+				<p>{{ Form::text('photo_imageAuthor', Input::old('photo_imageAuthor')) }} <br>
 				{{ $errors->first('photo_imageAuthor') }}</p>
 			  </div>
             </tr>
@@ -87,9 +87,10 @@
               <!--<td><label>Tags*:</label></td>-->
               <td>
               	<!--<textarea class="input_content" id="tags" name="tags"></textarea>-->
-				<div class="two columns alpha"><p>{{ Form::label('tags', 'Tags*:') }}</p></div>
-					<div class="two columns omega">
-					<p>{{ Form::textarea('tags') }} <br>
+				<div class="two columns alpha"><p>{{ Form::label('tags', 'Tags*:') }}</p></div>					
+					<div class="two columns omega">							
+					<p><small>* Separe as tags com um ENTER.</small>
+					{{ Form::textarea('tags') }} <br>						 
 					{{ $errors->first('tags') }}</p>
 				</div>
               	<script type="text/javascript">
@@ -108,7 +109,7 @@
 									});
                   */
 								</script>
-                <p class="reminder"><small>* Separe as tags com um ENTER.</small></p>
+               <!-- <p class="reminder"><small>* Separe as tags com um ENTER.</small></p>-->
               </td>
             </tr>
           </table>
@@ -145,7 +146,7 @@
                 <!--<td>{{ Form::text('photo_city') }}</td>-->
 				<div class="two columns alpha"><p>{{ Form::label('photo_city', 'Cidade*:') }}</p></div>
 				<div class="two columns omega">
-				<p>{{ Form::text('photo_city') }} <br>
+				<p>{{ Form::text('photo_city', Input::old('photo_city')) }} <br>
 				{{ $errors->first('photo_city') }}</p>
 			  </div>
 				
@@ -155,7 +156,7 @@
                 <td><input name="photo_district" type="text" class="text" placeholder="Morumbi"></td>-->
 				<div class="two columns alpha"><p>{{ Form::label('photo_district', 'Bairro:') }}</p></div>
 				<div class="two columns omega">
-				<p>{{ Form::text('photo_district') }} <br>
+				<p>{{ Form::text('photo_district', Input::old('photo_district')) }} <br>
 				</p>
 			  </div>
 				
@@ -167,7 +168,7 @@
 				-->
 				<div class="two columns alpha"><p>{{ Form::label('photo_street', 'Logradouro:') }}</p></div>
 				<div class="two columns omega">
-				<p>{{ Form::text('photo_street') }} <br>
+				<p>{{ Form::text('photo_street', Input::old('photo_street')) }} <br>
 				</p>
 			  </div>
               </tr>
@@ -188,7 +189,7 @@
 				-->
 				<div class="two columns alpha"><p>{{ Form::label('photo_imageDate', 'Data da imagem:') }}</p></div>
 				<div class="two columns omega">
-				<p>{{ Form::text('photo_imageDate') }} <br>
+				<p>{{ Form::text('photo_imageDate', Input::old('photo_imageDate')) }} <br>
 				</p>
 			  </div>
               </tr>
@@ -197,7 +198,7 @@
                 <td><input name="photo_workAuthor" type="text" class="text" id="workAuthor"></td>-->
 				<div class="two columns alpha"><p>{{ Form::label('photo_workAuthor', 'Autor da obra:') }}</p></div>
 				<div class="two columns omega">
-				<p>{{ Form::text('photo_workAuthor') }} <br>
+				<p>{{ Form::text('photo_workAuthor', Input::old('photo_workAuthor')) }} <br>
 				</p>
 			  </div>
               </tr>	
@@ -207,7 +208,7 @@
 				-->
 				<div class="two columns alpha"><p>{{ Form::label('photo_workDate', 'Data da obra:') }}</p></div>
 				<div class="two columns omega">
-				<p>{{ Form::text('photo_workDate') }} <br>
+				<p>{{ Form::text('photo_workDate', Input::old('photo_workDate')) }} <br>
 				</p>
 			  </div>
               </tr>
@@ -218,7 +219,7 @@
 				-->
 				<div class="two columns alpha"><p>{{ Form::label('photo_description', 'Descrição:') }}</p></div>
 				<div class="two columns omega">
-				<p>{{ Form::textarea('photo_description') }} <br>
+				<p>{{ Form::textarea('photo_description', Input::old('photo_description')) }} <br>
 				</p>
 			  </div>
               </tr>
