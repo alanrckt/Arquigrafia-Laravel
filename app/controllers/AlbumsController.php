@@ -24,10 +24,11 @@ class AlbumsController extends \BaseController {
 			$edit = false;
 			if ( Auth::check() && $user->id == Auth::id() )
 				$edit = true;
-			// var_dump($photos);
-			// var_dump($user);
-			 dd($edit);
+			
+			return View::make('albums.show');
+			
 		}
+		return Redirect::to('/');
 	}
 	
 	public function store() {
@@ -55,19 +56,18 @@ class AlbumsController extends \BaseController {
 
 	}
 	
-	public function destroy($id) {
+	public function delete($id) {
 		
 		$album = Album::whereid($id)->first();
 		$logged_user = Auth::user();
-		if ($logged_user->id == $album->user_id)
+		if ( isset($album) && $logged_user->id == $album->user_id)
 		{
 			$title = $album->title;
 			$album->photos()->detach();
 			$album->delete();
-			Session::put('album.delete', 'Álbum ' . $title . 'deletado com sucesso.');
-			return Redirect::to('albums.index');
+			Session::put('album.delete', 'Álbum ' . $title . ' deletado com sucesso.');
 		}
-		return Redirect::to('/');
+		return Redirect::to('albums');
 	}
 	
 }
