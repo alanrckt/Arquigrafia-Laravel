@@ -8,11 +8,14 @@
     
 </head>
 <body>
-    <h1>All Users</h1>
     
-    @foreach($users as $users)
-    	<li> {{ link_to ("/albums/{$users->id}",$users->name) }} </li>
-    @endforeach
+    <h1>Meus álbuns</h1>
+    
+    @if ( isset($albums) )
+        @foreach( $albums as $album)
+            <p> {{ $album->title }} </p>
+        @endforeach
+    @endif
 
 </body>
 </html>

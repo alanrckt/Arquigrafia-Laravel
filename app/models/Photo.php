@@ -34,6 +34,11 @@ class Photo extends Eloquent {
 		return $this->hasMany('Comment');
 	}
 
+	public function albums()
+	{
+		return $this->belongsToMany('Album', 'album_elements');
+	}
+
 	public static function formatDate($date)
 	{
 		return Date::formatDate($date);
