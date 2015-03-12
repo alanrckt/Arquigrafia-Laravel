@@ -83,7 +83,10 @@ class AlbumsController extends \BaseController {
 		$all_photos = $user->photos;
 		$other_photos = $all_photos->except($album_photos->modelKeys());
 		return View::make('albums.edit')
-			->with( ['album' => $album, 'album_photos' => $album_photos] );
+			->with(
+				['album' => $album, 
+				'album_photos' => $album_photos, 
+				'other_photos' => $other_photos] );
 	}
 
 	public function removePhotos($id) {
@@ -102,9 +105,22 @@ class AlbumsController extends \BaseController {
 
 	public function update($id) {
 		$album = Album::find($id);
-		$input = Input::all();
-		$album->title = $input['title'];
-		$album->description = $input['description'];
+		$input = Input::only('title', 'description');
+		$rules = array('title' => 'required');
+		$validator = Validator::make($input, $rules);
+	
+		if ($validator->fails()) {
+			$messages = $validator->messages();
+			return Redirect::to('/albums/' . $id . '/edit')->withErrors($messages);
+		} else {
+			$album->title = $input['title'];
+			$album->description = $input['description'];
+			$album->save();
+			$photos = Input::except('title', 'description', '_token', '_method');
+			if ( !empty($photos) )
+				$album->photos()->sync($photos, false);
+			return Redirect::to('/albums/' . $album->id);
+		}
 	}
 	
 }
