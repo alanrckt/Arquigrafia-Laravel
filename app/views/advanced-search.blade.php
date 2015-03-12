@@ -58,8 +58,6 @@
             <p>Foram encontradas {{ count($photos) }} imagens.</p>
           <?php } ?>
           
-          <p>Faça uma <a href="{{ URL::to('/search/more') }}">busca avançada</a>.</p>
-          
         </div>
       </div>
       

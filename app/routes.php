@@ -29,7 +29,7 @@ Route::get('/termos', function() { return View::make('termos'); });
 /* SEARCH */
 Route::get('/search', 'PagesController@search');
 Route::post('/search', 'PagesController@search');
-Route::post('/search/more', 'PagesController@advancedSearch');
+Route::get('/search/more', 'PagesController@advancedSearch');
 
 Route::resource('/teste','TesteController');
 
