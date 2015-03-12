@@ -89,9 +89,11 @@
           </div>
           
           <div class="four columns omega row">
-            
-            <p>{{ Form::label('state', 'Estado:') }} {{ Form::text('city') }}</p>
+            <h3>Arquitetura</h3>
+            <p>{{ Form::label('workAuthor', 'Arquiteto:') }} {{ Form::text('workAuthor') }}</p>
           </div>
+          
+          <p>{{ Form::submit('BUSCAR', ['class'=>'btn']) }}</p>
         
         </div>
         {{ Form::close() }}
