@@ -52,6 +52,38 @@ class PagesController extends BaseController {
   
   public function advancedSearch()
 	{
+    
+    $fields = array(
+        'vehicle_manufacturer','vehicle_model',
+        'year_reg_from','year_reg_to',
+        'price_from','price_to'
+    );
+
+    foreach($fields as $field) $$field = Input::get($field);
+    
+    $query = Seller::where('vehicle_manufacturer', 'LIKE', '%'. $vehicle_manufacturer .'%')
+            ->orWhere('vehicle_model', 'LIKE', '%'. $this->getModel($vehicle_model) .'%');      
+            
+    if(!empty($year_reg_from) && !empty($year_reg_to)) {
+        $query->whereBetween('year_reg', array($year_reg_from, $year_reg_to));
+    }
+    if(!empty($price_from) && !empty($price_to)) {
+        $query->whereBetween('price', array($price_from, $price_to));
+    }
+    if(empty($price_from) && empty($price_to) && empty($year_reg_from) && empty($year_reg_to)) {
+        //Nothing yet
+    }
+     $result = $query->get();
+    if($result->count()) {
+        $data = array(
+            'results'       => $result
+        );
+        return View::make('auto.vehicle.search')->with($data);
+    }
+    return Redirect::route('home')->with('global', 'No results.');
+    
+    // antigo
+    
     $needle = Input::get("q");
     
     if ($needle != "") {
@@ -74,10 +106,10 @@ class PagesController extends BaseController {
         $photos = $photos->merge($byTag);
       }
       // retorna resultado da busca
-      return View::make('/search',['tags' => $tags, 'photos' => $photos, 'query'=>$needle]);
+      return View::make('/advanced-search',['tags' => $tags, 'photos' => $photos, 'query'=>$needle]);
     } else {
       // busca vazia
-      return View::make('/search',['tags' => [], 'photos' => [], 'query' => ""]);
+      return View::make('/advanced-search',['tags' => [], 'photos' => [], 'query' => ""]);
     }
     
 	}

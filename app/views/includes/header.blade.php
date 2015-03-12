@@ -1,5 +1,5 @@
 	<!--   CABEÇALHO   -->
-	<div id="header" class="container">
+	<div class="header container">
     
     <div class="twelve columns">
 	
@@ -40,13 +40,13 @@
         
         <?php if (Auth::check()) { ?>
         
-          <a href="{{ URL::to("/users") }}/{{ Auth::user()->id; }}" id="user_name">{{ Auth::user()->name; }}</a>
+          <a id="user_name" href="{{ URL::to("/users") }}/{{ Auth::user()->id; }}">{{ Auth::user()->name; }}</a>
           
-          <a href="{{ URL::to("/users") }}/{{ Auth::user()->id; }}" id="user_name">
+          <a id="user_photo" href="{{ URL::to("/users") }}/{{ Auth::user()->id; }}">
           <?php if (Auth::user()->photo != "") { ?>
-            <img id="profile_photo" src="{{ asset(Auth::user()->photo); }}" class="user_photo_thumbnail"/>
+            <img  src="{{ asset(Auth::user()->photo); }}" class="user_photo_thumbnail"/>
           <?php } else { ?>
-            <img id="profile_photo" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
+            <img src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
           <?php } ?>
           </a>
           
