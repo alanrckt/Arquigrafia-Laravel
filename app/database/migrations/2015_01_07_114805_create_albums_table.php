@@ -18,8 +18,9 @@ class CreateAlbumsTable extends Migration {
 			$table->dateTime('creationDate')->nullable();
 			$table->string('description')->nullable();
 			$table->string('title')->nullable();
-			$table->string('urlCover')->nullable();
+			$table->bigInteger('cover_id')->nullable()->unsigned();
 			$table->bigInteger('user_id')->nullable()->unsigned();
+			$table->foreign('cover_id')->references('id')->on('photos');
 			$table->foreign('user_id')->references('id')->on('users');
 		});
 	}

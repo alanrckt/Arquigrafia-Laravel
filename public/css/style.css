@@ -118,9 +118,9 @@ input:-moz-placeholder { color:#ddd; }
 
 /* --- HEADER --- */
 
-#header { height: auto; margin: 25px auto 35px; }
-#header #logo { float: left; display: block; width: 250px; height: 50px; margin: 7px 1px 0 0px; background: url(../img/logo.png) no-repeat; }
-#header p#beta { float: left; margin: 21px 80px 0 0; color: #222; font-size: 12px; }
+.header { height: auto; margin: 25px auto 35px; }
+.header #logo { float: left; display: block; width: 250px; height: 50px; margin: 7px 1px 0 0px; background: url(../img/logo.png) no-repeat; }
+.header p#beta { float: left; margin: 21px 80px 0 0; color: #222; font-size: 12px; }
 /* itens do menu */
 ul#top_menu_items { margin: 8px 0 -3px -2px; color: #7B7D7F; font-size: 11px; float: left; clear: right; width: 400px; }
 ul#top_menu_items li { display: inline; margin-right: 10px; }
@@ -144,8 +144,9 @@ ul#logged_menu li #comunities { background: url(../img/sprite.png) -262px -2px; 
 ul#logged_menu li #comunities:hover { background-position: -262px -34px; }
 ul#logged_menu li #upload { background: url(../img/sprite.png) -402px 0px; }
 #user_name { margin-left: 8px; font-size: 12px; line-height: 24px; margin-right: -100px; }
+.header #user_photo {display: block; width: 48px; height: 48px; overflow: hidden; margin: 4px 12px 0 5px; float: left; }
 #logout { position: absolute; bottom: 0; right: 0; }
-.user_photo_thumbnail { margin: 4px 12px 0 5px; float: left; width: 48px; height: auto; }
+.user_photo_thumbnail { width: 48px; height: auto; }
 /* busca */
 div#first_menu { width: 300px; float: left; }
 #search_buttons_area { float: left; height: 22px; width: 280px; margin-top: 32px/*5px*/;  }
