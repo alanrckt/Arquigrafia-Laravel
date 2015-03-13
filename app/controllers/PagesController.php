@@ -81,12 +81,10 @@ class PagesController extends BaseController {
     }
     if($photos->count()) {
       // retorna resultado da busca
-      // return Redirect::to('/search/more')->withInput(); 
-      return View::make('/advanced-search',['tags' => [], 'photos' => $photos, 'query' => ""]);
+      return View::make('/advanced-search',['tags' => [], 'photos' => $photos]);
     } else {
       // busca sem resultados
-      return Redirect::to('/search/more')->withInput(); 
-      // View::make('/advanced-search',['tags' => [], 'photos' => [], 'query' => ""]);
+      return View::make('/advanced-search',['tags' => [], 'photos' => []]);
     }
     
 	}
