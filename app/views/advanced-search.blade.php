@@ -37,10 +37,12 @@
       <div class="container">
         <div id="search_result" class="twelve columns row">
           
-          @if ($query != "")
+          @if (true)
           
-            <h1>Resultado de: {{ $query }}</h1>
-            <p>Tags contendo o termo: 
+            <h1>Resultado da busca avançada</h1>
+            
+            <!-- TAGS
+            <p>Tags: 
             
             @foreach($tags as $k => $tag)
               
@@ -53,9 +55,10 @@
             @endforeach
             
             </p>
+            -->
             
             <?php if ( count($photos) < 1 ) { ?>
-              <p>Não encontramos nenhuma imagem com o termo {{ $query }}.</p>
+              <p>Não encontramos nenhuma imagem.</p>
             <?php } else { ?>
               <p>Foram encontradas {{ count($photos) }} imagens.</p>
             <?php } ?>
@@ -77,23 +80,25 @@
         
           <div class="four columns alpha row">
             <h3>Descrição</h3>
-            <p>{{ Form::label('name', 'Título da imagem:') }} {{ Form::text('name') }}</p>
-            <p>{{ Form::label('description', 'Descrição da imagem:') }} {{ Form::text('description') }}</p>
+            <p>{{ Form::label('name', 'Título da imagem:') }} {{ Form::text('name', Input::get("name") ) }}</p>
+            <p>{{ Form::label('description', 'Descrição da imagem:') }} {{ Form::text('description', Input::get("description") ) }}</p>
           </div>
           
           <div class="four columns row">
             <h3>Localização</h3>
-            <p>{{ Form::label('city', 'Cidade:') }} {{ Form::text('city') }}</p>
-            <p>{{ Form::label('state', 'Estado:') }} {{ Form::text('city') }}</p>
-            <p>{{ Form::label('country', 'País:') }} {{ Form::text('country') }}</p>
+            <p>{{ Form::label('city', 'Cidade:') }} {{ Form::text('city', Input::get("city") ) }}</p>
+            <p>{{ Form::label('state', 'Estado:') }} {{ Form::text('state', Input::get("state") ) }}</p>
+            <p>{{ Form::label('country', 'País:') }} {{ Form::text('country', Input::get("country") ) }}</p>
           </div>
           
           <div class="four columns omega row">
             <h3>Arquitetura</h3>
-            <p>{{ Form::label('workAuthor', 'Arquiteto:') }} {{ Form::text('workAuthor') }}</p>
+            <p>{{ Form::label('workAuthor', 'Arquiteto:') }} {{ Form::text('workAuthor', Input::get("country") ) }}</p>
           </div>
           
-          <p>{{ Form::submit('BUSCAR', ['class'=>'btn']) }}</p>
+          <div class="six columns alpha row">
+            <p>{{ Form::submit('BUSCAR', ['class'=>'btn']) }}</p>
+          </div>
         
         </div>
         {{ Form::close() }}
