@@ -56,7 +56,8 @@
         </ul>
         <ul class="last">
           <li><a href="http://www.bench.com.br/" title="Benchmark" id="benchmark" target="_blank"></a></li>
-          <li><a href="http://www.rckt.com.br/" title="RCKT" id="rckt" target="_blank"></a></li>	
+          <li><a href="http://www.rckt.com.br/" title="RCKT" id="rckt" target="_blank"></a></li>
+          <li><a href="http://doctela.com.br/" title="Doctela" id="doctela" target="_blank"></a></li>	
         </ul>
       </div>
       <!--   FIM - CRÉDITOS - LOGOS   -->
