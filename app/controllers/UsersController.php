@@ -42,10 +42,12 @@ class UsersController extends \BaseController {
   {
     return View::make('/modal/account');
   }
-  
+
   // create user 
   public function store()
-  {
+  {    
+    // put input into flash session for form repopulation
+    Input::flash();
     $input = Input::all();
     
     // validate data
@@ -55,9 +57,8 @@ class UsersController extends \BaseController {
         'password' => 'required|min:6|confirmed',
         'email' => 'required|email|unique:users',
         'terms' => 'required'
-    );
-    $validator = Validator::make($input, $rules);
-    
+    );     
+    $validator = Validator::make($input, $rules);   
     if ($validator->fails()) {
       $messages = $validator->messages();
       return Redirect::to('/users/account')->withErrors($messages);
@@ -81,7 +82,6 @@ class UsersController extends \BaseController {
 		  return View::make('/users/index',['users' => $users]);
       */
     }
-    
   }
   
   // formulário de login
@@ -364,6 +364,66 @@ class UsersController extends \BaseController {
     }
     return $path;
   }
-  
+
+/**
+ * Show the form for editing the specified resource.
+ *
+ * @return Response
+ */
+  public function edit($id) {     
+    $user = User::find($id);   
+    return View::make('users.edit')
+      ->with(
+        ['user' => $user] );
+  }
+
+  public function update($id) {              
+    $user = User::find($id);
+    
+    Input::flash();    
+    $input = Input::only('name', 'login', 'email', 'scholarity', 'lastName', 'site', 'birthday', 'country', 'state', 'city', 'photo');    
+    
+    $rules = array(
+        'name' => 'required',
+        'login' => 'required',
+        'email' => 'required|email'                  
+    );     
+
+    if ($input['email'] !== $user->email)        
+      $rules = array('email' => 'required|email|unique:users');        
+
+    if ($input['login'] !== $user->login)
+      $rules = array('login' => 'required|unique:users');
+
+    $validator = Validator::make($input, $rules);   
+    if ($validator->fails()) {
+      $messages = $validator->messages();      
+      return Redirect::to('/users/' . $id . '/edit')->withErrors($messages);
+    } else {  
+      $user->name = $input['name'];
+      $user->login = $input['login'];
+      $user->email = $input['email'];      
+      $user->scholarity = $input['scholarity'];
+      $user->lastName = $input['lastName'];
+      $user->site = $input['site'];
+      $user->birthday = $input['birthday'];
+      $user->country = $input['country'];
+      $user->state = $input['state'];
+      $user->city = $input['city'];      
+      $user->save();   
+
+      if (Input::hasFile('photo') and Input::file('photo')->isValid())  {    
+        $file = Input::file('photo');
+        $ext = $file->getClientOriginalExtension();
+        $user->photo = "/arquigrafia-avatars/".$user->id.".".$ext;
+        $user->save();
+        $image = Image::make(Input::file('photo'))->encode('jpg', 80);         
+        $image->save(public_path().'/arquigrafia-avatars/'.$user->id.'.jpg');
+        $file->move(public_path().'/arquigrafia-avatars', $user->id."_original.".strtolower($ext));         
+      } 
+      
+      return Redirect::to('/users/' . $user->id);
+    }    
+  }
 
 }
