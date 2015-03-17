@@ -49,8 +49,8 @@
 			  @if ( !empty($user->city) )
 				<p>Cidade: {{ $user->city }}
 			  @endif
-			  @if ( !empty($user->institution) )
-				<br>Instituição: {{ $user->institution }}</p>
+			  @if ( !empty($user->site) )
+				<br>Site pessoal: {{ $user->site }}</p>
 			  @endif
 	        </div>
 	      	<div class="count">Fotos compartilhadas ({{ count($photos) }})</div>
@@ -101,30 +101,44 @@
     <div class="container">
     	<div class="four columns">
       	<hgroup class="profile_block_title">
-        	<h3><i class="profile"></i>Perfil</h3>
+        	<h3><i class="profile"></i>Perfil</h3> &nbsp; &nbsp;
+        	<a href= '{{"/users/" . $user->id . "/edit" }}' ><img src="{{ asset("img/edit.jpg") }}" width="20" height="20"/>
+        	</a>
         </hgroup>
       	<ul>
 			@if ( !empty($user->name) )
-				<li><strong>Nome:</strong> {{ $user->name}}</li>
+				<li><strong>Nome completo: </strong> {{ $user->name}}</li>
 			@endif
-			@if ( !empty($user->secondName) )
+			<!--@if ( !empty($user->secondName) )
 				<li><strong>Sobrenome:</strong>{{ $user->secondName }}</li>
-			@endif
+			@endif-->
         </ul>
         <br>
         <ul>
+        	@if ( !empty($user->lastName) )
+				<li><strong>Apelido: </strong>{{ $user->lastName }}</li>
+			@endif
+			@if ( !empty($user->birthday) )
+				<li><strong>Data de nascimento: </strong>{{ $user->birthday }}</li>
+			@endif
+			@if ( !empty($user->email) )
+				<li><strong>E-mail: </strong>{{ $user->email }}</li>
+			@endif
+			@if ( !empty($user->country) )
+				<li><strong>País: </strong>{{ $user->country }}</li>
+			@endif
+			@if ( !empty($user->state) )
+				<li><strong>Estado: </strong>{{ $user->state }}</li>
+			@endif
+			@if ( !empty($user->city) )
+				<li><strong>Cidade: </strong>{{ $user->city }}</li>
+			@endif
 			@if ( !empty($user->scholarity) )
-				<li><strong>Escolaridade:</strong> {{ $user->scholarity }}</li>
+				<li><strong>Escolaridade: </strong> {{ $user->scholarity }}</li>
 			@endif
-			@if ( !empty($user->institution) )
-				<li><strong>Instituição:</strong> {{ $user->institution }}</li>
-			@endif
-			@if ( !empty($user->course) )
-				<li><strong>Curso:</strong> {{ $user->course }}</li>
-			@endif
-			@if ( !empty($user->occupation) )
-				<li><strong>Ocupação:</strong> {{ $user->occupation }}</li>
-			@endif
+			@if ( !empty($user->site) )
+				<li><strong>Site pessoal: </strong> {{ $user->site }}</li>
+			@endif			
         </ul>
       </div>
       
