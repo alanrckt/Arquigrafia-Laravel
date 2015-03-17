@@ -188,6 +188,7 @@
       </div>
       
 	  <br>
+	  <br>
 	  
 	  <?php if ($user->oldPassword != null) { ?>
             <div class="twelve columns albums">
