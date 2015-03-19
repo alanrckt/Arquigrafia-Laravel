@@ -42,6 +42,7 @@ Route::get('users/login/fb', 'UsersController@facebook');
 Route::get('users/login/fb/callback', 'UsersController@callback');
 Route::resource('/users','UsersController');
 
+
 /* FOLLOW */
 Route::get('/friends/follow/{user_id}', 'UsersController@follow');
 Route::get('/friends/unfollow/{user_id}', 'UsersController@unfollow');
