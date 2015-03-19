@@ -8,14 +8,13 @@
 
 <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
 
-<!--   JQUERY - Google Ajax API CDN (Also supports SSL via HTTPS)   -->
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script>
 
-<!--   JQUERY - Validate   -->
+<!-- JQUERY - Validate -->
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.validate.js"></script>
 
-<!--   JS - Masked input   -->
+<!-- JS - Masked input -->
 <script type="text/javascript" src="{{ URL::to("/") }}/js/masked-input.js"></script>
 
 <!-- JS - Font size increment and decrement -->
@@ -25,6 +24,12 @@
 
 <!-- Google Maps API -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+<!-- ISOTOPE -->
+<script src="{{ URL::to("/") }}/js/jquery.isotope.min.js"></script>
+
+<script type="text/javascript" src="{{ URL::to("/") }}/js/friend.js"></script>
+<script type="text/javascript" src="{{ URL::to("/") }}/js/panel.js"></script>
+
 
 <script type="text/javascript">
 	form_window_loaded = false;
@@ -367,10 +372,6 @@
 
 </head>
 
-<body>
-	<!--   #CONTAINER   -->
-	<div id="container">
-
 @stop
 
 @section('content')
@@ -390,9 +391,7 @@
     <div id="user_gallery">
       
       <div class="wrap">
-        <div id="stripe">
-          @include("includes.photos");
-        </div>
+        @include("includes.panel-stripe")
       </div>
     
     </div>
@@ -404,40 +403,23 @@
       	<hgroup class="profile_block_title">
       		<h3><i class="photos"></i> Outros álbuns</h3>
         </hgroup>
-        
         <div class="profile_box">
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-1.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="name">Favoritos (12)</a>
-              <br />
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="name">CITINET/ARQUIGRAFIA (9)</a>
-              <br />
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-3.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="name">HISTÓRIA (12)</a>
-              <br />
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-4.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="name">Sapucaí (103)</a>
-              <br />
-          </div>
-          <div class="gallery_box">
-              <a href="album.php" class="gallery_photo">
-                  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo" /></a>
-              <a href="album.php" class="name"><i class="stack"></i> (5)</a>
-              <br />
-          </div>
-          
-        </div>
+			@foreach($other_albums as $album)
+				<div class="gallery_box">
+					<a href="{{ URL::to("/albums/" . $album->id) }}" class="gallery_photo">
+						@if (isset($album->cover_id))
+							<img src="{{ URL::to("/arquigrafia-images/" . $album->cover_id . "_home.jpg") }}" class="gallery_photo" />
+						@else
+							<img src="{{ URL::to("/img/album_icon.png") }}" class="gallery_photo" />
+						@endif
+					</a>
+					<a href="{{ URL::to("/albums/" . $album->id) }}" class="name">
+						{{ $album->title . ' ' . '(' . $album->photos->count() . ')' }}
+					</a>
+					<br />
+				</div>
+			@endforeach
+		</div>
       </div>
     
     </div>

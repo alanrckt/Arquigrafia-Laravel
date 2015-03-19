@@ -13,8 +13,15 @@ class AlbumsController extends \BaseController {
 	}
 
 	public function create() {
-		$photos = Auth::user()->photos;
-		return View::make('albums.form')->with('photos', $photos);
+		$url = URL::to('/albums/photos/add');
+		$photos = Photo::paginateUserPhotos(Auth::user(), 24);
+		$maxPage = $photos->getLastPage();
+		return View::make('albums.form')
+			->with(['photos' => $photos, 
+				'url' => $url, 
+				'maxPage' => $maxPage, 
+				'page' => 1,
+				'type' => 'add']);
 	}
 
 	public function show($id) {
@@ -23,11 +30,14 @@ class AlbumsController extends \BaseController {
 			$photos = $album->photos;
 			$user = $album->user;
 			$edit = false;
+			$other_albums = $user->albums->except($album->id);
 			if ( Auth::check() && $user->id == Auth::id() )
 				$edit = true;
 			
 			return View::make('albums.show')
-				->with(['photos' => $photos, 'album' => $album, 'user' => $user]);
+				->with(['photos' => $photos, 'album' => $album, 
+					'user' => $user,
+					'other_albums' => $other_albums]);
 			
 		}
 		return Redirect::to('/');
@@ -35,8 +45,8 @@ class AlbumsController extends \BaseController {
 	
 	public function store() {
 		$input = Input::only('title', 'description');
-		$photos = Input::except('title', 'description', '_token');
-
+		$photos = Input::get('photos_add');
+		$cover_id = (empty($photos) ? null : array_values($photos)[0]);
 		// validate data
 		$rules = array(
 			'title' => 'required',
@@ -51,9 +61,12 @@ class AlbumsController extends \BaseController {
 					'title' => $input["title"],
 					'description' => $input["description"],
 					'creationDate' => date('Y-m-d H:i:s'),
-					'user_id' => Auth::id()
+					'user_id' => Auth::id(),
+					'cover_id' => $cover_id
 				]);
-			$album->photos()->sync($photos);
+			if (!empty($photos))
+				$album->photos()->sync($photos);
+
 			return Redirect::to('/albums/' . $album->id);
 		}
 	}
@@ -78,15 +91,25 @@ class AlbumsController extends \BaseController {
 
 		if ($user->id != $album->user_id) 
 			return Redirect::to('/');
-
-		$album_photos = $album->photos;
-		$all_photos = $user->photos;
-		$other_photos = $all_photos->except($album_photos->modelKeys());
+				
+		$album_photos = Photo::paginateAlbumPhotos($album);
+		$other_photos = Photo::paginateOtherPhotos($user, $album);
+		$maxPage = $other_photos->getLastPage();
+		$rmMaxPage = $album_photos->getLastPage();
+		$url = URL::to('/albums/' . $album->id . '/photos/add');
+		$rmUrl = URL::to('/albums/' . $album->id . '/photos/rm');
 		return View::make('albums.edit')
 			->with(
 				['album' => $album, 
 				'album_photos' => $album_photos, 
-				'other_photos' => $other_photos] );
+				'other_photos' => $other_photos,
+				'page' => 1,
+				'maxPage' => $maxPage,
+				'rmMaxPage' => $rmMaxPage,
+				'url' => $url,
+				'rmUrl' => $rmUrl,
+				'type' => 'add',
+				'photos' => null] );
 	}
 
 	public function removePhotos($id) {
@@ -116,11 +139,38 @@ class AlbumsController extends \BaseController {
 			$album->title = $input['title'];
 			$album->description = $input['description'];
 			$album->save();
-			$photos = Input::except('title', 'description', '_token', '_method');
-			if ( !empty($photos) )
+			// $photos_add = Input::get('photos_add');
+			// $photos_rm = Input::get('photos_rm');
+			if ( !empty($photos_add) )
 				$album->photos()->sync($photos, false);
 			return Redirect::to('/albums/' . $album->id);
 		}
+	}
+
+	public function paginate() {
+		$photos = Photo::paginateUserPhotos(Auth::user());
+		$page = $photos->getCurrentPage();
+		return Response::json(View::make('includes.album-photos')
+			->with(['photos' => $photos, 'page' => $page, 'type' => 'add'])
+			->render());
+	}
+
+	public function paginateByAlbum($id) {
+		$album = Album::find($id);
+		$photos = Photo::paginateAlbumPhotos($album);
+		$page = $photos->getCurrentPage();
+		return Response::json(View::make('includes.album-photos')
+			->with(['photos' => $photos, 'page' => $page, 'type' => 'rm'])
+			->render());
+	}
+
+	public function paginateByOtherPhotos($id) {
+		$album = Album::find($id);
+		$photos = Photo::paginateOtherPhotos(Auth::user(), $album);
+		$page = $photos->getCurrentPage();
+		return Response::json(View::make('includes.album-photos')
+			->with(['photos' => $photos, 'page' => $page, 'type' => 'add'])
+			->render());
 	}
 	
 }

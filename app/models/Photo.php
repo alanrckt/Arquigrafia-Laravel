@@ -60,4 +60,18 @@ class Photo extends Eloquent {
         $exiv2->setUserComment($this->aditionalImageComments);           
     }
 
+    public static function paginateUserPhotos($user, $perPage = 24) {
+    	return Photo::where('user_id', '=', $user->id)->paginate($perPage);
+    }
+
+    public static function paginateAlbumPhotos($album, $perPage = 24) {
+    	return $album->photos()->paginate($perPage);
+    }
+
+    public static function paginateOtherPhotos($user, $album, $perPage = 24) {
+    	return Photo::where('user_id', '=', $user->id)->
+    		whereNotIn('id', $album->photos->modelKeys())
+			->paginate($perPage);
+    }
+
 }

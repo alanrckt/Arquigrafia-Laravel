@@ -4,7 +4,7 @@ class Album extends Eloquent {
     
 	public $timestamps = false;
     
-    protected $fillable = ['creationDate', 'description', 'title', 'urlCover', 'user_id'];
+    protected $fillable = ['creationDate', 'description', 'title', 'cover_id', 'user_id'];
 
 	public function photos()
 	{

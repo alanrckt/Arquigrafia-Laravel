@@ -5,13 +5,17 @@ input[type=checkbox] {
 
 input[type=checkbox] + label
 {
-	background: blue;
+	/*
 	height: 124px;
 	width: 186px;
+	*/
+	height: 83px;
+	width: 124px;
 	display:inline-block;
 	padding: 0 0 0 0px;
 	opacity: 0.5;
-	margin: 5px;
+	margin: 2px;
+	cursor: pointer;
 }
 input[type=checkbox]:checked + label
 {
@@ -19,3 +23,10 @@ input[type=checkbox]:checked + label
 	padding: 0 0 0 0px;
 	opacity: 1.0;
 }
+
+h2 a { font-weight: normal; color: #555; }
+.centered { text-align: center; }
+.loader { display: block; margin: 195px auto 0}
+#add-buttons p, #rm-buttons p { display: inline-block; margin: 0 5px;}
+.greater-than { margin-right: 5px; }
+.less-than { margin-left: 5px; }
