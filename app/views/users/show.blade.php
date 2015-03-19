@@ -61,45 +61,14 @@
     <div id="user_gallery">
       
       <div class="wrap">
-        <div id="panel" class="stripe">
-          
-          <? #php $i = 0; ?> 
-		  <?php $i = rand(0,10);?>
-          
-          @foreach($photos as $photo)
-          
-            <?php
-              $i++;
-              $size = 1; 
-              /*if ($i%5 == 3) $size = 2;
-              if ($i%10 == 8) $size = 3;*/
-			  if ($i%7 == 6) $size = 2;
-              if ($i%21 == 6) $size = 3;
-            ?>
-            
-            <!-- <div class="item h<?php echo $size; ?>"> -->
-            <div class="item h2">
-				<div class="layer" data-depth="0.2">
-					<a href='{{ URL::to("/photos/{$photo->id}") }}'>
-						<img src='{{ URL::to("/arquigrafia-images/{$photo->id}_view.jpg") }}' title="{{ $photo->name }}">                			  
-					</a>			  
-				<div class="item-title">{{ $photo->name }}</div>
-            	</div>
-			  
-            </div><!--</div>-->
-            
-          @endforeach
-          
-        </div>
-        <div class="panel-back"></div>
-        <div class="panel-next"></div>
+      	@include('includes.panel-stripe')
       </div>
     
     </div>
     
     <!-- USUÁRIO -->
     <div class="container">
-    	<div class="four columns">
+    	<div class="four columns row">
       	<hgroup class="profile_block_title">
         	<h3><i class="profile"></i>Perfil</h3> &nbsp; &nbsp;
         	<a href= '{{"/users/" . $user->id . "/edit" }}' ><img src="{{ asset("img/edit.jpg") }}" width="20" height="20"/>
@@ -142,7 +111,7 @@
         </ul>
       </div>
       
-      <div class="four columns">
+      <div class="four columns row">
       	<hgroup class="profile_block_title">
         	<h3><i class="follow"></i>Seguindo ({{$user->following->count()}})</h3>
     			<!--<a href="#" id="small" class="profile_block_link">Ver todos</a>-->
@@ -163,13 +132,13 @@
         
       </div>
       
-      <div class="four columns">
+      <div class="four columns row">
       	<hgroup class="profile_block_title">
           <h3><i class="follow"></i>Seguidores ({{$user->followers->count()}})</h3>
           <!--<a href="#" id="small" class="profile_block_link">Ver todos</a>-->
         </hgroup>
     		<!--   BOX - AMIGOS   -->
-				<div class="profile_box">
+		<div class="profile_box">
           <!--   LINHA - FOTOS - AMIGOS   -->
           <!--   FOTO - AMIGO   -->
           
@@ -183,62 +152,44 @@
 					</a>
 		@endforeach   
 		
-	</div>
+		</div>
         
       </div>
       
-	  <br>
-	  <br>
-	  
-	  <?php if ($user->oldPassword != null) { ?>
-            <div class="twelve columns albums">
+	    <!-- MEUS ALBUNS -->
+		<div class="container">
+				
+			<div class="twelve columns albums">
 				<hgroup class="profile_block_title">
-					<h3><i class="photos"></i> Meus álbuns</h3>
-				</hgroup>				     
-				<p>No momento seus álbuns não estão disponíveis, mas não se preocupe, estão armazenados com segurança no nosso sistema e em breve serão disponibilizados.</p>
-
-						<!--
-						<div class="profile_box">
-						  <div class="gallery_box">
-							  <a href="album.php" class="gallery_photo">
-								  <img src="{{ URL::to("/") }}/placeholders/album-1.jpg" class="gallery_photo"></a>
-							  <a href="album.php" class="name">Favoritos (12)</a>
-							  <br>
-						  </div>
-						  <div class="gallery_box">
-							  <a href="album.php" class="gallery_photo">
-								  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
-							  <a href="album.php" class="name">CITINET/ARQUIGRAFIA (9)</a>
-							  <br>
-						  </div>
-						  <div class="gallery_box">
-							  <a href="album.php" class="gallery_photo">
-								  <img src="{{ URL::to("/") }}/placeholders/album-3.jpg" class="gallery_photo"></a>
-							  <a href="album.php" class="name">HISTÓRIA (12)</a>
-							  <br>
-						  </div>
-						  <div class="gallery_box">
-							  <a href="album.php" class="gallery_photo">
-								  <img src="{{ URL::to("/") }}/placeholders/album-4.jpg" class="gallery_photo"></a>
-							  <a href="album.php" class="name">Sapucaí (103)</a>
-							  <br>
-						  </div>
-						  <div class="gallery_box">
-							  <a href="album.php" class="gallery_photo">
-								  <img src="{{ URL::to("/") }}/placeholders/album-2.jpg" class="gallery_photo"></a>
-							  <a href="album.php" class="name"><i class="stack"></i> (5)</a>
-							  <br>
-						  </div>
+					<h3><i class="photos"></i>Meus álbuns</h3>
+				</hgroup>
+				
+				<div class="profile_box">
+					@foreach($user->albums as $album)
+						<div class="gallery_box">
+							<a href="{{ URL::to("/albums/" . $album->id) }}" class="gallery_photo">
+								@if (isset($album->cover_id))
+									<img src="{{ URL::to("/arquigrafia-images/" . $album->cover_id . "_home.jpg") }}" class="gallery_photo" />
+								@else
+									<img src="{{ URL::to("/img/album_icon.png") }}" class="gallery_photo" />
+								@endif
+							</a>
+							<a href="{{ URL::to("/albums/" . $album->id) }}" class="name">
+								{{ $album->title . ' ' . '(' . $album->photos->count() . ')' }}
+							</a>
+							<br />
 						</div>
-						-->
-        
-			</div><!-- fim dos albums -->
-		<?php } ?>
-    
+					@endforeach
+				</div>
+			
+			</div>
+	
+		</div>
+
+
+
     </div>
     
-    <!-- FOOTER -->
-    <?php //include "includes/footer.php"; ?>
     
 		<!--   MODAL   -->
 		<div id="mask"></div>

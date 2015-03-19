@@ -55,6 +55,9 @@ Route::resource('/profile','ProfileController'); // lixo ?
 /* ALBUMS */
 Route::resource('/albums','AlbumsController');
 Route::get('/albums/delete/{id}', 'AlbumsController@delete');
+Route::get('/albums/photos/add', 'AlbumsController@paginate');
+Route::get('/albums/{id}/photos/rm', 'AlbumsController@paginateByAlbum');
+Route::get('/albums/{id}/photos/add', 'AlbumsController@paginateByOtherPhotos');
 
 /* COMMENTS */
 Route::post('/photos/{photo_id}/comment','PhotosController@comment');
