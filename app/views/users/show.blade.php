@@ -67,8 +67,8 @@
     </div>
     
     <!-- USUÁRIO -->
-    <div class="container">
-    	<div class="four columns row">
+    <div class="container row">
+    	<div class="four columns">
       	<hgroup class="profile_block_title">
         	<h3><i class="profile"></i>Perfil</h3> &nbsp; &nbsp;
         	<a href= '{{"/users/" . $user->id . "/edit" }}' ><img src="{{ asset("img/edit.jpg") }}" width="20" height="20"/>
@@ -111,7 +111,7 @@
         </ul>
       </div>
       
-      <div class="four columns row">
+      <div class="four columns">
       	<hgroup class="profile_block_title">
         	<h3><i class="follow"></i>Seguindo ({{$user->following->count()}})</h3>
     			<!--<a href="#" id="small" class="profile_block_link">Ver todos</a>-->
@@ -132,7 +132,7 @@
         
       </div>
       
-      <div class="four columns row">
+      <div class="four columns">
       	<hgroup class="profile_block_title">
           <h3><i class="follow"></i>Seguidores ({{$user->followers->count()}})</h3>
           <!--<a href="#" id="small" class="profile_block_link">Ver todos</a>-->
@@ -156,8 +156,10 @@
         
       </div>
       
-	    <!-- MEUS ALBUNS -->
-		<div class="container">
+    </div>
+    
+    	    <!-- MEUS ALBUNS -->
+	<div class="container">
 				
 			<div class="twelve columns albums">
 				<hgroup class="profile_block_title">
@@ -184,12 +186,8 @@
 			
 			</div>
 	
-		</div>
+	</div>
 
-
-
-    </div>
-    
     
 		<!--   MODAL   -->
 		<div id="mask"></div>
