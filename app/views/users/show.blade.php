@@ -71,8 +71,10 @@
     	<div class="four columns">
       	<hgroup class="profile_block_title">
         	<h3><i class="profile"></i>Perfil</h3> &nbsp; &nbsp;
+        	<?php if (Auth::check() && Auth::user()->id == $user->id) { ?>
         	<a href= '{{"/users/" . $user->id . "/edit" }}' ><img src="{{ asset("img/edit.jpg") }}" width="20" height="20"/>
         	</a>
+        	<?php } ?>
         </hgroup>
       	<ul>
 			@if ( !empty($user->name) )
