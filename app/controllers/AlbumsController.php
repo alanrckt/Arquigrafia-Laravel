@@ -108,7 +108,7 @@ class AlbumsController extends \BaseController {
 				'rmMaxPage' => $rmMaxPage,
 				'url' => $url,
 				'rmUrl' => $rmUrl,
-				'type' => 'add',
+				'type' => 'rm',
 				'photos' => null] );
 	}
 
@@ -139,10 +139,12 @@ class AlbumsController extends \BaseController {
 			$album->title = $input['title'];
 			$album->description = $input['description'];
 			$album->save();
-			// $photos_add = Input::get('photos_add');
-			// $photos_rm = Input::get('photos_rm');
+			$photos_add = Input::get('photos_add');
+			$photos_rm = Input::get('photos_rm');
 			if ( !empty($photos_add) )
-				$album->photos()->sync($photos, false);
+				$album->photos()->sync($photos_add, false);
+			if ( !empty($photos_rm) )
+				$album->photos()->detach($photos_rm);
 			return Redirect::to('/albums/' . $album->id);
 		}
 	}

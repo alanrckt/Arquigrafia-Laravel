@@ -4,7 +4,7 @@
 	@if ($count % 6 == 0)
 		<tr>
 	@endif
-	<td>
+	<td width="143">
 		<input type="checkbox" class="{{ $type . '_photo'}}" id="{{ 'photo_' . $photo->id }}" name="{{ 'photos_' . $type . '[]' }}" value="{{ $photo->id }}">
 		<label for="{{ 'photo_' . $photo->id }}"></label>
 	</td>
@@ -13,6 +13,13 @@
 	@endif
 	<?php $count++ ?>
 @endforeach
+	@if($count % 6 != 0)
+		@while($count % 6 != 0)
+			<td width="143"></td>
+			<?php $count++; ?>
+		@endwhile
+		</tr>
+	@endif
 </table>
 <style>
 	@foreach($photos as $photo)

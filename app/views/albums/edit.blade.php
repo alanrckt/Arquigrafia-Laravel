@@ -30,6 +30,10 @@
 		var rmLoadedPages = [1];
 		var url = '{{ $url }}';
 		var rmUrl = '{{ $rmUrl }}';
+
+		$(document).ready(function() {
+			$("#add-container").hide();
+		});
 	</script>
 @stop
 
@@ -58,41 +62,17 @@
 					<div class="two columns omega row">
 						<p>{{ Form::textarea('description', $album->description) }}</p>
 					</div>
-					
-					<?php $photos = $other_photos; ?>
- 					
- 					<div class="twelve columns alpha row">
-						<h2 class="row">Deseja inserir alguma imagem?
-							<a id="toggle-add" href="#">[+]</a>
-						</h2>
-						<div id="add-container">
-							<div class="three columns alpha row">	
-								<a href="#" name="modal" id="select_all" class="btn">Selecionar todas</a>       
-								<a href="#" name="modal" id="remove_all" class="btn">Remover todas</a>
-							</div>
-							<div class="eleven columns row">
-								<div id="add" class="eleven columns row">
-								<img id="add_loader" class="loader row" src="{{ URL::to('/img/ajax-loader.gif') }}" />
-								 @include('includes.album-photos')
-								</div>
-								<div id="add-buttons" class="eleven columns alpha">
-									<a id="less-less" href="#" class="btn less-than"> &lt;&lt; </a>
-									<a id="less" href="#" class="btn less-than"> &lt; </a>
-									<p>1/{{ $maxPage }}</p>
-									<a id="greater" href="#" class="btn greater-than"> &gt; </a>
-									<a id="greater-greater" href="#" class="btn greater-than"> &gt;&gt; </a>
-								</div>
-							</div>
-						</div>
-					</div>
+
 					<?php 
 						$photos = $album_photos;
 						$type = 'rm';
-					?>
+					?>					
+
 					<div class="twelve columns alpha row">
-						<h2 class="row">Deseja remover alguma imagem?
-							<a id="toggle-rm" href="#">[+]</a>
+						<h2>Imagens do álbum
+							<a id="toggle-rm" href="#">[-]</a>
 						</h2>
+						<p class="row"> Deseja remover alguma imagem? </p>
 						<div id="rm-container">
 							<div class="three columns alpha row">	
 								<a href="#" name="modal" id="rm_select_all" class="btn">Selecionar todas</a>       
@@ -109,6 +89,38 @@
 									<p>1/{{ $rmMaxPage }}</p>
 									<a id="rm-greater" href="#" class="btn greater-than"> &gt; </a>
 									<a id="rm-greater-greater" href="#" class="btn greater-than"> &gt;&gt; </a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<?php 
+						$photos = $other_photos; 
+						$type = 'add';
+					?>
+ 					
+ 					<div class="twelve columns alpha row">
+						<h2> Imagens disponíveis para adicionar ao álbum
+							<a id="toggle-add" href="#">[+]</a>
+						</h2>
+						<p class="row">Deseja adicionar alguma imagem?</p>
+						<div id="add-container">
+							<div class="three columns alpha row">	
+								<a href="#" name="modal" id="select_all" class="btn">Selecionar todas</a>       
+								<a href="#" name="modal" id="remove_all" class="btn">Remover todas</a>
+							</div>
+							<div class="eleven columns row">
+								<div id="add" class="eleven columns row">
+								<img id="add_loader" class="loader row" src="{{ URL::to('/img/ajax-loader.gif') }}" />
+								 @include('includes.album-photos')
+								</div>
+								<div id="add-buttons" class="eleven columns alpha">
+									<a id="less-less" href="#" class="btn less-than"> &lt;&lt; </a>
+									<a id="less" href="#" class="btn less-than"> &lt; </a>
+									<p>1/{{ $maxPage }}</p>
+									<a id="greater" href="#" class="btn greater-than"> &gt; </a>
+									<a id="greater-greater" href="#" class="btn greater-than"> &gt;&gt; </a>
 								</div>
 							</div>
 						</div>

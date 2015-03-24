@@ -3,13 +3,11 @@ $(document).ready(function() {
 	$('#add').css({"height": add_table_height});
 	
 	var rm_table_height = $('#rm_page1').height();
-	$('#rm').css({"height": add_table_height});
+	$('#rm').css({"height": rm_table_height});
 
 	if (maxPage < 2) $('#add-buttons').hide();
 	if (typeof rmMaxPage !== 'undefined' && rmMaxPage < 2) $('#rm-buttons').hide();
 
-	$("#add-container").hide();
-	$("#rm-container").hide();
 	$("#add_loader").hide();
 	$("#rm_loader").hide();
 

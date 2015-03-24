@@ -3,6 +3,7 @@
 @section('head')
 	<title>Arquigrafia - Criar álbum </title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<!-- <script src="/js/jquery-1.7.1.min.js"></script> -->
 	<script src="{{ URL::to('/js/album-add-photos.js') }}"></script>
 	<link rel="stylesheet" type="text/css" href="{{ URL::to("/") }}/css/checkbox.css" />	
 	<style>
@@ -18,6 +19,7 @@
 		var maxPage = {{ $maxPage }};
 		var loadedPages = [1];
 		var url = '{{ $url }}';
+		
 	</script>
 @stop
 
@@ -48,9 +50,11 @@
 						<p>{{ Form::textarea('description') }}</p>
 					</div>
  					<div class="twelve columns alpha row">
-						<h2 class="row">Deseja inserir alguma imagem?
-							<a id="toggle-add" href="#">[+]</a>
+						<h2>Deseja inserir alguma imagem?
+							<a id="toggle-add" href="#">[-]</a>
 						</h2>
+						<p class="row"> Deseja remover alguma imagem? </p>
+
 						<div id="add-container">
 							<div class="three columns alpha row">	
 								<a href="#" name="modal" id="select_all" class="btn">Selecionar todas</a>       
