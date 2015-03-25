@@ -99,7 +99,7 @@ $(document).ready(function(){
 					
           <!--   FOTO   -->
 					<a class="fancybox" href="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" title="Praça Ramos de Azevedo" ><img class="single_view_image" style="" src="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" /></a>
- <!-- alt="${}"  --> 
+ 
 
 				</div>				
 				
@@ -260,6 +260,11 @@ $(document).ready(function(){
 					
           <hgroup class="profile_block_title">
             <h3><i class="info"></i> Informações</h3>
+            &nbsp; &nbsp;
+        	<?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>
+        	<a href= '{{"/photos/" . $photos->id . "/edit" }}' ><img src="{{ asset("img/edit.jpg") }}" width="20" height="20"/>
+        	</a>
+        	<?php } ?>
           </hgroup>
           
           		@if ( !empty($photos->description) )
