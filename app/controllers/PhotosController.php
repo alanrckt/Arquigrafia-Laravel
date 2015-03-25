@@ -42,37 +42,6 @@ class PhotosController extends \BaseController {
     if (Auth::check()) return View::make('/photos/form'); else return View::make('/users/login');
 	}
 
-/*	
-	// create photo 
-  public function store()
-  {
-    if (Input::file('photo')->isValid()) {
-      // TODO validate image upload
-      // save on database
-      $photo = Photo::create([
-        'user_id'=>Auth::user()->id,
-        'name'=>'LOCK', 
-        'description'=>'LOCK', 
-        'nome_arquivo'=> 'LOCK',
-        // iniciar a foto inativa
-        'deleted' => 1
-      ]);
-      // save copies
-      $file = Input::file('photo');
-      $ext = $file->getClientOriginalExtension();
-      $photo->nome_arquivo = $photo->id.".".$ext;
-      $photo->save();
-      Image::make(Input::file('photo'))->encode('jpg', 80)->heighten(220)->save(public_path().'/arquigrafia-images/'.$photo->id.'_200h.jpg');
-      Image::make(Input::file('photo'))->encode('jpg', 80)->widen(600)->save(public_path().'/arquigrafia-images/'.$photo->id.'_view.jpg');
-      $file->move(public_path().'/arquigrafia-images', $photo->id."_original.".strtolower($ext)); // original
-      // return to complete metadata
-      return View::make('/photos/form',['photo'=>$photo]);
-    } else {
-      print_r(Input::all());
-    }
-	}
-*/
-
   public function store() {  
 	// put input into flash session for form repopulation
 	Input::flash();
@@ -94,8 +63,7 @@ class PhotosController extends \BaseController {
 	  return Redirect::to('/photos/upload')->withErrors($messages);
     } else {
 
-    if (Input::hasFile('photo') and Input::file('photo')->isValid()) {
-      //$input = Input::all(); 
+    if (Input::hasFile('photo') and Input::file('photo')->isValid()) {      
       $file = Input::file('photo');
       $photo = new Photo();
       
@@ -143,8 +111,7 @@ class PhotosController extends \BaseController {
         $tags = array_map('strtolower', $tags);
         // tudo em minusculas, para remover redundancias, como Casa/casa/CASA
         $tags = array_unique($tags); //retira tags repetidas, se houver.
-        foreach ($tags as $t) {
-          //$tag = new Tag( ['name'=> $t] );
+        foreach ($tags as $t) {          
           $tag = Tag::firstOrCreate(['name' => $t]); //não deveria haver tags repetidas no banco
           $photo->tags()->attach($tag->id);
           if ($tag->count == null)
@@ -166,69 +133,12 @@ class PhotosController extends \BaseController {
 
     } else {
 	  $messages = $validator->messages();
-      return Redirect::to('/photos/upload')->withErrors($messages);
-      //print_r(Input::all());
+      return Redirect::to('/photos/upload')->withErrors($messages);      
     }
  }
 }
 
-  /*
-  // update meta
-  public function update()
-	{
-    $input = Input::all();
-    $photo = Photo::find($input["id"]);
-    $photo->update([
-      // "aditionalImageComments" => $input["photo_aditionalImageComments"],
-      "allowCommercialUses" => $input["photo_allowCommercialUses"],
-      "allowModifications" => $input["photo_allowModifications"],
-      // "cataloguingTime" => $input["photo_cataloguingTime"],
-      // "characterization" => $input["photo_characterization"],
-      "city" => $input["photo_city"],
-      // "collection" => $input["photo_collection"],
-      "country" => $input["photo_country"],
-      // "dataCriacao" => $input["photo_dataCriacao"],
-      "description" => $input["photo_description"],
-      "district" => $input["photo_district"],
-      "imageAuthor" => $input["photo_imageAuthor"],
-      "name" => $input["photo_name"],
-      "state" => $input["photo_state"],
-      "street" => $input["photo_street"],
-      // "tombo" => $input["photo_tombo"],
-      // "workAuthor" => $input["photo_workAuthor"],
-      "workdate" => $input["photo_workDate"],
-      "street" => $input["photo_street"],
-      // atualizar estado para ativa
-      "deleted"=>false
-    ]);
-    
-    $input["tags"] = str_replace(array('\'', '"', '[', ']'), '', $input["tags"]); 
-    $tags = preg_split("/[\s,]+/", $input["tags"]);
-    
-    if (!empty($tags)) {
-      $tags = array_map('trim', $tags);
-      $tags = array_map('strtolower', $tags);
-      // tudo em minusculas, para remover redundancias, como Casa/casa/CASA
-      $tags = array_unique($tags); //retira tags repetidas, se houver.
-      foreach ($tags as $t) {
-        //$tag = new Tag( ['name'=> $t] );
-        $tag = Tag::firstOrCreate(['name' => $t]); //não deveria haver tags repetidas no banco
-        $photo->tags()->attach($tag->id);
-        if ($tag->count == null)
-          $tag->count = 0;
-        $tag->count++;
-        $tag->save();
-      }
-    }
-
-    
-    $photo->save();
-    
-    return Redirect::to("/photos/{$photo->id}");
-    // $user = User::find($photo->user_id);
-    // return View::make('/photos/show',['photos' => $photo, 'owner' => $user]);
-  }
-*/  
+  
   // ORIGINAL
   public function download($id)
   {
@@ -237,7 +147,7 @@ class PhotosController extends \BaseController {
       $originalFileExtension = substr(strrchr($photo->nome_arquivo, '.'), 1);
       $filename = $id . '_original.' . $originalFileExtension;
       $path = public_path().'/arquigrafia-images/'. $filename;
-      // $path = public_path().'/arquigrafia-images/'.$id.'_original.jpg';
+      
       if( File::exists($path) ) {
       
         /*==================================================================================*/
@@ -262,8 +172,7 @@ class PhotosController extends \BaseController {
 
         /*================================================================================*/
 
-        header('Content-Description: File Transfer');
-        // header("Content-Disposition: attachment; filename=\"".$id . '_original.jpg'."\"");
+        header('Content-Description: File Transfer');        
         header("Content-Disposition: attachment; filename=\"". $filename ."\"");
         header('Content-Type: application/octet-stream');
         header("Content-Transfer-Encoding: binary");
@@ -308,5 +217,106 @@ class PhotosController extends \BaseController {
     }
     return "OK.";
   }
+
+  /**
+ * Show the form for editing the specified resource.
+ *
+ * @return Response
+ */
+  public function edit($id) {     
+    $photo = Photo::find($id); 
+    return View::make('photos.edit')
+      ->with(['photo' => $photo, 'tags' => $photo->tags] );
+  }
+
+  public function update($id) {              
+    $photo = Photo::find($id);
+     Input::flash();    
+     $input = Input::only('photo_name', 'photo_imageAuthor', 'tags', 'photo_country', 'photo_state', 'photo_city', 
+      'photo_aditionalImageComments', 'photo_allowCommercialUses', 'photo_allowModifications', 'photo_description', 
+      'photo_district', 'photo_street', 'photo_workAuthor', 'photo_workDate', 'photo_imageDate');    
+
+    // validate data      
+    $rules = array(     
+        'photo_name' => 'required',
+        'photo_imageAuthor' => 'required',
+        'tags' => 'required',
+        'photo_country' => 'required',
+        'photo_state' => 'required',
+        'photo_city' => 'required'
+    );  
+
+  $validator = Validator::make($input, $rules);
+      
+  if ($validator->fails()) {
+      $messages = $validator->messages();      
+    return Redirect::to('/photos/edit')->withErrors($messages);
+    } else {        
+      if ( !empty($input["photo_aditionalImageComments"]) ) 
+        $photo->aditionalImageComments = $input["photo_aditionalImageComments"];
+      $photo->allowCommercialUses = $input["photo_allowCommercialUses"];
+      $photo->allowModifications = $input["photo_allowModifications"];
+      $photo->city = $input["photo_city"];
+      $photo->country = $input["photo_country"];
+      if ( !empty($input["photo_description"]) )
+        $photo->description = $input["photo_description"];
+      if ( !empty($input["photo_district"]) )
+        $photo->district = $input["photo_district"];
+      if ( !empty($input["photo_imageAuthor"]) )  
+        $photo->imageAuthor = $input["photo_imageAuthor"];
+      $photo->name = $input["photo_name"];
+      $photo->state = $input["photo_state"];
+      if ( !empty($input["photo_street"]) )
+        $photo->street = $input["photo_street"];
+      if ( !empty($input["photo_workAuthor"]) )
+        $photo->workAuthor = $input["photo_workAuthor"];
+      if ( !empty($input["photo_workDate"]) )
+        $photo->workdate = Photo::formatDate($input["photo_workDate"]);
+      if ( !empty($input["photo_imageDate"]) )
+        $photo->dataCriacao = Photo::formatDate($input["photo_imageDate"]);
+      $photo->deleted = false;          
+
+      $photo->save();      
+
+      $input["tags"] = str_replace(array('\'', '"', '[', ']'), '', $input["tags"]); 
+      $tags = preg_split("/[\s,]+/", $input["tags"]);
+      
+      if (!empty($tags)) {
+        $tags = array_map('trim', $tags);
+        $tags = array_map('strtolower', $tags);
+        $tags_id = [];
+        $photo_tags = $photo->tags;
+        // tudo em minusculas, para remover redundancias, como Casa/casa/CASA
+        $tags = array_unique($tags); //retira tags repetidas, se houver.
+        foreach ($tags as $t) {          
+          $tag = Tag::firstOrCreate(['name' => $t]); //não deveria haver tags repetidas no banco
+          if ( !$photo_tags->contains($tag) )
+          {
+            if ($tag->count == null) $tag->count = 0;
+            $tag->count++;
+            $photo->tags()->attach($tag->id);
+            $tag->save();
+          }
+          array_push($tags_id, $tag->id);
+        }
+
+        foreach($photo_tags as $tag)
+        {
+          if (!in_array($tag->id, $tags_id))
+          {
+            $tag->count--;
+            $photo->tags()->detach($tag->id);
+            $tag->save();
+          }
+        }
+
+      }       
+
+      return Redirect::to("/photos/{$photo->id}"); 
+     
+  }
+
   
+}
+
 }
