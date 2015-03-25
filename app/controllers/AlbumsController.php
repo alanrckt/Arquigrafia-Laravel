@@ -21,7 +21,8 @@ class AlbumsController extends \BaseController {
 				'url' => $url, 
 				'maxPage' => $maxPage, 
 				'page' => 1,
-				'type' => 'add']);
+				'type' => 'add'
+			]);
 	}
 
 	public function show($id) {

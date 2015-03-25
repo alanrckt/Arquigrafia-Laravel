@@ -202,8 +202,8 @@ input.search_bar_button { background: url(../img/sprite.png) -330px 0; height: 2
 #form_window select { margin: 3px; }
 #form_window input.text { width: 123px; }
 #form_window .date { width: 29px; }
-#form_window a.close { float: right; width: 21px; height: 21px; background: url(../img/sprite.png) -160px -195px; }
-#form_window a.close:hover { background-position: -160px -216px; }
+#form_window a.close { float: right; width: 21px; height: 21px; /* background: url(../img/sprite.png) -160px -195px;*/ }
+#form_window a.close:hover { background-position: -160px -216px; text-decoration: underline; }
 #form_window .email, #form_window .website { width: 123px; }
 #form_window input.submit { background: url(../img/sprite.png) -222px -195px; height: 20px; width: 54px; padding: 0; margin: 0; border: none; float: right; }
 #form_window input.submit:hover { background-position: -222px -216px; }
@@ -328,8 +328,8 @@ i#favourite { background: url(../img/sprite.png) -609px 0px; width: 24px; }
 
 /*botões de ações abaixo da foto*/
 #single_view_buttons_box { padding-top: 5px; height: 40px; }
-#single_view_image_buttons { width: 35px; /*width: 175px;*/ margin: 0 auto; }
-#single_view_image_buttons li { margin: 0 5px; float: left; }
+#single_view_image_buttons { /*width: 35px;*/ width: 175px; margin: 0 auto; }
+#single_view_image_buttons li { margin: 2px 5px; float: left; }
 #add_favourite, #plus { display: block; width: 34px; height: 33px; margin-top: -3px; }
 #eyedroppper, #denounce, #download { display: block; width: 24px; height: 25px; margin-left: 4px; }
 #add_favourite { background: url(../img/sprite.png) -575px 0; }

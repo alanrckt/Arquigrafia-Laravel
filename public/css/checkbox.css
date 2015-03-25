@@ -2,18 +2,14 @@ input[type=checkbox] {
 	display:none;
 }
 
-
 input[type=checkbox] + label
 {
-	/*
-	height: 124px;
-	width: 186px;
-	*/
 	height: 83px;
 	width: 124px;
 	display:inline-block;
 	padding: 0 0 0 0px;
 	opacity: 0.5;
+	filter: alpha(opacity=50); /* For IE8 and earlier */
 	margin: 2px;
 	cursor: pointer;
 }
@@ -24,9 +20,13 @@ input[type=checkbox]:checked + label
 	opacity: 1.0;
 }
 
+span { background-color: #000; color: #fff; opacity: 0.7; filter: alpha(opacity=70); }
+
 h2 a { font-weight: normal; color: #555; }
 .centered { text-align: center; }
 .loader { display: block; margin: 195px auto 0}
 #add-buttons p, #rm-buttons p { display: inline-block; margin: 0 5px;}
 .greater-than { margin-right: 5px; }
 .less-than { margin-left: 5px; }
+
+#description { width: 20em; height: 5em; }
