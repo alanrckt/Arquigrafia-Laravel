@@ -144,7 +144,7 @@ class PhotosController extends \BaseController {
   {
     if (Auth::check()) {
       $photo = Photo::find($id);
-      $originalFileExtension = substr(strrchr($photo->nome_arquivo, '.'), 1);
+      $originalFileExtension = strtolower(substr(strrchr($photo->nome_arquivo, '.'), 1));
       $filename = $id . '_original.' . $originalFileExtension;
       $path = public_path().'/arquigrafia-images/'. $filename;
       
