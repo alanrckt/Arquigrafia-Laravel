@@ -89,10 +89,13 @@
         	@if ( !empty($user->lastName) )
 				<li><strong>Apelido: </strong>{{ $user->lastName }}</li>
 			@endif
-			@if ( !empty($user->birthday) )
+			@if ( !empty($user->birthday) && $user->visibleBirthday == 'yes')
 				<li><strong>Data de nascimento: </strong>{{ $user->birthday }}</li>
 			@endif
-			@if ( !empty($user->email) )
+			@if ( !empty($user->gender) )
+				<li><strong>Sexo: </strong>{{ $user->gender == 'female' ? 'Feminino' : 'Masculino' }}</li>
+			@endif
+			@if ( !empty($user->email) && $user->visibleEmail == 'yes')
 				<li><strong>E-mail: </strong>{{ $user->email }}</li>
 			@endif
 			@if ( !empty($user->country) )
@@ -106,6 +109,12 @@
 			@endif
 			@if ( !empty($user->scholarity) )
 				<li><strong>Escolaridade: </strong> {{ $user->scholarity }}</li>
+			@endif
+			@if ( $user->occupation != null && $user->occupation->institution != null )
+				<li><strong>Instituição: </strong>{{ $user->occupation->institution}}</li>
+			@endif
+			@if ( $user->occupation != null && $user->occupation->occupation != null )
+				<li><strong>Ocupação: </strong>{{ $user->occupation->occupation}}</li>
 			@endif
 			@if ( !empty($user->site) )
 				<li><strong>Site pessoal: </strong> {{ $user->site }}</li>
