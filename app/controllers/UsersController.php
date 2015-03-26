@@ -40,6 +40,7 @@ class UsersController extends \BaseController {
   // show create account form
   public function account()
   {
+    if (Auth::check()) return Redirect::to('/');
     return View::make('/modal/account');
   }
 

@@ -176,8 +176,23 @@ class AlbumsController extends \BaseController {
 			->render());
 	}
 
-	public function getList() {
-		return Response::json('oi');
+	public function getList($id) {
+		$albums = Auth::user()->albums;
+		return Response::json(View::make('albums.get-albums')
+			->with(['albums' => $albums, 'photo_id' => $id])
+			->render());
 	}
 	
+	public function addPhotoToAlbums() {
+		$albums_id = Input::get('albums');
+		$photo = Input::get('_photo');
+		$albums = Album::findMany($albums_id);
+		
+		foreach ($albums as $album)
+			$album->photos()->sync(array($photo), false);
+		
+			// $album->sync($photo, false);
+		return Redirect::to('/photos/' . $photo);
+	}
+
 }

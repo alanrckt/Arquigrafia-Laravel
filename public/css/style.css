@@ -195,14 +195,15 @@ input.search_bar_button { background: url(../img/sprite.png) -330px 0; height: 2
 .wrap .item:hover .item-title { display: block; }
 
 /* lightbox - criar uma conta */
-#form_window { width: 600px; background: #fff; position: fixed; top: 40%; left: 50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 2px; border-radius: 2px; display: none; } /* position: absolute; */
-#form_window label { width: 100px; display: inline-block; color: #777; text-align: left; vertical-align: top; line-height: 27px; }
+#form_window { width: 600px; height: 400px; background: #fff; position: fixed; top: 40%; left: 50%; margin: -240px 0 0 -340px; padding: 25px; -moz-border-radius: 2px; border-radius: 2px; display: none; } /* position: absolute; */
+/*#form_window label { width: 100px; display: inline-block; color: #777; text-align: left; vertical-align: top; line-height: 27px; }*/
 #form_window textarea { border: solid 1px #EEEEEE; padding: 3px; margin: 2px 0 2px 5px; font-size: 11px; }
 #form_window input { border: solid 1px #eee; padding: 3px; margin: 2px 0 2px 5px; }
 #form_window select { margin: 3px; }
 #form_window input.text { width: 123px; }
 #form_window .date { width: 29px; }
-#form_window a.close { float: right; /*width: 21px; height: 21px;*/ text-align: center;/* background: url(../img/sprite.png) -160px -195px;*/ }
+/*#form_window a.close { float: right; width: 21px; height: 21px; text-align: center; background: url(../img/sprite.png) -160px -195px; }*/
+#form_window a.close { float: right; text-align: center; margin-bottom: 10px; }
 #form_window a.close:hover { background-position: -160px -216px; text-decoration: underline; }
 #form_window .email, #form_window .website { width: 123px; }
 #form_window input.submit { background: url(../img/sprite.png) -222px -195px; height: 20px; width: 54px; padding: 0; margin: 0; border: none; float: right; }
@@ -516,3 +517,7 @@ input#login_white_button:hover { background-position: -160px -258px; }
 .reminder { font-style: italic }
 
 .gallery_photo { width: 143px; height: 104px; }
+
+#albums_list { width: 600px; height: 350px; overflow-y: scroll; margin: 10px 0; }
+#albums_list td { text-align: center; }
+#albums_list p { color: #000; }
