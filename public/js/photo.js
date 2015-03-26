@@ -50,6 +50,10 @@ $(function(){
     $('#plus').live('click', function(e) {
   	  	$.fancybox.close(true);
     });
+
+    $('#delete_photo').live('click', function(e){
+		return confirm('Tem certeza que deseja excluir esta imagem?');
+	});
 	
 });
 
