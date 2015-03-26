@@ -31,8 +31,9 @@ class PhotosController extends \BaseController {
     } else {
       $follow = true;
     }
+
     return View::make('/photos/show',
-      ['photos' => $photos, 'owner' => $user, 'follow' => $follow, 'tags' => $tags]);
+      ['photos' => $photos, 'owner' => $user, 'follow' => $follow, 'tags' => $tags, 'commentsCount' => $photos->comments->count()]);
 	}
 	
   // upload form
@@ -318,5 +319,14 @@ class PhotosController extends \BaseController {
 
   
 }
+
+public function destroy($id) {
+  $photo = Photo::find($id);
+  $photo->deleted = true;         
+  $photo->save();   
+  $user = User::find($photo->user_id);
+  $photos = $user->photos()->where('deleted', '=', '0')->get()->reverse();
+  return View::make('/users/show',['user' => $user, 'photos' => $photos]); 
+ }
 
 }
