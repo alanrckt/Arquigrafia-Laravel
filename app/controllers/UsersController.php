@@ -381,7 +381,8 @@ class UsersController extends \BaseController {
     $user = User::find($id);
     
     Input::flash();    
-    $input = Input::only('name', 'login', 'email', 'scholarity', 'lastName', 'site', 'birthday', 'country', 'state', 'city', 'photo');    
+    $input = Input::only('name', 'login', 'email', 'scholarity', 'lastName', 'site', 'birthday', 'country', 'state', 'city', 
+      'photo', 'gender', 'institution', 'occupation', 'visibleBirthday', 'visibleEmail');    
     
     $rules = array(
         'name' => 'required',
@@ -409,8 +410,17 @@ class UsersController extends \BaseController {
       $user->birthday = $input['birthday'];
       $user->country = $input['country'];
       $user->state = $input['state'];
-      $user->city = $input['city'];      
+      $user->city = $input['city'];  
+      $user->gender = $input['gender'];  
+      $user->visibleBirthday = $input['visibleBirthday'];  
+      $user->visibleEmail = $input['visibleEmail'];   
+
       $user->save();   
+
+      if ($input["institution"] != null or $input["occupation"] != null) {
+        $occupation = Occupation::create(['institution'=>$input["institution"],'occupation'=>$input["occupation"], 'user_id'=>$user->id]);
+        $occupation->save();
+      }
 
       if (Input::hasFile('photo') and Input::file('photo')->isValid())  {    
         $file = Input::file('photo');
