@@ -418,7 +418,9 @@ class UsersController extends \BaseController {
       $user->save();   
 
       if ($input["institution"] != null or $input["occupation"] != null) {
-        $occupation = Occupation::create(['institution'=>$input["institution"],'occupation'=>$input["occupation"], 'user_id'=>$user->id]);
+        $occupation = Occupation::firstOrCreate(['user_id'=>$user->id]);
+        $occupation->institution = $input["institution"];
+        $occupation->occupation = $input["occupation"];
         $occupation->save();
       }
 
