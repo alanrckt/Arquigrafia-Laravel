@@ -34,6 +34,7 @@
       <div class="four columns">       
 
         <div class="twelve columns row step-1">
+        
                 
         <div class="four columns alpha">
           <img src="" id="preview_photo">
@@ -42,7 +43,7 @@
         </div>
       </div>
 
-     <!-- <img src="" id="preview_photo">
+     <!--<img src="" id="preview_photo">
           <p>{{ Form::label('photo','Alterar foto:') }} {{ Form::file('photo', array('id'=>'imageUpload', 'onchange' => 'readURL(this);')) }}</p>
           <br> -->
 
@@ -81,8 +82,23 @@
 
          <div class="two columns alpha"><p>{{ Form::label('birthday', 'Data de nascimento:') }}</p></div>
           <div class="two columns omega">
-            <p>{{ Form::text('birthday', $user->birthday) }} <br>
+            <p>{{ Form::text('birthday', $user->birthday) }} 
+            <input name="visibleBirthday" type="checkbox" value="yes" {{$user->visibleBirthday == 'yes' ? "checked" : ""}}>Visível no perfil público <br>
             {{ $errors->first('birthday') }}</p>
+            
+          </div>
+
+          <div class="two columns alpha" >
+            <p>Sexo: </p>
+          </div>
+          <div class="two columns omega">
+             <!--<div class="form-row"> -->
+              <input type="radio" name="gender" value="female" id="gender" {{$user->gender == 'female' ? "checked" : ""}}>
+              <label for="gender">Feminino</label><br class="clear">
+             <!--</div>
+             <div class="form-row">-->
+              <input type="radio" name="gender" value="male" id="gender" {{$user->gender == 'male' ? "checked" : ""}}>
+              <label for="gender">Masculino</label><br class="clear">
           </div>
 
           <div class="two columns alpha"><p>{{ Form::label('login', 'Login:') }}</p></div>
@@ -93,8 +109,9 @@
           
           <div class="two columns alpha"><p>{{ Form::label('email', 'E-mail:') }}</p></div>
           <div class="two columns omega">
-            <p>{{ Form::text('email', $user->email) }}<br>
-            {{ $errors->first('email') }}</p>
+            <p>{{ Form::text('email', $user->email) }} 
+            <input name="visibleEmail" type="checkbox" value="yes" {{$user->visibleEmail == 'yes' ? "checked" : ""}}>Visível no perfil público<br>
+            {{ $errors->first('email') }}</p>            
           </div>
 
         <div class="two columns alpha"><p>{{ Form::label('country', 'País:') }}</p></div>
@@ -121,19 +138,17 @@
             {{ $errors->first('scholarity') }}</p>
           </div>
 
-         <!-- <div class="two columns alpha"><p>{{ Form::label('institution', 'Instituição:') }}</p></div>
+          <div class="two columns alpha"><p>{{ Form::label('institution', 'Instituição:') }}</p></div>
           <div class="two columns omega">
-            <p>{{ Form::text('institution', $user->institution) }} <br>
+            <p>{{ Form::text('institution', $user->occupation != null && $user->occupation->institution != null ? $user->occupation->institution : null) }} <br>
             {{ $errors->first('institution') }}</p>
           </div>
 
-          <div class="two columns alpha"><p>{{ Form::label('occupation', 'Ocupação:') }}</p></div>
+          <div class="two columns alpha"><p>{{ Form::label('occupation', 'Profissão:') }}</p></div>
           <div class="two columns omega">
-            <p>{{ Form::text('occupation', $user->occupation) }} <br>
+            <p>{{ Form::text('occupation', $user->occupation != null && $user->occupation->occupation != null ? $user->occupation->occupation : null) }} <br>
             {{ $errors->first('occupation') }}</p>
-          </div>-->
-
-          
+          </div>          
 
           <div class="two columns alpha"><p>{{ Form::label('site', 'Site pessoal:') }}</p></div>
           <div class="two columns omega">
@@ -155,14 +170,8 @@
           
             <br>
             <p>{{ Form::submit("EDITAR", array('class'=>'btn right')) }}</p>
-
+    
             
-            <!--
-          <p>            
-            {{ Form::open(array('route' => 'users.update', 'autocomplete'=>'off')) }}                    
-            <button type="submit">Editar</button>
-          </p>
-          -->
           
           </div>
 
