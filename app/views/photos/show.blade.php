@@ -87,12 +87,35 @@ $(document).ready(function(){
 					<!--   NOME / STATUS DA FOTO   -->
 					<div>
 						<div class="four columns alpha">
-            	<h1>{{ $photos->name }}</h1>
+            	<h1>{{ $photos->name }}</h1> 
+
+
+
             </div>
+
+            
+
+			 
+        	
+
+
+
+
 						<div class="four columns omega">
               <!-- <span><i id="graph"></i> <small>65 visualizações e 0 avaliações</small></span> -->
-              <span class="right"><i id="comments"></i> <small>0</small></span>
-              <span class="right"><small>Upload: {{ $photos->created_at }}</small></span>
+              <span class="left"><i id="comments"></i> <small>{{$commentsCount}}</small>
+              </span>
+
+
+              <?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>  
+               	<span class="right">
+              		{{ Form::open(['method' => 'delete', 'url' => 'photos/' . $photos->id]) }}
+              		{{ Form::submit('', array('class'=> 'btn left', 'style'=>"background:url(/img/excluir.png) no-repeat;border:none;", 'alt'=>'Excluir', 
+					'onclick'=>'javascript:return confirm(\'Tem certeza que deseja excluir esta imagem?\')')) }}
+					{{ Form::close() }}    						
+              	</span>
+              <?php } ?>
+             
             </div>
 					</div>
 					<!--   FIM - NOME / STATUS DA FOTO   -->
