@@ -13,12 +13,12 @@ $(document).ready(function() {
 
 	$('#select_all').click(function(e) {
 		e.preventDefault();
-		$('.add_photo').prop('checked', true);
+		$('#add_page' + currentPage + ' .add_photo').prop('checked', true);
 	});
 
 	$('#remove_all').click(function(e) {
 		e.preventDefault();
-		$('.add_photo').prop('checked', false);
+		$('#add_page' + currentPage + ' .add_photo').prop('checked', false);
 	});
 	$("#toggle-add").click(function(e) {
 		e.preventDefault();
@@ -55,12 +55,12 @@ $(document).ready(function() {
 
 	$('#rm_select_all').click(function(e) {
 		e.preventDefault();
-		$('.rm_photo').prop('checked', true);
+		$('#rm_page' + currentPage + ' .rm_photo').prop('checked', true);
 	});
 
 	$('#rm_remove_all').click(function(e) {
 		e.preventDefault();
-		$('.rm_photo').prop('checked', false);
+		$('#rm_page' + currentPage + ' .rm_photo').prop('checked', false);
 	});
 	$("#toggle-rm").click(function(e) {
 		e.preventDefault();
@@ -94,7 +94,6 @@ $(document).ready(function() {
 		if (rmCurrentPage < rmMaxPage)
 			transition(rmCurrentPage, rmCurrentPage + 1, "rm", rmUrl);			
 	});
-
 
 });
 

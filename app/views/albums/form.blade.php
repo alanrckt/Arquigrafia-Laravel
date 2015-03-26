@@ -40,10 +40,8 @@
 			<p>Crie um novo álbum.<br><br>
 			<small>* Todos os campos a seguir são obrigatórios.</small>
 			</p>
-			<br>
 		</div>
 
-				
 		<div id="registration">
 			{{ Form::open(array('url' => 'albums', 'id' => 'create_album')) }}
 				<div class="three columns row">
@@ -59,23 +57,23 @@
 					</div>
 				</div>
 				@if( isset($image) )
-				<div class="twelve columns row">
-						<h2>Imagem do álbum</h2>
-						<div class="two columns">
-							<img src="{{ URL::to('/arquigrafia-images/' . $image->id . '_home.jpg') }}"
-								width="124" height="83">
-							{{ Form::hidden('photos_add[]', $image->id ) }}
-						</div>
-				</div>					
+					<div class="twelve columns row">
+							<h2>Imagem do álbum</h2>
+							<div class="two columns">
+								<img src="{{ URL::to('/arquigrafia-images/' . $image->id . '_home.jpg') }}"
+									width="124" height="83">
+								{{ Form::hidden('photos_add[]', $image->id ) }}
+							</div>
+					</div>
 				@endif
 				<div class="twelve columns row">
 					<h2>Imagens disponíveis para adicionar ao álbum
 						<a id="toggle-add" href="#">[-]</a>
 					</h2>
 					@if( isset($image) )
-					<p class="row">Deseja inserir alguma imagem? </p>
+						<p class="row">Deseja inserir alguma imagem? </p>
 					@else
-					<p id="p_add" class="row">Selecione pelo menos uma imagem para o álbum</p>
+						<p id="p_add" class="row">Selecione pelo menos uma imagem para o álbum</p>
 					@endif
 					<div id="add-container">
 						<div class="eight columns row">	
@@ -84,8 +82,8 @@
 						</div>
 						<div class="eleven columns row">
 							<div id="add" class="eleven columns row">
-							<img id="add_loader" class="loader row" src="{{ URL::to('/img/ajax-loader.gif') }}" />
-							 @include('includes.album-photos')
+								<img id="add_loader" class="loader row" src="{{ URL::to('/img/ajax-loader.gif') }}" />
+								@include('albums.includes.album-photos')
 							</div>
 							<div id="add-buttons" class="eleven columns alpha">
 								<a id="less-less" href="#" class="btn less-than"> &lt;&lt; </a>
@@ -97,7 +95,6 @@
 						</div>
 					</div>
 				</div>
-				<br />
 				<div class="four columns">
 					<p>{{ Form::submit("CRIAR", array('class'=>'btn')) }}</p>
 				</div>	

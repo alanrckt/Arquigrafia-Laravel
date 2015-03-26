@@ -6,21 +6,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="{{ URL::to('/js/album-add-photos.js') }}"></script>
 	<link rel="stylesheet" type="text/css" href="{{ URL::to("/") }}/css/checkbox.css" />	
-	<style>
-		@foreach($album_photos as $photo)
-			{{ '#photo_' . $photo->id . ' + label' }}
-			{
-				background: url('{{"/arquigrafia-images/" . $photo->id . "_home.jpg" }}');
-			}
-		@endforeach
-
-		@foreach($other_photos as $photo)
-			{{ '#photo_' . $photo->id . ' + label' }}
-			{
-				background: url('{{"/arquigrafia-images/" . $photo->id . "_home.jpg" }}');
-			}
-		@endforeach
-	</style>
 	<script>
 		var currentPage = 1;
 		var rmCurrentPage = 1;
@@ -77,8 +62,8 @@
 						</div>
 						<div class="eleven columns row">
 							<div id="rm" class="eleven columns row">
-							<img id="rm_loader" class="loader row" src="{{ URL::to('/img/ajax-loader.gif') }}" />
-							 @include('includes.album-photos')
+								<img id="rm_loader" class="loader row" src="{{ URL::to('/img/ajax-loader.gif') }}" />
+								@include('albums.includes.album-photos')
 							</div>
 							<div id="rm-buttons" class="eleven columns alpha">
 								<a id="rm-less-less" href="#" class="btn less-than"> &lt;&lt; </a>
@@ -109,8 +94,8 @@
 						</div>
 						<div class="eleven columns row">
 							<div id="add" class="eleven columns row">
-							<img id="add_loader" class="loader row" src="{{ URL::to('/img/ajax-loader.gif') }}" />
-							 @include('includes.album-photos')
+								<img id="add_loader" class="loader row" src="{{ URL::to('/img/ajax-loader.gif') }}" />
+								@include('albums.includes.album-photos')
 							</div>
 							<div id="add-buttons" class="eleven columns alpha">
 								<a id="less-less" href="#" class="btn less-than"> &lt;&lt; </a>

@@ -153,7 +153,7 @@ class AlbumsController extends \BaseController {
 	public function paginate() {
 		$photos = Photo::paginateUserPhotos(Auth::user());
 		$page = $photos->getCurrentPage();
-		return Response::json(View::make('includes.album-photos')
+		return Response::json(View::make('albums.includes.album-photos')
 			->with(['photos' => $photos, 'page' => $page, 'type' => 'add'])
 			->render());
 	}
@@ -162,7 +162,7 @@ class AlbumsController extends \BaseController {
 		$album = Album::find($id);
 		$photos = Photo::paginateAlbumPhotos($album);
 		$page = $photos->getCurrentPage();
-		return Response::json(View::make('includes.album-photos')
+		return Response::json(View::make('albums.includes.album-photos')
 			->with(['photos' => $photos, 'page' => $page, 'type' => 'rm'])
 			->render());
 	}
@@ -171,9 +171,13 @@ class AlbumsController extends \BaseController {
 		$album = Album::find($id);
 		$photos = Photo::paginateOtherPhotos(Auth::user(), $album);
 		$page = $photos->getCurrentPage();
-		return Response::json(View::make('includes.album-photos')
+		return Response::json(View::make('albums.includes.album-photos')
 			->with(['photos' => $photos, 'page' => $page, 'type' => 'add'])
 			->render());
+	}
+
+	public function getList() {
+		return Response::json('oi');
 	}
 	
 }

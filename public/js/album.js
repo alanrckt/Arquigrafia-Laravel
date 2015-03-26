@@ -79,7 +79,7 @@ $(function(){
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
 		$('#registration').load(this.href);	
-		Album.init(this.href);
+		// Album.init(this.href);
 	});
 
 	

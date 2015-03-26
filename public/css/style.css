@@ -202,7 +202,7 @@ input.search_bar_button { background: url(../img/sprite.png) -330px 0; height: 2
 #form_window select { margin: 3px; }
 #form_window input.text { width: 123px; }
 #form_window .date { width: 29px; }
-#form_window a.close { float: right; width: 21px; height: 21px; /* background: url(../img/sprite.png) -160px -195px;*/ }
+#form_window a.close { float: right; /*width: 21px; height: 21px;*/ text-align: center;/* background: url(../img/sprite.png) -160px -195px;*/ }
 #form_window a.close:hover { background-position: -160px -216px; text-decoration: underline; }
 #form_window .email, #form_window .website { width: 123px; }
 #form_window input.submit { background: url(../img/sprite.png) -222px -195px; height: 20px; width: 54px; padding: 0; margin: 0; border: none; float: right; }
