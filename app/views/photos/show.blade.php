@@ -6,16 +6,19 @@
 
 <title>Arquigrafia - {{ $photos->name }}</title>
 
+<link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/checkbox.css" />
+
 <!--   JQUERY   -->
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script> -->
+<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script> -->
 <!--   JQUERY - Validate   -->
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.validate.js"></script>
+<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.validate.js"></script> -->
 <!--   JS - Masked input   -->
-<script type="text/javascript" src="{{ URL::to("/") }}/js/masked-input.js"></script>
+<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/masked-input.js"></script> -->
 <!-- JS - Font size increment and decrement -->
-<script type="text/javascript" src="{{ URL::to("/") }}/js/font_increment.js"></script>
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.tools.min.js"></script>
+<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/font_increment.js"></script> -->
+<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.tools.min.js"></script> -->
 
 <!-- Google Maps API -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
@@ -57,7 +60,8 @@ $(document).ready(function(){
 					position: results[0].geometry.location
 			});
 			} else {
-				alert("Geocode was not successful for the following reason: " + status);
+				//alert("Geocode was not successful for the following reason: " + status);
+				console.log("Geocode was not successful for the following reason: " + status);
 			}
 		});
 	}
@@ -67,12 +71,28 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
+	$(document).ready(function (){
+		$('#plus').click(function(e){
+			e.preventDefault();
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$.get(this.href).done(function(data) {
+				$("#registration").append(data);
+			})
+			.fail(function() {
+				console.log("Erro ao tentar carregar ábluns via AJAX!");
+			})
+		});
+	});
+</script>
+
 <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/jquery.fancybox.css" />
 
-<script type="text/javascript" src="{{ URL::to("/") }}/js/friend.js"></script>
+<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/friend.js"></script> -->
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript" src="{{ URL::to("/") }}/js/photo.js"></script>
-<script type="text/javascript" src="{{ URL::to("/") }}/js/album.js"></script>
+<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/album.js"></script> -->
 
 @stop
 
@@ -89,21 +109,12 @@ $(document).ready(function(){
 						<div class="four columns alpha">
             	<h1>{{ $photos->name }}</h1> 
 
-
-
             </div>
 
-            
 
-			 
-        	
-
-
-
-
-						<div class="four columns omega">
+			<div class="four columns omega">
               <!-- <span><i id="graph"></i> <small>65 visualizações e 0 avaliações</small></span> -->
-              <span class="left"><i id="comments"></i> <small>{{$commentsCount}}</small>
+              <span class="right"><i id="comments"></i> <small>{{$commentsCount}}</small>
               </span>
 
 
@@ -136,7 +147,7 @@ $(document).ready(function(){
 							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
               
 							<!--<li><a href="18/photo_avaliation/2778" title="Avalie a foto" id="eyedroppper"></a></li>-->
-							<!--<li><a href="album/15/add/2778" title="Adicione a sua galeria" id="plus"></a></li>-->
+							<li><a href="{{ URL::to('/albums/get/list/' . $photos->id) }}" title="Adicione aos seus álbuns" id="plus"></a></li>
             
 							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>
            	
@@ -426,7 +437,7 @@ $(document).ready(function(){
 		<div id="mask"></div>
 		<div id="form_window">
 			<!-- ÁREA DE LOGIN - JANELA MODAL -->
-			<a class="close" href="#" title="FECHAR"></a>
+			<a class="close" href="#" title="FECHAR">Fechar</a>
 			<div id="registration"></div>
 		</div>
 

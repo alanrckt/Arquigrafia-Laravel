@@ -94,7 +94,7 @@ class AlbumsController extends \BaseController {
 			return Redirect::to('/');
 				
 		$album_photos = Photo::paginateAlbumPhotos($album);
-		$other_photos = Photo::paginateOtherPhotos($user, $album);
+		$other_photos = Photo::paginateOtherPhotos($user, $album->photos);
 		$maxPage = $other_photos->getLastPage();
 		$rmMaxPage = $album_photos->getLastPage();
 		$url = URL::to('/albums/' . $album->id . '/photos/add');
@@ -150,7 +150,7 @@ class AlbumsController extends \BaseController {
 		}
 	}
 
-	public function paginate() {
+	public function paginateByUser() {
 		$photos = Photo::paginateUserPhotos(Auth::user());
 		$page = $photos->getCurrentPage();
 		return Response::json(View::make('albums.includes.album-photos')
@@ -169,7 +169,7 @@ class AlbumsController extends \BaseController {
 
 	public function paginateByOtherPhotos($id) {
 		$album = Album::find($id);
-		$photos = Photo::paginateOtherPhotos(Auth::user(), $album);
+		$photos = Photo::paginateOtherPhotos(Auth::user(), $album->photos);
 		$page = $photos->getCurrentPage();
 		return Response::json(View::make('albums.includes.album-photos')
 			->with(['photos' => $photos, 'page' => $page, 'type' => 'add'])
@@ -191,7 +191,6 @@ class AlbumsController extends \BaseController {
 		foreach ($albums as $album)
 			$album->photos()->sync(array($photo), false);
 		
-			// $album->sync($photo, false);
 		return Redirect::to('/photos/' . $photo);
 	}
 

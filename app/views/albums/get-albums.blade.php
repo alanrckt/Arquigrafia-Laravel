@@ -1,5 +1,5 @@
 	<?php $album_counter = 0; $total_album = $albums->count() ?>
-	{{ Form::open(array('url' => '/albums/photo/add')) }}
+	{{ Form::open(array('url' => URL::to('/albums/photo/add'))) }}
 		{{ Form::hidden('_photo', $photo_id) }}
 		<div id="albums_list">
 				<h2> Seus Álbuns </h2>
@@ -28,6 +28,21 @@
 		</div>
 		<p>{{ Form::submit("ADICIONAR AOS ÁLBUNS", array('class'=>'btn')) }}</p>
 	{{ Form::close() }}
+	<script>
+		$(document).ready(function() {
+			$('#registration form').submit(function(e) {
+				e.preventDefault();
+				var url = $(this).attr("action");
+				data = $(this).serializeArray();
+				$.post(url, data).done( function(data) {
+					console.log(data);
+				})
+				.fail(function() {
+					console.log("fail!!");
+				});
+			});
+		});
+	</script>
 	<style>
 		@foreach($albums as $album)
 			{{ '#album_' . $album->id . ' + label' }}
@@ -40,3 +55,4 @@
 			}
 		@endforeach
 	</style>
+

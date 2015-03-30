@@ -3,9 +3,14 @@
 use lib\date\Date;
 use lib\metadata\Exiv2;
 use lib\license\CreativeCommons_3_0;
+// use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Photo extends Eloquent {
   
+	// use SoftDeletingTrait;
+
+	// protected $dates = ['deleted_at'];
+
 	protected $fillable = ['user_id','name', 'description', 'nome_arquivo','state','street', 'tombo', 'workAuthor', 'workdate', 'dataUpload', 'dataCriacao', 'country', 'collection', 'city'];
 
 	static $allowModificationsList = [
@@ -57,21 +62,33 @@ class Photo extends Eloquent {
 		$exiv2->setCopyRight($this->workAuthor, 
 			new CreativeCommons_3_0($this->allowCommercialUses, $this->allowModifications));
 		$exiv2->setDescription($this->description);
-        $exiv2->setUserComment($this->aditionalImageComments);           
-    }
+		$exiv2->setUserComment($this->aditionalImageComments);		   
+	}
 
-    public static function paginateUserPhotos($user, $perPage = 24) {
-    	return Photo::where('user_id', '=', $user->id)->paginate($perPage);
-    }
-
-    public static function paginateAlbumPhotos($album, $perPage = 24) {
-    	return $album->photos()->paginate($perPage);
-    }
-
-    public static function paginateOtherPhotos($user, $album, $perPage = 24) {
-    	return Photo::where('user_id', '=', $user->id)->
-    		whereNotIn('id', $album->photos->modelKeys())
+	public static function paginateUserPhotos($user, $perPage = 24) {
+		return Photo::where('deleted', '=', '0')
+			->where('user_id', '=', $user->id)
 			->paginate($perPage);
-    }
+		// return Photo::where('user_id', '=', $user->id)
+		// 	->paginate($perPage);
+	}
+
+	public static function paginateAlbumPhotos($album, $perPage = 24) {
+		$photos = $album->photos()->get();
+		return Photo::where('deleted', '=', '0')
+			->whereIn('id', $photos->modelKeys())
+			->paginate($perPage);
+		// return $album->photos()->paginate($perPage);
+	}
+
+	public static function paginateOtherPhotos($user, $photos, $perPage = 24) {
+		return Photo::where('deleted', '=', '0')
+			->where('user_id', '=', $user->id)
+			->whereNotIn('id', $photos->modelKeys())
+			->paginate($perPage);
+		// return Photo::where('user_id', '=', $user->id)
+		// 	->whereNotIn('id', $photos->modelKeys())
+		// 	->paginate($perPage);
+	}
 
 }
