@@ -15,12 +15,16 @@ class PhotosController extends \BaseController {
   public function index()
 	{
 		$photos = Photo::where('deleted', '=', '0');
+    //$photos = Photo::all();
 		return View::make('/photos/index',['photos' => $photos]);
 	}
 
 	public function show($id)
 	{
-		$photos = Photo::whereid($id)->first();
+		$photos = Photo::where('deleted', '=', '0')->whereid($id)->first();
+    //$photos = Photo::whereid($id)->first();
+    if (!isset($photos))
+      return Redirect::to('/');
     $user = User::find($photos->user_id);
     $tags = $photos->tags;
     if (Auth::check()) {
@@ -90,7 +94,7 @@ class PhotosController extends \BaseController {
         $photo->workdate = Photo::formatDate($input["photo_workDate"]);
       if ( !empty($input["photo_imageDate"]) )
         $photo->dataCriacao = Photo::formatDate($input["photo_imageDate"]);
-      $photo->deleted = false;
+      // $photo->deleted = false;
       $photo->nome_arquivo = $file->getClientOriginalName();
 
       $photo->user_id = Auth::user()->id;
@@ -275,7 +279,7 @@ class PhotosController extends \BaseController {
         $photo->workdate = Photo::formatDate($input["photo_workDate"]);
       if ( !empty($input["photo_imageDate"]) )
         $photo->dataCriacao = Photo::formatDate($input["photo_imageDate"]);
-      $photo->deleted = false;          
+      // $photo->deleted = false;          
 
       $photo->save();      
 
@@ -320,13 +324,18 @@ class PhotosController extends \BaseController {
   
 }
 
-public function destroy($id) {
-  $photo = Photo::find($id);
-  $photo->deleted = true;         
-  $photo->save();   
-  $user = User::find($photo->user_id);
-  $photos = $user->photos()->where('deleted', '=', '0')->get()->reverse();
-  return View::make('/users/show',['user' => $user, 'photos' => $photos]); 
- }
+  public function destroy($id) {
+    $photo = Photo::find($id);
+    /******* substituir ********/
+    $photo->deleted = true;         
+    $photo->save();
+    /******* por ***************/
+    // $photo->delete();  
+    /***************************/ 
+    $user = User::find($photo->user_id);
+    // $photos = $user->photos()->where('deleted', '=', '0')->get()->reverse();
+    // return View::make('/users/show',['user' => $user, 'photos' => $photos]); 
+    return Redirect::to('/users/' . $user->id);
+  }
 
 }

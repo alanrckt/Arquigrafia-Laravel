@@ -25,16 +25,8 @@ class UsersController extends \BaseController {
 	{
 		$user = User::whereid($id)->first();
     $photos = $user->photos()->where('deleted', '=', '0')->get()->reverse();
-		//$following = $user->following;
-		//$followers = $user->followers;
-		//$profile = Profile::whereid($id)->first();
-
+    //$photos = $user->photos()->get()->reverse();
 		return View::make('/users/show',['user' => $user, 'photos' => $photos]); 
-				
-				//->with('users' => $user)
-				//->with('gw_collab_profile' => $gw_collab_profile);
-		//return View::make('/users.show');
-		
 	}
   
   // show create account form
