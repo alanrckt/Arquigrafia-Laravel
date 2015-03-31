@@ -24,8 +24,8 @@ class UsersController extends \BaseController {
 	public function show($id)
 	{
 		$user = User::whereid($id)->first();
-    $photos = $user->photos()->where('deleted', '=', '0')->get()->reverse();
-    //$photos = $user->photos()->get()->reverse();
+    // $photos = $user->photos()->where('deleted', '=', '0')->get()->reverse();
+    $photos = $user->photos()->get()->reverse();
 		return View::make('/users/show',['user' => $user, 'photos' => $photos]); 
 	}
   

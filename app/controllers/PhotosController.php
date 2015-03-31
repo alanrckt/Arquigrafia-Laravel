@@ -14,15 +14,15 @@ class PhotosController extends \BaseController {
 
   public function index()
 	{
-		$photos = Photo::where('deleted', '=', '0');
-    //$photos = Photo::all();
+		// $photos = Photo::where('deleted', '=', '0');
+    $photos = Photo::all();
 		return View::make('/photos/index',['photos' => $photos]);
 	}
 
 	public function show($id)
 	{
-		$photos = Photo::where('deleted', '=', '0')->whereid($id)->first();
-    //$photos = Photo::whereid($id)->first();
+		// $photos = Photo::where('deleted', '=', '0')->whereid($id)->first();
+    $photos = Photo::whereid($id)->first();
     if (!isset($photos))
       return Redirect::to('/');
     $user = User::find($photos->user_id);
@@ -327,10 +327,10 @@ class PhotosController extends \BaseController {
   public function destroy($id) {
     $photo = Photo::find($id);
     /******* substituir ********/
-    $photo->deleted = true;         
-    $photo->save();
+    // $photo->deleted = true;         
+    // $photo->save();
     /******* por ***************/
-    // $photo->delete();  
+    $photo->delete();
     /***************************/ 
     $user = User::find($photo->user_id);
     // $photos = $user->photos()->where('deleted', '=', '0')->get()->reverse();
