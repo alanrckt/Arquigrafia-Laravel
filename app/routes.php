@@ -60,6 +60,7 @@ Route::get('/albums/{id}/photos/rm', 'AlbumsController@paginateByAlbum');
 Route::get('/albums/{id}/photos/add', 'AlbumsController@paginateByOtherPhotos');
 Route::get('/albums/get/list/{id}', 'AlbumsController@getList');
 Route::post('/albums/photo/add', 'AlbumsController@addPhotoToAlbums');
+
 /* COMMENTS */
 Route::post('/photos/{photo_id}/comment','PhotosController@comment');
 
