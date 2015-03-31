@@ -63,6 +63,10 @@ Route::post('/albums/photo/add', 'AlbumsController@addPhotoToAlbums');
 /* COMMENTS */
 Route::post('/photos/{photo_id}/comment','PhotosController@comment');
 
+/* EVALUATIONS */
+Route::get('/photos/{photo_id}/evaluate','PhotosController@evaluate');
+Route::post('/photos/{photo_id}/evaluate','PhotosController@evaluate');
+
 /* PHOTOS */
 Route::get('/photos/batch','PhotosController@batch');
 Route::get('/photos/upload','PhotosController@form');

@@ -211,6 +211,28 @@ class PhotosController extends \BaseController {
     
   }
   
+  // EVALUATE
+  public function evaluate($id)
+  {
+    if (Auth::check()) {
+      
+      $input = Input::all();
+      $user_id = Auth::user()->id;
+      
+      // pegar do banco as possives métricas
+      // fazer um loop por cada e salvar como uma avaliação
+      // salvar avaliação da foto
+      
+      // teste
+      $evaluation = Evaluation::create([
+        'photo_id'=> $id,
+        'evaluationPosition'=> 44, // $input['value'],
+        'binomial_id'=> 14, // $input['binomial'],
+        'user_id'=> $user_id
+      ]);
+    }
+  }
+  
   // BATCH RESIZE
   public function batch()
   {
