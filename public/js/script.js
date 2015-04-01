@@ -66,12 +66,12 @@ $(document).ready(function(){
 			form_window_loaded = true;
 		});
 
-		$('#login_button').click(function(){
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('/users/8/login');	
-			form_window_loaded = true;
-		});
+		// $('#login_button').click(function(){
+		// 	$('#mask').fadeIn('fast');
+		// 	$('#form_window').fadeIn('slow');
+		// 	$('#registration').load('/users/8/login');	
+		// 	form_window_loaded = true;
+		// });
 
 		$('#forgot_password').live("click", function(e){
 			e.preventDefault();

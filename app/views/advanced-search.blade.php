@@ -24,7 +24,7 @@
 
 <!-- ISOTOPE -->
 <script src="{{ URL::to("/") }}/js/jquery.isotope.min.js"></script>
-<script type="text/javascript" src="{{ URL::to("/") }}/js/home.js"></script>	
+
 <script type="text/javascript" src="{{ URL::to("/") }}/js/panel.js"></script>
 
 @stop

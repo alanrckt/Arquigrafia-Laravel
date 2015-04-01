@@ -12,13 +12,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script> -->
 <!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script> -->
-<!--   JQUERY - Validate   -->
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.validate.js"></script> -->
-<!--   JS - Masked input   -->
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/masked-input.js"></script> -->
-<!-- JS - Font size increment and decrement -->
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/font_increment.js"></script> -->
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.tools.min.js"></script> -->
 
 <!-- Google Maps API -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
@@ -78,6 +71,7 @@ $(document).ready(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
 			$.get(this.href).done(function(data) {
+				$("#registration").empty();
 				$("#registration").append(data);
 			})
 			.fail(function() {
@@ -89,10 +83,9 @@ $(document).ready(function(){
 
 <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/jquery.fancybox.css" />
 
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/friend.js"></script> -->
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript" src="{{ URL::to("/") }}/js/photo.js"></script>
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/album.js"></script> -->
+
 
 @stop
 
