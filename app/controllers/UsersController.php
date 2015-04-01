@@ -381,12 +381,11 @@ class UsersController extends \BaseController {
         'login' => 'required',
         'email' => 'required|email'                  
     );     
-
     if ($input['email'] !== $user->email)        
-      $rules = array('email' => 'required|email|unique:users');        
+      $rules['email'] = 'required|email|unique:users';
 
     if ($input['login'] !== $user->login)
-      $rules = array('login' => 'required|unique:users');
+      $rules['login'] = 'required|unique:users';
 
     $validator = Validator::make($input, $rules);   
     if ($validator->fails()) {

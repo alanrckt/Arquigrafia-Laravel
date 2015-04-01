@@ -1,11 +1,11 @@
 @extends('layouts.default')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script type="text/javascript" src="{{ URL::to("/") }}/js/textext.js"></script>
-<link rel="stylesheet" type="text/css" href="{{ URL::to("/") }}/css/textext.css" />
-
-
-
+@section('head')
+  <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ URL::to("/") }}/js/textext.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ URL::to("/") }}/css/textext.css" />
+@stop
 
 @section('content')
 
@@ -20,7 +20,6 @@
         <div>            
             <?php if ($user->photo != "") { ?>
               <img class="avatar" src="{{ asset($user->photo) }}" class="user_photo_thumbnail"/>
-            </a>
             <?php } else { ?>
               <img class="avatar" src="{{ asset("img/avatar-60.png") }}" width="60" height="60" class="user_photo_thumbnail"/>
             <?php } ?>
