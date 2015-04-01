@@ -43,6 +43,11 @@ class Photo extends Eloquent {
 	{
 		return $this->belongsToMany('Album', 'album_elements');
 	}
+  
+  public function evaluations()
+	{
+		return $this->belongsToMany('Evaluation', 'photo_id');
+	}
 
 	public static function formatDate($date)
 	{

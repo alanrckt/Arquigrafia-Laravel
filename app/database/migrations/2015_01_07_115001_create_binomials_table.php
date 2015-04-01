@@ -24,6 +24,21 @@ class CreateBinomialsTable extends Migration {
 			// $table->string('secondLink')->nullable(); não são necessários
 			// $table->string('secondName')->nullable(); renomeado para secondOption
 			$table->string('secondOption')->nullable();
+      
+      /*
+      valores para o arquigrafia - SQL
+      
+      INSERT INTO `arquigrafia`.`binomial`
+        (`id`, `defaultValue`, `firstOption`, `secondOption`)
+      VALUES
+        (13,50,'Horizontal','Vertical'),
+        (14,50,'Translúcida','Opaca'),
+        (16,50,'Simétrica','Assimétrica'),
+        (19,50,'Complexa','Simples'),
+        (20,50,'Interna','Externa'),
+        (21,50,'Aberta','Fechada');
+      */
+      
 		});
 	}
 
