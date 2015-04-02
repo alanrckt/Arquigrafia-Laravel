@@ -122,9 +122,15 @@ $(document).ready(function(){
               <?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>  
                	<span class="right">
               		{{ Form::open(['method' => 'delete', 'url' => 'photos/' . $photos->id]) }}
-              		{{ Form::submit('', array('class'=> 'btn left', 'style'=>"background:url(/img/excluir.png) no-repeat;border:none;", 'alt'=>'Excluir', 
-					'onclick'=>'javascript:return confirm(\'Tem certeza que deseja excluir esta imagem?\')')) }}
-					{{ Form::close() }}    						
+              		{{ Form::submit('', array('id' => 'delete_image_button', 
+              			'onclick' => 'javascript:return confirm(\'Tem certeza que deseja excluir esta imagem?\')')) }}
+					{{ Form::close() }}
+              	</span>
+              	<span class="right">
+              		{{ Form::open(['method' => 'delete', 'url' => 'photos/' . $photos->id]) }}
+              		{{ Form::submit('', array('id' => 'delete_image_button2', 
+              			'onclick' => 'javascript:return confirm(\'Tem certeza que deseja excluir esta imagem?\')')) }}
+					{{ Form::close() }}
               	</span>
               <?php } ?>
              
@@ -133,7 +139,7 @@ $(document).ready(function(){
 					<!--   FIM - NOME / STATUS DA FOTO   -->
 					
           <!--   FOTO   -->
-					<a class="fancybox" href="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" title="Praça Ramos de Azevedo" ><img class="single_view_image" style="" src="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" /></a>
+					<a class="fancybox" href="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" title="{{ $photos->name }}" ><img class="single_view_image" style="" src="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" /></a>
  
 
 				</div>				
@@ -297,7 +303,8 @@ $(document).ready(function(){
             <h3><i class="info"></i> Informações</h3>
             &nbsp; &nbsp;
         	<?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>
-        	<a href= '{{"/photos/" . $photos->id . "/edit" }}' ><img src="{{ asset("img/edit.jpg") }}" width="20" height="20"/>
+        	<a href= '{{"/photos/" . $photos->id . "/edit" }}' ><img src="{{ asset("img/glyphicons_150_edit.png") }}" width="16" height="16"/>
+        	        	<a href= '{{"/photos/" . $photos->id . "/edit" }}' ><img src="{{ asset("img/edit.png") }}" width="16" height="16"/>
         	</a>
         	<?php } ?>
           </hgroup>
