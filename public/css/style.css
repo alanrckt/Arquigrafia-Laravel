@@ -29,13 +29,13 @@ small { font-size: 11px; }
 img.left { margin-right: 15px; margin-bottom: 10px; }
 img.right { margin-left: 15px; }
 .btn { background: #fff; color: #444; border: solid 1px #ddd; font-size: 10px; font-weight: bold; padding: 5px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
-.btn:hover, .btn:hover a { color: #222; text-decoration: none; }
+.btn:hover, .btn:hover a { color: #222; text-decoration: none; cursor: pointer; }
 .step {background: #fff; color: #444; border: solid 1px #ddd; font-size: 10px; font-weight: bold; padding: 5px 7px 5px 8px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; line-height: 20px; vertical-align: middle;}
 .step-text {vertical-align: middle; margin-left: 5px;}
 .error {color: #C52D30;}
 
 /* mascara para janelas popups */
-#mask { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background-image: url(../img/mask.png); display: none; }
+#mask { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background-image: url(../img/mask.png); display: none; z-index: 1000;}
 /* erros de validação */
 #form_window label.error { display: inline-block; width: 100%; text-align: center; }
 #form_window input.error { border: 1px solid #CB9833; }
@@ -198,7 +198,7 @@ input.search_bar_button { background: url(../img/sprite.png) -330px 0; height: 2
 .wrap .item:hover .item-title { display: block; }
 
 /* lightbox - criar uma conta */
-#form_window { width: 600px; height: 400px; background: #fff; position: fixed; top: 40%; left: 50%; margin: -240px 0 0 -340px; padding: 25px; -moz-border-radius: 2px; border-radius: 2px; display: none; } /* position: absolute; */
+#form_window { width: 600px; height: 400px; background: #fff; position: fixed; top: 40%; left: 50%; margin: -240px 0 0 -340px; padding: 25px; -moz-border-radius: 2px; border-radius: 2px; display: none; z-index: 1001; } /* position: absolute; */
 /*#form_window label { width: 100px; display: inline-block; color: #777; text-align: left; vertical-align: top; line-height: 27px; }*/
 #form_window textarea { border: solid 1px #EEEEEE; padding: 3px; margin: 2px 0 2px 5px; font-size: 11px; }
 #form_window input { border: solid 1px #eee; padding: 3px; margin: 2px 0 2px 5px; }
@@ -478,7 +478,7 @@ ul#avaliation_list li span.right { text-align: left; padding-left: 10px; }
 #new_album { display: block; float: right; margin: 0 16px 0 0; line-height: 19px; }
 .name_album { display: block; line-height: 19px; }
 #edit_album, #delete_album { margin: 0 0px 0px 5px; }
-#delete_image_button { display: block; width: 16px; height: 16px; background: url("../img/cancel.png"); margin-right: 5px;}
+#delete_image_button { display: inline-block; width: 16px; height: 16px; background: url("../img/cancel.png"); margin-right: 5px;}
 #delete_image_button2 { display: block; width: 16px; height: 16px; background: url("../img/delete.png"); margin-right: 5px;}
 #delete_image_button:hover { cursor: pointer; }
 a.paste { width: 115px; height: 79px; margin: 40px 7px 20px 20px; vertical-align: middle; text-align: center; }
@@ -531,3 +531,13 @@ input#login_white_button:hover { background-position: -160px -258px; }
 #albums_list { width: 600px; height: 350px; overflow-y: scroll; margin: 10px 0; }
 #albums_list td { text-align: center; }
 #albums_list p { color: #000; }
+
+#delete_button { display: inline-block; width: 16px; height: 16px; background: url("../img/delete.png"); margin-left: 5px; }
+#delete_button:hover { cursor: pointer; }
+#edit_button { display: inline-block; width: 18px; height: 16px; background: url("../img/edit-glyphicon.png");  margin-left: 5px; }
+#edit_button:hover { cursor: pointer; }
+
+#confirmation_window { background: #fff; position: fixed; width: 250px; height: 80px;  top: 30%; left: 50%; margin: -40px 0 0 -125px; padding: 15px; -moz-border-radius: 5px; border-radius: 5px; display: none; z-index: 1001;}
+#confirmation_window a.close { float: right; text-align: center; margin-bottom: 10px; }
+#confirmation_window a.close:hover { background-position: -160px -216px; text-decoration: underline; }
+#confirmation_window p { color: black;}

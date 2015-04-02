@@ -19,59 +19,84 @@
 @stop
 
 @section('content')
-		<!--   HEADER DO USUÁRIO   -->
-		<div class="container">
-      <div id="user_header" class="twelve columns">
-        <div class="info">
-          <h1>{{ $album->title }}</h1>
-        </div>
-      	<div class="count">Fotos no álbum ({{ $photos->count() }})</div>
-      </div>
-    </div>
-    
-    <!-- GALERIA DO USUÁRIO -->
-    <div id="user_gallery">
-      
-      <div class="wrap">
-        @include("includes.panel-stripe")
-      </div>
-    
-    </div>
-    
-    <!-- OUTROS ALBUNS -->
-    <div class="container">
-			
-    	<div class="twelve columns albums">
-      	<hgroup class="profile_block_title">
-      		<h3><i class="photos"></i> Outros álbuns</h3>
-        </hgroup>
-        <div class="profile_box">
-			@foreach($other_albums as $album)
+	<!--   HEADER DO USUÁRIO   -->
+	<div class="container">
+		<div id="user_header" class="twelve columns">
+			<div class="info">
+				<h1>
+					{{ $album->title }}
+				</h1>
+			</div>
+			<div class="count">Fotos no álbum ({{ $photos->count() }})</div>
+		</div>
+	</div>
+	
+	<!-- GALERIA DO USUÁRIO -->
+	<div id="user_gallery">
+	
+		<div class="wrap">
+			@include("includes.panel-stripe")
+		</div>
+	
+	</div>
+
+	<div class="container row">
+		<div class="twelve columns albums">
+			<hgroup class="profile_block_title">
+				<h3><i class="info"></i>Informações</h3>
+				@if ( $album->user_id == Auth::id() )
+					<a id="delete_button" href="#"></a>
+					<a id="edit_button" href="{{ URL::to('/albums/' . $album->id . '/edit')}}"></a>
+				@endif
+			</hgroup>
+			<ul>
+				<li><strong>Título: </strong> {{ $album->title }} </li>
+				<br>
+				@if ( !empty($album->description) )
+					<li><strong>Descrição: </strong> {{ $album->description }} </li>
+				@endif
+			</ul>
+		</div>
+	</div>
+	
+	<!-- OUTROS ALBUNS -->
+	<div class="container">
+		<div class="twelve columns albums">
+		<hgroup class="profile_block_title">
+			<h3><i class="photos"></i> Outros álbuns</h3>
+		</hgroup>
+		<div class="profile_box">
+			@foreach($other_albums as $other_album)
 				<div class="gallery_box">
 					<a href="{{ URL::to("/albums/" . $album->id) }}" class="gallery_photo">
-						@if (isset($album->cover_id))
-							<img src="{{ URL::to("/arquigrafia-images/" . $album->cover_id . "_home.jpg") }}" class="gallery_photo" />
+						@if (isset($other_album->cover_id))
+							<img src="{{ URL::to("/arquigrafia-images/" . $other_album->cover_id . "_home.jpg") }}" class="gallery_photo" />
 						@else
 							<img src="{{ URL::to("/img/album_icon.png") }}" class="gallery_photo" />
 						@endif
 					</a>
 					<a href="{{ URL::to("/albums/" . $album->id) }}" class="name">
-						{{ $album->title . ' ' . '(' . $album->photos->count() . ')' }}
+						{{ $other_album->title . ' ' . '(' . $other_album->photos->count() . ')' }}
 					</a>
 					<br />
 				</div>
 			@endforeach
 		</div>
-      </div>
-    
-    </div>
-    
+	</div>
+	
+	</div>
+	
 		<!--   MODAL   -->
 		<div id="mask"></div>
-		<div id="form_window">
+		<div id="confirmation_window">
 			<!-- ÁREA DE LOGIN - JANELA MODAL -->
-			<a class="close" href="#" title="FECHAR"></a>
-			<div id="registration"></div>
+			<div id="registration">
+				<p>Tem certeza que deseja excluir este álbum?</p>
+				{{ Form::open(array('url' => '/albums/' . $album->id, 'method' => 'delete')) }}
+					<a class="btn" href="#" id="submit_delete">Sim</a>
+					<a class="btn" href="#" id="cancel_delete">Não</a>
+				{{ Form::close() }}
+			</div>
 		</div>
 		<!--   FIM - MODAL   -->
 	</div>

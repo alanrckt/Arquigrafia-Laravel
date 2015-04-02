@@ -34,7 +34,6 @@ class AlbumsController extends \BaseController {
 			$other_albums = $user->albums->except($album->id);
 			if ( Auth::check() && $user->id == Auth::id() )
 				$edit = true;
-			
 			return View::make('albums.show')
 				->with(['photos' => $photos, 'album' => $album, 
 					'user' => $user,
@@ -192,6 +191,13 @@ class AlbumsController extends \BaseController {
 			$album->photos()->sync(array($photo), false);
 		
 		return Redirect::to('/photos/' . $photo);
+	}
+
+	public function destroy($id) {
+		$album = Album::find($id);
+		$album->photos()->detach();
+		$album->delete();
+		return Redirect::to('/albums');
 	}
 
 }

@@ -117,7 +117,6 @@ $(document).ready(function(){
 		
 		$('#form_window .close').click(function (e) {
 			e.preventDefault();
-			
 			$('#mask').fadeOut();
 			$('#form_window').fadeOut('fast');
 		});		
@@ -125,11 +124,35 @@ $(document).ready(function(){
 		$('#mask').click(function () {
 			$(this).fadeOut();
 			$('#form_window').fadeOut('fast');
+			$('#confirmation_window').fadeOut('fast');
 		});
 			
 		$('#printer_icon').click(function() {
 		  window.print();
 		  return false;
+		});
+
+		$('#delete_button').click(function(e){
+			e.preventDefault();
+			$('#mask').fadeIn('fast');
+			$('#confirmation_window').fadeIn('slow');
+		});
+
+		$('#confirmation_window .close').click(function (e) {
+			e.preventDefault();
+			$('#mask').fadeOut();
+			$('#confirmation_window').fadeOut('fast');
+		});		
+
+		$('#submit_delete').click(function (e) {
+			e.preventDefault();
+			$('#registration form').submit();
+		});
+
+		$('#cancel_delete').click(function (e) {
+			e.preventDefault();
+			$('#mask').fadeOut();
+			$('#confirmation_window').fadeOut('fast');
 		});
 		
 });
