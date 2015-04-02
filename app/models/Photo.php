@@ -46,7 +46,7 @@ class Photo extends Eloquent {
   
 	public function evaluations()
 	{
-		return $this->belongsToMany('Evaluation', 'photo_id');
+		return $this->hasMany('Evaluation');
 	}
 
 	public static function formatDate($date)

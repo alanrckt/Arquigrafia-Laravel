@@ -12,5 +12,6 @@ class Binomial extends Eloquent {
   {
     return $this->hasMany('Evaluation');
   }
+  
 
 }

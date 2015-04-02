@@ -389,6 +389,7 @@ $(document).ready(function(){
         
         <br class="clear">
         
+        <!-- FORMULÁRIO DE AVALIAÇÃO -->
         <div id="evaluation_box">
         
           <?php if (Auth::check()) { ?>
@@ -419,6 +420,23 @@ $(document).ready(function(){
           <?php } ?>
         
         </div>
+        
+        <!-- MÉDIA DAS AVALIAÇÕES -->
+        <div id="evaluation_average">
+        
+          <?php 
+            $evaluations = $photos->evaluations;
+            $binomials = Binomial::all()->keyBy('id');;
+            foreach($evaluations as $evaluation) {
+              $bid = $evaluation->binomial_id;
+              echo $binomials[$bid]->firstOption . " - " . $binomials[$bid]->secondOption . "<br>";
+              echo "Nota: " . $evaluation->evaluationPosition . "<br>";
+            }
+          ?>
+        
+        </div>
+        
+        <br class="clear">
 				
         <!-- GOOGLE MAPS -->
 				<h4>Localização:</h4>
