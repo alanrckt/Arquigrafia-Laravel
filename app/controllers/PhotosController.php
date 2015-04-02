@@ -213,21 +213,24 @@ class PhotosController extends \BaseController {
   public function evaluate($id)
   {
     if (Auth::check()) {
-      
       $input = Input::all();
       $user_id = Auth::user()->id;
-      
       // pegar do banco as possives métricas
+      $binomials = Binomial::all();
       // fazer um loop por cada e salvar como uma avaliação
-      // salvar avaliação da foto
-      
-      // teste
-      $evaluation = Evaluation::create([
-        'photo_id'=> $id,
-        'evaluationPosition'=> 44, // $input['value'],
-        'binomial_id'=> 14, // $input['binomial'],
-        'user_id'=> $user_id
-      ]);
+      foreach ($binomials as $binomial) {
+        $bid = $binomial->id;
+        $evaluation = Evaluation::create([
+          'photo_id'=> $id,
+          'evaluationPosition'=> $input['value-'.$bid],
+          'binomial_id'=> $bid,
+          'user_id'=> $user_id
+        ]);
+      }
+      return Redirect::to("/photos/{$id}")->with('message', '<strong>Avaliação salva</strong><br>Obrigado, agora você pode ver a média atual das avaliações.');
+    } else {
+      // avaliação sem login
+      return Redirect::to("/photos/{$id}")->with('message', '<strong>Erro na avaliação</strong><br>Faça login para pode avaliar.');
     }
   }
   

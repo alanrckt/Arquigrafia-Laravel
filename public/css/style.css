@@ -107,6 +107,7 @@ i.info {background-position: -121px 0;}
 /* forms */
 form p {margin: 3px 0;}
 input[type="text"], input[type="password"] {border-bottom: solid 1px #eee;} 
+input[type="range"] {width: 220px;}
 .registration input[type="text"], .registration input[type="password"] {border: solid 1px #ddd; font-size: 10px; font-weight: bold; padding: 5px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; margin: -5px 0 10px;}
 .form-table td {vertical-align: top; padding-bottom: 5px;}
 .form-table label {line-height: 20px;}
@@ -117,7 +118,6 @@ input[type="text"], input[type="password"] {border-bottom: solid 1px #eee;}
 input:-moz-placeholder { color:#ddd; }
 
 /* --- HEADER --- */
-
 .header { height: auto; margin: 25px auto 35px; }
 .header #logo { float: left; display: block; width: 250px; height: 50px; margin: 7px 1px 0 0px; background: url(../img/logo.png) no-repeat; }
 .header p#beta { float: left; margin: 21px 80px 0 0; color: #222; font-size: 12px; }
@@ -168,6 +168,9 @@ input.search_bar_button { background: url(../img/sprite.png) -330px 0; height: 2
 #complete_search_bar input.submit:hover { background: url(../img/sprite.png) -23px -259px; cursor: pointer; }
 /* calendário */
 .ui-widget-header { background: none #CB9833 !important; border: 1px solid #CB9833 !important; }
+/* erros e mensagens */
+.message {color: #000; border: solid 1px #ddd; border-radius: 5px; padding: 10px; text-align: center; margin: 0 0 20px; }
+.message strong {font-size: 13px; font-weight: bold; text-transform: uppercase;}
 
 /* --- PÁGINA INICIAL --- */
 /* painel com diversos tamanhos, 3 horizontais, 1 vertical, com centralização horizontal. JS para troca da medida fixa de largura para altura */
@@ -373,7 +376,11 @@ span.comment_text p { margin: 3px 0; }
 textarea#comment_field { width: 545px; height: 60px; float: left; border: solid 1px #ddd; padding: 5px; margin: 5px 0; }
 input#comment_button { margin: 5px 0 0 0; float: left; }
 
+/* avaliações */
+#evaluation_box {margin: 20px 0;}
+
 /* SINGLE VIEW - AVALIATION */
+/* ANTIGO
 #avaliation_box { width: 470px; }
 #avaliation_box p { display: block; width: 330px; float: left; }
 #avaliation_form { text-align: left; }
@@ -399,7 +406,7 @@ ul#avaliation_list li .bloco { width: 430px; background: url(../img/sprite.png) 
 .ui-slider-horizontal .ui-state-default:hover,
 .ui-slider-horizontal .ui-state-default:active,
 .ui-slider-horizontal .ui-state-default:focus {background-position:-753px -34px !important; outline:none; margin-top:-12px; } */
-
+/* ANTIGO 
 .ui-slider { width: 200px; height: 5px; position: relative; background-repeat: no-repeat; background-position: center center; }
 .ui-slider-handle { margin: -11px 0 0 -5px; position: absolute; z-index: 1; height: 15px; width: 10px; background: url("../img/sprite.png") repeat scroll -755px -5px transparent; }
 .ui-slider-handle:hover, .ui-slider-handle:active { margin: -4px 0 0 -5px; background: url("../img/sprite.png") repeat scroll -755px -38px transparent; }
@@ -428,6 +435,7 @@ ul#avaliation_list li .bloco { width: 430px; background: url(../img/sprite.png) 
 ul#avaliation_list li span { width: 75px; display: block; margin-top: -11px; }
 ul#avaliation_list li span.left { text-align: right; padding-right: 10px; }
 ul#avaliation_list li span.right { text-align: left; padding-left: 10px; }
+/* FIM ANTIGO */
 
 /* PROFILE */
 #user_header {position: relative; margin-bottom: 10px;}

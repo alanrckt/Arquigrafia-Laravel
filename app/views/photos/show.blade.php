@@ -90,6 +90,14 @@ $(document).ready(function(){
 @stop
 
 	@section('content')
+  
+    @if (Session::get('message'))
+      <div class="container">
+        <div class="twelve columns">
+          <div class="message">{{ Session::get('message') }}</div>
+        </div>
+      </div>
+    @endif
 
 		<!--   MEIO DO SITE - ÁREA DE NAVEGAÇ?Ã?O   -->
 		<div id="content" class="container">
@@ -369,23 +377,53 @@ $(document).ready(function(){
 
         <h4>Licença:</h4>                
 				<a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank" >
-					<img src="/img/ccIcons/by88x31.png" id="ccicons" alt="license" />
+					<img src="{{ asset('img/ccIcons/by88x31.png') }}" id="ccicons" alt="license" />
 				</a>
 				</br>
+        
+        <!-- AVALIAÇÃO -->
+			  <h4>Avaliação:</h4>
+        <p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
+        <a href="#" title="Avalie a foto" id="evaluate_button" class="btn">AVALIAR</a> &nbsp;
+        <a href="#" title="Média das avaliações da foto" id="evaluation_average" class="btn">MÉDIA DAS AVALIAÇÕES</a>
+        
+        <br class="clear">
+        
+        <div id="evaluation_box">
+        
+          <?php if (Auth::check()) { ?>
+              
+            {{ Form::open(array('url' => "photos/{$photos->id}/evaluate")) }}
+            
+              <?php 
+                // pegar do banco as possives métricas
+                $binomials = Binomial::all();
+      
+                // fazer um loop por cada e salvar como uma avaliação
+                foreach ($binomials as $binomial) { ?>
+                  
+                  <p>
+                    {{ Form::label('value-'.$binomial->id, $binomial->firstOption.' - '.$binomial->secondOption) }}<br>
+                    {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100']) }}
+                  </p>
+                  
+              <?php } ?>
+              
+              {{ Form::submit('AVALIAR', ['id'=>'evaluation_button','class'=>'cursor btn']) }}
+                
+            {{ Form::close() }}
+            
+            
+          <?php } else { ?>
+            <p>Você precisa estar logado para avaliar! <a href="{{ URL::to('/users/login') }}">Login</a></p>
+          <?php } ?>
+        
+        </div>
 				
         <!-- GOOGLE MAPS -->
 				<h4>Localização:</h4>
 				<div id="map_canvas" class="single_view_map" style="width:300px; height:250px;"></div> 
         
-        <!-- AVALIAÇÃO -->
-        <!--
-			  <h4>Avaliação:</h4>
-        <p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
-        <a href="18/photo_avaliation/2778" title="Avalie a foto" id="evaluate_button" class="btn">AVALIAR</a> &nbsp;
-        <a href="18/photo_avaliation_avarage/2778" title="Média das avaliações da foto" id="evaluation_average" class="btn">MÉDIA DAS AVALIAÇÕES</a>
-        <br />
-        <br />
-        -->
 				
         <!-- GRUPOS -->
         <!--

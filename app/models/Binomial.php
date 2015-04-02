@@ -1,6 +1,6 @@
 <?php
 
-class Evaluation extends Eloquent {
+class Binomial extends Eloquent {
   
 	protected $fillable = ['firstOption','secondOption'];
   
