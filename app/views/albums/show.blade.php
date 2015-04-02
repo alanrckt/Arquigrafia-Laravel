@@ -23,7 +23,7 @@
 		<div class="container">
       <div id="user_header" class="twelve columns">
         <div class="info">
-          <h1>Álbum: {{ $album->title }}</h1>
+          <h1>{{ $album->title }}</h1>
         </div>
       	<div class="count">Fotos no álbum ({{ $photos->count() }})</div>
       </div>
