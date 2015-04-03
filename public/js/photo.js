@@ -39,21 +39,22 @@ $(function(){
       
     });
     
-  //   $('#download_login_link').live('click', function(e){
-  // 	  	$.fancybox.close(true);
-		// $('#mask').fadeIn('fast');
-		// $('#form_window').fadeIn('slow');
-		// $('#registration').load('<c:url value="/users/8/login"/>');	
-		// e.preventDefault();
-  //   });
-    
-    $('#plus').live('click', function(e) {
-  	  	$.fancybox.close(true);
-    });
-
     $('#delete_photo').live('click', function(e){
 		return confirm('Tem certeza que deseja excluir esta imagem?');
 	});
-	
+
+	$('#plus').live('click', function(e){
+		e.preventDefault();
+		$.fancybox.close(true);
+		$('#mask').fadeIn('fast');
+		$('#form_window').fadeIn('slow');
+		$.get(this.href).done(function(data) {
+			$("#registration").empty();
+			$("#registration").append(data);
+		})
+		.fail(function() {
+			console.log("Erro ao tentar carregar ábluns via AJAX!");
+		})
+	});	
 });
 

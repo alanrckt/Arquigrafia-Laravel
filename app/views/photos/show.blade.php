@@ -64,23 +64,6 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript">
-	$(document).ready(function (){
-		$('#plus').click(function(e){
-			e.preventDefault();
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$.get(this.href).done(function(data) {
-				$("#registration").empty();
-				$("#registration").append(data);
-			})
-			.fail(function() {
-				console.log("Erro ao tentar carregar ábluns via AJAX!");
-			})
-		});
-	});
-</script>
-
 <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/jquery.fancybox.css" />
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.fancybox.pack.js"></script>
@@ -149,7 +132,7 @@ $(document).ready(function(){
 					
 					<?php if (Auth::check()) { ?>
 						
-            <ul id="single_view_image_buttons">
+	            <ul id="single_view_image_buttons">
 							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
 							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
               
