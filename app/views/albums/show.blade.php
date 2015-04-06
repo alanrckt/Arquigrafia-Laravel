@@ -68,7 +68,7 @@
 			<div class="profile_box">
 				@foreach($other_albums as $other_album)
 					<div class="gallery_box">
-						<a href="{{ URL::to("/albums/" . $other_album->id) }}" class="gallery_photo">
+						<a href="{{ URL::to("/albums/" . $other_album->id) }}" class="gallery_photo" title="{{ $other_album->title }}">
 							@if (isset($other_album->cover_id))
 								<img src="{{ URL::to("/arquigrafia-images/" . $other_album->cover_id . "_home.jpg") }}" class="gallery_photo" />
 							@else
