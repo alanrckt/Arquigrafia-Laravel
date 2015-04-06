@@ -478,8 +478,7 @@ ul#avaliation_list li span.right { text-align: left; padding-left: 10px; }
 #new_album { display: block; float: right; margin: 0 16px 0 0; line-height: 19px; }
 .name_album { display: block; line-height: 19px; }
 #edit_album, #delete_album { margin: 0 0px 0px 5px; }
-#delete_image_button { display: inline-block; width: 16px; height: 16px; background: url("../img/cancel.png"); margin-right: 5px;}
-#delete_image_button2 { display: block; width: 16px; height: 16px; background: url("../img/delete.png"); margin-right: 5px;}
+#delete_image_button { display: inline-block; width: 16px; height: 16px; background: url("../img/delete.png"); margin-right: 5px;}
 #delete_image_button:hover { cursor: pointer; }
 a.paste { width: 115px; height: 79px; margin: 40px 7px 20px 20px; vertical-align: middle; text-align: center; }
 
@@ -526,7 +525,7 @@ input#login_white_button:hover { background-position: -160px -258px; }
 .folder { height: 35px; }
 .reminder { font-style: italic }
 
-.gallery_photo { width: 143px; height: 104px; }
+.gallery_photo { width: 143px; height: 104px; margin: 1px;}
 
 #albums_list { width: 600px; height: 350px; overflow-y: scroll; margin: 10px 0; }
 #albums_list td { text-align: center; }
@@ -534,10 +533,11 @@ input#login_white_button:hover { background-position: -160px -258px; }
 
 #delete_button { display: inline-block; width: 16px; height: 16px; background: url("../img/delete.png"); margin-left: 5px; }
 #delete_button:hover { cursor: pointer; }
-#edit_button { display: inline-block; width: 18px; height: 16px; background: url("../img/edit-glyphicon.png");  margin-left: 5px; }
+#edit_button { display: inline-block; width: 16px; height: 16px; background: url("../img/edit.png");  margin-left: 5px; }
 #edit_button:hover { cursor: pointer; }
 
-#confirmation_window { background: #fff; position: fixed; width: 250px; height: 80px;  top: 30%; left: 50%; margin: -40px 0 0 -125px; padding: 15px; -moz-border-radius: 5px; border-radius: 5px; display: none; z-index: 1001;}
-#confirmation_window a.close { float: right; text-align: center; margin-bottom: 10px; }
+#confirmation_window { background: #fff; position: fixed; width: 300px; height: 80px;  top: 30%; left: 50%; margin: -40px 0 0 -150px; padding: 20px; -moz-border-radius: 5px; border-radius: 5px; display: none; z-index: 1001; font-size: 14px;}
+#confirmation_window a.close { float: right; text-align: center; margin-bottom: 30px; }
 #confirmation_window a.close:hover { background-position: -160px -216px; text-decoration: underline; }
 #confirmation_window p { color: black;}
+#confirmation_window #registration_buttons { position: absolute; right: 20px; bottom: 20px; }

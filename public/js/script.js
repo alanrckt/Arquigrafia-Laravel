@@ -146,7 +146,7 @@ $(document).ready(function(){
 
 		$('#submit_delete').click(function (e) {
 			e.preventDefault();
-			$('#registration form').submit();
+			$('#registration_delete form').submit();
 		});
 
 		$('#cancel_delete').click(function (e) {

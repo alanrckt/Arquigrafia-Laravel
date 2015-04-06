@@ -104,16 +104,7 @@ $(document).ready(function(){
 
               <?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>  
                	<span class="right">
-              		{{ Form::open(['method' => 'delete', 'url' => 'photos/' . $photos->id]) }}
-              		{{ Form::submit('', array('id' => 'delete_image_button', 
-              			'onclick' => 'javascript:return confirm(\'Tem certeza que deseja excluir esta imagem?\')')) }}
-					{{ Form::close() }}
-              	</span>
-              	<span class="right">
-              		{{ Form::open(['method' => 'delete', 'url' => 'photos/' . $photos->id]) }}
-              		{{ Form::submit('', array('id' => 'delete_image_button2', 
-              			'onclick' => 'javascript:return confirm(\'Tem certeza que deseja excluir esta imagem?\')')) }}
-					{{ Form::close() }}
+					<a id="delete_button" href="#"></a>
               	</span>
               <?php } ?>
              
@@ -286,8 +277,7 @@ $(document).ready(function(){
             <h3><i class="info"></i> Informações</h3>
             &nbsp; &nbsp;
         	<?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>
-        	<a href= '{{"/photos/" . $photos->id . "/edit" }}' ><img src="{{ asset("img/glyphicons_150_edit.png") }}" width="16" height="16"/>
-        	        	<a href= '{{"/photos/" . $photos->id . "/edit" }}' ><img src="{{ asset("img/edit.png") }}" width="16" height="16"/>
+        	   	<a href= '{{"/photos/" . $photos->id . "/edit" }}' ><img src="{{ asset("img/edit.png") }}" width="16" height="16"/>
         	</a>
         	<?php } ?>
           </hgroup>
@@ -478,6 +468,17 @@ $(document).ready(function(){
 			<!-- ÁREA DE LOGIN - JANELA MODAL -->
 			<a class="close" href="#" title="FECHAR">Fechar</a>
 			<div id="registration"></div>
+		</div>
+		<div id="confirmation_window">
+			<div id="registration_delete">
+				<p>Tem certeza que deseja excluir esta imagem?</p>
+				{{ Form::open(array('url' => '/photos/' . $photos->id, 'method' => 'delete')) }}
+					<div id="registration_buttons">
+						<a class="btn" href="#" id="submit_delete">Confirmar</a>
+						<a class="btn" href="#" id="cancel_delete">Cancelar</a>
+					</div>
+				{{ Form::close() }}
+			</div>
 		</div>
 
 @stop

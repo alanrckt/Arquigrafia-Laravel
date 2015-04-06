@@ -62,47 +62,43 @@
 	<!-- OUTROS ALBUNS -->
 	<div class="container">
 		<div class="twelve columns albums">
-		<hgroup class="profile_block_title">
-			<h3><i class="photos"></i> Outros álbuns</h3>
-		</hgroup>
-		<div class="profile_box">
-			@foreach($other_albums as $other_album)
-				<div class="gallery_box">
-					<a href="{{ URL::to("/albums/" . $album->id) }}" class="gallery_photo">
-						@if (isset($other_album->cover_id))
-							<img src="{{ URL::to("/arquigrafia-images/" . $other_album->cover_id . "_home.jpg") }}" class="gallery_photo" />
-						@else
-							<img src="{{ URL::to("/img/album_icon.png") }}" class="gallery_photo" />
-						@endif
-					</a>
-					<a href="{{ URL::to("/albums/" . $album->id) }}" class="name">
-						{{ $other_album->title . ' ' . '(' . $other_album->photos->count() . ')' }}
-					</a>
-					<br />
-				</div>
-			@endforeach
-		</div>
-	</div>
-	
-	</div>
-	
-		<!--   MODAL   -->
-		<div id="mask"></div>
-		<div id="confirmation_window">
-			<!-- ÁREA DE LOGIN - JANELA MODAL -->
-			<div id="registration">
-				<p>Tem certeza que deseja excluir este álbum?</p>
-				{{ Form::open(array('url' => '/albums/' . $album->id, 'method' => 'delete')) }}
-					<a class="btn" href="#" id="submit_delete">Sim</a>
-					<a class="btn" href="#" id="cancel_delete">Não</a>
-				{{ Form::close() }}
+			<hgroup class="profile_block_title">
+				<h3><i class="photos"></i> Outros álbuns</h3>
+			</hgroup>
+			<div class="profile_box">
+				@foreach($other_albums as $other_album)
+					<div class="gallery_box">
+						<a href="{{ URL::to("/albums/" . $other_album->id) }}" class="gallery_photo">
+							@if (isset($other_album->cover_id))
+								<img src="{{ URL::to("/arquigrafia-images/" . $other_album->cover_id . "_home.jpg") }}" class="gallery_photo" />
+							@else
+								<img src="{{ URL::to("/img/album_icon.png") }}" class="gallery_photo" />
+							@endif
+						</a>
+						<a href="{{ URL::to("/albums/" . $other_album->id) }}" class="name">
+							{{ $other_album->title . ' ' . '(' . $other_album->photos->count() . ')' }}
+						</a>
+						<br />
+					</div>
+				@endforeach
 			</div>
 		</div>
-		<!--   FIM - MODAL   -->
 	</div>
-	<!--   FIM - #CONTAINER   -->
-</body>
-</html>
-
-
+	
+	<!--   MODAL   -->
+	<div id="mask"></div>
+	<div id="confirmation_window">
+		<!-- ÁREA DE LOGIN - JANELA MODAL -->
+		<!-- <a class="close" href="#" title="FECHAR">Fechar</a> -->
+		<div id="registration_delete">
+			<p>Tem certeza que deseja excluir este álbum?</p>
+			{{ Form::open(array('url' => '/albums/' . $album->id, 'method' => 'delete')) }}
+				<div id="registration_buttons">
+					<a class="btn" href="#" id="submit_delete">Confirmar</a>
+					<a class="btn" href="#" id="cancel_delete">Cancelar</a>
+				</div>
+			{{ Form::close() }}
+		</div>
+	</div>
+	<!--   FIM - MODAL   -->	
 @stop
