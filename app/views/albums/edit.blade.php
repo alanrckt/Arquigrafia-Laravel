@@ -107,8 +107,7 @@
 						</div>
 					</div>
 				</div>
-				<br />
-				<div class="four columns">
+				<div class="four columns alpha">
 					<p>{{ Form::submit("EDITAR", array('class'=>'btn')) }}</p>
 				</div>
 			{{ Form::close() }}

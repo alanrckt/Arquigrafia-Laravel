@@ -104,7 +104,7 @@ $(document).ready(function(){
 
               <?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>  
                	<span class="right">
-					<a id="delete_button" href="#"></a>
+        					<a id="delete_button" href="#" title="Excluir imagem"></a>
               	</span>
               <?php } ?>
              
@@ -277,7 +277,8 @@ $(document).ready(function(){
             <h3><i class="info"></i> Informações</h3>
             &nbsp; &nbsp;
         	<?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>
-        	   	<a href= '{{"/photos/" . $photos->id . "/edit" }}' ><img src="{{ asset("img/edit.png") }}" width="16" height="16"/>
+        	   	<a href= '{{"/photos/" . $photos->id . "/edit" }}' title="Editar informações da imagem">
+                <img src="{{ asset("img/edit.png") }}" width="16" height="16"/>
         	</a>
         	<?php } ?>
           </hgroup>

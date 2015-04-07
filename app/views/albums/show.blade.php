@@ -13,9 +13,6 @@
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/panel.js"></script>
 
-
-</head>
-
 @stop
 
 @section('content')
@@ -45,8 +42,8 @@
 			<hgroup class="profile_block_title">
 				<h3><i class="info"></i>Informações</h3>
 				@if ( $album->user_id == Auth::id() )
-					<a id="delete_button" href="#"></a>
-					<a id="edit_button" href="{{ URL::to('/albums/' . $album->id . '/edit')}}"></a>
+					<a id="delete_button" href="#" title="Excluir álbum"></a>
+					<a id="edit_button" href="{{ URL::to('/albums/' . $album->id . '/edit')}}" title="Editar álbum"></a>
 				@endif
 			</hgroup>
 			<ul>

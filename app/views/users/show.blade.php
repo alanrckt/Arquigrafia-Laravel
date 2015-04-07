@@ -60,7 +60,8 @@
       	<hgroup class="profile_block_title">
         	<h3><i class="profile"></i>Perfil</h3> &nbsp; &nbsp;
         	<?php if (Auth::check() && Auth::user()->id == $user->id) { ?>
-        	<a href= '{{"/users/" . $user->id . "/edit" }}' ><img src="{{ asset("img/edit.jpg") }}" width="20" height="20"/>
+        	<a href= '{{"/users/" . $user->id . "/edit" }}' title="Editar perfil" >
+        		<img src="{{ asset("img/edit.png") }}" width="16" height="16" />
         	</a>
         	<?php } ?>
         </hgroup>

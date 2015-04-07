@@ -138,6 +138,13 @@ $(document).ready(function(){
 			$('#confirmation_window').fadeIn('slow');
 		});
 
+		$('.title_delete').click(function(e){
+			e.preventDefault();
+			$('#registration_delete form').attr('action', this.href);
+			$('#mask').fadeIn('fast');
+			$('#confirmation_window').fadeIn('slow');
+		});		
+
 		$('#confirmation_window .close').click(function (e) {
 			e.preventDefault();
 			$('#mask').fadeOut();
