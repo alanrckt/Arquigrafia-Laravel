@@ -28,21 +28,7 @@
 		</div>
 		<p>{{ Form::submit("ADICIONAR AOS ÁLBUNS", array('class'=>'btn')) }}</p>
 	{{ Form::close() }}
-	<script>
-		$(document).ready(function() {
-			$('#registration form').submit(function(e) {
-				e.preventDefault();
-				var url = $(this).attr("action");
-				data = $(this).serializeArray();
-				$.post(url, data).done( function(data) {
-					console.log(data);
-				})
-				.fail(function() {
-					console.log("fail!!");
-				});
-			});
-		});
-	</script>
+
 	<style>
 		@foreach($albums as $album)
 			{{ '#album_' . $album->id . ' + label' }}

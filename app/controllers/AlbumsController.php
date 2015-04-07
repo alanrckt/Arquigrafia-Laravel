@@ -34,7 +34,6 @@ class AlbumsController extends \BaseController {
 			$other_albums = $user->albums->except($album->id);
 			if ( Auth::check() && $user->id == Auth::id() )
 				$edit = true;
-			
 			return View::make('albums.show')
 				->with(['photos' => $photos, 'album' => $album, 
 					'user' => $user,
@@ -177,7 +176,9 @@ class AlbumsController extends \BaseController {
 	}
 
 	public function getList($id) {
-		$albums = Auth::user()->albums;
+		$photo_albums_ids = Photo::find($id)->albums->modelKeys(); // albums que já têm essa foto
+		$albums = Album::where('user_id', '=', Auth::id())
+			->whereNotIn('id', $photo_albums_ids)->get();
 		return Response::json(View::make('albums.get-albums')
 			->with(['albums' => $albums, 'photo_id' => $id])
 			->render());
@@ -192,6 +193,13 @@ class AlbumsController extends \BaseController {
 			$album->photos()->sync(array($photo), false);
 		
 		return Redirect::to('/photos/' . $photo);
+	}
+
+	public function destroy($id) {
+		$album = Album::find($id);
+		$album->photos()->detach();
+		$album->delete();
+		return Redirect::to('/albums');
 	}
 
 }

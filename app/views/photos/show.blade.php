@@ -64,23 +64,6 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript">
-	$(document).ready(function (){
-		$('#plus').click(function(e){
-			e.preventDefault();
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$.get(this.href).done(function(data) {
-				$("#registration").empty();
-				$("#registration").append(data);
-			})
-			.fail(function() {
-				console.log("Erro ao tentar carregar ábluns via AJAX!");
-			})
-		});
-	});
-</script>
-
 <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/jquery.fancybox.css" />
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.fancybox.pack.js"></script>
@@ -121,10 +104,7 @@ $(document).ready(function(){
 
               <?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>  
                	<span class="right">
-              		{{ Form::open(['method' => 'delete', 'url' => 'photos/' . $photos->id]) }}
-              		{{ Form::submit('', array('class'=> 'btn left', 'style'=>"background:url(/img/excluir.png) no-repeat;border:none;", 'alt'=>'Excluir', 
-					'onclick'=>'javascript:return confirm(\'Tem certeza que deseja excluir esta imagem?\')')) }}
-					{{ Form::close() }}    						
+        					<a id="delete_button" href="#" title="Excluir imagem"></a>
               	</span>
               <?php } ?>
              
@@ -133,7 +113,7 @@ $(document).ready(function(){
 					<!--   FIM - NOME / STATUS DA FOTO   -->
 					
           <!--   FOTO   -->
-					<a class="fancybox" href="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" title="Praça Ramos de Azevedo" ><img class="single_view_image" style="" src="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" /></a>
+					<a class="fancybox" href="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" title="{{ $photos->name }}" ><img class="single_view_image" style="" src="{{ URL::to("/arquigrafia-images")."/".$photos->id."_view.jpg" }}" /></a>
  
 
 				</div>				
@@ -143,7 +123,7 @@ $(document).ready(function(){
 					
 					<?php if (Auth::check()) { ?>
 						
-            <ul id="single_view_image_buttons">
+	            <ul id="single_view_image_buttons">
 							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
 							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
               
@@ -297,7 +277,8 @@ $(document).ready(function(){
             <h3><i class="info"></i> Informações</h3>
             &nbsp; &nbsp;
         	<?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>
-        	<a href= '{{"/photos/" . $photos->id . "/edit" }}' ><img src="{{ asset("img/edit.jpg") }}" width="20" height="20"/>
+        	   	<a href= '{{"/photos/" . $photos->id . "/edit" }}' title="Editar informações da imagem">
+                <img src="{{ asset("img/edit.png") }}" width="16" height="16"/>
         	</a>
         	<?php } ?>
           </hgroup>
@@ -546,6 +527,17 @@ $(document).ready(function(){
 			<!-- ÁREA DE LOGIN - JANELA MODAL -->
 			<a class="close" href="#" title="FECHAR">Fechar</a>
 			<div id="registration"></div>
+		</div>
+		<div id="confirmation_window">
+			<div id="registration_delete">
+				<p>Tem certeza que deseja excluir esta imagem?</p>
+				{{ Form::open(array('url' => '/photos/' . $photos->id, 'method' => 'delete')) }}
+					<div id="registration_buttons">
+						<a class="btn" href="#" id="submit_delete">Confirmar</a>
+						<a class="btn" href="#" id="cancel_delete">Cancelar</a>
+					</div>
+				{{ Form::close() }}
+			</div>
 		</div>
 
 @stop

@@ -22,7 +22,7 @@ $(function(){
       afterLoad : function() {
 			var download = $('#single_view_image_buttons');
          	if (download.size() === 0) {
-				this.title = '<a id="download_login_link" href="#">Faça o login para fazer o download</a>';
+				this.title = '<a id="download_login_link" href="/users/login">Faça o login para fazer o download</a>';
 			} else {
 				var buttons = $("#single_view_buttons_box").clone(),
 				social_network_buttons = buttons.find("#single_view_social_network_buttons");
@@ -39,21 +39,22 @@ $(function(){
       
     });
     
-    $('#download_login_link').live('click', function(e){
-  	  	$.fancybox.close(true);
-		$('#mask').fadeIn('fast');
-		$('#form_window').fadeIn('slow');
-		$('#registration').load('<c:url value="/users/8/login"/>');	
-		e.preventDefault();
-    });
-    
-    $('#plus').live('click', function(e) {
-  	  	$.fancybox.close(true);
-    });
-
     $('#delete_photo').live('click', function(e){
 		return confirm('Tem certeza que deseja excluir esta imagem?');
 	});
-	
+
+	$('#plus').live('click', function(e){
+		e.preventDefault();
+		$.fancybox.close(true);
+		$('#mask').fadeIn('fast');
+		$('#form_window').fadeIn('slow');
+		$.get(this.href).done(function(data) {
+			$("#registration").empty();
+			$("#registration").append(data);
+		})
+		.fail(function() {
+			console.log("Erro ao tentar carregar ábluns via AJAX!");
+		})
+	});	
 });
 
