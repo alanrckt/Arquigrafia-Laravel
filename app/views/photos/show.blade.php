@@ -414,6 +414,64 @@ $(document).ready(function(){
               echo "Nota: " . $evaluation->evaluationPosition . "<br>";
             }
           ?>
+          
+          <!-- Google Charts -->
+          <div>
+            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+            
+            <div id="chart_div"><div>
+            
+            <script>
+            
+              google.load('visualization', '1', {packages: ['corechart', 'line']});
+              google.setOnLoadCallback(drawCurveTypes);
+              
+              function drawCurveTypes() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'Pontuação');
+                data.addColumn('number', 'Média das avaliações');
+                data.addColumn('number', 'Sua avaliação');
+          
+                data.addRows([
+                  [0, 3, 9],    
+                  [1, 10, 5],   
+                  [2, 48, 35],  
+                  [3, 17, 100],   
+                  [4, 0, 10],  
+                  [5, 34, 20]
+                ]);
+          
+                var options = {
+                  orientation: 'vertical',
+                  legend: {
+                    position: 'bottom',
+                  },
+                  pointSize: 6,
+                  hAxis: {
+                    viewWindow: {min: 0, max: 100}
+                  },
+                  vAxis: {
+                    ticks: [
+                      {v:0, f:'Lorem'}, 
+                      {v:1, f:'Ipsum'}, 
+                      {v:2, f:'Lo'},
+                      {v:3, f:'La'},
+                      {v:4, f:'Dolor'},
+                      {v:5, f:'Lore'}
+                      ]
+                  },
+                  series: {
+                    0: { color: '#999999' },
+                    1: { color: '#000000' }
+                  }
+                };
+          
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+              }
+              
+            </script>
+          </div>
         
         </div>
         
