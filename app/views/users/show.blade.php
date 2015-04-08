@@ -173,7 +173,11 @@
 								@if (isset($album->cover_id))
 									<img src="{{ URL::to("/arquigrafia-images/" . $album->cover_id . "_home.jpg") }}" class="gallery_photo" />
 								@else
-									<img src="{{ URL::to("/img/album_icon.png") }}" class="gallery_photo" />
+									<div class="gallery_photo">
+										<div class="no_cover">
+											<p> Álbum sem capa </p>
+										</div>
+									</div>
 								@endif
 							</a>
 							<a href="{{ URL::to("/albums/" . $album->id) }}" class="name">

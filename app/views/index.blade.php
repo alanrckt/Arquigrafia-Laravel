@@ -45,6 +45,18 @@
 
   </div>
   <!--   FIM - CONTAINER   -->
-  
+  <!--   MODAL   -->
+    <div id="mask"></div>
+    <div id="confirmation_window">
+      <div id="registration_delete">
+        <p></p>
+        {{ Form::open(array('url' => '', 'method' => 'delete')) }}
+          <div id="registration_buttons">
+            <a class="btn" href="#" id="submit_delete">Confirmar</a>
+            <a class="btn" href="#" id="cancel_delete">Cancelar</a>
+          </div>
+        {{ Form::close() }}
+      </div>
+    </div>
 
 @stop

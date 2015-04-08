@@ -183,7 +183,7 @@ input.search_bar_button { background: url(../img/sprite.png) -330px 0; height: 2
 .panel-next:hover {background:url(../img/next.png) right center no-repeat;}
 #user_gallery .panel-back, #user_gallery .panel-next {height: 220px;}
 .wrap .item { position: relative; }
-.wrap .item a { display: block; position: relative; }
+.wrap .item a { display: block; position: relative; width: 100%; height: 100%; }
 .wrap .layer { position: absolute; top: 0; left: 0; overflow: hidden; }
 .wrap .h1, .wrap .h2, .wrap .h3, .wrap .v1 { float: left; margin: 5px; }
 #panel .h1, #panel .h1 .layer { width: 156px; height: 104px; }
@@ -459,8 +459,8 @@ ul#avaliation_list li span.right { text-align: left; padding-left: 10px; }
 .profile_block_title h3 {float: left;}
 .profile_block_link {float:right;}
 
-.albums .gallery_box {float:left; position: relative; }
-.albums .name {position: absolute; bottom: 8px; left: 8px; z-index: 9; font-size: 10px; color: #fff;}
+.albums .gallery_box {float:left; position: relative; width: 143px; height: 104px; margin: 2px; }
+.albums .name {position: absolute; bottom: 8px; left: 8px; z-index: 9; font-size: 10px; color: #fff; }
 
 /* GROUP */
 #group_content {margin-top: 20px;}
@@ -525,7 +525,7 @@ input#login_white_button:hover { background-position: -160px -258px; }
 .folder { height: 35px; }
 .reminder { font-style: italic }
 
-.gallery_photo { width: 143px; height: 104px; margin: 1px;}
+.gallery_photo { width: 143px; height: 104px; }
 
 #albums_list { width: 600px; height: 350px; overflow-y: scroll; margin: 10px 0; }
 #albums_list td { text-align: center; }
@@ -536,9 +536,9 @@ input#login_white_button:hover { background-position: -160px -258px; }
 #edit_button { display: inline-block; width: 16px; height: 16px; background: url("../img/edit.png");  margin-left: 5px; }
 #edit_button:hover { cursor: pointer; }
 
-#title_delete_button { display: inline-block; width: 12px; height: 12px; background: url("../img/white-delete-8.png"); margin-left: 8px; float: right; }
+#title_delete_button { display: inline-block; width: 12px; height: 12px; background: url("../img/white-delete-12.png"); margin-left: 8px; float: right; }
 #title_delete_button:hover { cursor: pointer; }
-#title_edit_button { display: inline-block; width: 12px; height: 12px; background: url("../img/white-edit-8.png");  margin-left: 8px; float: right; }
+#title_edit_button { display: inline-block; width: 12px; height: 12px; background: url("../img/white-edit-12.png");  margin-left: 8px; float: right; }
 #title_edit_button:hover { cursor: pointer; }
 
 #confirmation_window { background: #fff; position: fixed; width: 300px; height: 80px;  top: 30%; left: 50%; margin: -40px 0 0 -150px; padding: 20px; -moz-border-radius: 5px; border-radius: 5px; display: none; z-index: 1001; font-size: 14px;}
@@ -546,3 +546,6 @@ input#login_white_button:hover { background-position: -160px -258px; }
 #confirmation_window a.close:hover { background-position: -160px -216px; text-decoration: underline; }
 #confirmation_window p { color: black;}
 #confirmation_window #registration_buttons { position: absolute; right: 20px; bottom: 20px; }
+.no_cover { width: 100%; height: 100%; background-color: #aaa; }
+.no_cover p { width: 100%; text-align: center; font-size: 14px; margin: 0; position: absolute; left: 0; top: 40%; color: #eee;}
+.wrap .no_cover p { font-size: 18px; top: 50%; }

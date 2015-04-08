@@ -134,13 +134,23 @@ $(document).ready(function(){
 
 		$('#delete_button').click(function(e){
 			e.preventDefault();
+			$('#registration_delete form').attr('action', this.href);
+			if ($(this).hasClass('album'))
+				$('#registration_delete p').html('Tem certeza que deseja excluir este álbum?');
+			else
+				$('#registration_delete p').html('Tem certeza que deseja excluir esta imagem?');
 			$('#mask').fadeIn('fast');
 			$('#confirmation_window').fadeIn('slow');
+
 		});
 
 		$('.title_delete').click(function(e){
 			e.preventDefault();
 			$('#registration_delete form').attr('action', this.href);
+			if ($(this).hasClass('album'))
+				$('#registration_delete p').html('Tem certeza que deseja excluir este álbum?');
+			else
+				$('#registration_delete p').html('Tem certeza que deseja excluir esta imagem?');
 			$('#mask').fadeIn('fast');
 			$('#confirmation_window').fadeIn('slow');
 		});		

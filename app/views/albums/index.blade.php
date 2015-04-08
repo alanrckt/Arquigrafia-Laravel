@@ -22,39 +22,52 @@
 			<div class="count">Total de álbuns: {{ $albums->count() }}</div>
 		</div>
 	</div>
+	@if ($albums->count() > 0)
 	<div id="user_gallery">
-			<div class="wrap">
-					<div id="panel" class="stripe">
-						@foreach($albums as $album)
-
-							<div class="item h2">
-								<div class="layer" data-depth="0.2">
-									<a href='{{ URL::to("/albums/{$album->id}") }}'>
-										<img src='{{ URL::to("/arquigrafia-images/{$album->id}_200h.jpg") }}' title="{{ $album->title }}">
-									</a>
-									<div class="item-title">
-										<p>{{ $album->title . ' (' . $album->photos->count() . ')' }}</p>
-										<a id="title_delete_button" class="title_delete" href="{{ URL::to('/albums/' . $album->id) }}" title="Excluir álbum"></a>
-										<a id="title_edit_button" href="{{ URL::to('/albums/' . $album->id . '/edit')}}" title="Editar álbum"></a>
+		<div class="wrap">
+			<div id="panel" class="stripe">
+				@foreach($albums as $album)
+					<div class="item h2">
+						<div class="layer" data-depth="0.2">
+							<a href='{{ URL::to("/albums/{$album->id}") }}'>
+								@if(isset($album->cover_id))
+									<img src='{{ URL::to("/arquigrafia-images/{$album->id}_200h.jpg") }}' 
+										title="{{ $album->title }}">
+								@else
+									<div class="no_cover">
+										<p>Álbum sem capa</p>
 									</div>
-								</div>
-
+								@endif
+							</a>
+							<div class="item-title">
+								<p>{{ $album->title . ' (' . $album->photos->count() . ')' }}</p>
+								<a id="title_delete_button" class="title_delete album" href="{{ URL::to('/albums/' . $album->id) }}" title="Excluir álbum"></a>
+								<a id="title_edit_button" href="{{ URL::to('/albums/' . $album->id . '/edit')}}" title="Editar álbum"></a>
 							</div>
-
-						@endforeach
+						</div>
 					</div>
-					<div class="panel-back"></div>
-					<div class="panel-next"></div>
+				@endforeach
 			</div>
+			<div class="panel-back"></div>
+			<div class="panel-next"></div>
 		</div>
 	</div>
+	@else
+		<div class="container">
+			<div class="twelve columns">
+				<p> 
+					Você ainda não possui nenhum álbum. Crie um {{ link_to('/albums/create', 'aqui') }}
+				</p>
+			</div>
+		</div>
+	@endif
 	<!--   MODAL   -->
 	<div id="mask"></div>
 	<div id="confirmation_window">
 		<!-- ÁREA DE LOGIN - JANELA MODAL -->
 		<!-- <a class="close" href="#" title="FECHAR">Fechar</a> -->
 		<div id="registration_delete">
-			<p>Tem certeza que deseja excluir este álbum?</p>
+			<p></p>
 			{{ Form::open(array('url' => '', 'method' => 'delete')) }}
 				<div id="registration_buttons">
 					<a class="btn" href="#" id="submit_delete">Confirmar</a>

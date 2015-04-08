@@ -11,20 +11,22 @@
 		var maxPage = {{ $maxPage }};
 		var loadedPages = [1];
 		var url = '{{ $url }}';
-
+		var photos_count = {{ $photos->count() }};
 		$(document).ready(function() {
 			var first_photo = $('#add_page' + currentPage + ' .add_photo').first();
 			first_photo.prop('checked', true);
 			@if( !isset($image) )
-				$('#create_album').submit(function(e) {
+				/* $('#create_album').submit(function(e) {
 					e.preventDefault();
+					if(photos_count == 0)
+						this.submit();
 					var n = $(".add_photo:checked").length;
 					if (n < 1) {
 						//fazer algo
 					} else {
 						this.submit();
 					}
-				});
+				}); */
 			@endif
 
 		});

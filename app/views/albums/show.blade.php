@@ -2,8 +2,6 @@
 
 @section('head')
 
-{{HTML::style('/css/style.css');}}
-
 <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script>
@@ -42,7 +40,7 @@
 			<hgroup class="profile_block_title">
 				<h3><i class="info"></i>Informações</h3>
 				@if ( $album->user_id == Auth::id() )
-					<a id="delete_button" href="#" title="Excluir álbum"></a>
+					<a id="delete_button" class="album" href="{{ URL::to('/albums/' . $album->id) }}" title="Excluir álbum"></a>
 					<a id="edit_button" href="{{ URL::to('/albums/' . $album->id . '/edit')}}" title="Editar álbum"></a>
 				@endif
 			</hgroup>
@@ -65,17 +63,18 @@
 			<div class="profile_box">
 				@foreach($other_albums as $other_album)
 					<div class="gallery_box">
-						<a href="{{ URL::to("/albums/" . $other_album->id) }}" class="gallery_photo" title="{{ $other_album->title }}">
+						<a href="{{ URL::to("/albums/" . $other_album->id) }}" title="{{ $other_album->title }}">
 							@if (isset($other_album->cover_id))
 								<img src="{{ URL::to("/arquigrafia-images/" . $other_album->cover_id . "_home.jpg") }}" class="gallery_photo" />
 							@else
-								<img src="{{ URL::to("/img/album_icon.png") }}" class="gallery_photo" />
+								<div class="gallery_photo">
+									<div class="no_cover">
+										<p> Álbum sem capa </p>
+									</div>
+								</div>
 							@endif
 						</a>
-						<a href="{{ URL::to("/albums/" . $other_album->id) }}" class="name">
-							{{ $other_album->title . ' ' . '(' . $other_album->photos->count() . ')' }}
-						</a>
-						<br />
+						<a href="{{ URL::to("/albums/" . $other_album->id) }}" class="name">{{ $other_album->title . ' ' . '(' . $other_album->photos->count() . ')' }}</a>
 					</div>
 				@endforeach
 			</div>
@@ -88,7 +87,7 @@
 		<!-- ÁREA DE LOGIN - JANELA MODAL -->
 		<!-- <a class="close" href="#" title="FECHAR">Fechar</a> -->
 		<div id="registration_delete">
-			<p>Tem certeza que deseja excluir este álbum?</p>
+			<p></p>
 			{{ Form::open(array('url' => '/albums/' . $album->id, 'method' => 'delete')) }}
 				<div id="registration_buttons">
 					<a class="btn" href="#" id="submit_delete">Confirmar</a>
