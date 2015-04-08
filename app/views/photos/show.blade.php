@@ -378,15 +378,19 @@ $(document).ready(function(){
             {{ Form::open(array('url' => "photos/{$photos->id}/evaluate")) }}
             
               <?php 
-                // pegar do banco as possives métricas
-                $binomials = Binomial::all();
-      
+                $count = $binomials->count() - 1;
                 // fazer um loop por cada e salvar como uma avaliação
-                foreach ($binomials as $binomial) { ?>
+                foreach ($binomials->reverse() as $binomial) { ?>
                   
                   <p>
                     {{ Form::label('value-'.$binomial->id, $binomial->firstOption.' - '.$binomial->secondOption) }}<br>
-                    {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100']) }}
+                    @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
+                      <?php $userEvaluation = $userEvaluations->get($count) ?>
+                      {{ Form::input('range', 'value-'.$binomial->id, $userEvaluation->evaluationPosition, ['min'=>'0','max'=>'100']) }}
+                    @else
+                      {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100']) }}
+                    @endif
+                    <?php $count-- ?>
                   </p>
                   
               <?php } ?>
@@ -405,14 +409,14 @@ $(document).ready(function(){
         <!-- MÉDIA DAS AVALIAÇÕES -->
         <div id="evaluation_average">
         
-          <?php 
+         <?php /*
             $evaluations = $photos->evaluations;
             $binomials = Binomial::all()->keyBy('id');;
             foreach($evaluations as $evaluation) {
               $bid = $evaluation->binomial_id;
               echo $binomials[$bid]->firstOption . " - " . $binomials[$bid]->secondOption . "<br>";
               echo "Nota: " . $evaluation->evaluationPosition . "<br>";
-            }
+            } */
           ?>
           
           <!-- Google Charts -->
@@ -430,17 +434,26 @@ $(document).ready(function(){
                 var data = new google.visualization.DataTable();
                 data.addColumn('number', 'Pontuação');
                 data.addColumn('number', 'Média das avaliações');
-                data.addColumn('number', 'Sua avaliação');
-          
+                
+                @if(Auth::check())
+                  data.addColumn('number', 'Sua avaliação');
+                @endif
+                <?php $count = 0; ?>
                 data.addRows([
-                  [0, 3, 9],    
-                  [1, 10, 5],   
-                  [2, 48, 35],  
-                  [3, 17, 100],   
-                  [4, 0, 10],  
-                  [5, 34, 20]
+
+                  @foreach($average as $avg)
+                      [
+                        {{ $count . ', ' }}
+                        {{ $avg->avgPosition }}
+                        @if(isset($userEvaluations) && !$userEvaluations->isEmpty())
+                          <?php  $userEvaluation = $userEvaluations->get($count); ?>
+                          {{ ', ' .  $userEvaluation->evaluationPosition }}
+                        @endif
+                      ],
+                      <?php $count++ ?>
+                  @endforeach
                 ]);
-          
+
                 var options = {
                   orientation: 'vertical',
                   legend: {
@@ -452,12 +465,11 @@ $(document).ready(function(){
                   },
                   vAxis: {
                     ticks: [
-                      {v:0, f:'Lorem'}, 
-                      {v:1, f:'Ipsum'}, 
-                      {v:2, f:'Lo'},
-                      {v:3, f:'La'},
-                      {v:4, f:'Dolor'},
-                      {v:5, f:'Lore'}
+                        <?php $count = 0?>
+                        @foreach($binomials as $binomial)
+                          {v: {{ $count }}, f: '{{ $binomial->firstOption . "-" . $binomial->secondOption }}' },
+                          <?php $count++; ?>
+                        @endforeach
                       ]
                   },
                   series: {
