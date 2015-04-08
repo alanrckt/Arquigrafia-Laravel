@@ -361,6 +361,10 @@ $(document).ready(function(){
 					<img src="{{ asset('img/ccIcons/by88x31.png') }}" id="ccicons" alt="license" />
 				</a>
 				</br>
+
+         <!-- GOOGLE MAPS -->
+        <h4>Localização:</h4>
+        <div id="map_canvas" class="single_view_map" style="width:300px; height:250px;"></div> 
         
         <!-- AVALIAÇÃO -->
 			  <h4>Avaliação:</h4>
@@ -489,9 +493,7 @@ $(document).ready(function(){
         
         <br class="clear">
 				
-        <!-- GOOGLE MAPS -->
-				<h4>Localização:</h4>
-				<div id="map_canvas" class="single_view_map" style="width:300px; height:250px;"></div> 
+       
         
 				
         <!-- GRUPOS -->
