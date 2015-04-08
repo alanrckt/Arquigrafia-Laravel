@@ -65,6 +65,8 @@ Route::post('/albums/photo/add', 'AlbumsController@addPhotoToAlbums');
 Route::post('/photos/{photo_id}/comment','PhotosController@comment');
 
 /* EVALUATIONS */
+Route::get('/photos/{photo_id}/saveEvaluation','PhotosController@saveEvaluation');
+Route::post('/photos/{photo_id}/saveEvaluation','PhotosController@saveEvaluation');
 Route::get('/photos/{photo_id}/evaluate','PhotosController@evaluate');
 Route::post('/photos/{photo_id}/evaluate','PhotosController@evaluate');
 
