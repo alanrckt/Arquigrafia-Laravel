@@ -104,7 +104,7 @@ $(document).ready(function(){
 
               <?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>  
                	<span class="right">
-        					<a id="delete_button" href="#" title="Excluir imagem"></a>
+        					<a id="delete_button" href="{{ URL::to('/photos/' . $photos->id) }}" title="Excluir imagem"></a>
               	</span>
               <?php } ?>
              
@@ -530,8 +530,8 @@ $(document).ready(function(){
 		</div>
 		<div id="confirmation_window">
 			<div id="registration_delete">
-				<p>Tem certeza que deseja excluir esta imagem?</p>
-				{{ Form::open(array('url' => '/photos/' . $photos->id, 'method' => 'delete')) }}
+				<p></p>
+				{{ Form::open(array('url' => '', 'method' => 'delete')) }}
 					<div id="registration_buttons">
 						<a class="btn" href="#" id="submit_delete">Confirmar</a>
 						<a class="btn" href="#" id="cancel_delete">Cancelar</a>
