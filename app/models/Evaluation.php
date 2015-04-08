@@ -18,4 +18,14 @@ class Evaluation extends Eloquent {
     return $this->hasOne('Photo');
   }
 
+  public static function average($id) {
+     return DB::table('binomial_evaluation')
+      ->select('binomial_id', DB::raw('avg(evaluationPosition) as avgPosition'))
+      ->where('photo_id', $id)
+      ->orderBy('binomial_id', 'asc')
+      ->groupBy('binomial_id')->get();
+  }
+
+
+
 }
