@@ -367,63 +367,9 @@ $(document).ready(function(){
         <div id="map_canvas" class="single_view_map" style="width:300px; height:250px;"></div> 
         
         <!-- AVALIAÇÃO -->
-			  <h4>Avaliação:</h4>
-        <p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
-        <a href="#" title="Avalie a foto" id="evaluate_button" class="btn">AVALIAR</a> &nbsp;
-        <a href="#" title="Média das avaliações da foto" id="evaluation_average" class="btn">MÉDIA DAS AVALIAÇÕES</a>
-        
-        <br class="clear">
-        
-        <!-- FORMULÁRIO DE AVALIAÇÃO -->
-        <div id="evaluation_box">
-        
-          <?php if (Auth::check()) { ?>
-              
-            {{ Form::open(array('url' => "photos/{$photos->id}/evaluate")) }}
-            
-              <?php 
-                $count = $binomials->count() - 1;
-                // fazer um loop por cada e salvar como uma avaliação
-                foreach ($binomials->reverse() as $binomial) { ?>
-                  
-                  <p>
-                    {{ Form::label('value-'.$binomial->id, $binomial->firstOption.' - '.$binomial->secondOption) }}<br>
-                    @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
-                      <?php $userEvaluation = $userEvaluations->get($count) ?>
-                      {{ Form::input('range', 'value-'.$binomial->id, $userEvaluation->evaluationPosition, ['min'=>'0','max'=>'100']) }}
-                    @else
-                      {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100']) }}
-                    @endif
-                    <?php $count-- ?>
-                  </p>
-                  
-              <?php } ?>
-              
-              {{ Form::submit('AVALIAR', ['id'=>'evaluation_button','class'=>'cursor btn']) }}
-                
-            {{ Form::close() }}
-            
-            
-          <?php } else { ?>
-            <p>Você precisa estar logado para avaliar! <a href="{{ URL::to('/users/login') }}">Login</a></p>
-          <?php } ?>
-        
-        </div>
-        
-        <!-- MÉDIA DAS AVALIAÇÕES -->
-        <div id="evaluation_average">
-        
-         <?php /*
-            $evaluations = $photos->evaluations;
-            $binomials = Binomial::all()->keyBy('id');;
-            foreach($evaluations as $evaluation) {
-              $bid = $evaluation->binomial_id;
-              echo $binomials[$bid]->firstOption . " - " . $binomials[$bid]->secondOption . "<br>";
-              echo "Nota: " . $evaluation->evaluationPosition . "<br>";
-            } */
-          ?>
-          
-          <!-- Google Charts -->
+			  <h4>Médias das Avaliações desta foto:</h4>
+
+        <!-- Google Charts -->
           <div>
             <script type="text/javascript" src="https://www.google.com/jsapi"></script>
             
@@ -492,8 +438,70 @@ $(document).ready(function(){
         </div>
         
         <br class="clear">
-				
-       
+        
+       </div>
+
+        <!--<p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
+        -->
+        <?php if (Auth::check()) { ?>
+          <a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie você também esta foto!</a> &nbsp;
+        <?php } else { ?>
+            <p>Faça seu login e avalie você também esta foto! <a href="{{ URL::to('/users/login') }}">Login</a></p>
+        <?php } ?>
+        <!-- <a href="#" title="Média das avaliações da foto" id="evaluation_average" class="btn">MÉDIA DAS AVALIAÇÕES</a>-->
+        
+        <!--<br class="clear">-->
+        
+        <!-- FORMULÁRIO DE AVALIAÇÃO -->
+        <!--<div id="evaluation_box">-->
+        
+          <?php /*if (Auth::check()) { ?>
+              
+            {{ Form::open(array('url' => "photos/{$photos->id}/evaluate")) }}
+            
+              <?php 
+                $count = $binomials->count() - 1;
+                // fazer um loop por cada e salvar como uma avaliação
+                foreach ($binomials->reverse() as $binomial) { ?>
+                  
+                  <p>
+                    {{ Form::label('value-'.$binomial->id, $binomial->firstOption.' - '.$binomial->secondOption) }}<br>
+                    @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
+                      <?php $userEvaluation = $userEvaluations->get($count) ?>
+                      {{ Form::input('range', 'value-'.$binomial->id, $userEvaluation->evaluationPosition, ['min'=>'0','max'=>'100']) }}
+                    @else
+                      {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100']) }}
+                    @endif
+                    <?php $count-- ?>
+                  </p>
+                  
+              <?php } ?>
+              
+              {{ Form::submit('AVALIAR', ['id'=>'evaluation_button','class'=>'cursor btn']) }}
+                
+            {{ Form::close() }}
+            
+            
+          <?php } else { ?>
+            <p>Você precisa estar logado para avaliar! <a href="{{ URL::to('/users/login') }}">Login</a></p>
+          <?php } ?>
+        
+        </div>
+        
+        <!-- MÉDIA DAS AVALIAÇÕES -->
+        <div id="evaluation_average">
+        
+         <?php /*
+            $evaluations = $photos->evaluations;
+            $binomials = Binomial::all()->keyBy('id');;
+            foreach($evaluations as $evaluation) {
+              $bid = $evaluation->binomial_id;
+              echo $binomials[$bid]->firstOption . " - " . $binomials[$bid]->secondOption . "<br>";
+              echo "Nota: " . $evaluation->evaluationPosition . "<br>";
+            } */
+          ?>
+          
+          
         
 				
         <!-- GRUPOS -->
@@ -528,7 +536,7 @@ $(document).ready(function(){
         </div>
         -->
         
-			</div>
+			
       
       
       
