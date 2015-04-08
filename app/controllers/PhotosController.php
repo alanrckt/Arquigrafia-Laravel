@@ -25,7 +25,11 @@ class PhotosController extends \BaseController {
       return Redirect::to('/');
     $user = User::find($photos->user_id);
     $tags = $photos->tags;
+    $binomials = Binomial::all()->keyBy('id');
+    $average = Evaluation::average($photos->id);
+    $evaluations = null;
     if (Auth::check()) {
+      $evaluations =  Evaluation::where("user_id", Auth::id())->where("photo_id", $id)->orderBy("binomial_id", "asc")->get();
       if (Auth::user()->following->contains($user->id))
         $follow = false;
       else 
@@ -35,7 +39,8 @@ class PhotosController extends \BaseController {
     }
 
     return View::make('/photos/show',
-      ['photos' => $photos, 'owner' => $user, 'follow' => $follow, 'tags' => $tags, 'commentsCount' => $photos->comments->count()]);
+      ['photos' => $photos, 'owner' => $user, 'follow' => $follow, 'tags' => $tags, 'commentsCount' => $photos->comments->count(),
+      'average' => $average, 'userEvaluations' => $evaluations, 'binomials' => $binomials]);
 	}
 	
   // upload form
@@ -213,19 +218,29 @@ class PhotosController extends \BaseController {
   public function evaluate($id)
   {
     if (Auth::check()) {
+      $evaluations =  Evaluation::where("user_id", Auth::id())->where("photo_id", $id)->get();
       $input = Input::all();
       $user_id = Auth::user()->id;
       // pegar do banco as possives métricas
       $binomials = Binomial::all();
       // fazer um loop por cada e salvar como uma avaliação
-      foreach ($binomials as $binomial) {
-        $bid = $binomial->id;
-        $evaluation = Evaluation::create([
-          'photo_id'=> $id,
-          'evaluationPosition'=> $input['value-'.$bid],
-          'binomial_id'=> $bid,
-          'user_id'=> $user_id
-        ]);
+      if ($evaluations->isEmpty()) {
+        foreach ($binomials as $binomial) {
+        $bid = $binomial->id;        
+          $newEvaluation = Evaluation::create([
+            'photo_id'=> $id,
+            'evaluationPosition'=> $input['value-'.$bid],
+            'binomial_id'=> $bid,
+            'user_id'=> $user_id
+          ]);
+        } 
+      } else {
+        foreach ($evaluations as $evaluation) {
+          $bid = $evaluation->binomial_id;
+          $evaluation->evaluationPosition = $input['value-'.$bid];
+          $evaluation->save();
+      } 
+
       }
       return Redirect::to("/photos/{$id}")->with('message', '<strong>Avaliação salva</strong><br>Obrigado, agora você pode ver a média atual das avaliações.');
     } else {
