@@ -215,7 +215,7 @@ class PhotosController extends \BaseController {
   }
   
   // EVALUATE
-  public function evaluate($id)
+  public function saveEvaluation($id)
   {
     if (Auth::check()) {
       $evaluations =  Evaluation::where("user_id", Auth::id())->where("photo_id", $id)->get();
@@ -242,10 +242,10 @@ class PhotosController extends \BaseController {
       } 
 
       }
-      return Redirect::to("/photos/{$id}")->with('message', '<strong>Avaliação salva</strong><br>Obrigado, agora você pode ver a média atual das avaliações.');
+      return Redirect::to("/photos/{$id}/evaluate")->with('message', '<strong>Avaliação salva</strong><br>Obrigado, agora você pode ver a média atual das avaliações.');
     } else {
       // avaliação sem login
-      return Redirect::to("/photos/{$id}")->with('message', '<strong>Erro na avaliação</strong><br>Faça login para pode avaliar.');
+      return Redirect::to("/photos/{$id}/evaluate")->with('message', '<strong>Erro na avaliação</strong><br>Faça login para pode avaliar.');
     }
   }
   
@@ -270,6 +270,28 @@ class PhotosController extends \BaseController {
     $photo = Photo::find($id); 
     return View::make('photos.edit')
       ->with(['photo' => $photo, 'tags' => $photo->tags] );
+  }
+
+  public function evaluate($id) {     
+    $photo = Photo::find($id); 
+    $user = User::find($photo->user_id);
+    $binomials = Binomial::all()->keyBy('id');
+    $average = Evaluation::average($photo->id);
+    $evaluations = null;    
+    if (Auth::check()) {
+      $evaluations =  Evaluation::where("user_id", Auth::id())->where("photo_id", $id)->orderBy("binomial_id", "asc")->get();
+      if (Auth::user()->following->contains($user->id))
+        $follow = false;
+      else 
+        $follow = true;
+    } else {
+      $follow = true;
+    }
+    return View::make('/photos/evaluate',
+      ['photos' => $photo, 'owner' => $user, 'follow' => $follow, 'tags' => $photo->tags, 'commentsCount' => $photo->comments->count(),
+      'average' => $average, 'userEvaluations' => $evaluations, 'binomials' => $binomials]);
+    //return View::make('photos.evaluate')
+     // ->with(['photo' => $photo, 'tags' => $photo->tags, 'average' => $average, 'userEvaluations' => $evaluations, 'binomials' => $binomials] );
   }
 
   public function update($id) {              
