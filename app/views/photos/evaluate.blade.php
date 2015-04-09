@@ -276,7 +276,7 @@ $(document).ready(function(){
        <!-- <a href="#" title="Avalie a foto" id="evaluate_button" class="btn">AVALIAR</a> &nbsp;
         <a href="#" title="Média das avaliações da foto" id="evaluation_average" class="btn">MÉDIA DAS AVALIAÇÕES</a>
         -->
-        <br class="clear">
+        <!--<br class="clear">-->
         
         <!-- FORMULÁRIO DE AVALIAÇÃO -->
         <div id="evaluation_box">
@@ -318,16 +318,7 @@ $(document).ready(function(){
         <!-- MÉDIA DAS AVALIAÇÕES -->
         <div id="evaluation_average">
         
-         <?php /*
-            $evaluations = $photos->evaluations;
-            $binomials = Binomial::all()->keyBy('id');;
-            foreach($evaluations as $evaluation) {
-              $bid = $evaluation->binomial_id;
-              echo $binomials[$bid]->firstOption . " - " . $binomials[$bid]->secondOption . "<br>";
-              echo "Nota: " . $evaluation->evaluationPosition . "<br>";
-            } */
-          ?>
-          
+        
           <!-- Google Charts -->
           <div>
             <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -400,7 +391,7 @@ $(document).ready(function(){
         
 			</div>
       
-      
+     </div> 
       
 			<!--   FIM - SIDEBAR   -->
 		</div>
