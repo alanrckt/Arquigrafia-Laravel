@@ -123,7 +123,10 @@ $(document).ready(function(){
 							
 							<li><a href="{{ URL::to('/albums/get/list/' . $photos->id) }}" title="Adicione aos seus álbuns" id="plus"></a></li>
             
-							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>                       	
+							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>   
+
+							<li><a href="{{ URL::to('/photos/' . $photos->id . '/evaluate' ) }}" title="Avalie esta foto!" id="evaluate" target="_blank"></a></li>  
+
 						</ul>
             
              <?php } else { ?>
