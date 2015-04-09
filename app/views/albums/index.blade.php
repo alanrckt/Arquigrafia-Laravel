@@ -18,6 +18,10 @@
 		<div id="user_header" class="twelve columns">
 			<div class="info">
 				<h1> Meus álbuns </h1>
+				<a href="{{ URL::to('/albums/create') }}" title="Criar álbum">
+					<!-- <img src="{{ URL::to('/img/plus.png') }}" width="10" height="10"> -->
+					 Criar álbum
+				</a>
 			</div>
 			<div class="count">Total de álbuns: {{ $albums->count() }}</div>
 		</div>
@@ -37,6 +41,7 @@
 									<div class="no_cover">
 										<p>Álbum sem capa</p>
 									</div>
+									<!-- <img src='{{ URL::to("/img/no_cover.jpg") }}' title="{{ $album->title }}"> -->
 								@endif
 							</a>
 							<div class="item-title">
@@ -50,6 +55,10 @@
 			</div>
 			<div class="panel-back"></div>
 			<div class="panel-next"></div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="twelve columns">
 		</div>
 	</div>
 	@else
