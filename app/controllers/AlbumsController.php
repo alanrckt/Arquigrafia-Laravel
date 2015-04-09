@@ -136,11 +136,17 @@ class AlbumsController extends \BaseController {
 			$messages = $validator->messages();
 			return Redirect::to('/albums/' . $id . '/edit')->withErrors($messages);
 		} else {
-			$album->title = $input['title'];
-			$album->description = $input['description'];
-			$album->save();
 			$photos_add = Input::get('photos_add');
 			$photos_rm = Input::get('photos_rm');
+			$album->title = $input['title'];
+			$album->description = $input['description'];
+			if (!isset($album->cover_id)) {
+				if (!empty($photos_add))
+					$album->cover_id;
+				
+				$album->cover_id = $photos_add[0];
+			}
+			$album->save();
 			if ( !empty($photos_add) )
 				$album->photos()->sync($photos_add, false);
 			if ( !empty($photos_rm) )
@@ -190,7 +196,12 @@ class AlbumsController extends \BaseController {
 		$albums = Album::findMany($albums_id);
 		
 		foreach ($albums as $album)
+		{	
 			$album->photos()->sync(array($photo), false);
+			if (!isset($album->cover_id)) {
+				$album->cover_id = $photo;
+			}
+		}
 		
 		return Redirect::to('/photos/' . $photo);
 	}
