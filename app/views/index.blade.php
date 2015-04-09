@@ -21,6 +21,8 @@
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/panel.js"></script>
 
+<link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/checkbox.css" />
+
 @stop
 
 @section('content')
@@ -47,6 +49,10 @@
   <!--   FIM - CONTAINER   -->
   <!--   MODAL   -->
     <div id="mask"></div>
+    <div id="form_window">
+      <a class="close" href="#" title="FECHAR">Fechar</a>
+      <div id="registration"></div>
+    </div>
     <div id="confirmation_window">
       <div id="registration_delete">
         <p></p>

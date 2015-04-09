@@ -9,6 +9,9 @@
 				</a>
 				<div class="item-title">
 					<p>{{ $photo->name }}</p>
+					@if (Auth::check())
+						<a id="title_plus_button" class="title_plus" href="{{ URL::to('/albums/get/list/' . $photo->id)}}" title="Adicionar aos meus álbuns"></a>
+					@endif
 					@if (Auth::check() && Auth::id() == $photo->user_id)
 						<a id="title_delete_button" class="title_delete photo" href="{{ URL::to('/photos/' . $photo->id) }}" title="Excluir imagem"></a>
 						<a id="title_edit_button" href="{{ URL::to('/photos/' . $photo->id . '/edit')}}" title="Editar imagem"></a>

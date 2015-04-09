@@ -171,5 +171,18 @@ $(document).ready(function(){
 			$('#mask').fadeOut();
 			$('#confirmation_window').fadeOut('fast');
 		});
+
+		$('.title_plus').live('click', function(e){
+			e.preventDefault();
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$.get(this.href).done(function(data) {
+				$("#registration").empty();
+				$("#registration").append(data);
+			})
+			.fail(function() {
+				console.log("Erro ao tentar carregar ábluns via AJAX!");
+			});
+		});
 		
 });

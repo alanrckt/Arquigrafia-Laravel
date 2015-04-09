@@ -428,7 +428,6 @@ $(document).ready(function(){
 		<!--   MODAL   -->
 		<div id="mask"></div>
 		<div id="form_window">
-			<!-- ÁREA DE LOGIN - JANELA MODAL -->
 			<a class="close" href="#" title="FECHAR">Fechar</a>
 			<div id="registration"></div>
 		</div>
