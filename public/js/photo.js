@@ -54,7 +54,7 @@ $(function(){
 		})
 		.fail(function() {
 			console.log("Erro ao tentar carregar ábluns via AJAX!");
-		})
+		});
 	});	
 });
 

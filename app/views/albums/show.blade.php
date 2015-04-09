@@ -10,7 +10,7 @@
 <script src="{{ URL::to("/") }}/js/jquery.isotope.min.js"></script>
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/panel.js"></script>
-
+<link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/checkbox.css" />
 @stop
 
 @section('content')
@@ -83,9 +83,11 @@
 	
 	<!--   MODAL   -->
 	<div id="mask"></div>
+	<div id="form_window">
+		<a class="close" href="#" title="FECHAR">Fechar</a>
+		<div id="registration"></div>
+	</div>
 	<div id="confirmation_window">
-		<!-- ÁREA DE LOGIN - JANELA MODAL -->
-		<!-- <a class="close" href="#" title="FECHAR">Fechar</a> -->
 		<div id="registration_delete">
 			<p></p>
 			{{ Form::open(array('url' => '/albums/' . $album->id, 'method' => 'delete')) }}
