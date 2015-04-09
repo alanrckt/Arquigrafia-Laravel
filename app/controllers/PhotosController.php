@@ -242,10 +242,10 @@ class PhotosController extends \BaseController {
       } 
 
       }
-      return Redirect::to("/photos/{$id}/evaluate")->with('message', '<strong>Avaliação salva</strong><br>Obrigado, agora você pode ver a média atual das avaliações.');
+      return Redirect::to("/photos/{$id}")->with('message', '<strong>Avaliação salva</strong><br>Obrigado, agora você pode ver a média atual das avaliações.');
     } else {
       // avaliação sem login
-      return Redirect::to("/photos/{$id}/evaluate")->with('message', '<strong>Erro na avaliação</strong><br>Faça login para pode avaliar.');
+      return Redirect::to("/photos/{$id}")->with('message', '<strong>Erro na avaliação</strong><br>Faça login para pode avaliar.');
     }
   }
   
@@ -290,8 +290,6 @@ class PhotosController extends \BaseController {
     return View::make('/photos/evaluate',
       ['photos' => $photo, 'owner' => $user, 'follow' => $follow, 'tags' => $photo->tags, 'commentsCount' => $photo->comments->count(),
       'average' => $average, 'userEvaluations' => $evaluations, 'binomials' => $binomials]);
-    //return View::make('photos.evaluate')
-     // ->with(['photo' => $photo, 'tags' => $photo->tags, 'average' => $average, 'userEvaluations' => $evaluations, 'binomials' => $binomials] );
   }
 
   public function update($id) {              

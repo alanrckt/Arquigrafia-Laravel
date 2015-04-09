@@ -10,8 +10,6 @@
 
 <!--   JQUERY   -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script> -->
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script> -->
 
 <!-- Google Maps API -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
@@ -53,7 +51,6 @@ $(document).ready(function(){
 					position: results[0].geometry.location
 			});
 			} else {
-				//alert("Geocode was not successful for the following reason: " + status);
 				console.log("Geocode was not successful for the following reason: " + status);
 			}
 		});
@@ -97,7 +94,6 @@ $(document).ready(function(){
 
 
 			<div class="four columns omega">
-              <!-- <span><i id="graph"></i> <small>65 visualizações e 0 avaliações</small></span> -->
               <span class="right"><i id="comments"></i> <small>{{$commentsCount}}</small>
               </span>
 
@@ -123,15 +119,11 @@ $(document).ready(function(){
 					
 					<?php if (Auth::check()) { ?>
 						
-	            <ul id="single_view_image_buttons">
-							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
-							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
-              
-							<!--<li><a href="18/photo_avaliation/2778" title="Avalie a foto" id="eyedroppper"></a></li>-->
+	            <ul id="single_view_image_buttons">						             
+							
 							<li><a href="{{ URL::to('/albums/get/list/' . $photos->id) }}" title="Adicione aos seus álbuns" id="plus"></a></li>
             
-							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>
-           	
+							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>                       	
 						</ul>
             
              <?php } else { ?>
@@ -139,9 +131,8 @@ $(document).ready(function(){
             <?php } ?>
             
 						<ul id="single_view_social_network_buttons">
-						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fdf62121c50304d"></script>
-							<!-- <li><a href="#" class="delicious"></a></li> -->
-							<!-- <li><a href="#" class="more_sare_buttons addthis_button_compact"><span class="more_sare_buttons">+ outros</span></a></li> -->
+						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fdf62121c50304d"></script>				
+							
 							<li><a href="#" class="google addthis_button_google_plusone_share"><span class="google"></span></a></li>
 							<li><a href="#" class="facebook addthis_button_facebook"><span class="facebook"></span></a></li>
 							<li><a href="#" class="twitter addthis_button_twitter"><span class="twitter"></span></a></li>
@@ -154,18 +145,14 @@ $(document).ready(function(){
         	<h3>Tags:</h3>
 
 					<p>
-         <!-- <a class="" href="tags/50" >Pedra</a>-->
-
+        
           <p>
           @if (isset($tags))
             @foreach($tags as $tag)
               @if ($tag->id == $tags->last()->id)
-              <!-- <a class="" href="tags/{{ $tag->id }}"> -->
-              {{ $tag->name }}
-              <!-- </a> -->
+                {{ $tag->name }}
               @else
-              <!-- <a class="" href="tags/{{ $tag->id }}"> -->
-              {{ $tag->name }},          
+                {{ $tag->name }},          
               @endif          
             @endforeach
           @endif   
@@ -227,10 +214,7 @@ $(document).ready(function(){
             </div>       
             @endforeach
           
-          @endif
-          
-          
-          
+          @endif        
           
           
         </div>
@@ -254,11 +238,8 @@ $(document).ready(function(){
             <?php } else { ?>
               <img id="single_view_user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
             <?php } ?>
-          </a>
-          
-          
-          <!-- lfsalfasdl -->
-          
+          </a>         
+                   
 					<h1 id="single_view_owner_name"><a href="{{ URL::to("/users/".$owner->id) }}" id="name">{{ $owner->name }}</a></h1>
     		@if (Auth::check())
     			@if (!empty($follow) && $follow == true)
@@ -268,10 +249,7 @@ $(document).ready(function(){
  				@endif
 			@endif	
 				</div>
-				<!--   FIM - USUARIO   -->
-        
-				<!-- <h3>Equipamento:</h3>
-				<p>Lorem ipsum dolor sit amet</p> -->
+				<!--   FIM - USUARIO   -->			
 					
           <hgroup class="profile_block_title">
             <h3><i class="info"></i> Informações</h3>
@@ -296,9 +274,7 @@ $(document).ready(function(){
 				@if ( !empty($photos->imageAuthor) )
 					<h4>Autor da Imagem:</h4>
 					<p>
-						<!-- <a href="photos/7/show/search/term?q=ROBBA%2C+F%E1bio&term=imageAuthor&page=1&perPage=32"> -->
-							{{ $photos->imageAuthor }}
-						<!-- </a> -->
+						{{ $photos->imageAuthor }}						
 					</p>
 				@endif
 				
@@ -441,105 +417,11 @@ $(document).ready(function(){
         
        </div>
 
-        <!--<p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
-        -->
         <?php if (Auth::check()) { ?>
           <a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie você também esta foto!</a> &nbsp;
         <?php } else { ?>
             <p>Faça seu login e avalie você também esta foto! <a href="{{ URL::to('/users/login') }}">Login</a></p>
-        <?php } ?>
-        <!-- <a href="#" title="Média das avaliações da foto" id="evaluation_average" class="btn">MÉDIA DAS AVALIAÇÕES</a>-->
-        
-        <!--<br class="clear">-->
-        
-        <!-- FORMULÁRIO DE AVALIAÇÃO -->
-        <!--<div id="evaluation_box">-->
-        
-          <?php /*if (Auth::check()) { ?>
-              
-            {{ Form::open(array('url' => "photos/{$photos->id}/evaluate")) }}
-            
-              <?php 
-                $count = $binomials->count() - 1;
-                // fazer um loop por cada e salvar como uma avaliação
-                foreach ($binomials->reverse() as $binomial) { ?>
-                  
-                  <p>
-                    {{ Form::label('value-'.$binomial->id, $binomial->firstOption.' - '.$binomial->secondOption) }}<br>
-                    @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
-                      <?php $userEvaluation = $userEvaluations->get($count) ?>
-                      {{ Form::input('range', 'value-'.$binomial->id, $userEvaluation->evaluationPosition, ['min'=>'0','max'=>'100']) }}
-                    @else
-                      {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100']) }}
-                    @endif
-                    <?php $count-- ?>
-                  </p>
-                  
-              <?php } ?>
-              
-              {{ Form::submit('AVALIAR', ['id'=>'evaluation_button','class'=>'cursor btn']) }}
-                
-            {{ Form::close() }}
-            
-            
-          <?php } else { ?>
-            <p>Você precisa estar logado para avaliar! <a href="{{ URL::to('/users/login') }}">Login</a></p>
-          <?php } ?>
-        
-        </div>
-        
-        <!-- MÉDIA DAS AVALIAÇÕES -->
-        <div id="evaluation_average">
-        
-         <?php /*
-            $evaluations = $photos->evaluations;
-            $binomials = Binomial::all()->keyBy('id');;
-            foreach($evaluations as $evaluation) {
-              $bid = $evaluation->binomial_id;
-              echo $binomials[$bid]->firstOption . " - " . $binomials[$bid]->secondOption . "<br>";
-              echo "Nota: " . $evaluation->evaluationPosition . "<br>";
-            } */
-          ?>
-          
-          
-        
-				
-        <!-- GRUPOS -->
-        <!--
-        <div id="group_photos">
-          <hgroup class="profile_block_title">
-            <h3><i class="photos"></i> Grupos que usaram esta foto (5)</h3>
-          </hgroup>
-          
-          <div class="profile_box">
-            <div class="gallery_box">
-                <a href="group.php" class="gallery_photo">
-                    <img src="{{ URL::to("/") }}/placeholders/group-photo-3.jpg" class="gallery_photo" /></a>
-            </div>
-            <div class="gallery_box">
-                <a href="group.php" class="gallery_photo">
-                    <img src="{{ URL::to("/") }}/placeholders/group-photo-2.jpg" class="gallery_photo" /></a>
-            </div>
-            <div class="gallery_box">
-                <a href="group.php" class="gallery_photo">
-                    <img src="{{ URL::to("/") }}/placeholders/group-photo-1.jpg" class="gallery_photo" /></a>
-            </div>
-            <div class="gallery_box">
-                <a href="group.php" class="gallery_photo">
-                    <img src="{{ URL::to("/") }}/placeholders/group-photo-4.jpg" class="gallery_photo" /></a>
-            </div>
-            <div class="gallery_box">
-                <a href="group.php" class="gallery_photo">
-                    <img src="{{ URL::to("/") }}/placeholders/group-photo-5.jpg" class="gallery_photo" /></a>
-            </div>
-          </div>
-        </div>
-        -->
-        
-			
-      
-      
-      
+        <?php } ?>      
 			<!--   FIM - SIDEBAR   -->
 		</div>
     
