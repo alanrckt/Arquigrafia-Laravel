@@ -35,7 +35,7 @@
 						<div class="layer" data-depth="0.2">
 							<a href='{{ URL::to("/albums/{$album->id}") }}'>
 								@if(isset($album->cover_id))
-									<img src='{{ URL::to("/arquigrafia-images/{$album->id}_200h.jpg") }}' 
+									<img src='{{ URL::to("/arquigrafia-images/{$album->id}_view.jpg") }}' 
 										title="{{ $album->title }}">
 								@else
 									<div class="no_cover">
