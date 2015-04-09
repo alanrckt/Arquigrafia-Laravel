@@ -47,13 +47,13 @@
 		<div id="registration">
 			{{ Form::open(array('url' => 'albums', 'id' => 'create_album')) }}
 				<div class="three columns row">
-					<div class="one column alpha"><p>{{ Form::label('title', 'Título:') }}</p></div>
+					<div class="one column alpha"><p>{{ Form::label('title', 'Título*') }}</p></div>
 					<div class="two columns omega">
 						<p>{{ Form::text('title') }} <br>
 						{{ $errors->first('title') }}</p>
 					</div>
 					
-					<div class="one column alpha"><p>{{ Form::label('description', 'Descrição:') }}</p></div>
+					<div class="one column alpha"><p>{{ Form::label('description', 'Descrição') }}</p></div>
 					<div class="two columns omega">
 						<p>{{ Form::textarea('description') }}</p>
 					</div>
