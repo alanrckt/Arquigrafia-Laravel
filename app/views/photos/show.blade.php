@@ -421,7 +421,12 @@ $(document).ready(function(){
        </div>
 
         <?php if (Auth::check()) { ?>
-          <a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie você também esta foto!</a> &nbsp;
+           @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
+          	<a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">
+          		Clique aqui para alterar sua avaliação</a> &nbsp;
+           @else
+           <a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie você também esta foto!</a> &nbsp;
+           @endif
         <?php } else { ?>
             <p>Faça seu login e avalie você também esta foto! <a href="{{ URL::to('/users/login') }}">Login</a></p>
         <?php } ?>      

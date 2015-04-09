@@ -102,11 +102,11 @@ $(document).ready(function(){
               </span>
 
 
-              <?php if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>  
+              <?php /*if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>  
                	<span class="right">
         					<a id="delete_button" href="{{ URL::to('/photos/' . $photos->id) }}" title="Excluir imagem"></a>
               	</span>
-              <?php } ?>
+              <?php } */?>
              
             </div>
 					</div>
@@ -291,7 +291,7 @@ $(document).ready(function(){
                 foreach ($binomials->reverse() as $binomial) { ?>
                   
                   <p>
-                    {{ Form::label('value-'.$binomial->id, $binomial->firstOption.' - '.$binomial->secondOption) }}<br>
+                    {{ Form::label('value-'.$binomial->id, $binomial->firstOption) }}<br>
                     @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
                       <?php $userEvaluation = $userEvaluations->get($count) ?>
                       {{ Form::input('range', 'value-'.$binomial->id, $userEvaluation->evaluationPosition, ['min'=>'0','max'=>'100']) }}
@@ -299,6 +299,7 @@ $(document).ready(function(){
                       {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100']) }}
                     @endif
                     <?php $count-- ?>
+                     {{ Form::label('value-'.$binomial->id, $binomial->secondOption) }}<br>
                   </p>
                   
               <?php } ?>
