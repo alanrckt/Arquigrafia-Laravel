@@ -9,7 +9,7 @@
 						@if ($album_counter % 3 == 0)
 							<tr>
 						@endif
-						<td>
+						<td width="33%">
 							<input type="checkbox"  id="{{ 'album_' . $album->id }}" 
 								name="albums[]" value="{{ $album->id }}">
 							 <label for="{{ 'album_' . $album->id }}"></label>
@@ -22,6 +22,10 @@
 					@endforeach
 					
 					@if($album_counter %3 > 0)
+						@while($album_counter %3 > 0)
+							<td width="33%"></td>
+							<?php $album_counter++; ?>
+						@endwhile
 						</tr>
 					@endif
 				</table>
@@ -36,7 +40,7 @@
 				@if ($album->cover_id != null)
 					background: url('{{"/arquigrafia-images/" . $album->cover_id . "_home.jpg" }}');
 				@else
-					background: url('{{"/arquigrafia-images/1_home.jpg" }}');
+					background: url('{{"/img/registration_no_cover.png" }}');
 				@endif
 			}
 		@endforeach
