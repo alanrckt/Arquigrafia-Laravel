@@ -332,7 +332,7 @@ i#favourite { background: url(../img/sprite.png) -609px 0px; width: 24px; }
 
 /*botões de ações abaixo da foto*/
 #single_view_buttons_box { padding-top: 5px; height: 40px; }
-#single_view_image_buttons { /*width: 35px;*/ width: 75px; margin: 0 auto; }
+#single_view_image_buttons { width: 175px; margin: 0 auto; }
 #single_view_image_buttons li { margin: 2px 5px; float: left; }
 #add_favourite { display: block; width: 34px; height: 33px; margin-top: -3px; }
 #plus { display: block; width: 24px; height: 25px; }
@@ -346,6 +346,8 @@ i#favourite { background: url(../img/sprite.png) -609px 0px; width: 24px; }
 #delete { display: block; width: 24px; height: 25px; margin-left: 1px; }
 #delete { background: url(../img/sprite.png) -776px -145px; }
 #delete:hover { background-position: -776px -177px; }
+#evaluate { display: block; width: 16px; height: 18px; margin-left: 4px;}
+#evaluate { background: url(../img/evaluate.png)}
 
 /*redes sociais*/
 #single_view_social_network_buttons { float: right; margin-right: 20px; }
