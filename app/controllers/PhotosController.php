@@ -375,7 +375,7 @@ class PhotosController extends \BaseController {
 
       }       
 
-      return Redirect::to("/photos/{$photo->id}"); 
+      return Redirect::to("/photos/{$photo->id}")->with('message', '<strong>Edição de informações da imagem</strong><br>Dados alterados com sucesso!'); 
      
   }
 
