@@ -125,7 +125,7 @@ $(document).ready(function(){
             
 							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>   
 
-							<li><a href="{{ URL::to('/photos/' . $photos->id . '/evaluate' ) }}" title="Avalie esta imagem!" id="evaluate" target="_blank"></a></li>  
+							<li><a href="{{ URL::to('/photos/' . $photos->id . '/evaluate' ) }}" title="Avalie esta imagem!" id="evaluate" ></a></li>  
 
 						</ul>
             
