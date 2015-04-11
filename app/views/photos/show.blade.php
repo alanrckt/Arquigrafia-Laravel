@@ -368,7 +368,7 @@ $(document).ready(function(){
                 data.addColumn('number', 'Pontuação');
                 data.addColumn('number', 'Média das avaliações');
                 
-                @if(Auth::check())
+                @if(Auth::check() && isset($userEvaluations) && !$userEvaluations->isEmpty())
                   data.addColumn('number', 'Sua avaliação');
                 @endif
                 <?php $count = 0; ?>
