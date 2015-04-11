@@ -430,10 +430,10 @@ $(document).ready(function(){
           	<a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">
           		Clique aqui para alterar sua avaliação</a> &nbsp;
            @else
-           <a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie você também a imagem {{$photos->name}}!</a> &nbsp;
+           <a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie a imagem {{$photos->name}}!</a> &nbsp;
            @endif
         <?php } else { ?>
-            <p>Faça o login e avalie você também a imagem {{$photos->name}}! <a href="{{ URL::to('/users/login') }}">Login</a></p>
+            <p>Faça o <a href="{{ URL::to('/users/login') }}">Login</a> e avalie você também a imagem {{$photos->name}}! </p>
         <?php } ?>      
 			<!--   FIM - SIDEBAR   -->
 		</div>
