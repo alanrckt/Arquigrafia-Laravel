@@ -125,7 +125,7 @@ $(document).ready(function(){
             
 							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>   
 
-							<li><a href="{{ URL::to('/photos/' . $photos->id . '/evaluate' ) }}" title="Avalie esta foto!" id="evaluate" target="_blank"></a></li>  
+							<li><a href="{{ URL::to('/photos/' . $photos->id . '/evaluate' ) }}" title="Avalie esta imagem!" id="evaluate" target="_blank"></a></li>  
 
 						</ul>
             
@@ -346,7 +346,11 @@ $(document).ready(function(){
         <div id="map_canvas" class="single_view_map" style="width:300px; height:250px;"></div> 
         
         <!-- AVALIAÇÃO -->
-			  <h4>Médias das Avaliações desta foto:</h4>
+        	@if (empty($average))          	
+        	 	<h4>Avaliação:</h4>
+        		<img src="/img/GraficoFixo.png"  />
+        	 @else
+			  <h4>Média de Avaliações da imagem {{$photos->name}}:</h4>
 
         <!-- Google Charts -->
           <div>
@@ -419,16 +423,17 @@ $(document).ready(function(){
         <br class="clear">
         
        </div>
+       @endif
 
         <?php if (Auth::check()) { ?>
            @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
           	<a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">
           		Clique aqui para alterar sua avaliação</a> &nbsp;
            @else
-           <a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie você também esta foto!</a> &nbsp;
+           <a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie você também a imagem {{$photos->name}}!</a> &nbsp;
            @endif
         <?php } else { ?>
-            <p>Faça seu login e avalie você também esta foto! <a href="{{ URL::to('/users/login') }}">Login</a></p>
+            <p>Faça o login e avalie você também a imagem {{$photos->name}}! <a href="{{ URL::to('/users/login') }}">Login</a></p>
         <?php } ?>      
 			<!--   FIM - SIDEBAR   -->
 		</div>
