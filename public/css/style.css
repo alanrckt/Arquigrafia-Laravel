@@ -346,7 +346,7 @@ i#favourite { background: url(../img/sprite.png) -609px 0px; width: 24px; }
 #delete { display: block; width: 24px; height: 25px; margin-left: 1px; }
 #delete { background: url(../img/sprite.png) -776px -145px; }
 #delete:hover { background-position: -776px -177px; }
-#evaluate { display: block; width: 16px; height: 18px; margin-left: 4px;}
+#evaluate { display: block; width: 20px; height: 20px; margin-left: 4px;}
 #evaluate { background: url(../img/evaluate.png)}
 
 /*redes sociais*/
