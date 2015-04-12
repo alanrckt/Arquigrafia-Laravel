@@ -98,7 +98,7 @@ $(window).load(function(e) {
       panel.append( data );
     });
     */
-    if (page < 100) {
+    if (page < 60) {
 			page++;
 			$(".panel-back").show(0);
 			$("#panel").animate({"left":"-=1000"}, 1000);
@@ -110,7 +110,7 @@ $(window).load(function(e) {
 				if ((lo - ww) < 1000) { 
 					depth = 10 * parseFloat( $(this).data("depth") ); 
 					mov = Math.round(depth * 200); 
-					layer.removeClass("off").css({"left":"+="+mov}).delay(50*(i+5)).animate({"left":"-="+mov, "opacity":"1"},600);
+					layer.removeClass("off").css({"left":"+="+mov}).delay(50*(i+60)).animate({"left":"-="+mov, "opacity":"1"},600);
 				}
 			});
 		} else {
