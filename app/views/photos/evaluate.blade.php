@@ -211,9 +211,9 @@
 				<!--   FIM - USUARIO   -->				
         
         <!-- AVALIAÇÃO -->
-        <hgroup class="profile_block_title">          
-            <h3><i class="info"></i> Avaliação d{{$architectureName}}</h3> 
-        </hgroup> 
+               
+        <h3>Avaliação d{{$architectureName}}</h3> 
+        
 			 
         <p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
                
@@ -263,9 +263,9 @@
         
         <!-- MÉDIA DE AVALIAÇÕES -->
         @if (!empty($average))            
-          <hgroup class="profile_block_title">   
-            <h3><i class="info"></i> Média de Avaliações d{{$architectureName}}</h3>
-          </hgroup>
+            
+          <h3>Média de Avaliações d{{$architectureName}}</h3>
+          
 
           <div id="evaluation_average">
           <!-- Google Charts -->
