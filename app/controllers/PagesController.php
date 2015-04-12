@@ -10,13 +10,13 @@ class PagesController extends BaseController {
 
 	public function home()
 	{
-    $photos = Photo::orderByRaw("RAND()")->take(120)->get();
+    $photos = Photo::orderByRaw("RAND()")->take(240)->get();
 		return View::make('index', ['photos' => $photos]);
 	}
   
   public function panel()
 	{
-    $photos = Photo::orderByRaw("RAND()")->take(120)->get();
+    $photos = Photo::orderByRaw("RAND()")->take(240)->get();
 		return View::make('api.panel', ['photos' => $photos]);
 	}
 	
