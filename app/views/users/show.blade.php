@@ -202,7 +202,7 @@
 		<div id="confirmation_window">
 		<div id="registration_delete">
 			<p></p>
-			{{ Form::open(array('url' => '/albums/' . $album->id, 'method' => 'delete')) }}
+			{{ Form::open(array('url' => '', 'method' => 'delete')) }}
 				<div id="registration_buttons">
 					<a class="btn" href="#" id="submit_delete">Confirmar</a>
 					<a class="btn" href="#" id="cancel_delete">Cancelar</a>
