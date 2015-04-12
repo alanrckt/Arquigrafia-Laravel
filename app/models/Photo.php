@@ -85,4 +85,16 @@ class Photo extends Eloquent {
 			->paginate($perPage);
 	}
 
+	public static function composeArchitectureName($name) {
+		$array = explode(" ", $name);
+		$architectureName = "";			
+		if (!is_null($array) && !is_null($array[0])) {		        
+	        if (ends_with($array[0], 'a'))
+	            $architectureName = 'a ';
+	        else
+	            $architectureName = 'o ';
+	    }
+		return $architectureName = $architectureName .$name;
+	}
+
 }
