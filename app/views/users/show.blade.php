@@ -48,9 +48,20 @@
     <!-- GALERIA DO USUÁRIO -->
     <div id="user_gallery">
       
-      <div class="wrap">
-      	@include('includes.panel-stripe')
-      </div>
+    	@if($photos->count() > 0)
+	      <div class="wrap">
+   	   		@include('includes.panel-stripe')
+      	</div>
+      @else
+      	<div class="container row">
+      		<div class="six columns">
+	      		<p>
+	      			Você ainda não tem fotos no seu perfil. Faça o upload de uma imagem 
+	      			<a href="{{ URL::to('/photos/upload') }}">aqui</a>
+	      		</p>
+      		</div>
+      	</div>
+      @endif
     
     </div>
     
@@ -165,27 +176,34 @@
 				<hgroup class="profile_block_title">
 					<h3><i class="photos"></i>Meus álbuns</h3>
 				</hgroup>
+				<?php $albums = $user->albums; ?>
 				
 				<div class="profile_box">
-					@foreach($user->albums as $album)
-						<div class="gallery_box">
-							<a href="{{ URL::to("/albums/" . $album->id) }}" class="gallery_photo" title="{{ $album->title }}">
-								@if (isset($album->cover_id))
-									<img src="{{ URL::to("/arquigrafia-images/" . $album->cover_id . "_home.jpg") }}" class="gallery_photo" />
-								@else
-									<div class="gallery_photo">
-										<div class="no_cover">
-											<p> Álbum sem capa </p>
+					@if ($albums->count() > 0)
+						@foreach($albums as $album)
+							<div class="gallery_box">
+								<a href="{{ URL::to("/albums/" . $album->id) }}" class="gallery_photo" title="{{ $album->title }}">
+									@if (isset($album->cover_id))
+										<img src="{{ URL::to("/arquigrafia-images/" . $album->cover_id . "_home.jpg") }}" class="gallery_photo" />
+									@else
+										<div class="gallery_photo">
+											<div class="no_cover">
+												<p> Álbum sem capa </p>
+											</div>
 										</div>
-									</div>
-								@endif
-							</a>
-							<a href="{{ URL::to("/albums/" . $album->id) }}" class="name">
-								{{ $album->title . ' ' . '(' . $album->photos->count() . ')' }}
-							</a>
-							<br />
-						</div>
-					@endforeach
+									@endif
+								</a>
+								<a href="{{ URL::to("/albums/" . $album->id) }}" class="name">
+									{{ $album->title . ' ' . '(' . $album->photos->count() . ')' }}
+								</a>
+								<br />
+							</div>
+						@endforeach
+					@else
+						<p>
+						Você ainda não tem nenhum álbum. Crie um <a href="{{ URL::to('/albums/create') }}">aqui</a>
+						</p>
+					@endif
 				</div>
 			
 			</div>
