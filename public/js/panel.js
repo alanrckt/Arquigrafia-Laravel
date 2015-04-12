@@ -98,7 +98,7 @@ $(window).load(function(e) {
       panel.append( data );
     });
     */
-    if (page < 5) {
+    if (page < 100) {
 			page++;
 			$(".panel-back").show(0);
 			$("#panel").animate({"left":"-=1000"}, 1000);
