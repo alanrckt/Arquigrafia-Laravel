@@ -110,7 +110,7 @@ $(window).load(function(e) {
 				if ((lo - ww) < 1000) { 
 					depth = 10 * parseFloat( $(this).data("depth") ); 
 					mov = Math.round(depth * 200); 
-					layer.removeClass("off").css({"left":"+="+mov}).delay(50*(i+5)).animate({"left":"-="+mov, "opacity":"1"},600);
+					layer.removeClass("off").css({"left":"+="+mov}).delay(50*(i+100)).animate({"left":"-="+mov, "opacity":"1"},600);
 				}
 			});
 		} else {
