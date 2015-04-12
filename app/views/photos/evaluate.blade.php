@@ -10,60 +10,6 @@
 
 <!--   JQUERY   -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script> -->
-<!-- <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script> -->
-
-<!-- Google Maps API -->
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	//MAP AND GEOREFERENCING CREATION AND SETTING
-	var geocoder;
-	var map;
-	
-	function initialize() {
-		var street = "{{ $photos->street }}";
-		var district = "{{ $photos->district }}";
-		var city = "{{ $photos->city }}";
-		var state = "{{ $photos->state }}";
-		var country = "{{ $photos->country }}";
-		var address;
-		if (street) address = street + "," + district + "," + city + "-" + state + "," + country;
-		else if (district) address = district + "," + city + "-" + state + "," + country;
-		else address = city + "-" + state + "," + country;
-		console.log(address);
-		
-		geocoder = new google.maps.Geocoder();
-		
-		var latlng = new google.maps.LatLng(-34.397, 150.644);
-		var myOptions = {
-		  zoom: 15,
-		  center: latlng,
-		  mapTypeId: google.maps.MapTypeId.ROADMAP
-		}						    
-
-		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		
-		geocoder.geocode( { 'address': address}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				map.setCenter(results[0].geometry.location);
-				var marker = new google.maps.Marker({
-					map: map,
-					position: results[0].geometry.location
-			});
-			} else {
-				//alert("Geocode was not successful for the following reason: " + status);
-				console.log("Geocode was not successful for the following reason: " + status);
-			}
-		});
-	}
-	
-	initialize();
-	
-});
-</script>
-
 <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/jquery.fancybox.css" />
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.fancybox.pack.js"></script>
