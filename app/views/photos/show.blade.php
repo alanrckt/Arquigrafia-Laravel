@@ -121,13 +121,13 @@ $(document).ready(function(){
 						
 	            <ul id="single_view_image_buttons">						             
 							
-							<li><a href="{{ URL::to('/albums/get/list/' . $photos->id) }}" title="Adicione aos seus álbuns" id="plus"></a></li>
+					<li><a href="{{ URL::to('/albums/get/list/' . $photos->id) }}" title="Adicione aos seus álbuns" id="plus"></a></li>
             
-							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>   
+					<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>  
 
-							<li><a href="{{ URL::to('/photos/' . $photos->id . '/evaluate' ) }}" title="Avalie esta imagem!" id="evaluate" ></a></li>  
+					<li><a href="{{ URL::to('/photos/' . $photos->id . '/evaluate' ) }}" title="Avalie {{$architectureName}}" id="evaluate" ></a></li>  
 
-						</ul>
+				</ul>
             
              <?php } else { ?>
               <div class="six columns alpha">Faça o login para fazer o download e comentar as imagens.</div>
@@ -142,7 +142,7 @@ $(document).ready(function(){
 						</ul>
 					
 				</div>
-				<!--   FIM - BOX DE BOTOEES DA IMAGEM   -->
+				<!--   FIM - BOX DE BOTOES DA IMAGEM   -->
         
         <div class="tags">
         	<h3>Tags:</h3>
@@ -171,7 +171,7 @@ $(document).ready(function(){
           
           @if (!isset($comments))
           
-          <p>Ninguém comentou a imagem. Seja o primeiro!</p>
+          <p>Ninguém comentou sobre {{$architectureName}}. Seja o primeiro!</p>
           
           @endif
           
@@ -199,7 +199,7 @@ $(document).ready(function(){
             <br class="clear">
             
           <?php } else { ?>
-            <p>Você precisa estar logado para comentar! <a href="{{ URL::to('/users/login') }}">Login</a></p>
+            <p>Faça o <a href="{{ URL::to('/users/login') }}">Login</a> e comente sobre {{$architectureName}}</p>
           <?php } ?>
           
           @if (isset($comments))
@@ -346,18 +346,18 @@ $(document).ready(function(){
         <div id="map_canvas" class="single_view_map" style="width:300px; height:250px;"></div> 
         
         <!-- AVALIAÇÃO -->
+        <?php if (Auth::check()) { ?>
+          <a href="{{ URL::to('/photos/' . $photos->id . '/evaluate' ) }}">
+        <?php } ?>
         	@if (empty($average))          	
-        	 	<h4>Avaliação:</h4>
-        		<img src="/img/GraficoFixo.png"  />
+        	 	<h4>Avaliação:</h4>            
+        		  <img src="/img/GraficoFixo.png"  />            
         	 @else
-			  <h4>Média de Avaliações da imagem {{$photos->name}}:</h4>
-
+			  <h4>Média de Avaliações d{{$architectureName}}:</h4>
         <!-- Google Charts -->
           <div>
-            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-            
-            <div id="chart_div"><div>
-            
+            <script type="text/javascript" src="https://www.google.com/jsapi"></script>            
+            <div id="chart_div"><div>            
             <script>
             
               google.load('visualization', '1', {packages: ['corechart', 'line']});
@@ -366,7 +366,7 @@ $(document).ready(function(){
               function drawCurveTypes() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('number', 'Pontuação');
-                data.addColumn('number', 'Média das avaliações');
+                data.addColumn('number', 'Média de avaliações');
                 
                 @if(Auth::check() && isset($userEvaluations) && !$userEvaluations->isEmpty())
                   data.addColumn('number', 'Sua avaliação');
@@ -424,16 +424,28 @@ $(document).ready(function(){
         
        </div>
        @endif
+       <?php if (Auth::check()) { ?>
+           </a>
+        <?php } ?>      
 
         <?php if (Auth::check()) { ?>
            @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
           	<a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">
           		Clique aqui para alterar sua avaliação</a> &nbsp;
            @else
-           <a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie a imagem {{$photos->name}}!</a> &nbsp;
+           		@if (empty($average)) 
+           			<a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Seja o primeiro a avaliar {{$architectureName}}</a> &nbsp;
+           		@else
+           			<a href='{{"/photos/" . $photos->id . "/evaluate" }}' title="Avaliar" id="evaluate_button" class="btn">Avalie você também {{$architectureName}}</a> &nbsp;
+           		@endif
            @endif
         <?php } else { ?>
-            <p>Faça o <a href="{{ URL::to('/users/login') }}">Login</a> e avalie você também a imagem {{$photos->name}}! </p>
+        	@if (empty($average)) 
+            	<p>Faça o <a href="{{ URL::to('/users/login') }}">Login</a> e seja o primeiro a avaliar {{$architectureName}}</p>
+            @else
+            	<p>Faça o <a href="{{ URL::to('/users/login') }}">Login</a> e avalie você também {{$architectureName}}</p>
+            @endif
+
         <?php } ?>      
 			<!--   FIM - SIDEBAR   -->
 		</div>

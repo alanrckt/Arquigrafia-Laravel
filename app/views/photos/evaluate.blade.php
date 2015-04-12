@@ -94,24 +94,20 @@
 						</ul>
 					
 				</div>
-				<!--   FIM - BOX DE BOTOEES DA IMAGEM   -->
+				<!--   FIM - BOX DE BOTOES DA IMAGEM   -->
         
         <div class="tags">
         	<h3>Tags:</h3>
 
-					<p>
-         <!-- <a class="" href="tags/50" >Pedra</a>-->
+					<p>        
 
           <p>
           @if (isset($tags))
             @foreach($tags as $tag)
-              @if ($tag->id == $tags->last()->id)
-              <!-- <a class="" href="tags/{{ $tag->id }}"> -->
-              {{ $tag->name }}
-              <!-- </a> -->
-              @else
-              <!-- <a class="" href="tags/{{ $tag->id }}"> -->
-              {{ $tag->name }},          
+              @if ($tag->id == $tags->last()->id)              
+                {{ $tag->name }}             
+              @else              
+                {{ $tag->name }},          
               @endif          
             @endforeach
           @endif   
@@ -125,9 +121,9 @@
           
           <?php $comments = $photos->comments; ?>
           
-          @if (!isset($comments))
-          
-          <p>Ninguém comentou a imagem. Seja o primeiro!</p>
+          @if (!isset($comments))          
+         
+          <p>Ninguém comentou sobre {{$architectureName}}. Seja o primeiro!</p>
           
           @endif
           
@@ -154,16 +150,15 @@
             
             <br class="clear">
             
-          <?php } else { ?>
-            <p>Você precisa estar logado para comentar! <a href="{{ URL::to('/users/login') }}">Login</a></p>
+          <?php } else { ?>            
+            <p>Faça o <a href="{{ URL::to('/users/login') }}">Login</a> e comente sobre {{$architectureName}}</p>
           <?php } ?>
           
           @if (isset($comments))
           
             @foreach($comments as $comment)
             <div class="clearfix">
-              <div class="column alpha omega row">
-                <!--{{$comment->user->name}}--> 
+              <div class="column alpha omega row">                
                 <img class="user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" />
               </div>
               <div class="four columns omega row">
@@ -200,10 +195,9 @@
             <?php } else { ?>
               <img id="single_view_user_thumbnail" src="{{ URL::to("/") }}/img/avatar-48.png" width="48" height="48" class="user_photo_thumbnail"/>
             <?php } ?>
-          </a>
+          </a>  
           
           
-          <!-- lfsalfasdl -->
           
 					<h1 id="single_view_owner_name"><a href="{{ URL::to("/users/".$owner->id) }}" id="name">{{ $owner->name }}</a></h1>
     		@if (Auth::check())
@@ -219,11 +213,7 @@
         <!-- AVALIAÇÃO -->
 			  <h4>Avaliação:</h4>
         <p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
-       <!-- <a href="#" title="Avalie a foto" id="evaluate_button" class="btn">AVALIAR</a> &nbsp;
-        <a href="#" title="Média das avaliações da foto" id="evaluation_average" class="btn">MÉDIA DAS AVALIAÇÕES</a>
-        -->
-        <!--<br class="clear">-->
-        
+               
         <!-- FORMULÁRIO DE AVALIAÇÃO -->
         <div id="evaluation_box">
         
@@ -233,7 +223,7 @@
             
               <?php 
                 $count = $binomials->count() - 1;
-                // fazer um loop por cada e salvar como uma avaliação
+                // fazer um loop para cada e salvar como uma avaliação
                 foreach ($binomials->reverse() as $binomial) { ?>
                   
                   <p>
@@ -256,21 +246,23 @@
             
             
           <?php } else { ?>
-            <p>Você precisa estar logado para avaliar! <a href="{{ URL::to('/users/login') }}">Login</a></p>
+            @if (empty($average)) 
+              <p>Faça o <a href="{{ URL::to('/users/login') }}">Login</a> e seja o primeiro a avaliar {{$architectureName}}</p>
+            @else
+              <p>Faça o <a href="{{ URL::to('/users/login') }}">Login</a> e avalie você também {{$architectureName}}</p>
+            @endif            
           <?php } ?>
         
         </div>
         
-        <!-- MÉDIA DAS AVALIAÇÕES -->
-        <div id="evaluation_average">
-        
-        
+        <!-- MÉDIA DE AVALIAÇÕES -->
+        @if (!empty($average))  
+          <h4>Média de Avaliações d{{$architectureName}}:</h4>        
+          <div id="evaluation_average">
           <!-- Google Charts -->
           <div>
-            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-            
-            <div id="chart_div"><div>
-            
+            <script type="text/javascript" src="https://www.google.com/jsapi"></script>            
+            <div id="chart_div"><div>            
             <script>
             
               google.load('visualization', '1', {packages: ['corechart', 'line']});
@@ -279,9 +271,9 @@
               function drawCurveTypes() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('number', 'Pontuação');
-                data.addColumn('number', 'Média das avaliações');
+                data.addColumn('number', 'Média de avaliações');
                 
-                @if(Auth::check())
+                @if(Auth::check() && isset($userEvaluations) && !$userEvaluations->isEmpty())
                   data.addColumn('number', 'Sua avaliação');
                 @endif
                 <?php $count = 0; ?>
@@ -338,6 +330,7 @@
 			</div>
       
      </div> 
+     @endif 
       
 			<!--   FIM - SIDEBAR   -->
 		</div>
