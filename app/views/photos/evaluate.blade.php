@@ -211,7 +211,10 @@
 				<!--   FIM - USUARIO   -->				
         
         <!-- AVALIAÇÃO -->
-			  <h4>Avaliação:</h4>
+        <hgroup class="profile_block_title">          
+            <h3><i class="info"></i> Avaliação d{{$architectureName}}</h3> 
+        </hgroup> 
+			 
         <p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
                
         <!-- FORMULÁRIO DE AVALIAÇÃO -->
@@ -240,7 +243,8 @@
                   
               <?php } ?>
               
-              {{ Form::submit('AVALIAR', ['id'=>'evaluation_button','class'=>'cursor btn']) }}
+               <a href="{{ URL::to('/photos/' . $photos->id) }}" class='btn right'>CANCELAR</a>&nbsp;&nbsp;
+              {{ Form::submit('AVALIAR', ['id'=>'evaluation_button','class'=>'btn right']) }} 
                 
             {{ Form::close() }}
             
@@ -254,10 +258,15 @@
           <?php } ?>
         
         </div>
+
+      </br>
         
         <!-- MÉDIA DE AVALIAÇÕES -->
-        @if (!empty($average))  
-          <h4>Média de Avaliações d{{$architectureName}}:</h4>        
+        @if (!empty($average))            
+          <hgroup class="profile_block_title">   
+            <h3><i class="info"></i> Média de Avaliações d{{$architectureName}}</h3>
+          </hgroup>
+
           <div id="evaluation_average">
           <!-- Google Charts -->
           <div>

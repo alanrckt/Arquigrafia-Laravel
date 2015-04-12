@@ -344,16 +344,21 @@ $(document).ready(function(){
          <!-- GOOGLE MAPS -->
         <h4>Localização:</h4>
         <div id="map_canvas" class="single_view_map" style="width:300px; height:250px;"></div> 
+        </br>
+        </br>
         
         <!-- AVALIAÇÃO -->
         <?php if (Auth::check()) { ?>
           <a href="{{ URL::to('/photos/' . $photos->id . '/evaluate' ) }}">
         <?php } ?>
-        	@if (empty($average))          	
-        	 	<h4>Avaliação:</h4>            
-        		  <img src="/img/GraficoFixo.png"  />            
-        	 @else
-			  <h4>Média de Avaliações d{{$architectureName}}:</h4>
+        <hgroup class="profile_block_title">
+        	@if (empty($average)) 
+            <h3><i class="info"></i> Avaliação</h3> 
+            </hgroup>          
+        		<img src="/img/GraficoFixo.png"  /> 
+        	 @else			      
+             <h3><i class="info"></i> Média de Avaliações d{{$architectureName}}</h3>
+            </hgroup>
         <!-- Google Charts -->
           <div>
             <script type="text/javascript" src="https://www.google.com/jsapi"></script>            
