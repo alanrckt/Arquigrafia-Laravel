@@ -40,7 +40,8 @@ class PhotosController extends \BaseController {
 
     return View::make('/photos/show',
       ['photos' => $photos, 'owner' => $user, 'follow' => $follow, 'tags' => $tags, 'commentsCount' => $photos->comments->count(),
-      'average' => $average, 'userEvaluations' => $evaluations, 'binomials' => $binomials]);
+      'average' => $average, 'userEvaluations' => $evaluations, 'binomials' => $binomials, 
+      'architectureName' => Photo::composeArchitectureName($photos->name)]);
 	}
 	
   // upload form
@@ -242,10 +243,10 @@ class PhotosController extends \BaseController {
       } 
 
       }
-      return Redirect::to("/photos/{$id}")->with('message', '<strong>Avaliação salva</strong><br>Obrigado, agora você pode ver a média atual das avaliações.');
+      return Redirect::to("/photos/{$id}")->with('message', '<strong>Avaliação salva com sucesso</strong><br>Abaixo você pode visualizar a média atual de avaliações');
     } else {
       // avaliação sem login
-      return Redirect::to("/photos/{$id}")->with('message', '<strong>Erro na avaliação</strong><br>Faça login para pode avaliar.');
+      return Redirect::to("/photos/{$id}")->with('message', '<strong>Erro na avaliação</strong><br>Faça login para pode avaliar');
     }
   }
   
@@ -289,7 +290,8 @@ class PhotosController extends \BaseController {
     }
     return View::make('/photos/evaluate',
       ['photos' => $photo, 'owner' => $user, 'follow' => $follow, 'tags' => $photo->tags, 'commentsCount' => $photo->comments->count(),
-      'average' => $average, 'userEvaluations' => $evaluations, 'binomials' => $binomials]);
+      'average' => $average, 'userEvaluations' => $evaluations, 'binomials' => $binomials,
+      'architectureName' => Photo::composeArchitectureName($photo->name)]);
   }
 
   public function update($id) {              
@@ -375,7 +377,7 @@ class PhotosController extends \BaseController {
 
       }       
 
-      return Redirect::to("/photos/{$photo->id}")->with('message', '<strong>Edição de informações da imagem</strong><br>Dados alterados com sucesso!'); 
+      return Redirect::to("/photos/{$photo->id}")->with('message', '<strong>Edição de informações da imagem</strong><br>Dados alterados com sucesso'); 
      
   }
 
