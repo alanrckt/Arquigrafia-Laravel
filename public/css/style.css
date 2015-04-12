@@ -256,7 +256,7 @@ a.footer_image { display: block; margin: 4px; float: left; border: none; width: 
 #credits { padding-top: 20px; margin-bottom: 10px; }
 #credits ul { margin: 0; float: left; width: 173px; }
 #credits ul.last { width: 80px; margin-right: -15px; }
-#credits ul li { display: block; margin: 0 13px 4px; }
+#credits ul li { display: block; margin: 0 10px 4px; }
 #credits ul li a { display: block; height: 40px; }
 #credits ul li #usp { background: url(../img/logos.png) 0 0; width: 90px; }
 #credits ul li #fapesp { background: url(../img/logos.png) 0 -50px; width: 90px; }
