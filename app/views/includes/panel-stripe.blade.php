@@ -5,7 +5,7 @@
 		<div class="item h2">
 			<div class="layer" data-depth="0.2">
 				<a href='{{ URL::to("/photos/{$photo->id}") }}'>
-					<img src='{{ URL::to("/arquigrafia-images/{$photo->id}_view.jpg") }}' title="{{ $photo->name }}">
+					<img src='{{ URL::to("/arquigrafia-images/{$photo->id}_home.jpg") }}' title="{{ $photo->name }}">
 				</a>
 				<div class="item-title">
 					<p>{{ $photo->name }}</p>
