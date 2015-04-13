@@ -136,7 +136,7 @@ class PhotosController extends \BaseController {
       $image->fit(186, 124)->encode('jpg', 70)->save(public_path().'/arquigrafia-images/'.$photo->id.'_home.jpg');
       $file->move(public_path().'/arquigrafia-images', $photo->id."_original.".strtolower($ext)); // original
 
-      $photo->saveMetadata($ext);
+      $photo->saveMetadata(strtolower($ext));
 
       return Redirect::to("/photos/{$photo->id}");
 
