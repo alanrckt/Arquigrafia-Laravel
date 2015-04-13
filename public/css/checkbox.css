@@ -27,4 +27,6 @@ h2 a { font-weight: normal; color: #555; }
 .greater-than { margin-right: 5px; }
 .less-than { margin-left: 5px; }
 
-#description { width: 20em; height: 5em; }
+#description { width: 20em; height: 7em; }
+
+#cover-img {margin-bottom: 10px; width: 124px; height: 83px;}

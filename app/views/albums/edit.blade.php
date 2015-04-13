@@ -4,6 +4,7 @@
 
 	<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="{{ URL::to('/js/albums-covers.js') }}"></script>
 	<script src="{{ URL::to('/js/album-add-photos.js') }}"></script>
 	<link rel="stylesheet" type="text/css" href="{{ URL::to("/") }}/css/checkbox.css" />	
 	<script>
@@ -15,7 +16,9 @@
 		var rmLoadedPages = [1];
 		var url = '{{ $url }}';
 		var rmUrl = '{{ $rmUrl }}';
-
+		var coverPage = 1;
+		var album = {{ $album->id }};
+		var covers_counter = 0;
 		$(document).ready(function() {
 			$("#add-container").hide();
 		});
@@ -33,16 +36,35 @@
 			
 		<div id="registration">
 			{{ Form::open(array('url' => 'albums/' . $album->id, 'method' => 'put')) }}
-				<div class="three columns row">
+				<div class="five columns row">
 					<div class="one column alpha"><p>{{ Form::label('title', 'Título') }}</p></div>
-					<div class="two columns omega">
+					<div class="four columns omega">
 						<p>{{ Form::text('title', $album->title) }} <br>
 						{{ $errors->first('title') }}</p>
 					</div>
 					
 					<div class="one column alpha"><p>{{ Form::label('description', 'Descrição') }}</p></div>
-					<div class="two columns omega">
+					<div class="four columns omega">
 						<p>{{ Form::textarea('description', $album->description) }}</p>
+					</div>
+				</div>
+				<div class="three columns row">
+					<div class="two columns">
+						<p>Capa do álbum</p>
+					</div>
+					<div class="two columns">
+						@if (isset($album->cover_id))
+							<img id="cover-img" src="{{ URL::to('/arquigrafia-images/' . $album->cover_id . '_home.jpg') }}">
+						@else
+							<img id="cover-img" src="{{ URL::to('/img/registration_no_cover.png') }}">
+						@endif
+					</div>
+					<div id="cover_btn_box" class="four columns">
+						@if ($album_photos->count() > 0)
+							<a id="cover_btn" href="#" class="btn">Selecionar capa</a>
+						@else
+							<p>Para alterar a capa do álbum, é preciso ter pelo menos uma imagem.</p>
+							@endif
 					</div>
 				</div>
 				<?php 
@@ -114,5 +136,10 @@
 				</div>
 			{{ Form::close() }}
 		</div>
+	</div>
+	<div id="mask"></div>
+	<div id="form_window">
+		<a class="close" href="#" title="FECHAR">Fechar</a>
+		<div id="covers_registration"></div>
 	</div>
 @stop
