@@ -55,9 +55,12 @@
 					<div class="two columns">
 						@if (isset($album->cover_id))
 							<img id="cover-img" src="{{ URL::to('/arquigrafia-images/' . $album->cover_id . '_home.jpg') }}">
+							{{ Form::hidden('_cover', $album->cover_id, ['id' => '_cover']) }}
 						@else
 							<img id="cover-img" src="{{ URL::to('/img/registration_no_cover.png') }}">
+							{{ Form::hidden('_cover', '', ['id' => '_cover']) }}
 						@endif
+						
 					</div>
 					<div id="cover_btn_box" class="four columns">
 						@if ($album_photos->count() > 0)

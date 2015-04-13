@@ -19,6 +19,7 @@ $(document).ready(function() {
 			all_covers = $.grep(all_covers, function(el) { return $.inArray( el, removed_photos ) == -1; })
 			generateCoversHtml(all_covers);
 		};
+		coverPage = 1;
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
 		$.get("/albums/get/cover/" + album)
@@ -35,6 +36,15 @@ $(document).ready(function() {
 			$(this).attr("checked", true);	
 		}
 	});
+	$("#select_cover").live("click", function(e) {
+		e.preventDefault();
+		var cover_id = $(".covers:checked").val();
+		$("#_cover").val(cover_id);
+		$("#cover-img").attr("src", "/arquigrafia-images/" + cover_id + "_home.jpg");
+		$('#mask').fadeOut();
+		$('#form_window').fadeOut('fast');
+
+	});
 });
 
 function generateCoversHtml(covers) {
@@ -44,8 +54,9 @@ function generateCoversHtml(covers) {
 			'<h2> Suas fotos </h2>' +
 			'<p class=\"row\"> Selecione uma imgem para ser a capa</p>' +
 			'<table class=\"form-table\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">' +
-			'</table>'
+			'</table>' +
 		'</div>';
+	coversHtml += '<p><a href=\"#\" id=\"select_cover\" class=\"btn\">Escolher capa</a></p>';
 	$("#covers_registration").empty();
 	$("#covers_registration").append(coversHtml);
 	covers_counter = 0;
