@@ -181,6 +181,16 @@ class AlbumsController extends \BaseController {
 			->render());
 	}
 
+	public function paginateByCoverPhotos($id) {
+		$album = Album::find($id);
+		$photos = Photo::paginateAlbumPhotos($album)->toArray()["data"];
+		$photos_ids = [];
+		foreach ($photos as $photo) {
+			array_push($photos_ids, $photo["id"]);
+		}
+		return $photos_ids;
+	}
+
 	public function getList($id) {
 		$photo_albums_ids = Photo::find($id)->albums->modelKeys(); // albums que já têm essa foto
 		$albums = Album::where('user_id', '=', Auth::id())
