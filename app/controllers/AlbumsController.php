@@ -140,11 +140,11 @@ class AlbumsController extends \BaseController {
 			$photos_rm = Input::get('photos_rm');
 			$album->title = $input['title'];
 			$album->description = $input['description'];
+			if (Input::has("_cover"))
+				$album->cover_id = Input::get("_cover");
 			if (!isset($album->cover_id)) {
 				if (!empty($photos_add))
-					$album->cover_id;
-				
-				$album->cover_id = $photos_add[0];
+					$album->cover_id = $photos_add[0];
 			}
 			$album->save();
 			if ( !empty($photos_add) )
