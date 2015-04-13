@@ -183,10 +183,10 @@ class AlbumsController extends \BaseController {
 
 	public function paginateByCoverPhotos($id) {
 		$album = Album::find($id);
-		$photos = Photo::paginateAlbumPhotos($album)->toArray()["data"];
+		$photos = Photo::paginateAlbumPhotos($album, 48);
 		$photos_ids = [];
 		foreach ($photos as $photo) {
-			array_push($photos_ids, $photo["id"]);
+			array_push($photos_ids, $photo->id);
 		}
 		return $photos_ids;
 	}

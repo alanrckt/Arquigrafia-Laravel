@@ -17,6 +17,7 @@
 		var url = '{{ $url }}';
 		var rmUrl = '{{ $rmUrl }}';
 		var coverPage = 1;
+		var maxCoverPage = {{ ceil($album->photos->count() / 48) }};
 		var album = {{ $album->id }};
 		var covers_counter = 0;
 		$(document).ready(function() {

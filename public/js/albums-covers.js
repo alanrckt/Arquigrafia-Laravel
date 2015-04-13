@@ -43,7 +43,21 @@ $(document).ready(function() {
 		$("#cover-img").attr("src", "/arquigrafia-images/" + cover_id + "_home.jpg");
 		$('#mask').fadeOut();
 		$('#form_window').fadeOut('fast');
-
+	});
+	$("#get_more_covers").live("click", function(e) {
+		e.preventDefault();
+		if (++coverPage == maxCoverPage)	$(this).hide();
+		var removed_photos = $(".rm_photo:checked").map(function() { return $(this).val(); }).get();
+		var callback = function(data) {
+			all_covers = [];
+			all_covers = all_covers.concat(data);
+			all_covers = $.grep(all_covers, function(el) { return $.inArray( el, removed_photos ) == -1; })
+			generateRowsAndCss(all_covers);
+		};
+		$.get("/albums/get/cover/" + album + "?page=" + coverPage)
+		.done(function(data) {
+			callback(data);
+		});
 	});
 });
 
@@ -54,11 +68,17 @@ function generateCoversHtml(covers) {
 			'<h2> Suas fotos </h2>' +
 			'<p class=\"row\"> Selecione uma imagem para ser a capa</p>' +
 			'<table class=\"form-table\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">' +
-			'</table>' +
-		'</div>';
+			'</table>';
+		if (maxCoverPage > 1)
+			coversHtml += '<a class=\"right\" id=\"get_more_covers\" href=\"#\">Ver mais</a>';
+		coversHtml += '</div>';
 	coversHtml += '<p><a href=\"#\" id=\"select_cover\" class=\"btn\">Escolher capa</a></p>';
 	$("#covers_registration").empty();
 	$("#covers_registration").append(coversHtml);
+	generateRowsAndCss(covers);
+}
+
+function generateRowsAndCss(covers) {
 	covers_counter = 0;
 	for (var i = covers_counter; i < covers.length; i++)
 	{
