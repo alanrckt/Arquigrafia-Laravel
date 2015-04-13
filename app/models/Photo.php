@@ -89,10 +89,12 @@ class Photo extends Eloquent {
 		$array = explode(" ", $name);
 		$architectureName = "";			
 		if (!is_null($array) && !is_null($array[0])) {		        
-	        if (ends_with($array[0], 'a'))
+	        if (ends_with($array[0], 'a') or ends_with($array[0], 'dade'))
 	            $architectureName = 'a ';
-	        else
-	            $architectureName = 'o ';
+	        else if (ends_with($array[0], 'o') or ends_with($array[0], 'e'))
+	            $architectureName = 'o '; 
+	        else 
+	        	$architectureName = 'e ';
 	    }
 		return $architectureName = $architectureName .$name;
 	}
