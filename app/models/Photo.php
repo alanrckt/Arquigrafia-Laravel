@@ -90,7 +90,8 @@ class Photo extends Eloquent {
 		$architectureName = "";			
 		if (!is_null($array) && !is_null($array[0])) {		        
 	        if (ends_with($array[0], 'a') or ends_with($array[0], 'dade') 
-	        	or ends_with($array[0], 'ção') or ends_with($array[0], 'ase'))
+	        	or ends_with($array[0], 'ção') or ends_with($array[0], 'ase')
+	        	or ends_with($array[0], 'ede'))
 	            $architectureName = 'a ';
 	        else if (ends_with($array[0], 's'))
 	        	$architectureName = 'a arquitetura de ';	        
