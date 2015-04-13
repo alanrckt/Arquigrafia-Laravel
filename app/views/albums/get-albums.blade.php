@@ -1,7 +1,7 @@
 	<?php $album_counter = 0; $total_album = $albums->count() ?>
 	{{ Form::open(array('url' => URL::to('/albums/photo/add'))) }}
 		{{ Form::hidden('_photo', $photo_id) }}
-		<div id="albums_list">
+		<div id="albums_list" class="list">
 				<h2> Seus Álbuns </h2>
 				<p class="row"> Selecione os álbuns em que a imagem será inserida</p>
 				<table class="form-table" width="100%" border="0" cellspacing="0" cellpadding="0">

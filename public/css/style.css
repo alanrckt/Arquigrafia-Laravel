@@ -529,9 +529,9 @@ input#login_white_button:hover { background-position: -160px -258px; }
 
 .gallery_photo { width: 143px; height: 104px; }
 
-#albums_list { width: 600px; height: 350px; overflow-y: scroll; margin: 10px 0; }
-#albums_list td { text-align: center; }
-#albums_list p { color: #000; }
+.list { width: 600px; height: 350px; overflow-y: scroll; margin: 10px 0; }
+.list td { text-align: center; }
+.list p { color: #000; }
 
 #delete_button { display: inline-block; width: 16px; height: 16px; background: url("../img/delete.png"); margin-left: 5px; }
 #delete_button:hover { cursor: pointer; }
