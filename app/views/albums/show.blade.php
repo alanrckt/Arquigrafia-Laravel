@@ -27,13 +27,23 @@
 	</div>
 	
 	<!-- GALERIA DO USUÁRIO -->
-	<div id="user_gallery">
-	
-		<div class="wrap">
-			@include("includes.panel-stripe")
+	@if($photos->count() > 0)
+		<div id="user_gallery">
+			<div class="wrap">
+				@include("includes.panel-stripe")
+			</div>
 		</div>
+	@else
+		<div class="container row">
+			<div class="twelve columns">
+			<p>
+				Este álbum ainda não tem nenhuma imagem.
+				Para adicionar suas imagens, clique <a href="{{ URL::to('/albums/' . $album->id . '/edit') }}">aqui</a>
+			</p>
+			</div>
+		</div>
+	@endif
 	
-	</div>
 
 	<div class="container row">
 		<div class="twelve columns albums">
@@ -45,6 +55,7 @@
 				@endif
 			</hgroup>
 			<ul>
+				<li><strong>Autor: </strong> <a href="{{ URL::to('/users/' . $user->id) }}">{{ $user->name }}</a></li>			
 				<li><strong>Título: </strong> {{ $album->title }} </li>
 				<br>
 				@if ( !empty($album->description) )
@@ -55,10 +66,15 @@
 	</div>
 	
 	<!-- OUTROS ALBUNS -->
+	@if ($other_albums->count() > 0)
 	<div class="container">
 		<div class="twelve columns albums">
 			<hgroup class="profile_block_title">
-				<h3><i class="photos"></i> Outros álbuns</h3>
+				<h3><i class="photos"></i> Outros álbuns
+					@if($album->user_id != Auth::id())
+						de {{ $user->name }}
+					@endif
+				</h3>
 			</hgroup>
 			<div class="profile_box">
 				@foreach($other_albums as $other_album)
@@ -80,7 +96,7 @@
 			</div>
 		</div>
 	</div>
-	
+	@endif
 	<!--   MODAL   -->
 	<div id="mask"></div>
 	<div id="form_window">
