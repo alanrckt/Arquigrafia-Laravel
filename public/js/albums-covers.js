@@ -42,7 +42,7 @@ function generateCoversHtml(covers) {
 	var coversHtml = 
 		'<div class=\"list\">' +
 			'<h2> Suas fotos </h2>' +
-			'<p class=\"row\"> Selecione uma imgem para ser a capa</p>' +
+			'<p class=\"row\"> Selecione uma imagem para ser a capa</p>' +
 			'<table class=\"form-table\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">' +
 			'</table>'
 		'</div>';
