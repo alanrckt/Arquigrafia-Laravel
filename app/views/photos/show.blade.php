@@ -355,17 +355,19 @@ $(document).ready(function(){
             <h4>Avaliação:</h4>                   
         		<img src="/img/GraficoFixo.png"  /> 
         	 @else			      
-             <h4>Média de Avaliações d{{$architectureName}}:</h4>            
-        <!-- Google Charts -->
+             <h4>Média de Avaliações d{{$architectureName}}:</h4>
+          <!-- Google Charts -->
           <div>
-            <script type="text/javascript" src="https://www.google.com/jsapi"></script>            
-            <div id="chart_div"><div>            
+            
+            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+            
+            <div id="chart_div"><div>
             <script>
             
-              google.load('visualization', '1', {packages: ['corechart', 'line']});
-              google.setOnLoadCallback(drawCurveTypes);
+              // google.load('visualization', '1', {packages: ['corechart', 'line']});
+              // google.setOnLoadCallback(draw);
               
-              function drawCurveTypes() {
+              function draw() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('number', 'Pontuação');
                 data.addColumn('number', 'Média de avaliações');
@@ -418,6 +420,53 @@ $(document).ready(function(){
               }
               
             </script>
+            
+            
+            <!-- Google Charts Double Y -->
+            <div id="doubley"></div>
+            <script>
+                google.load('visualization', '1.1', {packages: ['line', 'corechart']});
+                google.setOnLoadCallback(drawDouble);
+            
+                function drawDouble() {
+            
+                  var materialChart;
+            
+                  var data = new google.visualization.DataTable();
+                data.addColumn('date', 'Month');
+                data.addColumn('number', "Average Temperature");
+                data.addColumn('number', "Average Hours of Daylight");
+                  
+                  data.addRows([
+                    [new Date(2014, 0),  -.5,  5.7],
+                    [new Date(2014, 1),   .4,  8.7],
+                    [new Date(2014, 2),   .5,   12],
+                    [new Date(2014, 3),  2.9, 15.3],
+                    [new Date(2014, 4),  6.3, 18.6],
+                    [new Date(2014, 5),    9, 20.9],
+                    [new Date(2014, 6), 10.6, 19.8],
+                    [new Date(2014, 7), 10.3, 16.6],
+                    [new Date(2014, 8),  7.4, 13.3],
+                  ]);
+            
+                  var options = {
+                    width: 280,
+                    height: 280,
+                    colors:['#999999','#000000'], 
+                    series: {
+                      // Gives each series an axis name that matches the Y-axis below.
+                      0: {axis: 'Temps', color: '#999999'},
+                      1: {axis: 'Daylight', color: '#000000'}
+                    },
+                  };
+            
+                  var chart = new google.charts.Line(document.getElementById('doubley'));
+                chart.draw(data, options);
+            
+                }
+                </script>
+            
+            
           </div>
         
         </div>
