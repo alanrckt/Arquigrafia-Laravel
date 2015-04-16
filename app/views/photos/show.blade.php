@@ -364,8 +364,8 @@ $(document).ready(function(){
             <div id="chart_div"><div>
             <script>
             
-              // google.load('visualization', '1', {packages: ['corechart', 'line']});
-              // google.setOnLoadCallback(draw);
+               google.load('visualization', '1', {packages: ['corechart', 'line']});
+               google.setOnLoadCallback(draw);
               
               function draw() {
                 var data = new google.visualization.DataTable();
@@ -423,7 +423,7 @@ $(document).ready(function(){
             
             
             <!-- Google Charts Double Y -->
-            <div id="doubley"></div>
+           <!-- <div id="doubley"></div>
             <script>
                 google.load('visualization', '1.1', {packages: ['line', 'corechart']});
                 google.setOnLoadCallback(drawDouble);
@@ -466,7 +466,7 @@ $(document).ready(function(){
                 }
                 </script>
             
-            
+            -->
           </div>
         
         </div>
