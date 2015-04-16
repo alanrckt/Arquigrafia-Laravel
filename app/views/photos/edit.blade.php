@@ -18,7 +18,7 @@
       {{ Form::open(array('url'=>'photos/' . $photo->id, 'method' => 'put')) }}       
       
       <div class="twelve columns row step-1">
-      	<h1><span class="step-text">Editar dados da imagem</span></h1>
+      	<h1><span class="step-text">Edição de dados da imagem {{$photo->name}}</span></h1>
         
         <div class="four columns alpha">
           <img src="" id="preview_photo">
@@ -33,8 +33,7 @@
 
       
       <div id="registration" class="twelve columns row step-2">
-      	<h1><span class="step-text">Editar dados da imagem</span></h1>
-          
+      	          
           <p>(*) Campos obrigatórios.</p>
           <br />
           
