@@ -28,60 +28,7 @@ $(document).ready(function(){
 			form_window_loaded = true;
 		});
 		
-		$('#registration_button').click(function(){
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('/users/8/signup');	
-			form_window_loaded = true;
-		});
 		
-		$('#upload').click(function(){
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('/photo/7/upload');	
-			form_window_loaded = true;
-		});
-		
-		$('.profile_photo_edit').click(function(e){
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('/profile/10/uploadphotoprofile');	
-			form_window_loaded = true;
-			e.preventDefault();
-		});
-		
-
-		
-		$('#upload_bar').click(function(){
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('modal/upload_bar.html');	
-			form_window_loaded = true;
-		});
-
-		$('#contact').click(function(){
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('/18/contact');	
-			form_window_loaded = true;
-		});
-
-		// $('#login_button').click(function(){
-		// 	$('#mask').fadeIn('fast');
-		// 	$('#form_window').fadeIn('slow');
-		// 	$('#registration').load('/users/8/login');	
-		// 	form_window_loaded = true;
-		// });
-
-		$('#forgot_password').live("click", function(e){
-			e.preventDefault();
-			$('#mask').fadeOut('fast');
-			$('#form_window').fadeOut('slow');
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load(this.href);	
-		});
-
 		
 		$('#registration_user').live("click", function(e){
 			e.preventDefault();
@@ -172,7 +119,7 @@ $(document).ready(function(){
 			$('#confirmation_window').fadeOut('fast');
 		});
 
-		$('.title_plus').live('click', function(e){
+		$('.title_plus').live('click', function (e){
 			e.preventDefault();
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
@@ -185,4 +132,10 @@ $(document).ready(function(){
 			});
 		});
 		
+		$('#stoaLogin').live('click', function (e) {
+			e.preventDefault();
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+		});
+
 });

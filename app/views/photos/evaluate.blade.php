@@ -280,7 +280,7 @@
               function drawCurveTypes() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('number', 'Pontuação');
-                data.addColumn('number', 'Média de avaliações');
+                data.addColumn('number', 'Média');
                 
                 @if(Auth::check() && isset($userEvaluations) && !$userEvaluations->isEmpty())
                   data.addColumn('number', 'Sua avaliação');
@@ -307,6 +307,8 @@
                     position: 'bottom',
                   },
                   pointSize: 6,
+                  width: 250,
+                  height: 250,
                   hAxis: {
                     viewWindow: {min: 0, max: 100}
                   },
