@@ -42,17 +42,9 @@
             </div>
 
 
-			<div class="four columns omega">
-              <!-- <span><i id="graph"></i> <small>65 visualizações e 0 avaliações</small></span> -->
+			<div class="four columns omega">              
               <span class="right"><i id="comments"></i> <small>{{$commentsCount}}</small>
-              </span>
-
-
-              <?php /*if (Auth::check() && Auth::user()->id == $photos->user_id) { ?>  
-               	<span class="right">
-        					<a id="delete_button" href="{{ URL::to('/photos/' . $photos->id) }}" title="Excluir imagem"></a>
-              	</span>
-              <?php } */?>
+              </span>            
              
             </div>
 					</div>
@@ -69,11 +61,8 @@
 					
 					<?php if (Auth::check()) { ?>
 						
-	            <ul id="single_view_image_buttons">
-							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
-							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
-              
-							<!--<li><a href="18/photo_avaliation/2778" title="Avalie a foto" id="eyedroppper"></a></li>-->
+	            <ul id="single_view_image_buttons">						             
+							
 							<li><a href="{{ URL::to('/albums/get/list/' . $photos->id) }}" title="Adicione aos seus álbuns" id="plus"></a></li>
             
 							<li><a href="{{ asset('photos/download/'.$photos->id) }}" title="Faça o download" id="download" target="_blank"></a></li>
@@ -85,9 +74,7 @@
             <?php } ?>
             
 						<ul id="single_view_social_network_buttons">
-						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fdf62121c50304d"></script>
-							<!-- <li><a href="#" class="delicious"></a></li> -->
-							<!-- <li><a href="#" class="more_sare_buttons addthis_button_compact"><span class="more_sare_buttons">+ outros</span></a></li> -->
+						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fdf62121c50304d"></script>	
 							<li><a href="#" class="google addthis_button_google_plusone_share"><span class="google"></span></a></li>
 							<li><a href="#" class="facebook addthis_button_facebook"><span class="facebook"></span></a></li>
 							<li><a href="#" class="twitter addthis_button_twitter"><span class="twitter"></span></a></li>
@@ -114,6 +101,122 @@
           
           </p>
           </div>
+
+
+@if (!empty($average))  
+  <div id="evaluation_average">
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript">
+      $(function () {     
+        var l1 = [
+            @foreach($binomials as $binomial)
+              '{{ $binomial->firstOption}}',     
+            @endforeach
+        ];      
+        var l2 = [
+            @foreach($binomials as $binomial)
+              '{{ $binomial->secondOption }}',       
+            @endforeach
+        ];    
+        $('#evaluation_average').highcharts({
+            credits: {
+                enabled: false,
+            },
+            chart: {
+                marginRight: 80,          
+            },
+            title: {
+                text: '<b> Média de Avaliações d{{$architectureName}} </b>'
+            },
+            tooltip: {
+              formatter: function() {
+              return ''+ l1[this.y] + '-' + l2[this.y] + ': <br>' + this.series.name + '= ' + this.x;
+              },
+              crosshairs: [true,true]
+            },
+            xAxis: {
+                lineColor: '#000',
+                min: 0,
+                max: 100,
+            },
+            yAxis: [{
+                lineColor: '#000',
+                lineWidth: 1,            
+                tickAmount: {{$binomials->count()}},              
+                tickPositions: [
+                  <?php $count = 0?>
+                  @foreach($binomials as $binomial)
+                    {{ $count }},
+                    <?php $count++; ?>
+                  @endforeach
+                ],
+                title: {
+                    text: ''
+                },
+                labels: {
+                  formatter: function() {
+                    return l1[this.value];
+                  }
+                }
+            }, {                
+                lineWidth: 1,
+                tickAmount: {{$binomials->count()}},  
+                tickPositions: [
+                  <?php $count = 0?>
+                  @foreach($binomials as $binomial)
+                    {{ $count }},
+                    <?php $count++; ?>
+                  @endforeach
+                ],
+                opposite: true,
+                title: {
+                    text: ''
+                },
+                labels: {
+                  formatter: function() {
+                    return l2[this.value];
+                  }
+                },
+            }],
+
+            series: [{            
+                <?php $count = 0; ?>
+                data: [ 
+                  @foreach($average as $avg)
+                    [{{ $avg->avgPosition }}, {{ $count }}],                      
+                    <?php $count++ ?>
+                  @endforeach
+                ],
+                yAxis: 1,
+                name: 'Média',            
+                marker: {
+                  symbol: 'circle',
+                  enabled: true
+                },
+                color: '#999999',
+            }, {            
+                <?php $count = 0; ?> 
+                data: [
+                  @if(isset($userEvaluations) && !$userEvaluations->isEmpty())
+                    @foreach($userEvaluations as $userEvaluation)
+                      [{{ $userEvaluation->evaluationPosition }}, {{ $count }}], 
+                      <?php $count++ ?>
+                    @endforeach              
+                  @endif
+                ],
+                yAxis: 0,
+                name: 'Sua avaliação',
+                marker: {
+                  symbol: 'circle',
+                  enabled: true
+                },
+                color: '#000000',
+            }]
+        });
+      });
+    </script>
+  </div>
+@endif
         
 				<!--   BOX DE COMENTARIOS   -->
 				<div id="comments_block" class="eight columns row alpha omega">
@@ -168,8 +271,7 @@
             </div>       
             @endforeach
           
-          @endif
-          
+          @endif    
           
           
           
@@ -262,14 +364,14 @@
       </br>
         
         <!-- MÉDIA DE AVALIAÇÕES -->
-        @if (!empty($average))            
+        <!--@if (!empty($average))            
             
           <h3>Média de Avaliações d{{$architectureName}}</h3>
           
 
           <div id="evaluation_average">
           <!-- Google Charts -->
-          <div>
+          <!--<div>
             <script type="text/javascript" src="https://www.google.com/jsapi"></script>            
             <div id="chart_div"><div>            
             <script>
@@ -341,7 +443,9 @@
 			</div>
       
      </div> 
-     @endif 
+     @endif -->
+
+
       
 			<!--   FIM - SIDEBAR   -->
 		</div>

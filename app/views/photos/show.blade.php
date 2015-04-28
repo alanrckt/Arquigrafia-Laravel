@@ -354,129 +354,124 @@ $(document).ready(function(){
         	@if (empty($average)) 
             <h4>Avaliação:</h4>                   
         		<img src="/img/GraficoFixo.png"  /> 
-        	 @else			      
-             <h4>Média de Avaliações d{{$architectureName}}:</h4>
-          <!-- Google Charts -->
-          <div>
-            
-            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-            
-            <div id="chart_div"><div>
-            <script>
-            
-               google.load('visualization', '1', {packages: ['corechart', 'line']});
-               google.setOnLoadCallback(draw);
-              
-              function draw() {
-                var data = new google.visualization.DataTable();
-                data.addColumn('number', 'Pontuação');
-                data.addColumn('number', 'Média');
-                
-                @if(Auth::check() && isset($userEvaluations) && !$userEvaluations->isEmpty())
-                  data.addColumn('number', 'Sua avaliação');
-                @endif
-                <?php $count = 0; ?>
-                data.addRows([
+        	@else	   
+            <h4> <center>Média de Avaliações d{{$architectureName}} </center></h4> <br>          
+            <div id="evaluation_average">
+              <script src="http://code.highcharts.com/highcharts.js"></script>
+              <script type="text/javascript">
+                $(function () {     
+                  var l1 = [
+                      @foreach($binomials as $binomial)
+                        '{{ $binomial->firstOption}}',     
+                      @endforeach
+                  ];      
+                  var l2 = [
+                      @foreach($binomials as $binomial)
+                        '{{ $binomial->secondOption }}',       
+                      @endforeach
+                  ];    
+                  $('#evaluation_average').highcharts({
+                      credits: {
+                          enabled: false,
+                      },
+                      chart: {
+                          marginRight: 80, 
+                          width: 311,
+                          height: 300        
+                      },
+                      title: {
+                          text: ''
+                      },
+                      tooltip: {
+                        formatter: function() {
+                        return ''+ l1[this.y] + '-' + l2[this.y] + ': <br>' + this.series.name + '= ' + this.x;
+                        },
+                        crosshairs: [true,true]
+                      },
+                      xAxis: {
+                          lineColor: '#000',
+                          min: 0,
+                          max: 100,
+                      },
+                      yAxis: [{
+                          lineColor: '#000',
+                          lineWidth: 1,            
+                          tickAmount: {{$binomials->count()}},              
+                          tickPositions: [
+                            <?php $count = 0?>
+                            @foreach($binomials as $binomial)
+                              {{ $count }},
+                              <?php $count++; ?>
+                            @endforeach
+                          ],
+                          title: {
+                              text: ''
+                          },
+                          labels: {
+                            formatter: function() {
+                              return l1[this.value];
+                            }
+                          }
+                      }, {                          
+                          lineWidth: 1,
+                          tickAmount: {{$binomials->count()}},  
+                          tickPositions: [
+                            <?php $count = 0?>
+                            @foreach($binomials as $binomial)
+                              {{ $count }},
+                              <?php $count++; ?>
+                            @endforeach
+                          ],
+                          opposite: true,
+                          title: {
+                              text: ''
+                          },
+                          labels: {
+                            formatter: function() {
+                              return l2[this.value];
+                            }
+                          },
+                      }],
 
-                  @foreach($average as $avg)
-                      [
-                        {{ $count . ', ' }}
-                        {{ $avg->avgPosition }}
-                        @if(isset($userEvaluations) && !$userEvaluations->isEmpty())
-                          <?php  $userEvaluation = $userEvaluations->get($count); ?>
-                          {{ ', ' .  $userEvaluation->evaluationPosition }}
-                        @endif
-                      ],
-                      <?php $count++ ?>
-                  @endforeach
-                ]);
+                      series: [{            
+                          <?php $count = 0; ?>
+                          data: [ 
+                            @foreach($average as $avg)
+                              [{{ $avg->avgPosition }}, {{ $count }}],                      
+                              <?php $count++ ?>
+                            @endforeach
+                          ],
+                          yAxis: 1,
+                          name: 'Média',            
+                          marker: {
+                            symbol: 'circle',
+                            enabled: true                            
+                          },
+                          color: '#999999',
+                      }, {            
+                          <?php $count = 0; ?> 
+                          data: [
+                            @if(isset($userEvaluations) && !$userEvaluations->isEmpty())
+                              @foreach($userEvaluations as $userEvaluation)
+                                [{{ $userEvaluation->evaluationPosition }}, {{ $count }}], 
+                                <?php $count++ ?>
+                              @endforeach              
+                            @endif
+                          ],
+                          yAxis: 0,
+                          name: 'Sua avaliação',
+                          marker: {
+                            symbol: 'circle',
+                            enabled: true                           
+                          },
+                          color: '#000000',
+                      }]
+                  });
+                });
+              </script>
+            </div>
+          @endif 
 
-                var options = {
-                  orientation: 'vertical',
-                  legend: {
-                    position: 'bottom',
-                  },
-                  pointSize: 6,
-                  width: 250,
-                  height: 250,
-                  hAxis: {
-                    viewWindow: {min: 0, max: 100}
-                  },
-                  vAxis: {
-                    ticks: [
-                        <?php $count = 0?>
-                        @foreach($binomials as $binomial)
-                          {v: {{ $count }}, f: '{{ $binomial->firstOption . "-" . $binomial->secondOption }}' },
-                          <?php $count++; ?>
-                        @endforeach
-                      ]
-                  },
-                  series: {
-                    0: { color: '#999999' },
-                    1: { color: '#000000' }
-                  }
-                };
-          
-                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-              }
-              
-            </script>
-            
-            
-            <!-- Google Charts Double Y -->
-           <!-- <div id="doubley"></div>
-            <script>
-                google.load('visualization', '1.1', {packages: ['line', 'corechart']});
-                google.setOnLoadCallback(drawDouble);
-            
-                function drawDouble() {
-            
-                  var materialChart;
-            
-                  var data = new google.visualization.DataTable();
-                data.addColumn('date', 'Month');
-                data.addColumn('number', "Average Temperature");
-                data.addColumn('number', "Average Hours of Daylight");
-                  
-                  data.addRows([
-                    [new Date(2014, 0),  -.5,  5.7],
-                    [new Date(2014, 1),   .4,  8.7],
-                    [new Date(2014, 2),   .5,   12],
-                    [new Date(2014, 3),  2.9, 15.3],
-                    [new Date(2014, 4),  6.3, 18.6],
-                    [new Date(2014, 5),    9, 20.9],
-                    [new Date(2014, 6), 10.6, 19.8],
-                    [new Date(2014, 7), 10.3, 16.6],
-                    [new Date(2014, 8),  7.4, 13.3],
-                  ]);
-            
-                  var options = {
-                    width: 280,
-                    height: 280,
-                    colors:['#999999','#000000'], 
-                    series: {
-                      // Gives each series an axis name that matches the Y-axis below.
-                      0: {axis: 'Temps', color: '#999999'},
-                      1: {axis: 'Daylight', color: '#000000'}
-                    },
-                  };
-            
-                  var chart = new google.charts.Line(document.getElementById('doubley'));
-                chart.draw(data, options);
-            
-                }
-                </script>
-            
-            -->
-          </div>
-        
-        </div>
-        
-        <br class="clear">
-        
-       </div>
-       @endif
        <?php if (Auth::check()) { ?>
            </a>
         <?php } ?>      
