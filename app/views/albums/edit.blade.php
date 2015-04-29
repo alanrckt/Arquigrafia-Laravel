@@ -3,7 +3,6 @@
 @section('head')
 
 	<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="{{ URL::to('/js/albums-covers.js') }}"></script>
 	<script src="{{ URL::to('/js/album-add-photos.js') }}"></script>
 	<link rel="stylesheet" type="text/css" href="{{ URL::to("/") }}/css/checkbox.css" />	
@@ -142,7 +141,7 @@
 		</div>
 	</div>
 	<div id="mask"></div>
-	<div id="form_window">
+	<div id="form_window" class="form window">
 		<a class="close" href="#" title="FECHAR">Fechar</a>
 		<div id="covers_registration"></div>
 	</div>

@@ -4,9 +4,6 @@
 
 <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
 
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script>
-
 <script src="{{ URL::to("/") }}/js/jquery.isotope.min.js"></script>
 
 <script type="text/javascript" src="{{ URL::to("/") }}/js/panel.js"></script>
@@ -99,17 +96,17 @@
 	@endif
 	<!--   MODAL   -->
 	<div id="mask"></div>
-	<div id="form_window">
+	<div id="form_window" class="form window">
 		<a class="close" href="#" title="FECHAR">Fechar</a>
 		<div id="registration"></div>
 	</div>
-	<div id="confirmation_window">
+	<div id="confirmation_window" class="window">
 		<div id="registration_delete">
 			<p></p>
 			{{ Form::open(array('url' => '/albums/' . $album->id, 'method' => 'delete')) }}
 				<div id="registration_buttons">
-					<a class="btn" href="#" id="submit_delete">Confirmar</a>
-					<a class="btn" href="#" id="cancel_delete">Cancelar</a>
+            	<input type="submit" class="btn" value="Confirmar" />
+					<a class="btn close" href="#" >Cancelar</a>
 				</div>
 			{{ Form::close() }}
 		</div>

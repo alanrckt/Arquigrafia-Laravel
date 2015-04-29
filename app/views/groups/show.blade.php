@@ -2,18 +2,9 @@
 
 @section('head')
 
-{{ HTML::style('/css/style.css'); }}
-
 <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
 
-<!--   JQUERY - Google Ajax API CDN (Also supports SSL via HTTPS)   -->
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script>
-
-<!-- Google Maps API -->
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
-
-</head>
+@stop
 
 <body>
 	<!--   #CONTAINER   -->

@@ -2,8 +2,7 @@
 
 @section('head')
 	<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<!-- <script src="/js/jquery-1.7.1.min.js"></script> -->
+	
 	<script src="{{ URL::to('/js/album-add-photos.js') }}"></script>
 	<link rel="stylesheet" type="text/css" href="{{ URL::to("/") }}/css/checkbox.css" />	
 	<script>

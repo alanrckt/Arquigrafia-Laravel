@@ -6,7 +6,6 @@
 
 	<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
 
-	<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script>
 	<script src="{{ URL::to("/") }}/js/jquery.isotope.min.js"></script>
 	<script type="text/javascript" src="{{ URL::to("/") }}/js/panel.js"></script>
 
@@ -41,7 +40,6 @@
 									<div class="no_cover">
 										<p>Álbum sem capa</p>
 									</div>
-									<!-- <img src='{{ URL::to("/img/no_cover.jpg") }}' title="{{ $album->title }}"> -->
 								@endif
 							</a>
 							<div class="item-title">
@@ -72,15 +70,13 @@
 	@endif
 	<!--   MODAL   -->
 	<div id="mask"></div>
-	<div id="confirmation_window">
-		<!-- ÁREA DE LOGIN - JANELA MODAL -->
-		<!-- <a class="close" href="#" title="FECHAR">Fechar</a> -->
+	<div id="confirmation_window" class="window">
 		<div id="registration_delete">
 			<p></p>
 			{{ Form::open(array('url' => '', 'method' => 'delete')) }}
 				<div id="registration_buttons">
-					<a class="btn" href="#" id="submit_delete">Confirmar</a>
-					<a class="btn" href="#" id="cancel_delete">Cancelar</a>
+            	<input type="submit" class="btn" value="Confirmar" />
+					<a class="btn close" href="#" >Cancelar</a>
 				</div>
 			{{ Form::close() }}
 		</div>

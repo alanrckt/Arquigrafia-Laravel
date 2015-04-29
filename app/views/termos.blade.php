@@ -4,21 +4,6 @@
 
 <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
 
-<!--   JQUERY   -->
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery-ui-1.8.17.custom.min.js"></script>
-
-<!--   JQUERY - Validate   -->
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.validate.js"></script>
-
-<!--   JS - Masked input   -->
-<script type="text/javascript" src="{{ URL::to("/") }}/js/masked-input.js"></script>
-
-<!-- JS - Font size increment and decrement -->
-<script type="text/javascript" src="{{ URL::to("/") }}/js/font_increment.js"></script>
-
-<script type="text/javascript" src="{{ URL::to("/") }}/js/jquery.tools.min.js"></script>
-
 @stop
 
 @section('content')

@@ -17,8 +17,6 @@ $(document).ready(function(){
 		amplied_image_container.appendChild(amplied_image);
 		
 		container.appendChild(amplied_image);
-		
-		alert("bla");
-		
+				
 	}	
 });
