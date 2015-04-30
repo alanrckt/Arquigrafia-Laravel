@@ -60,20 +60,24 @@
    <div id="form_login_window" class="container form window">
       <a class="close" href="#" title="FECHAR">Fechar</a>
       <div id="registrationStoa" class="registration">
-         <img src="{{ asset('/img/Logo-stoa.png') }}" class="row">
-         <div class="three columns">
+         <img src="{{ asset('/img/Logo-stoa.png') }}" class="row" style="width: 200px; display: block; margin-left: auto; margin-right: auto; ">
+         <div class="four columns">
             {{ Form::open(array( 'url' => '/users/stoaLogin')) }}
 
-               <div class="one columns alpha">{{ Form::label('login', 'Usuário:', array('class'=>'right')) }}</div>
-               <div class="two columns omega">{{ Form::text('login', '', array('class'=>'right') ) }}</div>
+               <div class="three columns">{{ Form::label('nusp', 'Número USP:') }}</div>
+               <div class="three columns">{{ Form::text('nusp', '', ['class' => 'right']) }}</div>
                {{ $errors->first('login') }}
                
-               <div class="one columns alpha">{{ Form::label('password', 'Senha:', array('class'=>'right')) }}</div>
-               <div class="two columns omega">{{ Form::password('password', array('class'=>'right') ) }}</div>
+               <div class="three columns">{{ Form::label('password', 'Senha:') }}</div>
+               <div class="three columns">{{ Form::password('password', ['class' => 'right']) }}</div>
                <br>
-               <p>{{ Form::submit("LOGIN",array('class'=>'btn')) }}</p>
-
+               
+               <div class="three columns">
+                  <p>{{ Form::submit("LOGIN",array('class'=>'btn right')) }}</p>
+                  <p class="error">Número USP e/ou senha inválidos.</p>
+               </div>
             {{ Form::close() }}
+            <script type="text/javascript" src="{{ URL::to('/js/stoaLogin.js') }}"></script>
          </div>
       </div>
    </div>

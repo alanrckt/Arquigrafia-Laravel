@@ -51,4 +51,43 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   	    if ( strcmp($verify, 'true') == 0 ) return true;
     	return false;
 	}
+
+    public static function stoaUser($stoa_user) {
+        
+        $user = User::where('login', '=', 'stoa_' . $stoa_user->nusp)->first();
+
+        if (!$user) {
+          $user = User::newStoaUser($stoa_user); 
+        }
+        
+        if ($stoa_user->image_base64) {
+          User::saveProfileImage($user, $stoa_user->image_base64);
+        }
+        
+        return $user;
+    }
+
+    private static function newStoaUser($stoa_user) {
+        $user = new User();
+        $user->name = $stoa_user->first_name;
+        $user->email = $stoa_user->email;
+        $user->password = 'stoa';
+        $user->login = 'stoa_' . $stoa_user->nusp;
+        $user->id_stoa = 'stoa_' . $stoa_user->nusp;
+        if ($stoa_user->surname) 
+          $user->name = $user->name . ' ' . $stoa_user->surname;
+        if ($stoa_user->homepage)
+          $user->site = $stoa_user->homepage;
+        $user->save();
+
+        return $user;
+    }
+
+    private static function saveProfileImage($user, $image) {
+        $user->photo = "/arquigrafia-avatars/".$user->id.".jpg";
+        $user->save();
+        $image = Image::make(base64_decode($image))->encode('jpg', 80);
+        $image->save(public_path().'/arquigrafia-avatars/'.$user->id.'.jpg');
+        $image->save(public_path().'/arquigrafia-avatars/'. $user->id."_original.jpg");
+    }
 }

@@ -64,21 +64,10 @@ img.right { margin-left: 15px; }
 .container .ten.columns                     { width: 780px; }
 .container .eleven.columns                  { width: 860px; }
 .container .twelve.columns                  { width: 940px; }
-/* Offsets */
-.container .offset-by-one                   { padding-left: 80px;  }
-.container .offset-by-two                   { padding-left: 160px; }
-.container .offset-by-three                 { padding-left: 240px; }
-.container .offset-by-four                  { padding-left: 320px; }
-.container .offset-by-five                  { padding-left: 400px; }
-.container .offset-by-six                   { padding-left: 480px; }
-.container .offset-by-seven                 { padding-left: 560px; }
-.container .offset-by-eight                 { padding-left: 640px; }
-.container .offset-by-nine                  { padding-left: 720px; }
-.container .offset-by-ten                   { padding-left: 800px; }
-.container .offset-by-eleven                { padding-left: 880px; }
 
 .clear {clear: both;display: block;overflow: hidden;visibility: hidden;width: 0;height: 0; }
 
+/* Offsets */
 .container .offset-by-one                   { padding-left: 80px;  }
 .container .offset-by-two                   { padding-left: 160px; }
 .container .offset-by-three                 { padding-left: 240px; }
@@ -562,6 +551,9 @@ input#login_white_button:hover { background-position: -160px -258px; }
 .login_externo .logo img { margin: 0; }
 .login_externo p { margin: 11px 10px; float: left; }
 #facebook_login { width: 28px; height: 28px; margin: 5px 0; }
-#registrationStoa { width: 320px; height: 300px; margin: 0 auto; }
+#registrationStoa { width: 320px; height: 270px; margin: 0 auto; }
 
-#form_login_window { background: #fff; position: fixed; width: 320px; height: 300px;  top: 30%; left: 50%; margin: -150px 0 0 -150px; padding: 20px; -moz-border-radius: 5px; border-radius: 5px; display: none; z-index: 1001; font-size: 14px; }
+#form_login_window { background: #fff; position: fixed; width: 320px; height: 280px;  top: 30%; left: 50%; margin: -150px 0 0 -140px; padding: 20px; -moz-border-radius: 5px; border-radius: 5px; display: none; z-index: 1001; font-size: 14px; }
+#form_login_window input[type="text"], #form_login_window input[type="password"] { margin: 5px 0 10px; width: 198px; font-size: 12px; }
+#form_login_window .columns { display: block; margin: 0 auto; float: none; }
+#form_login_window .error { font-size: 10px; }

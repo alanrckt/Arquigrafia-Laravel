@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/data', function () { 
-	//dd(Photo::translate('2012-03-01/2013-04-01')); 
-	dd(Photo::translate('17/18'));
+Route::get('/test', function () { 
+	//testes
 });
 
 /* phpinfo() */
@@ -41,6 +40,7 @@ Route::get('/users/logout', 'UsersController@logout');
 Route::get('users/login/fb', 'UsersController@facebook');
 Route::get('users/login/fb/callback', 'UsersController@callback');
 Route::resource('/users','UsersController');
+Route::resource('/users/stoaLogin','UsersController@stoaLogin');
 
 
 /* FOLLOW */

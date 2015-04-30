@@ -245,68 +245,9 @@ class UsersController extends \BaseController {
         // return $user;
         return Redirect::to('/')->with('message', 'Sua conta foi criada com sucesso!');
       }
-      
-      /*
-      
-      EXEMPLO DE RETORNO
-      
-      object(Facebook\GraphObject)[288]
-        protected 'backingData' => 
-          array (size=11)
-            'id' => string '10205457080562389' (length=17)
-            'first_name' => string 'Pedro' (length=5)
-            'gender' => string 'male' (length=4)
-            'last_name' => string 'Guglielmo' (length=9)
-            'link' => string 'https://www.facebook.com/app_scoped_user_id/10205457080562389/' (length=62)
-            'locale' => string 'pt_BR' (length=5)
-            'middle_name' => string 'Emilio' (length=6)
-            'name' => string 'Pedro Emilio Guglielmo' (length=22)
-            'timezone' => int -3
-            'updated_time' => string '2015-01-30T21:09:07+0000' (length=24)
-            'verified' => boolean true
-      
-      */
-      
+            
     }
     
-    /*
-    $code = Input::get('code');
-    if (strlen($code) == 0) return Redirect::to('/')->with('message', 'There was an error communicating with Facebook');
-
-    $facebook = new Facebook(Config::get('facebook'));
-    $uid = $facebook->getUser();
-
-    if ($uid == 0) return Redirect::to('/')->with('message', 'There was an error');
-
-    $me = $facebook->api('/me');
-    
-    dd($me);
-
-    $profile = Profile::whereUid($uid)->first();
-    if (empty($profile)) {
-
-        $user = new User;
-        $user->name = $me['first_name'].' '.$me['last_name'];
-        $user->email = $me['email'];
-        $user->photo = 'https://graph.facebook.com/'.$me['username'].'/picture?type=large';
-
-        $user->save();
-
-        $profile = new Profile();
-        $profile->uid = $uid;
-        $profile->username = $me['username'];
-        $profile = $user->profiles()->save($profile);
-    }
-
-    $profile->access_token = $facebook->getAccessToken();
-    $profile->save();
-
-    $user = $profile->user;
-
-    Auth::login($user);
-
-    return Redirect::to('/')->with('message', 'Logged in with Facebook');
-    */
     
 	}
 
@@ -427,6 +368,35 @@ class UsersController extends \BaseController {
       
       return Redirect::to('/users/' . $user->id);
     }    
+  }
+
+  public function stoaLogin() {
+    $usp_id = Input::get('nusp');
+    $password = Input::get('password');
+    $stoa_user = $this->getStoaAccount($usp_id, $password);
+    if (!$stoa_user->ok)
+      return Response::json(false);
+    $user = User::stoaUser($stoa_user);
+    Auth::loginUsingId($user->id);
+    return Response::json(true);
+  }
+
+  private function getStoaAccount($usp_id, $password) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,"https://social.stoa.usp.br/plugin/stoa/authenticate/");
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,
+      http_build_query([
+          'usp_id' => $usp_id,
+          'password' => $password,
+          'fields' => 'full'
+        ])
+    );
+    $response = curl_exec($ch);
+    curl_close ($ch);
+    return json_decode($response);
   }
 
 }
