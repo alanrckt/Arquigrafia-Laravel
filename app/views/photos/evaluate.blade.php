@@ -320,7 +320,7 @@
         <p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
                
         <!-- FORMULÁRIO DE AVALIAÇÃO -->
-        <div id="evaluation_box">
+        <div id="evaluation_box">         
         
           <?php if (Auth::check()) { ?>
               
@@ -330,22 +330,39 @@
                 $count = $binomials->count() - 1;
                 // fazer um loop para cada e salvar como uma avaliação
                 foreach ($binomials->reverse() as $binomial) { ?>
+
+                  
                   
                   <p>
-                    {{ Form::label('value-'.$binomial->id, $binomial->firstOption) }}<br>
+                    <table border = 0 width= 220>
+                      <tr>
+                        <td width=150>{{ Form::label('value-'.$binomial->id, $binomial->firstOption) }} </td>
+                        <td align="right"> {{ Form::label('value-'.$binomial->id, $binomial->secondOption) }} </td>
+                      </tr>
+                    </table>  
+
+                    <script>
+                      function outputUpdate(val) {
+                        document.querySelector('#binomialValue{{$binomial->id}}').value = val;
+                      }
+                    </script>                    
                     @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
                       <?php $userEvaluation = $userEvaluations->get($count) ?>
-                      {{ Form::input('range', 'value-'.$binomial->id, $userEvaluation->evaluationPosition, ['min'=>'0','max'=>'100']) }}
+                      {{ Form::input('range', 'value-'.$binomial->id, $userEvaluation->evaluationPosition, ['min'=>'0','max'=>'100', 
+                      'oninput'=>'outputUpdate(value)']) }}
+                      <output for=fader{{$binomial->id}} id=binomialValue{{$binomial->id}}>{{$userEvaluation->evaluationPosition}}</output> 
                     @else
-                      {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100']) }}
-                    @endif
-                    <?php $count-- ?>
-                     {{ Form::label('value-'.$binomial->id, $binomial->secondOption) }}<br>
+                      {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100',
+                      'oninput'=>'outputUpdate(value)']) }}
+                      <output for=fader{{$binomial->id}} id=binomialValue{{$binomial->id}}>{{$binomial->defaultValue}}</output>
+                    @endif    
+
+                    <?php $count-- ?>  
                   </p>
                   
               <?php } ?>
               
-               <a href="{{ URL::to('/photos/' . $photos->id) }}" class='btn right'>CANCELAR</a>&nbsp;&nbsp;
+               <a href="{{ URL::to('/photos/' . $photos->id) }}" class='btn right'>CANCELAR</a>
               {{ Form::submit('AVALIAR', ['id'=>'evaluation_button','class'=>'btn right']) }} 
                 
             {{ Form::close() }}
