@@ -3,7 +3,7 @@
 class Tag extends Eloquent {
 
 	public $timestamps = false;
-  
+
 	protected $fillable = ['name'];
 
 	public function photos() {

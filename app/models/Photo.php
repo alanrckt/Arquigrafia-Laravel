@@ -6,7 +6,7 @@ use lib\license\CreativeCommons_3_0;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Photo extends Eloquent {
-  
+
 	use SoftDeletingTrait;
 
 	protected $dates = ['deleted_at'];
@@ -17,7 +17,7 @@ class Photo extends Eloquent {
 		'YES' => ['Sim', ''],
 		'YES_SA' => ['Sim, contanto que os outros compartilhem de forma semelhante', '-sa'],
 		'NO' => ['Não', '-nd']
-	]; 
+	];
 
 	static $allowCommercialUsesList = [
 		'YES' => ['Sim', ''],
@@ -43,7 +43,7 @@ class Photo extends Eloquent {
 	{
 		return $this->belongsToMany('Album', 'album_elements');
 	}
-  
+
 	public function evaluations()
 	{
 		return $this->hasMany('Evaluation');
@@ -61,13 +61,13 @@ class Photo extends Eloquent {
 	public function saveMetadata($originalFileExtension)
 	{
 		$user = $this->user;
-		$exiv2 = new Exiv2($originalFileExtension, $this->id, public_path() . '/arquigrafia-images/');	   
+		$exiv2 = new Exiv2($originalFileExtension, $this->id, public_path() . '/arquigrafia-images/');	
 		$exiv2->setImageAuthor($this->workAuthor);
 		$exiv2->setArtist($this->workAuthor, $user->name);
-		$exiv2->setCopyRight($this->workAuthor, 
+		$exiv2->setCopyRight($this->workAuthor,
 			new CreativeCommons_3_0($this->allowCommercialUses, $this->allowModifications));
 		$exiv2->setDescription($this->description);
-		$exiv2->setUserComment($this->aditionalImageComments);		   
+		$exiv2->setUserComment($this->aditionalImageComments);		
 	}
 
 	public static function paginateUserPhotos($user, $perPage = 24) {
@@ -88,19 +88,19 @@ class Photo extends Eloquent {
 	public static function composeArchitectureName($name) {
 		$array = explode(" ", $name);
 		$architectureName = "";			
-		if (!is_null($array) && !is_null($array[0])) {		        
-	        if (ends_with($array[0], 'a') or ends_with($array[0], 'dade') 
-	        	or ends_with($array[0], 'ção') or ends_with($array[0], 'ase')
-	        	or ends_with($array[0], 'ede') or ends_with($array[0], 'dral')
-	        	or ends_with($array[0], 'agem') or $array[0] == "fonte" 
-	        	or $array[0] == "Fonte" or $array[0] == "ponte"
-	        	or $array[0] == "Ponte")
-	            $architectureName = 'a ';
-	        else if (ends_with($array[0], 's'))
-	        	$architectureName = 'a arquitetura de ';	        
-	        else 
-	        	$architectureName = 'o ';
-	    }
+		if (!is_null($array) && !is_null($array[0])) {		
+			if (ends_with($array[0], 'a') || ends_with($array[0], 'dade')
+				|| ends_with($array[0], 'ção') || ends_with($array[0], 'ase')
+				|| ends_with($array[0], 'ede') || ends_with($array[0], 'dral')
+				|| ends_with($array[0], 'agem') || $array[0] == "fonte"
+				|| $array[0] == "Fonte" || $array[0] == "ponte"
+				|| $array[0] == "Ponte")
+				$architectureName = 'a ';
+			else if (ends_with($array[0], 's'))
+				$architectureName = 'a arquitetura de ';	
+			else
+				$architectureName = 'o ';
+		}
 		return $architectureName = $architectureName .$name;
 	}
 

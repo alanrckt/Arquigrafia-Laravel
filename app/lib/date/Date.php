@@ -5,11 +5,11 @@ use DateTime;
 class Date {
 
 	private static $months = [
-		'janeiro', 
-		'fevereiro', 
-		'março', 
-		'abril', 
-		'maio', 
+		'janeiro',
+		'fevereiro',
+		'março',
+		'abril',
+		'maio',
 		'junho',
 		'julho',
 		'agosto',
@@ -19,38 +19,38 @@ class Date {
 		'dezembro'
 	];
 
-    private static $centuries = [
-        'I',
-        'II',
-        'III',
-        'IV',
-        'V',
-        'VI',
-        'VII',
-        'VIII',
-        'IX',
-        'X',
-        'XI',
-        'XII',
-        'XIII',
-        'XIV',
-        'XV',
-        'XVI',
-        'XVII',
-        'XVIII',
-        'XIX',
-        'XX',
-        'XXI',
-        'XXII',
-        'XXIII'
-    ];
+	private static $centuries = [
+		'I',
+		'II',
+		'III',
+		'IV',
+		'V',
+		'VI',
+		'VII',
+		'VIII',
+		'IX',
+		'X',
+		'XI',
+		'XII',
+		'XIII',
+		'XIV',
+		'XV',
+		'XVI',
+		'XVII',
+		'XVIII',
+		'XIX',
+		'XX',
+		'XXI',
+		'XXII',
+		'XXIII'
+	];
 
-	public static function formatDate($date) 
+	public static function formatDate($date)
 	{
 		$formattedDate = DateTime::createFromFormat('d/m/Y', $date);
 		
-		if ($formattedDate && 
-			DateTime::getLastErrors()["warning_count"] == 0 && 
+		if ($formattedDate &&
+			DateTime::getLastErrors()["warning_count"] == 0 &&
 			DateTime::getLastErrors()["error_count"] == 0)
 				return $formattedDate->format('Y-m-d');
 
@@ -71,13 +71,13 @@ class Date {
 	public static function translateInterval($date) {
 		$dates = explode('/', $date);
 		
-        if ( self::isCentury($dates[0]) && self::isCentury($dates[1]) )
-            return 'entre o ' . self::translateDate($dates[0]) . ' e o ' . self::translateDate($dates[1]);
+		if ( self::isCentury($dates[0]) && self::isCentury($dates[1]) )
+			return 'entre o ' . self::translateDate($dates[0]) . ' e o ' . self::translateDate($dates[1]);
 
-        if ( self::isDecade($dates[0]) && self::isDecade($dates[1]) )
-            return 'entre a ' . self::translateDate($dates[0]) . ' e a ' . self::translateDate($dates[1]); 
+		if ( self::isDecade($dates[0]) && self::isDecade($dates[1]) )
+			return 'entre a ' . self::translateDate($dates[0]) . ' e a ' . self::translateDate($dates[1]);
 
-		return 'entre ' . self::translateDate($dates[0]) . ' e ' . self::translateDate($dates[1]); 
+		return 'entre ' . self::translateDate($dates[0]) . ' e ' . self::translateDate($dates[1]);
 	}
 
 	public static function translateDate($date) {

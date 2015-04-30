@@ -62,7 +62,6 @@ class Exiv2 {
 
 	private function runExif2_internal($sufix, $extension, $command) {
 		$fileName = sprintf("%s%s%s.%s", $this->imagesPath, $this->imageId, $sufix, $extension);
-		// $cmd = 'exiv2 -M "swet' . $command . '" ' . $fileName;
 		$cmd = 'exiv2 -M "set ' . $command . '" ' . $fileName;
 		$cmd;
 		system($cmd, $retval);
