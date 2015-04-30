@@ -323,6 +323,12 @@
           <?php if (Auth::check()) { ?>
               
             {{ Form::open(array('url' => "photos/{$photos->id}/saveEvaluation")) }}
+
+            <script>
+                      function outputUpdate(binomio, val) {
+                        document.querySelector('#binomialValue'+binomio).value = val;
+                      }
+            </script> 
             
               <?php 
                 $count = $binomials->count() - 1;
@@ -337,23 +343,18 @@
                         <td width=150>{{ Form::label('value-'.$binomial->id, $binomial->firstOption) }} </td>
                         <td align="right"> {{ Form::label('value-'.$binomial->id, $binomial->secondOption) }} </td>
                       </tr>
-                    </table>  
-
-                    <script>
-                      function outputUpdate(val) {
-                        document.querySelector('#binomialValue{{$binomial->id}}').value = val;
-                      }
-                    </script>                    
+                    </table> 
+                                       
                     @if (isset($userEvaluations) && !$userEvaluations->isEmpty())
                       <?php $userEvaluation = $userEvaluations->get($count) ?>
                       {{ Form::input('range', 'value-'.$binomial->id, $userEvaluation->evaluationPosition, ['min'=>'0','max'=>'100', 
-                      'oninput'=>'outputUpdate(value)']) }}
+                      'oninput'=>'outputUpdate(' . $binomial->id . ', value)']) }}
                       <output for=fader{{$binomial->id}} id=binomialValue{{$binomial->id}}>{{$userEvaluation->evaluationPosition}}</output> 
                     @else
                       {{ Form::input('range', 'value-'.$binomial->id, $binomial->defaultValue, ['min'=>'0','max'=>'100',
-                      'oninput'=>'outputUpdate(value)']) }}
+                      'oninput'=>'outputUpdate(' . $binomial->id . ', value)']) }}
                       <output for=fader{{$binomial->id}} id=binomialValue{{$binomial->id}}>{{$binomial->defaultValue}}</output>
-                    @endif    
+                    @endif   
 
                     <?php $count-- ?>  
                   </p>
