@@ -8,9 +8,6 @@
 
 <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::to("/") }}/css/checkbox.css" />
 
-<!--   JQUERY   -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-
 <!-- Google Maps API -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
 <script type="text/javascript">
@@ -500,17 +497,17 @@ $(document).ready(function(){
     
 		<!--   MODAL   -->
 		<div id="mask"></div>
-		<div id="form_window">
+		<div id="form_window" class="form window">
 			<a class="close" href="#" title="FECHAR">Fechar</a>
 			<div id="registration"></div>
 		</div>
-		<div id="confirmation_window">
+		<div id="confirmation_window" class="window">
 			<div id="registration_delete">
 				<p></p>
 				{{ Form::open(array('url' => '', 'method' => 'delete')) }}
 					<div id="registration_buttons">
-						<a class="btn" href="#" id="submit_delete">Confirmar</a>
-						<a class="btn" href="#" id="cancel_delete">Cancelar</a>
+						<input type="submit" class="btn" value="Confirmar" />
+						<a class="btn close" href="#">Cancelar</a>
 					</div>
 				{{ Form::close() }}
 			</div>
