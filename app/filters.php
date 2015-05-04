@@ -17,7 +17,7 @@ App::before(function($request)
   
   // VIEW COMPOSERS
   View::composer('includes.footer', function($view) {
-    $count = Photo::where('deleted', '=', '0')->count();
+    $count = Photo::count();
     $view->with('count', $count);
   });
   
